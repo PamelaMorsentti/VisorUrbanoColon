@@ -1,0 +1,8 @@
+artifacts/colon-3d/public/data/planos/obras-admin.geojson filter=lfs diff=lfs merge=lfs -text
+artifacts/planos-cleaning/*.geojson filter=lfs diff=lfs merge=lfs -text
+artifacts/planos-cleaning/*.json filter=lfs diff=lfs merge=lfs -text
+artifacts/colon-3d/public/data/Municipio_corregido.geojson filter=lfs diff=lfs merge=lfs -text
+artifacts/colon-3d/public/data/enersa_mt_lineas.geojson filter=lfs diff=lfs merge=lfs -text
+artifacts/colon-3d/dist/public/data/planos/obras-admin.geojson filter=lfs diff=lfs merge=lfs -text
+artifacts/colon-3d/dist/public/data/Municipio_corregido.geojson filter=lfs diff=lfs merge=lfs -text
+artifacts/colon-3d/dist/public/data/enersa_mt_lineas.geojson filter=lfs diff=lfs merge=lfs -text
