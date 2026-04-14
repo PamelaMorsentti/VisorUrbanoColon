@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Layers, Search, Map, Navigation } from "lucide-react";
+import { Layers, Search, Navigation } from "lucide-react";
 import L from "leaflet";
 import { COLON_CENTER, COLON_ZOOM } from "@/lib/layers";
 
@@ -7,11 +7,9 @@ interface HeaderProps {
   onToggleLayers: () => void;
   layersPanelOpen: boolean;
   mapRef: React.RefObject<L.Map | null>;
-  is3D: boolean;
-  onToggle3D: () => void;
 }
 
-export default function Header({ onToggleLayers, layersPanelOpen, mapRef, is3D, onToggle3D }: HeaderProps) {
+export default function Header({ onToggleLayers, layersPanelOpen, mapRef }: HeaderProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [searching, setSearching] = useState(false);
 
@@ -46,9 +44,12 @@ export default function Header({ onToggleLayers, layersPanelOpen, mapRef, is3D, 
       data-testid="header"
     >
       <div className="flex items-center gap-2 min-w-0 flex-shrink-0">
-        <div className="w-7 h-7 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
-          <Map size={14} className="text-primary" />
-        </div>
+        <img
+          src="/logo-municipalidad.png"
+          alt="Municipalidad de Colón"
+          className="w-8 h-8 object-contain flex-shrink-0"
+          style={{ filter: "brightness(0) invert(1)", opacity: 0.85 }}
+        />
         <div className="hidden sm:block min-w-0">
           <div className="text-sm font-bold text-foreground leading-tight whitespace-nowrap">Colón 3D</div>
           <div className="text-[10px] text-muted-foreground leading-tight">Entre Ríos · Visor Urbano</div>
@@ -63,7 +64,8 @@ export default function Header({ onToggleLayers, layersPanelOpen, mapRef, is3D, 
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             placeholder="Buscar dirección..."
-            className="w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all"
+            disabled={searching}
+            className="w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all disabled:opacity-60"
             data-testid="input-search"
           />
         </div>

@@ -209,3 +209,26 @@
 
 /* Layer toggle animation */
 .layer-toggle { transition: all 0.2s ease; }
+
+/* Map feature labels */
+.map-label {
+  background: transparent;
+  border: none;
+  pointer-events: none;
+}
+.map-label-text {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 0 3px rgba(0,0,0,0.9), 0 0 6px rgba(0,0,0,0.8), 1px 1px 2px rgba(0,0,0,1);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+/* Larger labels for sections and zones */
+.leaflet-marker-icon.map-label .map-label-text:not(:empty) {
+  font-size: 10px;
+}

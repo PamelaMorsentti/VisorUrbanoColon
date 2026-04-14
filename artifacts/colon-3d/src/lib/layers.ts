@@ -9,6 +9,7 @@ export interface LayerDef {
   group: string;
   description?: string;
   lazy?: boolean;
+  labelZoom?: number;
 }
 
 export const COLON_CENTER: [number, number] = [-58.1417, -32.2292];
@@ -53,6 +54,7 @@ export const LAYERS: LayerDef[] = [
     defaultVisible: false,
     group: "Límites",
     description: "Secciones catastrales",
+    labelZoom: 13,
   },
   {
     id: "barrios",
@@ -64,6 +66,7 @@ export const LAYERS: LayerDef[] = [
     defaultVisible: false,
     group: "Límites",
     description: "Barrios y sectores urbanos",
+    labelZoom: 13,
   },
   {
     id: "manzana",
@@ -75,6 +78,7 @@ export const LAYERS: LayerDef[] = [
     defaultVisible: true,
     group: "Catastro",
     description: "Manzanas del ejido urbano",
+    labelZoom: 16,
   },
   {
     id: "parcela",
@@ -87,6 +91,7 @@ export const LAYERS: LayerDef[] = [
     group: "Catastro",
     description: "División catastral de parcelas",
     lazy: true,
+    labelZoom: 18,
   },
   {
     id: "superp",
@@ -109,6 +114,17 @@ export const LAYERS: LayerDef[] = [
     defaultVisible: true,
     group: "Infraestructura",
     description: "Red vial urbana",
+  },
+  {
+    id: "vias",
+    label: "Vías principales",
+    source: "vias",
+    file: "vias.geojson",
+    type: "line",
+    color: "#f59e0b",
+    defaultVisible: false,
+    group: "Infraestructura",
+    description: "Vías de acceso y rutas principales",
   },
   {
     id: "bocas",
@@ -134,6 +150,17 @@ export const LAYERS: LayerDef[] = [
     lazy: true,
   },
   {
+    id: "hidro",
+    label: "Hidrografía",
+    source: "hidro",
+    file: "hidro.geojson",
+    type: "line",
+    color: "#38bdf8",
+    defaultVisible: false,
+    group: "Topografía",
+    description: "Cursos de agua e hidrografía",
+  },
+  {
     id: "cota10",
     label: "Curvas de nivel",
     source: "cota10",
@@ -146,11 +173,11 @@ export const LAYERS: LayerDef[] = [
   },
   {
     id: "edif",
-    label: "Edificios (3D)",
+    label: "Edificios",
     source: "edif",
     file: "Edif.geojson",
-    type: "fill-extrusion",
-    color: "#4b5563",
+    type: "fill",
+    color: "#6b7280",
     defaultVisible: true,
     group: "Edificios",
     description: "Edificaciones generales",
@@ -161,8 +188,8 @@ export const LAYERS: LayerDef[] = [
     label: "Edif. Planta Alta",
     source: "edif_palta",
     file: "Edif_PAlta.geojson",
-    type: "fill-extrusion",
-    color: "#b45309",
+    type: "fill",
+    color: "#d97706",
     defaultVisible: true,
     group: "Edificios",
     description: "Edificios de planta alta",
@@ -181,26 +208,39 @@ export const LAYERS: LayerDef[] = [
   },
   {
     id: "arbol",
-    label: "Arbolado",
+    label: "Arbolado urbano",
     source: "arbol",
     file: "arbol.geojson",
-    type: "circle",
-    color: "#16a34a",
+    type: "line",
+    color: "#22c55e",
     defaultVisible: false,
     group: "Verde urbano",
-    description: "Inventario de árboles urbanos",
+    description: "Inventario de árboles urbanos (copas)",
     lazy: true,
   },
   {
     id: "grupo",
-    label: "Grupos",
+    label: "Grupos catastrales",
     source: "grupo",
     file: "grupo.geojson",
     type: "fill",
     color: "#7c3aed",
     defaultVisible: false,
-    group: "Zonificación",
+    group: "Catastro",
     description: "Agrupación de parcelas",
+    labelZoom: 15,
+  },
+  {
+    id: "zonas",
+    label: "Zonificación (Ord. 130)",
+    source: "zonas",
+    file: "zonas.geojson",
+    type: "line",
+    color: "#ff5522",
+    defaultVisible: false,
+    group: "Zonificación",
+    description: "Zonas urbanas según Ordenanza 130-2022",
+    labelZoom: 14,
   },
 ];
 
