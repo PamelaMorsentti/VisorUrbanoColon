@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Colón 3D — Visor Urbano"
+version = "1.0.0"
+id = "artifacts/colon-3d"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18284
+
+[services.development]
+run = "pnpm --filter @workspace/colon-3d run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/colon-3d", "run", "build" ]
+publicDir = "artifacts/colon-3d/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18284"
+BASE_PATH = "/"

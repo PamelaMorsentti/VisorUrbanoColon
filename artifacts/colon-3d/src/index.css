@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-popover-border: hsl(var(--popover-border));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-border: var(--primary-border);
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary-border: var(--secondary-border);
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-muted-border: var(--muted-border);
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-border: var(--accent-border);
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-destructive-border: var(--destructive-border);
+  --font-sans: var(--app-font-sans);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --opaque-button-border-intensity: -8;
+  --elevate-1: rgba(0,0,0, .03);
+  --elevate-2: rgba(0,0,0, .08);
+  --button-outline: rgba(0,0,0,.10);
+  --badge-outline: rgba(0,0,0,.05);
+
+  --background: 220 18% 11%;
+  --foreground: 210 20% 92%;
+  --border: 220 15% 22%;
+  --card: 220 16% 14%;
+  --card-foreground: 210 20% 92%;
+  --card-border: 220 15% 22%;
+  --sidebar: 220 18% 9%;
+  --sidebar-foreground: 210 20% 88%;
+  --sidebar-border: 220 15% 20%;
+  --sidebar-primary: 210 80% 52%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 220 15% 18%;
+  --sidebar-accent-foreground: 210 20% 92%;
+  --sidebar-ring: 210 80% 52%;
+  --popover: 220 16% 12%;
+  --popover-foreground: 210 20% 92%;
+  --popover-border: 220 15% 22%;
+  --primary: 210 80% 52%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 15% 20%;
+  --secondary-foreground: 210 20% 85%;
+  --muted: 220 15% 18%;
+  --muted-foreground: 210 12% 58%;
+  --accent: 220 15% 22%;
+  --accent-foreground: 210 20% 92%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --input: 220 15% 22%;
+  --ring: 210 80% 52%;
+  --chart-1: 210 80% 52%;
+  --chart-2: 142 71% 45%;
+  --chart-3: 38 92% 50%;
+  --chart-4: 280 65% 60%;
+  --chart-5: 340 75% 55%;
+
+  --app-font-sans: 'Inter', sans-serif;
+  --radius: .5rem;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.3);
+  --shadow: 0 2px 8px rgba(0,0,0,.4);
+  --shadow-lg: 0 4px 16px rgba(0,0,0,.5);
+
+  --primary-border: hsl(var(--primary));
+  --secondary-border: hsl(var(--secondary));
+  --muted-border: hsl(var(--muted));
+  --accent-border: hsl(var(--accent));
+  --destructive-border: hsl(var(--destructive));
+  --sidebar-primary-border: hsl(var(--sidebar-primary));
+  --sidebar-accent-border: hsl(var(--sidebar-accent));
+}
+
+.dark {
+  --button-outline: rgba(255,255,255,.10);
+  --badge-outline: rgba(255,255,255,.05);
+  --opaque-button-border-intensity: 9;
+  --elevate-1: rgba(255,255,255,.04);
+  --elevate-2: rgba(255,255,255,.09);
+
+  --background: 220 18% 11%;
+  --foreground: 210 20% 92%;
+  --border: 220 15% 22%;
+  --card: 220 16% 14%;
+  --card-foreground: 210 20% 92%;
+  --card-border: 220 15% 22%;
+  --sidebar: 220 18% 9%;
+  --sidebar-foreground: 210 20% 88%;
+  --sidebar-border: 220 15% 20%;
+  --sidebar-primary: 210 80% 52%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 220 15% 18%;
+  --sidebar-accent-foreground: 210 20% 92%;
+  --sidebar-ring: 210 80% 52%;
+  --popover: 220 16% 12%;
+  --popover-foreground: 210 20% 92%;
+  --popover-border: 220 15% 22%;
+  --primary: 210 80% 52%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 15% 20%;
+  --secondary-foreground: 210 20% 85%;
+  --muted: 220 15% 18%;
+  --muted-foreground: 210 12% 58%;
+  --accent: 220 15% 22%;
+  --accent-foreground: 210 20% 92%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --input: 220 15% 22%;
+  --ring: 210 80% 52%;
+}
+
+@layer base {
+  * { @apply border-border; }
+  body { @apply font-sans antialiased bg-background text-foreground; }
+}
+
+/* MapLibre overrides */
+.maplibregl-map {
+  font-family: 'Inter', sans-serif;
+}
+
+.maplibregl-popup-content {
+  background: hsl(220 16% 14%);
+  color: hsl(210 20% 92%);
+  border: 1px solid hsl(220 15% 22%);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.5);
+  max-width: 280px;
+}
+
+.maplibregl-popup-tip {
+  border-top-color: hsl(220 16% 14%);
+  border-bottom-color: hsl(220 16% 14%);
+}
+
+.maplibregl-popup-close-button {
+  color: hsl(210 12% 58%);
+  font-size: 18px;
+  padding: 4px 8px;
+}
+
+.maplibregl-popup-close-button:hover {
+  color: hsl(210 20% 92%);
+  background: transparent;
+}
+
+.maplibregl-ctrl-group {
+  background: hsl(220 16% 14%) !important;
+  border: 1px solid hsl(220 15% 22%) !important;
+}
+
+.maplibregl-ctrl-group button {
+  background: hsl(220 16% 14%) !important;
+  color: hsl(210 20% 92%) !important;
+  border-bottom: 1px solid hsl(220 15% 22%) !important;
+}
+
+.maplibregl-ctrl-group button:hover {
+  background: hsl(220 15% 20%) !important;
+}
+
+.maplibregl-ctrl-attrib {
+  background: rgba(34,38,48,.8) !important;
+  color: hsl(210 12% 58%) !important;
+  font-size: 10px;
+}
+
+.maplibregl-ctrl-attrib a {
+  color: hsl(210 80% 60%) !important;
+}
+
+.maplibregl-canvas {
+  cursor: crosshair !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: hsl(220 18% 9%); }
+::-webkit-scrollbar-thumb { background: hsl(220 15% 25%); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(220 15% 32%); }
+
+/* Layer toggle animation */
+.layer-toggle { transition: all 0.2s ease; }
