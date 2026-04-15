@@ -106,26 +106,33 @@ function getLabelText(layerId: string, properties: Record<string, unknown>, inde
     return String(properties.ZONA || "");
   }
   if (layerId === "seccion") {
-    const v = properties.SEC || properties.SECCION || properties.SECC || properties.ID || properties.id;
-    return v ? String(v) : `S${index + 1}`;
+    const v = properties.SECCION;
+    return v != null ? String(v) : `S${index + 1}`;
   }
   if (layerId === "manzana") {
-    const v = properties.MZ || properties.MANZANA || properties.NRO || properties.NUMERO || properties.ID || properties.id;
-    return v ? String(v) : `${index + 1}`;
+    const manz = properties.MANZ;
+    if (manz && Number(manz) > 0) return String(manz);
+    const gru = properties.GRU;
+    if (gru != null && Number(gru) > 0) return String(gru);
+    return "";
   }
   if (layerId === "parcela") {
-    const v = properties.PAR || properties.PARCELA || properties.NRO || properties.ID || properties.id;
-    return v ? String(v) : `P${index + 1}`;
+    const v = properties.NPARC;
+    return v != null ? String(v) : "";
   }
   if (layerId === "barrios") {
-    const v = properties.NOMBRE || properties.NOM || properties.BARRIO || properties.NAME || properties.name;
+    const v = properties.NOMBRE;
     return v ? String(v) : `B${index + 1}`;
   }
   if (layerId === "grupo") {
-    const v = properties.GRP || properties.GRUPO || properties.ID || properties.id;
-    return v ? String(v) : `G${index + 1}`;
+    const v = properties.GRUPO;
+    return v != null ? String(v) : `G${index + 1}`;
   }
-  return String(properties.ID || properties.id || index + 1);
+  if (layerId === "calle") {
+    const v = properties.CALLE;
+    return v ? String(v).replace(/^CALLE\s+/, "") : "";
+  }
+  return "";
 }
 
 export default function MapViewer() {

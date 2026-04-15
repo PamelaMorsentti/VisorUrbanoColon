@@ -114,6 +114,7 @@ export const LAYERS: LayerDef[] = [
     defaultVisible: true,
     group: "Infraestructura",
     description: "Red vial urbana",
+    labelZoom: 17,
   },
   {
     id: "vias",

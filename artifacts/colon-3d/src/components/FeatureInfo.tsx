@@ -6,26 +6,72 @@ interface FeatureInfoProps {
   onClose: () => void;
 }
 
-function formatValue(val: unknown): string {
-  if (val === null || val === undefined || val === "") return "—";
-  if (typeof val === "number") {
-    if (Number.isInteger(val)) return val.toLocaleString("es-AR");
-    return val.toFixed(4);
-  }
-  return String(val);
-}
+const FIELD_LABELS: Record<string, string> = {
+  ID: "ID",
+  NCM: "Nomenclatura Manzana",
+  NCP: "Nomenclatura Parcela",
+  NCC: "Nomenclatura Calle",
+  SEC: "Sección",
+  SECCION: "Nº Sección",
+  GRU: "Grupo",
+  GRUPO: "Nº Grupo",
+  MANZ: "Nº Manzana",
+  NPARC: "Nº Parcela",
+  CALLE: "Nombre Calle",
+  CODIGO: "Código",
+  NOMBRE: "Nombre",
+  TIPO: "Tipo",
+  NIVEL: "Nivel",
+  ORIGEN: "Origen",
+  AREA: "Área (m²)",
+  LARGO: "Largo (m)",
+  FRENTE: "Frente (m)",
+  PERIMETRO: "Perímetro (m)",
+  OBJETO: "Objeto",
+  NODO: "Nodo",
+  MAPKEY: "Clave",
+  ZONA: "Zona",
+  ARBOL_ID: "ID Árbol",
+  HIDRO_ID: "ID Hidrografía",
+  BOCAS_ID: "ID Boca",
+  POSTES_ID: "ID Poste",
+  VIAS_ID: "ID Vía",
+  ESPVERD_ID: "ID Esp. Verde",
+};
 
 const HIDDEN_PROPS = new Set([
   "fid", "handle", "block", "etype", "space", "olinetype", "linetype",
   "color", "ocolor", "color24", "transparency", "lweight", "linewidth",
-  "ltscale", "visible", "width", "thickness", "ext", "layer"
+  "ltscale", "visible", "width", "thickness", "ext", "layer", "nodo",
+  "mapkey", "ncc", "nmanz"
 ]);
+
+function formatValue(key: string, val: unknown): string {
+  if (val === null || val === undefined || val === "") return "—";
+  if (typeof val === "number") {
+    if (key === "AREA" || key === "LARGO" || key === "FRENTE" || key === "PERIMETRO") {
+      return `${val.toLocaleString("es-AR", { maximumFractionDigits: 2 })} m${key === "AREA" ? "²" : ""}`;
+    }
+    if (Number.isInteger(val)) return val.toLocaleString("es-AR");
+    return val.toFixed(2);
+  }
+  return String(val);
+}
+
+function getLabel(key: string): string {
+  return FIELD_LABELS[key.toUpperCase()] || key;
+}
 
 export default function FeatureInfo({ feature, layerLabel, onClose }: FeatureInfoProps) {
   if (!feature) return null;
 
   const entries = Object.entries(feature).filter(
-    ([key]) => !HIDDEN_PROPS.has(key.toLowerCase()) && !key.startsWith("_")
+    ([key, val]) =>
+      !HIDDEN_PROPS.has(key.toLowerCase()) &&
+      !key.startsWith("_") &&
+      val !== null &&
+      val !== undefined &&
+      val !== ""
   );
 
   const hasProps = entries.length > 0;
@@ -55,10 +101,10 @@ export default function FeatureInfo({ feature, layerLabel, onClose }: FeatureInf
           <div className="divide-y divide-border/50">
             {entries.map(([key, val]) => (
               <div key={key} className="flex px-4 py-2 gap-2">
-                <span className="text-xs text-muted-foreground w-28 flex-shrink-0 pt-0.5 font-medium uppercase tracking-wide">
-                  {key}
+                <span className="text-xs text-muted-foreground w-32 flex-shrink-0 pt-0.5">
+                  {getLabel(key)}
                 </span>
-                <span className="text-xs text-foreground break-words">{formatValue(val)}</span>
+                <span className="text-xs text-foreground break-words font-medium">{formatValue(key, val)}</span>
               </div>
             ))}
           </div>
