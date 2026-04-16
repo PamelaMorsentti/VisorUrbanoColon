@@ -87,7 +87,8 @@ function preprocessZonas(data: FeatureCollection): FeatureCollection {
 
 function getFeatureBounds(geometry: Geometry): L.LatLngBounds | null {
   try {
-    const layer = L.geoJSON({ type: "Feature", geometry, properties: {} });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const layer = L.geoJSON({ type: "Feature", geometry, properties: {} } as any);
     const b = layer.getBounds();
     return b.isValid() ? b : null;
   } catch { return null; }
@@ -247,7 +248,7 @@ export default function MapViewer() {
       const marker = L.marker(centroid as L.LatLngExpression, {
         icon: L.divIcon({
           className: "map-label",
-          html: `<span class="map-label-text" style="transform:rotate(${rotation}deg);display:inline-block;transform-origin:center center;white-space:nowrap;">${text}</span>`,
+          html: `<div class="map-label-inner"><span class="map-label-text" style="transform:rotate(${rotation}deg);">${text}</span></div>`,
           iconSize: [0, 0],
           iconAnchor: [0, 0],
         }),
@@ -283,7 +284,8 @@ export default function MapViewer() {
         // Compute area for edif from geometry
         let displayProps = { ...rawProps };
         if (layerId === "edif" || layerId === "edif_palta" || layerId === "ph" || layerId === "superp") {
-          const coords = feature.geometry?.coordinates?.[0];
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const coords = (feature.geometry as any)?.coordinates?.[0];
           if (coords && (!rawProps.AREA || Number(rawProps.AREA) === 0)) {
             const area = computePolygonAreaM2(coords as number[][]);
             if (area > 0) displayProps = { ...displayProps, AREA: Math.round(area) };
