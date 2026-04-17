@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Layers, Search, Navigation, MapPin, X, Loader2 } from "lucide-react";
+import { Layers, Search, Navigation, MapPin, X, Loader2, BarChart2, Map } from "lucide-react";
 import L from "leaflet";
 import { COLON_CENTER, COLON_ZOOM } from "@/lib/layers";
 
@@ -8,6 +8,11 @@ interface HeaderProps {
   layersPanelOpen: boolean;
   onToggleCadastral: () => void;
   cadastralOpen: boolean;
+  onToggleDensidad: () => void;
+  densidadActive: boolean;
+  densidadPanelOpen: boolean;
+  onToggleZonaLegend: () => void;
+  zonaLegendOpen: boolean;
   mapRef: React.RefObject<L.Map | null>;
 }
 
@@ -16,6 +21,11 @@ export default function Header({
   layersPanelOpen,
   onToggleCadastral,
   cadastralOpen,
+  onToggleDensidad,
+  densidadActive,
+  densidadPanelOpen,
+  onToggleZonaLegend,
+  zonaLegendOpen,
   mapRef,
 }: HeaderProps) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -91,16 +101,16 @@ export default function Header({
       </div>
 
       {/* Address search */}
-      <form onSubmit={handleSearch} className="flex-1 max-w-xs">
+      <form onSubmit={handleSearch} className="flex-1 max-w-xs relative">
         <div className="relative">
           <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
           <input
             type="search"
             value={searchQuery}
             onChange={e => { setSearchQuery(e.target.value); setSearchError(false); }}
-            placeholder="Buscar dirección…"
+            placeholder="Ej: Urquiza 150 (mayúsculas o minúsculas, sin tildes)"
             disabled={searching}
-            className={`w-full pl-8 pr-7 py-1.5 text-xs rounded-lg border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 transition-all disabled:opacity-60 ${
+            className={`w-full pl-8 pr-7 py-1.5 text-xs rounded-lg border bg-card text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 transition-all disabled:opacity-60 ${
               searchError ? "border-red-500/60 focus:ring-red-500/40" : "border-border focus:ring-primary/50"
             }`}
             data-testid="input-search"
@@ -115,8 +125,8 @@ export default function Header({
           )}
         </div>
         {searchError && (
-          <div className="absolute top-full left-0 mt-1 text-[10px] text-red-400 px-1">
-            No se encontró la dirección en Colón.
+          <div className="absolute top-full left-0 mt-1 text-[10px] text-red-400 px-1 whitespace-nowrap">
+            No se encontró la dirección en Colón. Probá sin número o con nombre de calle.
           </div>
         )}
       </form>
@@ -132,6 +142,37 @@ export default function Header({
           <Navigation size={13} />
         </button>
 
+        {/* Mapa de calor */}
+        <button
+          onClick={onToggleDensidad}
+          className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs rounded-lg border transition-all font-medium ${
+            densidadActive || densidadPanelOpen
+              ? "bg-purple-500/20 border-purple-500/40 text-purple-400"
+              : "bg-card border-border text-muted-foreground hover:text-foreground"
+          }`}
+          title="Mapa de calor edilicio"
+          data-testid="button-toggle-densidad"
+        >
+          <BarChart2 size={13} />
+          <span className="hidden md:inline">Densidad</span>
+        </button>
+
+        {/* Zonificación */}
+        <button
+          onClick={onToggleZonaLegend}
+          className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs rounded-lg border transition-all font-medium ${
+            zonaLegendOpen
+              ? "bg-emerald-500/20 border-emerald-500/40 text-emerald-400"
+              : "bg-card border-border text-muted-foreground hover:text-foreground"
+          }`}
+          title="Leyenda de zonificación"
+          data-testid="button-toggle-zona-legend"
+        >
+          <Map size={13} />
+          <span className="hidden md:inline">Zonif.</span>
+        </button>
+
+        {/* Catastro */}
         <button
           onClick={onToggleCadastral}
           className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs rounded-lg border transition-all font-medium ${
@@ -146,6 +187,7 @@ export default function Header({
           <span className="hidden sm:inline">Catastro</span>
         </button>
 
+        {/* Capas */}
         <button
           onClick={onToggleLayers}
           className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs rounded-lg border transition-all font-medium ${

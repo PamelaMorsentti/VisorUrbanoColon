@@ -227,28 +227,28 @@ path.leaflet-interactive,
 .map-container { cursor: default !important; }
 
 /* ── Feature labels ───────────────────────────────────────────────────── */
-.map-label {
-  background: transparent;
-  border: none;
-  pointer-events: none;
+/* divIcon container: zero-size, placed at the marker's anchor point */
+.leaflet-div-icon.map-label {
+  background: transparent !important;
+  border: none !important;
+  overflow: visible !important;
+  pointer-events: none !important;
 }
-/* Centering wrapper — placed at iconAnchor [0,0] so we translate to center */
-.map-label-inner {
-  display: inline-block;
-  transform: translate(-50%, -50%);
-}
+/* Span is the only child. transform: translate(-50%,-50%) centers it at the
+   anchor, then rotate() spins it around that same center point.
+   transform-origin defaults to 50% 50% of the element (its own center). */
 .map-label-text {
   display: inline-block;
+  white-space: nowrap;
   font-family: 'Inter', sans-serif;
   font-size: 9px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.88);
   text-shadow:
-    0 0 3px rgba(0,0,0,0.95),
-    0 0 6px rgba(0,0,0,0.85),
+    0 0 4px rgba(0,0,0,1),
+    0 0 7px rgba(0,0,0,0.9),
     1px 1px 2px rgba(0,0,0,1);
-  letter-spacing: 0.3px;
-  white-space: nowrap;
+  letter-spacing: 0.35px;
   pointer-events: none;
-  transform-origin: center center;
+  transform-origin: 50% 50%;
 }

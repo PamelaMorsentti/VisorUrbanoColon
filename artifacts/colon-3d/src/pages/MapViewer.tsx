@@ -24,8 +24,15 @@ type DensidadData = Record<string, { count: number; area: number }>;
 function computeCentroid(geometry: Geometry): [number, number] | null {
   if (!geometry) return null;
   if (geometry.type === "Point") return [geometry.coordinates[1], geometry.coordinates[0]];
-  if (geometry.type === "Polygon" || geometry.type === "LineString") {
-    const ring = geometry.type === "Polygon" ? geometry.coordinates[0] : geometry.coordinates;
+  if (geometry.type === "LineString") {
+    const coords = geometry.coordinates;
+    if (!coords?.length) return null;
+    // Use middle coordinate for street placement
+    const mid = coords[Math.floor(coords.length / 2)];
+    return [mid[1], mid[0]];
+  }
+  if (geometry.type === "Polygon") {
+    const ring = geometry.coordinates[0];
     if (!ring?.length) return null;
     let sx = 0, sy = 0;
     for (const c of ring) { sx += c[0]; sy += c[1]; }
@@ -41,19 +48,26 @@ function computeCentroid(geometry: Geometry): [number, number] | null {
   return null;
 }
 
+// Compute the overall direction of a LineString (first → last point)
+// Returns CSS rotation angle in degrees for the label
 function computeLineAngle(geometry: Geometry): number {
   if (geometry?.type !== "LineString") return 0;
   const coords = geometry.coordinates;
   if (coords.length < 2) return 0;
-  const mid = Math.floor(coords.length / 2);
-  const p1 = coords[Math.max(0, mid - 1)];
-  const p2 = coords[Math.min(coords.length - 1, mid + 1)];
-  const dx = p2[0] - p1[0];
-  const dy = p2[1] - p1[1];
+  const p1 = coords[0];
+  const p2 = coords[coords.length - 1];
+  const dx = p2[0] - p1[0]; // longitude diff (east = positive)
+  const dy = p2[1] - p1[1]; // latitude diff  (north = positive)
+  // Geographic angle from east axis: atan2(dy, dx)
+  // Map screen: east=right, north=UP. CSS rotate: clockwise positive.
+  // For a NE line: dx>0, dy>0 → angle>0 → on screen tilts up-right
+  //   → CSS should be negative (counter-clockwise from horizontal) to point up-right
+  // So: cssAngle = -geographicAngle. Normalize to [-90,90] for readability.
   let angle = Math.atan2(dy, dx) * 180 / Math.PI;
+  // Flip so text always reads left→right (don't rotate > 90° or < -90°)
   if (angle > 90) angle -= 180;
   if (angle < -90) angle += 180;
-  return -angle; // negate for CSS screen coords
+  return -angle; // negate for CSS screen coordinate system
 }
 
 function computePolygonAreaM2(coords: number[][]): number {
@@ -121,23 +135,22 @@ function getLabelText(layerId: string, props: Record<string, unknown>, index: nu
 
 function getLayerStyle(layerId: string): L.PathOptions {
   switch (layerId) {
-    case "manzana":   return { fillColor: "#1e2432", fillOpacity: 0.75, color: "#3a4255", weight: 1, opacity: 0.9 };
-    case "parcela":   return { fillColor: "transparent", fillOpacity: 0, color: "#5b6882", weight: 0.6, opacity: 0.8 };
-    case "calle":     return { color: "#525861", weight: 1.5, opacity: 0.9 };
-    case "vias":      return { color: "#d97706", weight: 2.5, opacity: 0.9 };
-    case "municipio": return { fillColor: "transparent", fillOpacity: 0, color: "#60a5fa", weight: 2, opacity: 0.9, dashArray: "6 4" };
-    case "seccion":   return { fillColor: "transparent", fillOpacity: 0, color: "#a78bfa", weight: 1.5, opacity: 0.8, dashArray: "5 3" };
-    case "barrios":   return { fillColor: "#3b82f6", fillOpacity: 0.06, color: "#60a5fa", weight: 1.5, opacity: 0.8 };
-    case "edif":      return { fillColor: "#4a6080", fillOpacity: 1, color: "#364d68", weight: 0.5, opacity: 1 };
-    case "edif_palta":return { fillColor: "#a05a20", fillOpacity: 1, color: "#7c4015", weight: 0.5, opacity: 1 };
-    case "ph":        return { fillColor: "#4b5563", fillOpacity: 0.85, color: "#374151", weight: 0.5, opacity: 0.8 };
-    case "superp":    return { fillColor: "#d97706", fillOpacity: 0.5, color: "#b45309", weight: 0.5, opacity: 0.8 };
-    case "cota10":    return { color: "#1a5c3a", weight: 0.8, opacity: 0.65 };
-    case "hidro":     return { color: "#38bdf8", weight: 1.5, opacity: 0.75 };
-    case "arbol":     return { fillColor: "#16a34a", fillOpacity: 0.35, color: "#22c55e", weight: 1, opacity: 0.9 };
-    case "grupo":     return { fillColor: "#7c3aed", fillOpacity: 0.10, color: "#7c3aed", weight: 1, opacity: 0.6 };
-    case "zonas":     return { fillOpacity: 0.18, weight: 2, opacity: 0.9 };
-    default:          return { fillColor: "#4b5563", fillOpacity: 0.5, color: "#6b7280", weight: 1 };
+    case "manzana":    return { fillColor: "#1e2432", fillOpacity: 0.75, color: "#3a4255", weight: 1, opacity: 0.9 };
+    case "parcela":    return { fillColor: "transparent", fillOpacity: 0, color: "#5b6882", weight: 0.6, opacity: 0.8 };
+    case "calle":      return { color: "#525861", weight: 1.5, opacity: 0.9 };
+    case "vias":       return { color: "#d97706", weight: 2.5, opacity: 0.9 };
+    case "municipio":  return { fillColor: "transparent", fillOpacity: 0, color: "#60a5fa", weight: 2, opacity: 0.9, dashArray: "6 4" };
+    case "seccion":    return { fillColor: "transparent", fillOpacity: 0, color: "#a78bfa", weight: 1.5, opacity: 0.8, dashArray: "5 3" };
+    case "barrios":    return { fillColor: "#3b82f6", fillOpacity: 0.06, color: "#60a5fa", weight: 1.5, opacity: 0.8 };
+    case "edif":       return { fillColor: "#4a6080", fillOpacity: 1, color: "#364d68", weight: 0.5, opacity: 1 };
+    case "edif_palta": return { fillColor: "#a05a20", fillOpacity: 1, color: "#7c4015", weight: 0.5, opacity: 1 };
+    case "superp":     return { fillColor: "#d97706", fillOpacity: 0.5, color: "#b45309", weight: 0.5, opacity: 0.8 };
+    case "cota10":     return { color: "#1a5c3a", weight: 0.8, opacity: 0.65 };
+    case "hidro":      return { color: "#38bdf8", weight: 1.5, opacity: 0.75 };
+    case "arbol":      return { fillColor: "#16a34a", fillOpacity: 0.35, color: "#22c55e", weight: 1, opacity: 0.9 };
+    case "grupo":      return { fillColor: "#7c3aed", fillOpacity: 0.10, color: "#7c3aed", weight: 1, opacity: 0.6 };
+    case "zonas":      return { fillOpacity: 0.18, weight: 2, opacity: 0.9 };
+    default:           return { fillColor: "#4b5563", fillOpacity: 0.5, color: "#6b7280", weight: 1 };
   }
 }
 
@@ -177,10 +190,12 @@ export default function MapViewer() {
   const loadingRef = useRef<Set<string>>(new Set());
   const highlightRef = useRef<L.GeoJSON | null>(null);
   const densidadDataRef = useRef<DensidadData | null>(null);
+  const densidadActiveRef = useRef(false); // for use inside hover closures
 
   const [layersPanelOpen, setLayersPanelOpen] = useState(false);
   const [searchPanelOpen, setSearchPanelOpen] = useState(false);
   const [densidadPanelOpen, setDensidadPanelOpen] = useState(false);
+  const [zonaLegendOpen, setZonaLegendOpen] = useState(false);
   const [densidadActive, setDensidadActive] = useState(false);
   const [densidadStats, setDensidadStats] = useState<{
     totalEdif: number; manzanasConEdif: number; maxCount: number; maxArea: number;
@@ -197,6 +212,9 @@ export default function MapViewer() {
   const [visibleLayers, setVisibleLayers] = useState<Record<string, boolean>>(
     Object.fromEntries(LAYERS.map(l => [l.id, l.defaultVisible]))
   );
+
+  // Keep ref in sync with state for use in closures
+  useEffect(() => { densidadActiveRef.current = densidadActive; }, [densidadActive]);
 
   // ── Density data loading ─────────────────────────────────────────────────
 
@@ -245,10 +263,13 @@ export default function MapViewer() {
 
       const rotation = layerDef.id === "calle" ? computeLineAngle(feature.geometry) : 0;
 
+      // Use translate(-50%,-50%) BEFORE rotate so text centers on the point,
+      // then rotates around its own center. transform-origin must be 0 0 since
+      // the element is positioned at (0,0) of a zero-size container.
       const marker = L.marker(centroid as L.LatLngExpression, {
         icon: L.divIcon({
           className: "map-label",
-          html: `<div class="map-label-inner"><span class="map-label-text" style="transform:rotate(${rotation}deg);">${text}</span></div>`,
+          html: `<span class="map-label-text" style="transform:translate(-50%,-50%) rotate(${rotation}deg);">${text}</span>`,
           iconSize: [0, 0],
           iconAnchor: [0, 0],
         }),
@@ -281,9 +302,8 @@ export default function MapViewer() {
         if (!feature.properties) return;
         const rawProps = feature.properties as Record<string, unknown>;
 
-        // Compute area for edif from geometry
         let displayProps = { ...rawProps };
-        if (layerId === "edif" || layerId === "edif_palta" || layerId === "ph" || layerId === "superp") {
+        if (layerId === "edif" || layerId === "edif_palta" || layerId === "superp") {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const coords = (feature.geometry as any)?.coordinates?.[0];
           if (coords && (!rawProps.AREA || Number(rawProps.AREA) === 0)) {
@@ -313,26 +333,34 @@ export default function MapViewer() {
         });
 
         if (featureLayer instanceof L.Path) {
-          const hoverStyle = { ...baseStyle, weight: (baseStyle.weight || 1) + 1 };
           if (layerId === "zonas") {
             featureLayer.on("mouseover", () => {
               const z = rawProps.ZONA as string;
-              const s = getZonaStyle(z);
-              featureLayer.setStyle({ ...s, fillOpacity: 0.35 });
+              featureLayer.setStyle({ ...getZonaStyle(z), fillOpacity: 0.35 });
             });
             featureLayer.on("mouseout", () => {
-              const z = rawProps.ZONA as string;
-              featureLayer.setStyle(getZonaStyle(z));
+              featureLayer.setStyle(getZonaStyle(rawProps.ZONA as string));
             });
           } else {
+            const hoverStyle = { ...baseStyle, weight: (baseStyle.weight || 1) + 1 };
             featureLayer.on("mouseover", () => featureLayer.setStyle(hoverStyle));
-            featureLayer.on("mouseout", () => featureLayer.setStyle(baseStyle));
+            featureLayer.on("mouseout", () => {
+              // For manzana in density mode: restore density color instead of base color
+              if (layerId === "manzana" && densidadActiveRef.current && densidadDataRef.current) {
+                const data = densidadDataRef.current;
+                const maxCount = Math.max(...Object.values(data).map(d => d.count));
+                featureLayer.setStyle(getManzanaDensityStyle(feature, data, maxCount));
+              } else {
+                featureLayer.setStyle(baseStyle);
+              }
+            });
           }
         }
       },
     });
 
     return layer;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // ── Load & add layer ─────────────────────────────────────────────────────
@@ -486,7 +514,7 @@ export default function MapViewer() {
     }
   }, [densidadActive, mapReady, loadDensidadData]);
 
-  // ── Cadastral search result handling ────────────────────────────────────
+  // ── Cadastral search result ──────────────────────────────────────────────
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleFeatureFound = useCallback((feature: any) => {
@@ -533,6 +561,11 @@ export default function MapViewer() {
         layersPanelOpen={layersPanelOpen}
         onToggleCadastral={() => setSearchPanelOpen(o => !o)}
         cadastralOpen={searchPanelOpen}
+        onToggleDensidad={() => setDensidadPanelOpen(o => !o)}
+        densidadActive={densidadActive}
+        densidadPanelOpen={densidadPanelOpen}
+        onToggleZonaLegend={() => setZonaLegendOpen(o => !o)}
+        zonaLegendOpen={zonaLegendOpen}
         mapRef={mapRef as React.RefObject<L.Map | null>}
       />
 
@@ -594,27 +627,7 @@ export default function MapViewer() {
         />
       )}
 
-      <ZonaLegend />
-
-      {/* Toolbar buttons */}
-      <div
-        className="absolute left-3 flex flex-col gap-2"
-        style={{ bottom: "80px", zIndex: 1001 }}
-      >
-        <button
-          onClick={() => setDensidadPanelOpen(v => !v)}
-          className={`w-9 h-9 flex items-center justify-center rounded-lg border shadow-lg text-xs transition-all ${
-            densidadActive
-              ? "bg-primary/20 border-primary/40 text-primary"
-              : "bg-card/90 border-border text-muted-foreground hover:text-foreground"
-          }`}
-          title="Análisis de densidad edilicia"
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <rect x="2" y="12" width="4" height="10"/><rect x="9" y="8" width="4" height="14"/><rect x="16" y="4" width="4" height="18"/>
-          </svg>
-        </button>
-      </div>
+      <ZonaLegend open={zonaLegendOpen} onClose={() => setZonaLegendOpen(false)} />
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 pointer-events-none" style={{ zIndex: 500 }}>
         <div className="text-[10px] text-muted-foreground/50 bg-background/70 px-2 py-0.5 rounded-full">
