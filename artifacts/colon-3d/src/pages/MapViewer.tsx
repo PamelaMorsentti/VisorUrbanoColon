@@ -12,7 +12,7 @@ import ZonaPanel from "@/components/ZonaPanel";
 import ZonaLegend from "@/components/ZonaLegend";
 import CadastralSearch from "@/components/CadastralSearch";
 import DensidadPanel, { getDensityColor } from "@/components/DensidadPanel";
-import ParcelReport, { ReportData } from "@/components/ParcelReport";
+import ParcelReport, { ReportData, LayerIntersection } from "@/components/ParcelReport";
 import { LAYERS, COLON_CENTER, COLON_ZOOM, ZONA_COLORS } from "@/lib/layers";
 import { ZONA_NORMAS } from "@/lib/zonaData";
 
@@ -109,6 +109,33 @@ function getFeatureBounds(geometry: Geometry): L.LatLngBounds | null {
     return b.isValid() ? b : null;
   } catch { return null; }
 }
+
+// ─── Report layer config ─────────────────────────────────────────────────────
+
+type IntersectionRelation = "centroid_in_feature" | "feature_in_parcel" | "proximity";
+
+interface ReportLayerCfg {
+  id: string;
+  label: string;
+  relation: IntersectionRelation;
+  proximityM?: number;
+  maxResults?: number;
+  relationLabel: string; // human-readable relation description
+}
+
+const REPORT_LAYERS: ReportLayerCfg[] = [
+  { id: "manzana",   label: "Manzana catastral",     relation: "centroid_in_feature",  maxResults: 1,  relationLabel: "La parcela pertenece a esta manzana" },
+  { id: "barrios",   label: "Barrio",                 relation: "centroid_in_feature",  maxResults: 1,  relationLabel: "Barrio en el que se ubica la parcela" },
+  { id: "superp",    label: "Sup. construida",        relation: "centroid_in_feature",  maxResults: 1,  relationLabel: "Superficie construida registrada" },
+  { id: "edif",      label: "Edificios (PB)",         relation: "feature_in_parcel",    maxResults: 10, relationLabel: "Construcciones planta baja dentro de la parcela" },
+  { id: "edif_palta",label: "Edif. Planta Alta",      relation: "feature_in_parcel",    maxResults: 10, relationLabel: "Construcciones planta alta dentro de la parcela" },
+  { id: "arbol",     label: "Arbolado urbano",        relation: "feature_in_parcel",    maxResults: 15, relationLabel: "Árboles urbanos inventariados en la parcela" },
+  { id: "calle",     label: "Calles lindantes",       relation: "proximity", proximityM: 80,  maxResults: 5,  relationLabel: "Calles a menos de 80 m del centroide" },
+  { id: "hidro",     label: "Hidrografía cercana",    relation: "proximity", proximityM: 200, maxResults: 3,  relationLabel: "Cursos de agua a menos de 200 m" },
+  { id: "bocas",     label: "Bocas de tormenta",      relation: "proximity", proximityM: 120, maxResults: 4,  relationLabel: "Bocas de tormenta a menos de 120 m" },
+];
+
+// ─── Geometry helpers (spatial) ──────────────────────────────────────────────
 
 // Ray-casting point-in-polygon (lng, lat order)
 function pointInPolygon(px: number, py: number, ring: number[][]): boolean {
@@ -218,6 +245,7 @@ export default function MapViewer() {
   const densidadActiveRef = useRef(false); // for use inside hover closures
   const zonasRawDataRef = useRef<FeatureCollection | null>(null); // preprocessed zonas for zone detection
   const cNivelDataRef = useRef<FeatureCollection | null>(null); // c_nivel for elevation lookup
+  const layerCacheRef = useRef<Record<string, FeatureCollection>>({}); // all loaded GeoJSON, keyed by layer id
 
   const [layersPanelOpen, setLayersPanelOpen] = useState(false);
   const [searchPanelOpen, setSearchPanelOpen] = useState(false);
@@ -232,6 +260,7 @@ export default function MapViewer() {
     props: Record<string, unknown>;
     layerLabel: string;
     centroid?: [number, number] | null; // [lng, lat]
+    geometry?: Geometry | null;
   } | null>(null);
   const [selectedZona, setSelectedZona] = useState<string | null>(null);
   const [reportData, setReportData] = useState<ReportData | null>(null);
@@ -244,6 +273,22 @@ export default function MapViewer() {
 
   // Keep ref in sync with state for use in closures
   useEffect(() => { densidadActiveRef.current = densidadActive; }, [densidadActive]);
+
+  // ── On-demand layer data fetcher (with cache) ────────────────────────────
+
+  const fetchAndCacheLayer = useCallback(async (layerId: string): Promise<FeatureCollection | null> => {
+    if (layerCacheRef.current[layerId]) return layerCacheRef.current[layerId];
+    const layerDef = LAYERS.find(l => l.id === layerId);
+    if (!layerDef) return null;
+    try {
+      const r = await fetch(`${BASE_PATH}/data/${layerDef.file}`);
+      const data: FeatureCollection = await r.json();
+      layerCacheRef.current[layerId] = data;
+      if (layerId === "zonas") zonasRawDataRef.current = data;
+      if (layerId === "cota10") cNivelDataRef.current = data;
+      return data;
+    } catch { return null; }
+  }, []);
 
   // ── Address search result handler ────────────────────────────────────────
 
@@ -284,16 +329,27 @@ export default function MapViewer() {
 
   // ── Print report handler ─────────────────────────────────────────────────
 
-  const handlePrint = useCallback(() => {
+  const handlePrint = useCallback(async () => {
     if (!selectedFeature) return;
     const props = selectedFeature.props;
     const centroid = selectedFeature.centroid; // [lng, lat]
+    const parcelGeometry = selectedFeature.geometry;
 
-    // Zone detection via point-in-polygon against zonas layer
+    // Get parcel polygon ring for "feature inside parcel" tests
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let parcelRing: number[][] | null = null;
+    if (parcelGeometry?.type === "Polygon") {
+      parcelRing = parcelGeometry.coordinates[0];
+    } else if (parcelGeometry?.type === "MultiPolygon") {
+      parcelRing = parcelGeometry.coordinates[0]?.[0] || null;
+    }
+
+    // ── Zone detection ────────────────────────────────────────────────────
     let zonaName: string | null = null;
-    if (centroid && zonasRawDataRef.current) {
+    const zonasData = await fetchAndCacheLayer("zonas");
+    if (centroid && zonasData) {
       const [lng, lat] = centroid;
-      for (const f of zonasRawDataRef.current.features) {
+      for (const f of zonasData.features) {
         const g = f.geometry;
         if (!g) continue;
         const rings: number[][][] = g.type === "Polygon" ? g.coordinates : g.type === "MultiPolygon" ? g.coordinates.flat(1) : [];
@@ -303,34 +359,92 @@ export default function MapViewer() {
         }
       }
     }
-
-    // Get first norma for the zone (or null)
     const normasList = zonaName ? (ZONA_NORMAS[zonaName] || []) : [];
     const normas = normasList.length > 0 ? normasList[0] : null;
 
-    // Find nearby elevation curves (within 200m of centroid)
+    // ── Elevation curves ─────────────────────────────────────────────────
     const cotas: Array<{ Z: number; COTA: number; NOMBRE: string }> = [];
-    if (centroid && cNivelDataRef.current) {
+    const cNivelData = await fetchAndCacheLayer("cota10");
+    if (centroid && cNivelData) {
       const [lng, lat] = centroid;
-      const nearby = cNivelDataRef.current.features
-        .map((f: FeatureCollection) => {
+      const nearby = cNivelData.features
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .map((f: any) => {
           const coords = f.geometry?.coordinates || [];
-          // Get midpoint of the line
           const mid = coords[Math.floor(coords.length / 2)];
           if (!mid) return null;
           const dist = distanceMeters([lng, lat], [mid[0], mid[1]]);
           return { props: f.properties, dist };
         })
-        .filter((x: { props: Record<string, unknown>; dist: number } | null) => x && x.dist < 250)
-        .sort((a: { dist: number }, b: { dist: number }) => a.dist - b.dist)
-        .slice(0, 5);
-      for (const item of nearby) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .filter((x: any) => x && x.dist < 300)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .sort((a: any, b: any) => a.dist - b.dist)
+        .slice(0, 6);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      for (const item of nearby as any[]) {
         if (!item) continue;
-        cotas.push({
-          Z: item.props.Z as number,
-          COTA: item.props.COTA as number,
-          NOMBRE: item.props.NOMBRE as string,
-        });
+        cotas.push({ Z: item.props.Z, COTA: item.props.COTA, NOMBRE: item.props.NOMBRE });
+      }
+    }
+
+    // ── Layer intersections ───────────────────────────────────────────────
+    // Fetch all report layers in parallel
+    const layerDataList = await Promise.all(
+      REPORT_LAYERS.map(cfg => fetchAndCacheLayer(cfg.id).then(d => ({ cfg, data: d })))
+    );
+
+    const intersections: LayerIntersection[] = [];
+
+    for (const { cfg, data } of layerDataList) {
+      if (!data) continue;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const features: Record<string, unknown>[] = [];
+      const max = cfg.maxResults ?? 10;
+
+      if (cfg.relation === "centroid_in_feature" && centroid) {
+        const [lng, lat] = centroid;
+        for (const f of data.features) {
+          if (features.length >= max) break;
+          const g = f.geometry;
+          if (!g) continue;
+          const rings: number[][][] = g.type === "Polygon" ? g.coordinates : g.type === "MultiPolygon" ? g.coordinates.flat(1) : [];
+          if (rings.some((ring: number[][]) => pointInPolygon(lng, lat, ring))) {
+            features.push(f.properties || {});
+          }
+        }
+      } else if (cfg.relation === "feature_in_parcel" && parcelRing) {
+        for (const f of data.features) {
+          if (features.length >= max) break;
+          const g = f.geometry;
+          if (!g) continue;
+          // Get feature centroid [lat, lng]
+          const fc = computeCentroid(g);
+          if (!fc) continue;
+          // fc = [lat, lng], parcelRing uses [lng, lat] order
+          if (pointInPolygon(fc[1], fc[0], parcelRing)) {
+            features.push(f.properties || {});
+          }
+        }
+      } else if (cfg.relation === "proximity" && centroid && cfg.proximityM) {
+        const [lng, lat] = centroid;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const candidates: Array<{ props: Record<string, unknown>; dist: number }> = [];
+        for (const f of data.features) {
+          const g = f.geometry;
+          if (!g) continue;
+          // Use representative point from geometry
+          const fc = computeCentroid(g); // [lat, lng]
+          if (!fc) continue;
+          const dist = distanceMeters([lng, lat], [fc[1], fc[0]]);
+          if (dist <= cfg.proximityM) candidates.push({ props: f.properties || {}, dist });
+        }
+        candidates.sort((a, b) => a.dist - b.dist);
+        for (const c of candidates.slice(0, max)) features.push(c.props);
+      }
+
+      if (features.length > 0) {
+        intersections.push({ id: cfg.id, label: cfg.label, relation: cfg.relationLabel, features });
       }
     }
 
@@ -342,8 +456,9 @@ export default function MapViewer() {
       cotas,
       lat: centroid ? centroid[1] : null,
       lng: centroid ? centroid[0] : null,
+      intersections,
     });
-  }, [selectedFeature]);
+  }, [selectedFeature, fetchAndCacheLayer]);
 
   // ── Density data loading ─────────────────────────────────────────────────
 
@@ -461,7 +576,7 @@ export default function MapViewer() {
             const centroidLngLat: [number, number] | null = centroid
               ? [centroid[1], centroid[0]]  // centroid is [lat, lng], convert to [lng, lat]
               : null;
-            setSelectedFeature({ props: displayProps, layerLabel: layerDef.label, centroid: centroidLngLat });
+            setSelectedFeature({ props: displayProps, layerLabel: layerDef.label, centroid: centroidLngLat, geometry: feature.geometry });
             setSelectedZona(null);
           }
         });
@@ -509,9 +624,10 @@ export default function MapViewer() {
     try {
       const response = await fetch(`${BASE_PATH}/data/${layerDef.file}`);
       const data: FeatureCollection = await response.json();
-      // Store raw data for zone detection and elevation lookup
+      // Cache raw data for intersection queries
+      layerCacheRef.current[layerDef.id] = data;
       if (layerDef.id === "zonas") zonasRawDataRef.current = data;
-      if (layerDef.id === "cnivel") cNivelDataRef.current = data;
+      if (layerDef.id === "cota10") cNivelDataRef.current = data;
       const geoLayer = createGeoJSONLayer(layerDef, data);
       layerRefs.current[layerDef.id] = geoLayer;
 
@@ -679,7 +795,7 @@ export default function MapViewer() {
     }
     const centroid = computeCentroid(feature.geometry);
     const centroidLngLat: [number, number] | null = centroid ? [centroid[1], centroid[0]] : null;
-    setSelectedFeature({ props, layerLabel: "Parcela catastral", centroid: centroidLngLat });
+    setSelectedFeature({ props, layerLabel: "Parcela catastral", centroid: centroidLngLat, geometry: feature.geometry });
     setSelectedZona(null);
     setSearchPanelOpen(false);
   }, []);
