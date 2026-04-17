@@ -212,7 +212,7 @@ export const LAYERS: LayerDef[] = [
     label: "Arbolado urbano",
     source: "arbol",
     file: "arbol.geojson",
-    type: "line",
+    type: "fill",
     color: "#22c55e",
     defaultVisible: false,
     group: "Verde urbano",

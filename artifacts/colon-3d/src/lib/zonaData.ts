@@ -13,7 +13,11 @@ export interface ZonaNormas {
 }
 
 // Fuente: Ordenanza 130/22 — Colón, Entre Ríos
-// Tabla de parámetros urbanísticos por zona
+// Datos verificados del archivo Excel oficial (zonas_1776389149636.xlsx)
+// Columnas: Zona, Categoría, Nomenclatura, FOS, FOT, Altura Máx., Retiro LM, Retiro Medianera, Suelo Absorbente
+// Nota: Altura Máx. para zonas Centro (0,70) y Urbana (0,60) es COEFICIENTE de plano límite de sombras
+// (H_max = distancia_retiro × coef), no metros absolutos.
+
 export const ZONA_NORMAS: Record<string, ZonaNormas[]> = {
   "CENTRO": [
     {
@@ -21,9 +25,9 @@ export const ZONA_NORMAS: Record<string, ZonaNormas[]> = {
       categoria: "A",
       nombre: "Zona Centro — Cat. A",
       color: "#e03030",
-      fos: "0,83",
-      fot: "2,50",
-      alturaMax: "Sin límite (plano límite coef. 0,70)",
+      fos: "0,75",
+      fot: "2,00",
+      alturaMax: "Plano límite de sombras — coef. 0,70",
       retiroLM: "Sin retiro",
       retiroMedianera: "Sin retiro",
       sueloAbsorbente: "12%",
@@ -34,9 +38,9 @@ export const ZONA_NORMAS: Record<string, ZonaNormas[]> = {
       categoria: "B",
       nombre: "Zona Centro — Cat. B",
       color: "#e03030",
-      fos: "0,70",
-      fot: "2,00",
-      alturaMax: "Sin límite (plano límite coef. 0,70)",
+      fos: "0,85",
+      fot: "2,50",
+      alturaMax: "Plano límite de sombras — coef. 0,70",
       retiroLM: "Sin retiro",
       retiroMedianera: "Sin retiro",
       sueloAbsorbente: "12%",
@@ -49,7 +53,7 @@ export const ZONA_NORMAS: Record<string, ZonaNormas[]> = {
       color: "#e03030",
       fos: "1,00",
       fot: "2,50",
-      alturaMax: "Sin límite (plano límite coef. 0,70)",
+      alturaMax: "Plano límite de sombras — coef. 0,70",
       retiroLM: "Sin retiro",
       retiroMedianera: "Sin retiro",
       sueloAbsorbente: "12%",
@@ -63,10 +67,10 @@ export const ZONA_NORMAS: Record<string, ZonaNormas[]> = {
       nombre: "Núcleo Urbano — Cat. A",
       color: "#ff5522",
       fos: "0,60",
-      fot: "2,00",
-      alturaMax: "3,00 m (plano límite coef. 0,70)",
+      fot: "1,50",
+      alturaMax: "Plano límite de sombras — coef. 0,60",
       retiroLM: "3,00 m",
-      retiroMedianera: "Sin retiro",
+      retiroMedianera: "3,00 m",
       sueloAbsorbente: "12%",
       observaciones: "Cuando no se edifique: retardadores pluviométricos y/o terrazas verdes obligatorias."
     },
@@ -77,7 +81,7 @@ export const ZONA_NORMAS: Record<string, ZonaNormas[]> = {
       color: "#ff5522",
       fos: "0,75",
       fot: "2,00",
-      alturaMax: "Sin límite (plano límite coef. 0,60)",
+      alturaMax: "Plano límite de sombras — coef. 0,60",
       retiroLM: "3,00 m",
       retiroMedianera: "3,00 m",
       sueloAbsorbente: "12%",
@@ -88,9 +92,9 @@ export const ZONA_NORMAS: Record<string, ZonaNormas[]> = {
       categoria: "C",
       nombre: "Núcleo Urbano — Cat. C",
       color: "#ff5522",
-      fos: "0,60",
+      fos: "0,80",
       fot: "2,00",
-      alturaMax: "3,00 m (plano límite coef. 0,70)",
+      alturaMax: "Plano límite de sombras — coef. 0,60",
       retiroLM: "3,00 m",
       retiroMedianera: "3,00 m",
       sueloAbsorbente: "12%",
@@ -131,7 +135,7 @@ export const ZONA_NORMAS: Record<string, ZonaNormas[]> = {
       fos: "0,40",
       fot: "1,50",
       alturaMax: "10 m",
-      retiroLM: "6,00 m",
+      retiroLM: "3,00 m",
       retiroMedianera: "3,00 m (semicubierto hasta 1,5 m de EM)",
       sueloAbsorbente: "30%",
     },
@@ -154,7 +158,7 @@ export const ZONA_NORMAS: Record<string, ZonaNormas[]> = {
       nomenclatura: "ZCH",
       nombre: "Zona de Chacras",
       color: "#00ffbf",
-      fos: "0,20",
+      fos: "0,30",
       fot: "0,50",
       alturaMax: "10 m",
       retiroLM: "10,00 m",
@@ -199,7 +203,7 @@ export const ZONA_NORMAS: Record<string, ZonaNormas[]> = {
       retiroLM: "—",
       retiroMedianera: "—",
       sueloAbsorbente: "—",
-      observaciones: "Zona de amortiguación entre usos industriales y residenciales. Usos condicionados. Ver Ord. 130/22."
+      observaciones: "Zona de amortiguación entre usos industriales y residenciales. Ver Ord. 130/22."
     },
   ],
   "AREA PROTEGIDA NORTE": [

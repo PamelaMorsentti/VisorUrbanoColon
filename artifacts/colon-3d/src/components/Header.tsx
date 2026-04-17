@@ -14,6 +14,7 @@ interface HeaderProps {
   onToggleZonaLegend: () => void;
   zonaLegendOpen: boolean;
   mapRef: React.RefObject<L.Map | null>;
+  onAddressFound: (lat: number, lng: number, name: string) => void;
 }
 
 export default function Header({
@@ -27,10 +28,11 @@ export default function Header({
   onToggleZonaLegend,
   zonaLegendOpen,
   mapRef,
+  onAddressFound,
 }: HeaderProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [searching, setSearching] = useState(false);
-  const [searchError, setSearchError] = useState(false);
+  const [searchError, setSearchError] = useState<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
 
   const handleReset = () => {
@@ -48,27 +50,61 @@ export default function Header({
     abortRef.current = new AbortController();
 
     setSearching(true);
-    setSearchError(false);
+    setSearchError(null);
 
     try {
-      const encoded = encodeURIComponent(`${q}, Colón, Entre Ríos, Argentina`);
-      const url = `https://nominatim.openstreetmap.org/search?q=${encoded}&format=json&limit=3&countrycodes=ar`;
-      const res = await fetch(url, {
+      // Colón, Entre Ríos bounding box (lon_min, lat_min, lon_max, lat_max)
+      const viewbox = "-58.22,-32.28,-58.05,-32.18";
+      // Try first with bounded=1 inside Colón, then without if no results
+      const base = "https://nominatim.openstreetmap.org/search";
+      const params = new URLSearchParams({
+        q: `${q}, Colón, Entre Ríos, Argentina`,
+        format: "json",
+        limit: "5",
+        countrycodes: "ar",
+        viewbox,
+        bounded: "1",
+        addressdetails: "1",
+      });
+
+      let res = await fetch(`${base}?${params}`, {
         signal: abortRef.current.signal,
-        headers: { "Accept-Language": "es", "User-Agent": "ColoVisorUrbano/1.0" },
+        headers: { "Accept-Language": "es-AR,es;q=0.9" },
       });
       if (!res.ok) throw new Error("API error");
-      const data: { lat: string; lon: string; display_name: string }[] = await res.json();
+      let data: { lat: string; lon: string; display_name: string }[] = await res.json();
+
+      // Fallback: try without bounded restriction
+      if (!data?.length) {
+        const params2 = new URLSearchParams({
+          q: `${q}, Colón, Entre Ríos, Argentina`,
+          format: "json",
+          limit: "3",
+          countrycodes: "ar",
+          addressdetails: "1",
+        });
+        abortRef.current = new AbortController();
+        res = await fetch(`${base}?${params2}`, {
+          signal: abortRef.current.signal,
+          headers: { "Accept-Language": "es-AR,es;q=0.9" },
+        });
+        if (!res.ok) throw new Error("API error");
+        data = await res.json();
+      }
 
       if (data?.length) {
-        const { lon, lat } = data[0];
-        mapRef.current?.flyTo([parseFloat(lat), parseFloat(lon)], 17, { duration: 1.2 });
+        const best = data[0];
+        const lat = parseFloat(best.lat);
+        const lng = parseFloat(best.lon);
+        mapRef.current?.flyTo([lat, lng], 17, { duration: 1.2 });
+        onAddressFound(lat, lng, best.display_name);
         setSearchQuery("");
       } else {
-        setSearchError(true);
+        setSearchError("No se encontró la dirección. Probá solo el nombre de la calle, sin número.");
       }
     } catch (err) {
-      if ((err as Error).name !== "AbortError") setSearchError(true);
+      if ((err as Error).name !== "AbortError")
+        setSearchError("Error de conexión. Verificá tu red e intentá de nuevo.");
     } finally {
       setSearching(false);
     }
@@ -76,7 +112,7 @@ export default function Header({
 
   const clearSearch = () => {
     setSearchQuery("");
-    setSearchError(false);
+    setSearchError(null);
     if (abortRef.current) abortRef.current.abort();
   };
 
@@ -107,8 +143,8 @@ export default function Header({
           <input
             type="search"
             value={searchQuery}
-            onChange={e => { setSearchQuery(e.target.value); setSearchError(false); }}
-            placeholder="Ej: Urquiza 150 (mayúsculas o minúsculas, sin tildes)"
+            onChange={e => { setSearchQuery(e.target.value); setSearchError(null); }}
+            placeholder="Ej: Urquiza 150 (sin tildes, en español)"
             disabled={searching}
             className={`w-full pl-8 pr-7 py-1.5 text-xs rounded-lg border bg-card text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 transition-all disabled:opacity-60 ${
               searchError ? "border-red-500/60 focus:ring-red-500/40" : "border-border focus:ring-primary/50"
@@ -125,8 +161,8 @@ export default function Header({
           )}
         </div>
         {searchError && (
-          <div className="absolute top-full left-0 mt-1 text-[10px] text-red-400 px-1 whitespace-nowrap">
-            No se encontró la dirección en Colón. Probá sin número o con nombre de calle.
+          <div className="absolute top-full left-0 mt-1 text-[10px] text-red-400 px-1 whitespace-nowrap bg-background/90 rounded py-0.5">
+            {searchError}
           </div>
         )}
       </form>
@@ -142,7 +178,6 @@ export default function Header({
           <Navigation size={13} />
         </button>
 
-        {/* Mapa de calor */}
         <button
           onClick={onToggleDensidad}
           className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs rounded-lg border transition-all font-medium ${
@@ -157,7 +192,6 @@ export default function Header({
           <span className="hidden md:inline">Densidad</span>
         </button>
 
-        {/* Zonificación */}
         <button
           onClick={onToggleZonaLegend}
           className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs rounded-lg border transition-all font-medium ${
@@ -172,7 +206,6 @@ export default function Header({
           <span className="hidden md:inline">Zonif.</span>
         </button>
 
-        {/* Catastro */}
         <button
           onClick={onToggleCadastral}
           className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs rounded-lg border transition-all font-medium ${
@@ -187,7 +220,6 @@ export default function Header({
           <span className="hidden sm:inline">Catastro</span>
         </button>
 
-        {/* Capas */}
         <button
           onClick={onToggleLayers}
           className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs rounded-lg border transition-all font-medium ${

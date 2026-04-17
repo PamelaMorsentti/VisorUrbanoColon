@@ -12,7 +12,9 @@ import ZonaPanel from "@/components/ZonaPanel";
 import ZonaLegend from "@/components/ZonaLegend";
 import CadastralSearch from "@/components/CadastralSearch";
 import DensidadPanel, { getDensityColor } from "@/components/DensidadPanel";
+import ParcelReport, { ReportData } from "@/components/ParcelReport";
 import { LAYERS, COLON_CENTER, COLON_ZOOM, ZONA_COLORS } from "@/lib/layers";
+import { ZONA_NORMAS } from "@/lib/zonaData";
 
 const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");
 
@@ -108,6 +110,28 @@ function getFeatureBounds(geometry: Geometry): L.LatLngBounds | null {
   } catch { return null; }
 }
 
+// Ray-casting point-in-polygon (lng, lat order)
+function pointInPolygon(px: number, py: number, ring: number[][]): boolean {
+  let inside = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const xi = ring[i][0], yi = ring[i][1];
+    const xj = ring[j][0], yj = ring[j][1];
+    if (((yi > py) !== (yj > py)) && (px < ((xj - xi) * (py - yi)) / (yj - yi) + xi))
+      inside = !inside;
+  }
+  return inside;
+}
+
+// Distance in meters between two [lng, lat] points (haversine approx)
+function distanceMeters(a: [number, number], b: [number, number]): number {
+  const R = 6371000;
+  const dLat = (b[1] - a[1]) * Math.PI / 180;
+  const dLng = (b[0] - a[0]) * Math.PI / 180;
+  const s = Math.sin(dLat / 2) ** 2 +
+    Math.cos(a[1] * Math.PI / 180) * Math.cos(b[1] * Math.PI / 180) * Math.sin(dLng / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(s), Math.sqrt(1 - s));
+}
+
 // ─── Label text ──────────────────────────────────────────────────────────────
 
 function getLabelText(layerId: string, props: Record<string, unknown>, index: number): string {
@@ -189,8 +213,11 @@ export default function MapViewer() {
   const labelRefs = useRef<Record<string, L.LayerGroup>>({});
   const loadingRef = useRef<Set<string>>(new Set());
   const highlightRef = useRef<L.GeoJSON | null>(null);
+  const addressMarkerRef = useRef<L.Marker | null>(null);
   const densidadDataRef = useRef<DensidadData | null>(null);
   const densidadActiveRef = useRef(false); // for use inside hover closures
+  const zonasRawDataRef = useRef<FeatureCollection | null>(null); // preprocessed zonas for zone detection
+  const cNivelDataRef = useRef<FeatureCollection | null>(null); // c_nivel for elevation lookup
 
   const [layersPanelOpen, setLayersPanelOpen] = useState(false);
   const [searchPanelOpen, setSearchPanelOpen] = useState(false);
@@ -204,8 +231,10 @@ export default function MapViewer() {
   const [selectedFeature, setSelectedFeature] = useState<{
     props: Record<string, unknown>;
     layerLabel: string;
+    centroid?: [number, number] | null; // [lng, lat]
   } | null>(null);
   const [selectedZona, setSelectedZona] = useState<string | null>(null);
+  const [reportData, setReportData] = useState<ReportData | null>(null);
   const [loadedSources, setLoadedSources] = useState<Set<string>>(new Set());
   const [mapReady, setMapReady] = useState(false);
 
@@ -215,6 +244,106 @@ export default function MapViewer() {
 
   // Keep ref in sync with state for use in closures
   useEffect(() => { densidadActiveRef.current = densidadActive; }, [densidadActive]);
+
+  // ── Address search result handler ────────────────────────────────────────
+
+  const handleAddressFound = useCallback((lat: number, lng: number, name: string) => {
+    const map = leafletMapRef.current;
+    if (!map) return;
+    // Remove previous marker
+    if (addressMarkerRef.current) { map.removeLayer(addressMarkerRef.current); addressMarkerRef.current = null; }
+    // Create a custom pin marker
+    const pin = L.divIcon({
+      className: "",
+      html: `<div style="
+        width:20px;height:28px;
+        background:#3b82f6;
+        border-radius:50% 50% 50% 0;
+        transform:rotate(-45deg);
+        border:2px solid #fff;
+        box-shadow:0 2px 8px rgba(0,0,0,0.5);
+      "></div>`,
+      iconSize: [20, 28],
+      iconAnchor: [10, 28],
+    });
+    const marker = L.marker([lat, lng], { icon: pin });
+    const shortName = name.split(",").slice(0, 2).join(",");
+    marker.bindPopup(
+      `<div style="font-family:Inter,sans-serif;font-size:12px;color:#e2e8f0;min-width:160px">
+        <div style="font-weight:600;margin-bottom:4px">📍 Dirección encontrada</div>
+        <div style="font-size:11px;color:#94a3b8">${shortName}</div>
+      </div>`,
+      { className: "dark-popup" }
+    );
+    marker.addTo(map).openPopup();
+    addressMarkerRef.current = marker;
+    map.once("click", () => {
+      if (addressMarkerRef.current) { map.removeLayer(addressMarkerRef.current); addressMarkerRef.current = null; }
+    });
+  }, []);
+
+  // ── Print report handler ─────────────────────────────────────────────────
+
+  const handlePrint = useCallback(() => {
+    if (!selectedFeature) return;
+    const props = selectedFeature.props;
+    const centroid = selectedFeature.centroid; // [lng, lat]
+
+    // Zone detection via point-in-polygon against zonas layer
+    let zonaName: string | null = null;
+    if (centroid && zonasRawDataRef.current) {
+      const [lng, lat] = centroid;
+      for (const f of zonasRawDataRef.current.features) {
+        const g = f.geometry;
+        if (!g) continue;
+        const rings: number[][][] = g.type === "Polygon" ? g.coordinates : g.type === "MultiPolygon" ? g.coordinates.flat(1) : [];
+        if (rings.some((ring: number[][]) => pointInPolygon(lng, lat, ring))) {
+          zonaName = f.properties?.ZONA || null;
+          break;
+        }
+      }
+    }
+
+    // Get first norma for the zone (or null)
+    const normasList = zonaName ? (ZONA_NORMAS[zonaName] || []) : [];
+    const normas = normasList.length > 0 ? normasList[0] : null;
+
+    // Find nearby elevation curves (within 200m of centroid)
+    const cotas: Array<{ Z: number; COTA: number; NOMBRE: string }> = [];
+    if (centroid && cNivelDataRef.current) {
+      const [lng, lat] = centroid;
+      const nearby = cNivelDataRef.current.features
+        .map((f: FeatureCollection) => {
+          const coords = f.geometry?.coordinates || [];
+          // Get midpoint of the line
+          const mid = coords[Math.floor(coords.length / 2)];
+          if (!mid) return null;
+          const dist = distanceMeters([lng, lat], [mid[0], mid[1]]);
+          return { props: f.properties, dist };
+        })
+        .filter((x: { props: Record<string, unknown>; dist: number } | null) => x && x.dist < 250)
+        .sort((a: { dist: number }, b: { dist: number }) => a.dist - b.dist)
+        .slice(0, 5);
+      for (const item of nearby) {
+        if (!item) continue;
+        cotas.push({
+          Z: item.props.Z as number,
+          COTA: item.props.COTA as number,
+          NOMBRE: item.props.NOMBRE as string,
+        });
+      }
+    }
+
+    setReportData({
+      parcelProps: props,
+      layerLabel: selectedFeature.layerLabel,
+      zonaName,
+      normas,
+      cotas,
+      lat: centroid ? centroid[1] : null,
+      lng: centroid ? centroid[0] : null,
+    });
+  }, [selectedFeature]);
 
   // ── Density data loading ─────────────────────────────────────────────────
 
@@ -327,7 +456,12 @@ export default function MapViewer() {
             setSelectedZona(zonaName);
             setSelectedFeature(null);
           } else {
-            setSelectedFeature({ props: displayProps, layerLabel: layerDef.label });
+            // Compute centroid [lng, lat] for zone/elevation lookup
+            const centroid = computeCentroid(feature.geometry);
+            const centroidLngLat: [number, number] | null = centroid
+              ? [centroid[1], centroid[0]]  // centroid is [lat, lng], convert to [lng, lat]
+              : null;
+            setSelectedFeature({ props: displayProps, layerLabel: layerDef.label, centroid: centroidLngLat });
             setSelectedZona(null);
           }
         });
@@ -375,6 +509,9 @@ export default function MapViewer() {
     try {
       const response = await fetch(`${BASE_PATH}/data/${layerDef.file}`);
       const data: FeatureCollection = await response.json();
+      // Store raw data for zone detection and elevation lookup
+      if (layerDef.id === "zonas") zonasRawDataRef.current = data;
+      if (layerDef.id === "cnivel") cNivelDataRef.current = data;
       const geoLayer = createGeoJSONLayer(layerDef, data);
       layerRefs.current[layerDef.id] = geoLayer;
 
@@ -540,7 +677,9 @@ export default function MapViewer() {
       if (area > 0 && (!props.AREA || Number(props.AREA) === 0))
         props.AREA = Math.round(area);
     }
-    setSelectedFeature({ props, layerLabel: "Parcela catastral" });
+    const centroid = computeCentroid(feature.geometry);
+    const centroidLngLat: [number, number] | null = centroid ? [centroid[1], centroid[0]] : null;
+    setSelectedFeature({ props, layerLabel: "Parcela catastral", centroid: centroidLngLat });
     setSelectedZona(null);
     setSearchPanelOpen(false);
   }, []);
@@ -567,6 +706,7 @@ export default function MapViewer() {
         onToggleZonaLegend={() => setZonaLegendOpen(o => !o)}
         zonaLegendOpen={zonaLegendOpen}
         mapRef={mapRef as React.RefObject<L.Map | null>}
+        onAddressFound={handleAddressFound}
       />
 
       <div
@@ -608,6 +748,14 @@ export default function MapViewer() {
           feature={selectedFeature.props}
           layerLabel={selectedFeature.layerLabel}
           onClose={() => setSelectedFeature(null)}
+          onPrint={handlePrint}
+        />
+      )}
+
+      {reportData && (
+        <ParcelReport
+          data={reportData}
+          onClose={() => setReportData(null)}
         />
       )}
 
