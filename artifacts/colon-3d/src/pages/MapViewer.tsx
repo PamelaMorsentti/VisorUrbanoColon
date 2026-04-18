@@ -13,6 +13,13 @@ import ZonaLegend from "@/components/ZonaLegend";
 import CadastralSearch from "@/components/CadastralSearch";
 import DensidadPanel, { getDensityColor } from "@/components/DensidadPanel";
 import ParcelReport, { ReportData, LayerIntersection } from "@/components/ParcelReport";
+import BaseMapSelector from "@/components/BaseMapSelector";
+import MeasureTool, { type MeasureMode } from "@/components/MeasureTool";
+import LayerUpload from "@/components/LayerUpload";
+import AnalysisPanel from "@/components/AnalysisPanel";
+import AuthPanel from "@/components/AuthGate";
+import { useAuth } from "@/contexts/AuthContext";
+import { hasPermission } from "@/lib/auth";
 import { LAYERS, COLON_CENTER, COLON_ZOOM, ZONA_COLORS } from "@/lib/layers";
 import { ZONA_NORMAS } from "@/lib/zonaData";
 
@@ -126,7 +133,6 @@ interface ReportLayerCfg {
 const REPORT_LAYERS: ReportLayerCfg[] = [
   { id: "manzana",   label: "Manzana catastral",     relation: "centroid_in_feature",  maxResults: 1,  relationLabel: "La parcela pertenece a esta manzana" },
   { id: "barrios",   label: "Barrio",                 relation: "centroid_in_feature",  maxResults: 1,  relationLabel: "Barrio en el que se ubica la parcela" },
-  { id: "superp",    label: "Sup. construida",        relation: "centroid_in_feature",  maxResults: 1,  relationLabel: "Superficie construida registrada" },
   { id: "edif",      label: "Edificios (PB)",         relation: "feature_in_parcel",    maxResults: 10, relationLabel: "Construcciones planta baja dentro de la parcela" },
   { id: "edif_palta",label: "Edif. Planta Alta",      relation: "feature_in_parcel",    maxResults: 10, relationLabel: "Construcciones planta alta dentro de la parcela" },
   { id: "arbol",     label: "Arbolado urbano",        relation: "feature_in_parcel",    maxResults: 15, relationLabel: "Árboles urbanos inventariados en la parcela" },
@@ -195,10 +201,9 @@ function getLayerStyle(layerId: string): L.PathOptions {
     case "barrios":    return { fillColor: "#3b82f6", fillOpacity: 0.06, color: "#60a5fa", weight: 1.5, opacity: 0.8 };
     case "edif":       return { fillColor: "#4a6080", fillOpacity: 1, color: "#364d68", weight: 0.5, opacity: 1 };
     case "edif_palta": return { fillColor: "#a05a20", fillOpacity: 1, color: "#7c4015", weight: 0.5, opacity: 1 };
-    case "superp":     return { fillColor: "#d97706", fillOpacity: 0.5, color: "#b45309", weight: 0.5, opacity: 0.8 };
-    case "cota10":     return { color: "#1a5c3a", weight: 0.8, opacity: 0.65 };
+    case "cota10":     return { color: "#5eead4", weight: 0.8, opacity: 0.6 };
     case "hidro":      return { color: "#38bdf8", weight: 1.5, opacity: 0.75 };
-    case "arbol":      return { fillColor: "#16a34a", fillOpacity: 0.35, color: "#22c55e", weight: 1, opacity: 0.9 };
+    case "arbol":      return { fillColor: "#16a34a", fillOpacity: 0.55, color: "#22c55e", weight: 1, opacity: 0.9 };
     case "grupo":      return { fillColor: "#7c3aed", fillOpacity: 0.10, color: "#7c3aed", weight: 1, opacity: 0.6 };
     case "zonas":      return { fillOpacity: 0.18, weight: 2, opacity: 0.9 };
     default:           return { fillColor: "#4b5563", fillOpacity: 0.5, color: "#6b7280", weight: 1 };
@@ -233,9 +238,11 @@ const HIGHLIGHT_STYLE: L.PathOptions = {
 // ─── Component ───────────────────────────────────────────────────────────────
 
 export default function MapViewer() {
+  const { user } = useAuth();
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const leafletMapRef = useRef<L.Map | null>(null);
   const mapRef = useRef<L.Map | null>(null);
+  const tileLayerRef = useRef<L.TileLayer | null>(null);
   const layerRefs = useRef<Record<string, LeafletLayer>>({});
   const labelRefs = useRef<Record<string, L.LayerGroup>>({});
   const loadingRef = useRef<Set<string>>(new Set());
@@ -252,6 +259,10 @@ export default function MapViewer() {
   const [densidadPanelOpen, setDensidadPanelOpen] = useState(false);
   const [zonaLegendOpen, setZonaLegendOpen] = useState(false);
   const [densidadActive, setDensidadActive] = useState(false);
+  const [measureMode, setMeasureMode] = useState<MeasureMode>("none");
+  const [authPanelOpen, setAuthPanelOpen] = useState(false);
+  const [uploadPanelOpen, setUploadPanelOpen] = useState(false);
+  const [analysisPanelOpen, setAnalysisPanelOpen] = useState(false);
   const [densidadStats, setDensidadStats] = useState<{
     totalEdif: number; manzanasConEdif: number; maxCount: number; maxArea: number;
   } | null>(null);
@@ -539,6 +550,11 @@ export default function MapViewer() {
         if (layerId === "zonas" && feature?.properties?.ZONA) {
           return getZonaStyle(feature.properties.ZONA as string);
         }
+        if (layerId === "cota10") {
+          const z = Number(feature?.properties?.Z ?? feature?.properties?.COTA ?? 0);
+          if (z === 10) return { color: "#f97316", weight: 1.5, opacity: 0.85 };
+          return { ...baseStyle, weight: z % 5 === 0 ? 1.2 : 0.7, opacity: z % 5 === 0 ? 0.75 : 0.45 };
+        }
         return baseStyle;
       },
       pointToLayer: isPoint ? (_, latlng) => getPointLayer(layerId, latlng) : undefined,
@@ -547,7 +563,7 @@ export default function MapViewer() {
         const rawProps = feature.properties as Record<string, unknown>;
 
         let displayProps = { ...rawProps };
-        if (layerId === "edif" || layerId === "edif_palta" || layerId === "superp") {
+        if (layerId === "edif" || layerId === "edif_palta") {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const coords = (feature.geometry as any)?.coordinates?.[0];
           if (coords && (!rawProps.AREA || Number(rawProps.AREA) === 0)) {
@@ -664,12 +680,13 @@ export default function MapViewer() {
     leafletMapRef.current = map;
     mapRef.current = map;
 
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png", {
+    const baseTile = L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png", {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
       subdomains: "abcd",
       maxZoom: 20,
       opacity: 0.9,
     }).addTo(map);
+    tileLayerRef.current = baseTile;
 
     L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png", {
       subdomains: "abcd",
@@ -821,8 +838,15 @@ export default function MapViewer() {
         densidadPanelOpen={densidadPanelOpen}
         onToggleZonaLegend={() => setZonaLegendOpen(o => !o)}
         zonaLegendOpen={zonaLegendOpen}
+        onToggleAnalysis={() => setAnalysisPanelOpen(o => !o)}
+        analysisPanelOpen={analysisPanelOpen}
+        onToggleUpload={() => setUploadPanelOpen(o => !o)}
+        uploadPanelOpen={uploadPanelOpen}
+        measureMode={measureMode}
+        onChangeMeasureMode={setMeasureMode}
         mapRef={mapRef as React.RefObject<L.Map | null>}
         onAddressFound={handleAddressFound}
+        onOpenAuthPanel={() => setAuthPanelOpen(true)}
       />
 
       <div
@@ -892,6 +916,46 @@ export default function MapViewer() {
       )}
 
       <ZonaLegend open={zonaLegendOpen} onClose={() => setZonaLegendOpen(false)} />
+
+      {/* ── New panels ──────────────────────────────────────────────────── */}
+
+      {analysisPanelOpen && (
+        <AnalysisPanel
+          onClose={() => setAnalysisPanelOpen(false)}
+          onActivateDensidad={() => {
+            setDensidadPanelOpen(true);
+            setDensidadActive(v => !v);
+          }}
+          densidadActive={densidadActive}
+          canRunAnalysis={user ? hasPermission(user.role, "canRunAnalysis") : false}
+          basePath={BASE_PATH}
+        />
+      )}
+
+      {uploadPanelOpen && (
+        <LayerUpload
+          mapRef={mapRef as React.RefObject<L.Map | null>}
+          onClose={() => setUploadPanelOpen(false)}
+          canUpload={user ? hasPermission(user.role, "canUploadLayers") : false}
+        />
+      )}
+
+      {authPanelOpen && (
+        <AuthPanel onClose={() => setAuthPanelOpen(false)} />
+      )}
+
+      {/* ── Measure tool (overlay + toolbar) ─────────────────────────── */}
+      <MeasureTool
+        mapRef={mapRef as React.RefObject<L.Map | null>}
+        mode={measureMode}
+        onChangeMode={setMeasureMode}
+      />
+
+      {/* ── Base map switcher ─────────────────────────────────────────── */}
+      <BaseMapSelector
+        mapRef={mapRef as React.RefObject<L.Map | null>}
+        tileLayerRef={tileLayerRef}
+      />
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 pointer-events-none" style={{ zIndex: 500 }}>
         <div className="text-[10px] text-muted-foreground/50 bg-background/70 px-2 py-0.5 rounded-full">
