@@ -14,6 +14,7 @@ import CadastralSearch from "@/components/CadastralSearch";
 import DensidadPanel, { getDensityColor } from "@/components/DensidadPanel";
 import ParcelReport, { ReportData, LayerIntersection } from "@/components/ParcelReport";
 import BaseMapSelector from "@/components/BaseMapSelector";
+import RegionalInfoPanel from "@/components/RegionalInfoPanel";
 import MeasureTool, { type MeasureMode } from "@/components/MeasureTool";
 import LayerUpload from "@/components/LayerUpload";
 import AnalysisPanel from "@/components/AnalysisPanel";
@@ -27,6 +28,40 @@ const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 type LeafletLayer = L.GeoJSON | L.LayerGroup;
 type DensidadData = Record<string, { count: number; area: number }>;
+type ZonaTransform = { rotateDeg: number; offsetLng: number; offsetLat: number };
+
+type PublicationLevel = "public" | "professional" | "admin";
+type ObrasYearPreset = "all" | "current" | "last3" | "last5" | "custom";
+type WorksSummary = {
+  count: number;
+  totalM2Construir: number;
+  totalM2Relevado: number;
+  relevamientos: number;
+  nuevas: number;
+  ampliaciones: number;
+  proyectadas: number;
+};
+
+type WorksRanking = {
+  destinos: Array<{ label: string; count: number }>;
+  tipos: Array<{ label: string; count: number }>;
+  zonas: Array<{ label: string; count: number }>;
+};
+
+type ObrasHeatMetric = "count" | "m2";
+
+type ObrasHeatStats = {
+  barriosConObras: number;
+  maxCount: number;
+  maxM2: number;
+};
+
+const DEFAULT_ZONA_TRANSFORM: ZonaTransform = {
+  rotateDeg: 0.79,
+  offsetLng: 0,
+  offsetLat: -0.00072,
+};
+const ZONA_TRANSFORM_STORAGE_KEY = "colon.zonasTransform";
 
 // ─── Geometry helpers ────────────────────────────────────────────────────────
 
@@ -93,19 +128,124 @@ function computePolygonAreaM2(coords: number[][]): number {
   return Math.abs(area / 2);
 }
 
-function preprocessZonas(data: FeatureCollection): FeatureCollection {
+function preprocessZonas(data: FeatureCollection, transform: ZonaTransform = DEFAULT_ZONA_TRANSFORM): FeatureCollection {
+  const { rotateDeg, offsetLng, offsetLat } = transform;
+
+  const toRadians = (deg: number) => (deg * Math.PI) / 180;
+  const angle = toRadians(rotateDeg);
+  const c = Math.cos(angle);
+  const s = Math.sin(angle);
+
+  const allCoords: Array<[number, number]> = [];
+  const collectCoords = (coords: unknown): void => {
+    if (!Array.isArray(coords) || coords.length === 0) return;
+    if (typeof coords[0] === "number") {
+      allCoords.push([Number(coords[0]), Number(coords[1])]);
+      return;
+    }
+    (coords as unknown[]).forEach(collectCoords);
+  };
+
+  (data.features || []).forEach((f: FeatureCollection) => collectCoords(f?.geometry?.coordinates));
+  const centerLng = allCoords.length
+    ? allCoords.reduce((acc, p) => acc + p[0], 0) / allCoords.length
+    : 0;
+  const centerLat = allCoords.length
+    ? allCoords.reduce((acc, p) => acc + p[1], 0) / allCoords.length
+    : 0;
+
+  const transformCoords = (coords: unknown): unknown => {
+    if (!Array.isArray(coords) || coords.length === 0) return coords;
+    if (typeof coords[0] === "number") {
+      const x = Number(coords[0]);
+      const y = Number(coords[1]);
+      const dx = x - centerLng;
+      const dy = y - centerLat;
+      const rx = dx * c - dy * s + centerLng + offsetLng;
+      const ry = dx * s + dy * c + centerLat + offsetLat;
+      const z = (coords as number[])[2];
+      return Number.isFinite(z) ? [rx, ry, z] : [rx, ry];
+    }
+    return (coords as unknown[]).map(transformCoords);
+  };
+
   return {
     ...data,
     features: data.features.map((f: FeatureCollection) => {
+      const transformedGeometry = f.geometry
+        ? { ...f.geometry, coordinates: transformCoords(f.geometry.coordinates) }
+        : f.geometry;
+
       if (f.geometry?.type === "LineString") {
-        const coords = [...f.geometry.coordinates];
+        const coords = [...(transformedGeometry?.coordinates || [])];
         const first = coords[0], last = coords[coords.length - 1];
         if (first[0] !== last[0] || first[1] !== last[1]) coords.push(coords[0]);
         return { ...f, geometry: { type: "Polygon", coordinates: [coords] } };
       }
-      return f;
+      return { ...f, geometry: transformedGeometry };
     }),
   };
+}
+
+function filterOutlierFeatures(data: FeatureCollection): FeatureCollection {
+  // Broad envelope around Colon/Entre Rios to drop corrupted geometries.
+  // This catches malformed records (e.g., lon/lat far away) that can create
+  // visual artifacts like apparent tilt/shift when rendered.
+  const MIN_LNG = -59;
+  const MAX_LNG = -57;
+  const MIN_LAT = -33;
+  const MAX_LAT = -31;
+
+  const isInEnvelope = (x: number, y: number) =>
+    x >= MIN_LNG && x <= MAX_LNG && y >= MIN_LAT && y <= MAX_LAT;
+
+  const hasOnlyValidCoords = (coords: unknown): boolean => {
+    if (!Array.isArray(coords) || coords.length === 0) return false;
+    if (typeof coords[0] === "number") {
+      const x = Number(coords[0]);
+      const y = Number(coords[1]);
+      return Number.isFinite(x) && Number.isFinite(y) && isInEnvelope(x, y);
+    }
+    return (coords as unknown[]).every(hasOnlyValidCoords);
+  };
+
+  return {
+    ...data,
+    features: (data.features || []).filter((f: FeatureCollection) =>
+      hasOnlyValidCoords(f?.geometry?.coordinates),
+    ),
+  };
+}
+
+function getGeometryRings(geometry: Geometry): number[][][] {
+  if (!geometry) return [];
+  if (geometry.type === "Polygon") return geometry.coordinates || [];
+  if (geometry.type === "MultiPolygon") return (geometry.coordinates || []).flat(1);
+  return [];
+}
+
+function resolveZonaNameAtPoint(zonasData: FeatureCollection, lng: number, lat: number): string | null {
+  let bestZona: string | null = null;
+  let bestArea = Number.POSITIVE_INFINITY;
+
+  for (const f of zonasData.features || []) {
+    const zona = f?.properties?.ZONA;
+    if (!zona) continue;
+
+    const rings = getGeometryRings(f.geometry);
+    for (const ring of rings) {
+      if (!ring?.length) continue;
+      if (!pointInPolygon(lng, lat, ring)) continue;
+
+      const area = computePolygonAreaM2(ring);
+      if (area > 0 && area < bestArea) {
+        bestArea = area;
+        bestZona = String(zona);
+      }
+    }
+  }
+
+  return bestZona;
 }
 
 function getFeatureBounds(geometry: Geometry): L.LatLngBounds | null {
@@ -230,6 +370,176 @@ function getPointLayer(layerId: string, latlng: L.LatLng): L.Layer {
   return L.circleMarker(latlng, { radius, fillColor: color, fillOpacity: 0.85, color, weight: 1, opacity: 0.9 });
 }
 
+function roleToPublicationLevel(role: string | undefined): PublicationLevel {
+  if (role === "admin") return "admin";
+  if (role === "registrado") return "professional";
+  return "public";
+}
+
+function colorByDestiny(destino: unknown): string {
+  const value = String(destino ?? "").toLowerCase();
+  if (value.includes("mixto")) return "#8b5cf6";
+  if (value.includes("vivienda")) return "#0f766e";
+  if (value.includes("comercial")) return "#d97706";
+  if (value.includes("product")) return "#0ea5e9";
+  return "#64748b";
+}
+
+function isReasonablePoint(lat: number, lon: number): boolean {
+  return Number.isFinite(lat)
+    && Number.isFinite(lon)
+    && lat > -33.5
+    && lat < -31
+    && lon > -59
+    && lon < -57;
+}
+
+function extractVisadoYear(value: unknown): number | null {
+  const text = String(value ?? "").trim();
+  if (!text) return null;
+  const match = text.match(/(19|20)\d{2}/);
+  if (!match) return null;
+  const year = Number(match[0]);
+  return Number.isFinite(year) ? year : null;
+}
+
+function isTruthyFlag(value: unknown): boolean {
+  const v = String(value ?? "").trim().toLowerCase();
+  return v === "1" || v === "si" || v === "sí" || v === "true" || v === "x";
+}
+
+function getWorkM2Relevado(props: Record<string, unknown>): number {
+  const vivienda = parseNumericValue(props.m_existentes_relevados_vivienda);
+  const local = parseNumericValue(props.m_existentes_relevados_local);
+  return vivienda + local;
+}
+
+function getWorkDeclaration(props: Record<string, unknown>): {
+  relevamiento: boolean;
+  nueva: boolean;
+  ampliacion: boolean;
+  proyectada: boolean;
+} {
+  return {
+    relevamiento: isTruthyFlag(props.relevamiento_o_existente),
+    nueva: isTruthyFlag(props.a_contruir_obra_nueva),
+    ampliacion: isTruthyFlag(props.ampliacion_de_obra_existente),
+    proyectada: isTruthyFlag(props.proyectado_no_iniciado),
+  };
+}
+
+function getPresetYears(allYears: number[], preset: Exclude<ObrasYearPreset, "custom">): number[] {
+  if (preset === "all") return [...allYears];
+  const now = new Date().getFullYear();
+  if (preset === "current") {
+    if (allYears.includes(now)) return [now];
+    return allYears.length ? [allYears[0]] : [];
+  }
+  if (preset === "last3") {
+    return allYears.filter(y => y >= now - 2);
+  }
+  if (preset === "last5") {
+    return allYears.filter(y => y >= now - 4);
+  }
+  return [...allYears];
+}
+
+function sameYearList(a: number[], b: number[]): boolean {
+  if (a.length !== b.length) return false;
+  return a.every((v, i) => v === b[i]);
+}
+
+function rankTop(values: Record<string, number>, top = 5): Array<{ label: string; count: number }> {
+  return Object.entries(values)
+    .map(([label, count]) => ({ label, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, top);
+}
+
+function parseNumericValue(value: unknown): number {
+  if (typeof value === "number") return Number.isFinite(value) ? value : 0;
+  const raw = String(value ?? "").trim();
+  if (!raw) return 0;
+  const normalized = raw.includes(",") && raw.includes(".")
+    ? raw.replace(/\./g, "").replace(",", ".")
+    : raw.replace(",", ".");
+  const num = Number(normalized);
+  return Number.isFinite(num) ? num : 0;
+}
+
+function getWorkM2(props: Record<string, unknown>): number {
+  const total = parseNumericValue(props.m2_construir_total ?? props.m2_a_construir_total);
+  if (total > 0) return total;
+  const vivienda = parseNumericValue(props.m_a_construir_vivienda);
+  const local = parseNumericValue(props.m_a_construir_local);
+  return vivienda + local;
+}
+
+function nonEmptyText(value: unknown, fallback = "-"): string {
+  const text = String(value ?? "").trim();
+  return text.length > 0 ? text : fallback;
+}
+
+function formatM2(value: number): string {
+  return `${Math.round(Math.max(0, value)).toLocaleString("es-AR")} m²`;
+}
+
+function popupForWorkFeature(props: Record<string, unknown>, level: PublicationLevel): string {
+  const title = nonEmptyText(props.raw_ubicacion ?? props.ubicacion ?? props.direccion_de_obra, "Obra");
+  const tipo = nonEmptyText(props.tipo ?? props.tipo_obra);
+  const destino = nonEmptyText(props.destino_uso ?? props.destino);
+  const zona = nonEmptyText(props.zonificacion ?? props.zona, "Sin zonificacion");
+  const m2Construir = getWorkM2(props);
+  const m2Relevado = getWorkM2Relevado(props);
+  const declaration = getWorkDeclaration(props);
+  const status = nonEmptyText(props.location_verification_status ?? props.estado_verificacion);
+  const legajo = nonEmptyText(props.legajo_canonico);
+  const ncp = nonEmptyText(props.ncp_formatted ?? props.ncp);
+  const fechaVisado = nonEmptyText(props.fecha_de_visado);
+  const declarationItems: string[] = [];
+  if (declaration.relevamiento) declarationItems.push("Relevamiento");
+  if (declaration.nueva) declarationItems.push("Obra nueva");
+  if (declaration.ampliacion) declarationItems.push("Ampliacion");
+  if (declaration.proyectada) declarationItems.push("Proyectada no iniciada");
+
+  let html = `<div style="min-width:220px">`
+    + `<div style="font-weight:700;margin-bottom:4px">${title}</div>`
+    + `<div><b>Tipo:</b> ${tipo}</div>`
+    + `<div><b>Destino:</b> ${destino}</div>`
+    + `<div><b>Zonificacion:</b> ${zona}</div>`
+    + `<div><b>Declaracion:</b> ${declarationItems.length ? declarationItems.join(" / ") : "No especificada"}</div>`;
+
+  if (m2Construir > 0) {
+    html += `<div><b>m2 a construir:</b> ${formatM2(m2Construir)}</div>`;
+  }
+  if (m2Relevado > 0) {
+    html += `<div><b>m2 relevados:</b> ${formatM2(m2Relevado)}</div>`;
+  }
+  if (m2Construir <= 0 && m2Relevado <= 0) {
+    html += `<div><b>m2 declarados:</b> ${formatM2(0)}</div>`;
+  }
+
+  if (fechaVisado !== "-") {
+    html += `<div><b>Fecha visado:</b> ${fechaVisado}</div>`;
+  }
+
+  if (level !== "public") {
+    if (status !== "-") {
+      html += `<div><b>Estado verificación:</b> ${status}</div>`;
+    }
+  }
+  if (level === "admin") {
+    if (legajo !== "-") {
+      html += `<div><b>Legajo:</b> ${legajo}</div>`;
+    }
+    if (ncp !== "-") {
+      html += `<div><b>NCP:</b> ${ncp}</div>`;
+    }
+  }
+  html += `</div>`;
+  return html;
+}
+
 const HIGHLIGHT_STYLE: L.PathOptions = {
   color: "#facc15", weight: 3, opacity: 1,
   fillColor: "#facc15", fillOpacity: 0.3,
@@ -239,10 +549,15 @@ const HIGHLIGHT_STYLE: L.PathOptions = {
 
 export default function MapViewer() {
   const { user } = useAuth();
+  const isAdmin = user?.role === "admin";
+  const publicationLevel = roleToPublicationLevel(user?.role);
+  const dashboardUrl = `${BASE_PATH}/tools/analytics-dashboard.html`;
+  const adminEditorUrl = `${BASE_PATH}/tools/admin-editor.html`;
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const leafletMapRef = useRef<L.Map | null>(null);
   const mapRef = useRef<L.Map | null>(null);
   const tileLayerRef = useRef<L.TileLayer | null>(null);
+  const baseLabelLayerRef = useRef<L.TileLayer | null>(null);
   const layerRefs = useRef<Record<string, LeafletLayer>>({});
   const labelRefs = useRef<Record<string, L.LayerGroup>>({});
   const loadingRef = useRef<Set<string>>(new Set());
@@ -253,6 +568,8 @@ export default function MapViewer() {
   const zonasRawDataRef = useRef<FeatureCollection | null>(null); // preprocessed zonas for zone detection
   const cNivelDataRef = useRef<FeatureCollection | null>(null); // c_nivel for elevation lookup
   const layerCacheRef = useRef<Record<string, FeatureCollection>>({}); // all loaded GeoJSON, keyed by layer id
+  const worksLayerRef = useRef<L.GeoJSON | null>(null);
+  const obrasHeatLayerRef = useRef<L.GeoJSON | null>(null);
 
   const [layersPanelOpen, setLayersPanelOpen] = useState(false);
   const [searchPanelOpen, setSearchPanelOpen] = useState(false);
@@ -263,9 +580,39 @@ export default function MapViewer() {
   const [authPanelOpen, setAuthPanelOpen] = useState(false);
   const [uploadPanelOpen, setUploadPanelOpen] = useState(false);
   const [analysisPanelOpen, setAnalysisPanelOpen] = useState(false);
+  const [regionalInfoOpen, setRegionalInfoOpen] = useState(false);
+  const [planosActive, setPlanosActive] = useState(true);
+  const [worksMeta, setWorksMeta] = useState<{ level: PublicationLevel; count: number } | null>(null);
+  const [obrasYearOptions, setObrasYearOptions] = useState<number[]>([]);
+  const [selectedObrasYears, setSelectedObrasYears] = useState<number[]>([]);
+  const [obrasYearPreset, setObrasYearPreset] = useState<ObrasYearPreset>("all");
+  const [worksSummary, setWorksSummary] = useState<WorksSummary | null>(null);
+  const [worksRanking, setWorksRanking] = useState<WorksRanking | null>(null);
+  const [filteredWorksFeatures, setFilteredWorksFeatures] = useState<Array<{ geometry?: { coordinates?: unknown[] }; properties?: Record<string, unknown> }>>([]);
+  const [obrasHeatmapActive, setObrasHeatmapActive] = useState(false);
+  const [obrasHeatmapMetric, setObrasHeatmapMetric] = useState<ObrasHeatMetric>("count");
+  const [obrasHeatStats, setObrasHeatStats] = useState<ObrasHeatStats | null>(null);
+  const [obrasHeatBarrioData, setObrasHeatBarrioData] = useState<Array<{ barrio: string; count: number; m2: number }>>([]);
   const [densidadStats, setDensidadStats] = useState<{
     totalEdif: number; manzanasConEdif: number; maxCount: number; maxArea: number;
   } | null>(null);
+  const [zonaTransform, setZonaTransform] = useState<ZonaTransform>(() => {
+    if (user?.role !== "admin") return DEFAULT_ZONA_TRANSFORM;
+    if (typeof window === "undefined") return DEFAULT_ZONA_TRANSFORM;
+    try {
+      const raw = window.localStorage.getItem(ZONA_TRANSFORM_STORAGE_KEY);
+      if (!raw) return DEFAULT_ZONA_TRANSFORM;
+      const parsed = JSON.parse(raw) as Partial<ZonaTransform>;
+      const rotateDeg = Number(parsed.rotateDeg ?? 0);
+      const offsetLng = Number(parsed.offsetLng ?? 0);
+      const offsetLat = Number(parsed.offsetLat ?? 0);
+      if (!Number.isFinite(rotateDeg) || !Number.isFinite(offsetLng) || !Number.isFinite(offsetLat))
+        return DEFAULT_ZONA_TRANSFORM;
+      return { rotateDeg, offsetLng, offsetLat };
+    } catch {
+      return DEFAULT_ZONA_TRANSFORM;
+    }
+  });
 
   const [selectedFeature, setSelectedFeature] = useState<{
     props: Record<string, unknown>;
@@ -282,6 +629,8 @@ export default function MapViewer() {
     Object.fromEntries(LAYERS.map(l => [l.id, l.defaultVisible]))
   );
 
+  const worksDatasetUrl = `${BASE_PATH}/data/planos/obras-${publicationLevel}.geojson`;
+
   // Keep ref in sync with state for use in closures
   useEffect(() => { densidadActiveRef.current = densidadActive; }, [densidadActive]);
 
@@ -293,13 +642,15 @@ export default function MapViewer() {
     if (!layerDef) return null;
     try {
       const r = await fetch(`${BASE_PATH}/data/${layerDef.file}`);
-      const data: FeatureCollection = await r.json();
+      const rawData: FeatureCollection = await r.json();
+      const normalized = layerId === "zonas" ? preprocessZonas(rawData, zonaTransform) : rawData;
+      const data = filterOutlierFeatures(normalized);
       layerCacheRef.current[layerId] = data;
       if (layerId === "zonas") zonasRawDataRef.current = data;
       if (layerId === "cota10") cNivelDataRef.current = data;
       return data;
     } catch { return null; }
-  }, []);
+  }, [zonaTransform]);
 
   // ── Address search result handler ────────────────────────────────────────
 
@@ -360,15 +711,7 @@ export default function MapViewer() {
     const zonasData = await fetchAndCacheLayer("zonas");
     if (centroid && zonasData) {
       const [lng, lat] = centroid;
-      for (const f of zonasData.features) {
-        const g = f.geometry;
-        if (!g) continue;
-        const rings: number[][][] = g.type === "Polygon" ? g.coordinates : g.type === "MultiPolygon" ? g.coordinates.flat(1) : [];
-        if (rings.some((ring: number[][]) => pointInPolygon(lng, lat, ring))) {
-          zonaName = f.properties?.ZONA || null;
-          break;
-        }
-      }
+      zonaName = resolveZonaNameAtPoint(zonasData, lng, lat);
     }
     const normasList = zonaName ? (ZONA_NORMAS[zonaName] || []) : [];
     const normas = normasList.length > 0 ? normasList[0] : null;
@@ -583,7 +926,8 @@ export default function MapViewer() {
         featureLayer.on("click", (e) => {
           L.DomEvent.stopPropagation(e);
           if (layerId === "zonas") {
-            const zonaName = rawProps.ZONA as string || null;
+            const zonaName = resolveZonaNameAtPoint(data, e.latlng.lng, e.latlng.lat)
+              ?? (rawProps.ZONA as string || null);
             setSelectedZona(zonaName);
             setSelectedFeature(null);
           } else {
@@ -639,7 +983,9 @@ export default function MapViewer() {
     loadingRef.current.add(layerDef.id);
     try {
       const response = await fetch(`${BASE_PATH}/data/${layerDef.file}`);
-      const data: FeatureCollection = await response.json();
+      const rawData: FeatureCollection = await response.json();
+      const normalized = layerDef.id === "zonas" ? preprocessZonas(rawData, zonaTransform) : rawData;
+      const data = filterOutlierFeatures(normalized);
       // Cache raw data for intersection queries
       layerCacheRef.current[layerDef.id] = data;
       if (layerDef.id === "zonas") zonasRawDataRef.current = data;
@@ -663,7 +1009,41 @@ export default function MapViewer() {
     } finally {
       loadingRef.current.delete(layerDef.id);
     }
-  }, [loadedSources, visibleLayers, createGeoJSONLayer, createLabelLayer]);
+  }, [loadedSources, visibleLayers, createGeoJSONLayer, createLabelLayer, zonaTransform]);
+
+  // ── Persist + hot-reload zoning transform ───────────────────────────────
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && isAdmin) {
+      window.localStorage.setItem(ZONA_TRANSFORM_STORAGE_KEY, JSON.stringify(zonaTransform));
+    }
+
+    const map = leafletMapRef.current;
+    if (!mapReady || !map) return;
+
+    delete layerCacheRef.current.zonas;
+    zonasRawDataRef.current = null;
+
+    const zonasLayer = layerRefs.current.zonas;
+    if (zonasLayer && map.hasLayer(zonasLayer)) map.removeLayer(zonasLayer);
+    delete layerRefs.current.zonas;
+
+    const zonasLabels = labelRefs.current.zonas;
+    if (zonasLabels && map.hasLayer(zonasLabels)) map.removeLayer(zonasLabels);
+    delete labelRefs.current.zonas;
+
+    setLoadedSources(prev => {
+      if (!prev.has("zonas")) return prev;
+      const next = new Set(prev);
+      next.delete("zonas");
+      return next;
+    });
+
+    const zonasDef = LAYERS.find(l => l.id === "zonas");
+    if (zonasDef && visibleLayers.zonas) {
+      loadAndAddLayer(zonasDef);
+    }
+  }, [zonaTransform, mapReady, visibleLayers.zonas, loadAndAddLayer, isAdmin]);
 
   // ── Map initialization ───────────────────────────────────────────────────
 
@@ -688,12 +1068,13 @@ export default function MapViewer() {
     }).addTo(map);
     tileLayerRef.current = baseTile;
 
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png", {
+    const baseLabels = L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png", {
       subdomains: "abcd",
       maxZoom: 20,
       opacity: 0.7,
       pane: "overlayPane",
     }).addTo(map);
+    baseLabelLayerRef.current = baseLabels;
 
     L.control.zoom({ position: "bottomright" }).addTo(map);
     L.control.scale({ metric: true, imperial: false, position: "bottomright" }).addTo(map);
@@ -708,6 +1089,7 @@ export default function MapViewer() {
     return () => {
       map.remove();
       leafletMapRef.current = null;
+      baseLabelLayerRef.current = null;
       layerRefs.current = {};
       labelRefs.current = {};
       loadingRef.current.clear();
@@ -786,6 +1168,279 @@ export default function MapViewer() {
 
   // ── Cadastral search result ──────────────────────────────────────────────
 
+  useEffect(() => {
+    const map = leafletMapRef.current;
+    if (!map || !mapReady) return;
+
+    if (worksLayerRef.current) {
+      if (map.hasLayer(worksLayerRef.current)) {
+        map.removeLayer(worksLayerRef.current);
+      }
+      worksLayerRef.current = null;
+    }
+
+    let cancelled = false;
+    void fetch(worksDatasetUrl)
+      .then((res) => {
+        if (!res.ok) throw new Error("No se pudo cargar capa de obras");
+        return res.json() as Promise<FeatureCollection>;
+      })
+      .then((geojson) => {
+        if (cancelled) return;
+
+        const allValidFeatures = Array.isArray(geojson.features)
+          ? geojson.features.filter((f: { geometry?: { coordinates?: unknown[] } }) => {
+            const coords = f.geometry?.coordinates;
+            if (!Array.isArray(coords) || coords.length < 2) return false;
+            return isReasonablePoint(Number(coords[1]), Number(coords[0]));
+          })
+          : [];
+
+        const yearSet = new Set<number>();
+        allValidFeatures.forEach((f: { properties?: Record<string, unknown> }) => {
+          const y = extractVisadoYear(f.properties?.fecha_de_visado);
+          if (y) yearSet.add(y);
+        });
+        const yearsDesc = Array.from(yearSet).sort((a, b) => b - a);
+        if (!sameYearList(yearsDesc, obrasYearOptions)) {
+          setObrasYearOptions(yearsDesc);
+        }
+
+        const basePreset = obrasYearPreset === "custom" ? "all" : obrasYearPreset;
+        const validSelectedYears = selectedObrasYears.filter(y => yearSet.has(y));
+        const nextSelectedYears = validSelectedYears.length > 0
+          ? validSelectedYears
+          : getPresetYears(yearsDesc, basePreset);
+        const ensuredSelection = nextSelectedYears.length > 0 ? nextSelectedYears : yearsDesc;
+
+        if (!sameYearList(ensuredSelection, selectedObrasYears)) {
+          setSelectedObrasYears(ensuredSelection);
+        }
+
+        const selectedSet = new Set(ensuredSelection);
+        const includeNoYear = ensuredSelection.length === yearsDesc.length;
+        const filteredFeatures = allValidFeatures.filter((f: { properties?: Record<string, unknown> }) => {
+          const y = extractVisadoYear(f.properties?.fecha_de_visado);
+          if (!y) return includeNoYear;
+          return selectedSet.has(y);
+        });
+        setFilteredWorksFeatures(filteredFeatures as Array<{ geometry?: { coordinates?: unknown[] }; properties?: Record<string, unknown> }>);
+
+        const summary: WorksSummary = {
+          count: 0,
+          totalM2Construir: 0,
+          totalM2Relevado: 0,
+          relevamientos: 0,
+          nuevas: 0,
+          ampliaciones: 0,
+          proyectadas: 0,
+        };
+
+        const destinoCounts: Record<string, number> = {};
+        const tipoCounts: Record<string, number> = {};
+        const zonaCounts: Record<string, number> = {};
+
+        filteredFeatures.forEach((f: { properties?: Record<string, unknown> }) => {
+          const props = (f.properties ?? {}) as Record<string, unknown>;
+          const m2Construir = getWorkM2(props);
+          const m2Relevado = getWorkM2Relevado(props);
+          const declaration = getWorkDeclaration(props);
+          const destino = nonEmptyText(props.destino_uso ?? props.destino, "Sin destino");
+          const tipo = nonEmptyText(props.tipo ?? props.tipo_obra, "Sin tipo");
+          const zona = nonEmptyText(props.zonificacion ?? props.zona, "Sin zonificacion");
+          summary.count += 1;
+          summary.totalM2Construir += m2Construir;
+          summary.totalM2Relevado += m2Relevado;
+          if (declaration.relevamiento) summary.relevamientos += 1;
+          if (declaration.nueva) summary.nuevas += 1;
+          if (declaration.ampliacion) summary.ampliaciones += 1;
+          if (declaration.proyectada) summary.proyectadas += 1;
+          destinoCounts[destino] = (destinoCounts[destino] || 0) + 1;
+          tipoCounts[tipo] = (tipoCounts[tipo] || 0) + 1;
+          zonaCounts[zona] = (zonaCounts[zona] || 0) + 1;
+        });
+        setWorksSummary(summary);
+        setWorksRanking({
+          destinos: rankTop(destinoCounts, 5),
+          tipos: rankTop(tipoCounts, 5),
+          zonas: rankTop(zonaCounts, 5),
+        });
+
+        setWorksMeta({ level: publicationLevel, count: filteredFeatures.length });
+
+        if (!planosActive) {
+          return;
+        }
+
+        const layer = L.geoJSON({ ...geojson, features: filteredFeatures }, {
+          pointToLayer: (feature, latlng) => {
+            const props = (feature.properties ?? {}) as Record<string, unknown>;
+            const m2 = Math.max(getWorkM2(props), getWorkM2Relevado(props));
+            const r = Math.max(4, Math.min(12, 4 + Math.sqrt(Math.max(0, m2)) / 4));
+            const color = colorByDestiny(props.destino_uso ?? props.destino);
+            return L.circleMarker(latlng, {
+              radius: r,
+              color,
+              fillColor: color,
+              fillOpacity: 0.82,
+              weight: 1.3,
+              opacity: 0.95,
+            });
+          },
+          filter: (feature) => {
+            const coords = (feature.geometry as { coordinates?: unknown[] } | null | undefined)?.coordinates;
+            if (!Array.isArray(coords) || coords.length < 2) return false;
+            const lon = Number(coords[0]);
+            const lat = Number(coords[1]);
+            return isReasonablePoint(lat, lon);
+          },
+          onEachFeature: (feature, featureLayer) => {
+            const props = (feature.properties ?? {}) as Record<string, unknown>;
+            featureLayer.bindPopup(popupForWorkFeature(props, publicationLevel));
+          },
+        });
+
+        layer.addTo(map);
+        worksLayerRef.current = layer;
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setWorksMeta(null);
+          setWorksSummary(null);
+          setWorksRanking(null);
+          setFilteredWorksFeatures([]);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [mapReady, planosActive, publicationLevel, worksDatasetUrl, obrasYearOptions, selectedObrasYears, obrasYearPreset]);
+
+  // ── Obras temporal heatmap (barrios) ─────────────────────────────────────
+
+  useEffect(() => {
+    const map = leafletMapRef.current;
+    if (!map || !mapReady) return;
+
+    if (obrasHeatLayerRef.current) {
+      if (map.hasLayer(obrasHeatLayerRef.current)) map.removeLayer(obrasHeatLayerRef.current);
+      obrasHeatLayerRef.current = null;
+    }
+
+    if (!obrasHeatmapActive) {
+      setObrasHeatStats(null);
+      return;
+    }
+
+    let cancelled = false;
+    void fetch(`${BASE_PATH}/data/barrios.geojson`)
+      .then((res) => {
+        if (!res.ok) throw new Error("No se pudo cargar barrios.geojson");
+        return res.json() as Promise<FeatureCollection>;
+      })
+      .then((barriosGeojson) => {
+        if (cancelled) return;
+
+        const barrios = Array.isArray(barriosGeojson.features) ? barriosGeojson.features : [];
+
+        type BarrioAgg = { count: number; m2: number };
+        const aggs: BarrioAgg[] = barrios.map(() => ({ count: 0, m2: 0 }));
+
+        filteredWorksFeatures.forEach((work) => {
+          const coords = work.geometry?.coordinates;
+          if (!Array.isArray(coords) || coords.length < 2) return;
+          const lng = Number(coords[0]);
+          const lat = Number(coords[1]);
+          if (!isReasonablePoint(lat, lng)) return;
+
+          const props = (work.properties ?? {}) as Record<string, unknown>;
+          const m2 = getWorkM2(props) + getWorkM2Relevado(props);
+
+          for (let i = 0; i < barrios.length; i++) {
+            const rings = getGeometryRings(barrios[i].geometry);
+            if (rings.some((ring) => pointInPolygon(lng, lat, ring))) {
+              aggs[i].count += 1;
+              aggs[i].m2 += m2;
+              break;
+            }
+          }
+        });
+
+        const maxCount = Math.max(0, ...aggs.map(a => a.count));
+        const maxM2 = Math.max(0, ...aggs.map(a => a.m2));
+        const maxValue = obrasHeatmapMetric === "count" ? maxCount : maxM2;
+
+        const barrioRows = barrios.map((feature: { properties?: Record<string, unknown> }, i: number) => ({
+          barrio: String(feature.properties?.NOMBRE ?? feature.properties?.BARRIO ?? `Barrio ${i + 1}`),
+          count: aggs[i].count,
+          m2: aggs[i].m2,
+        })).sort((a, b) => b.count - a.count);
+        setObrasHeatBarrioData(barrioRows);
+
+        setObrasHeatStats({
+          barriosConObras: aggs.filter(a => a.count > 0).length,
+          maxCount,
+          maxM2,
+        });
+
+        const thematic = {
+          ...barriosGeojson,
+          features: barrios.map((feature: { properties?: Record<string, unknown> }, i: number) => ({
+            ...feature,
+            properties: {
+              ...(feature.properties ?? {}),
+              __obras_count: aggs[i].count,
+              __obras_m2: aggs[i].m2,
+            },
+          })),
+        } as FeatureCollection;
+
+        const layer = L.geoJSON(thematic, {
+          style: (feature) => {
+            const props = (feature?.properties ?? {}) as Record<string, unknown>;
+            const value = obrasHeatmapMetric === "count"
+              ? Number(props.__obras_count ?? 0)
+              : Number(props.__obras_m2 ?? 0);
+            const fillColor = value > 0 ? getDensityColor(value, Math.max(maxValue, 1)) : "#0f172a";
+            return {
+              color: "#93c5fd",
+              weight: value > 0 ? 1.4 : 0.8,
+              opacity: 0.85,
+              fillColor,
+              fillOpacity: value > 0 ? 0.55 : 0.08,
+            } as L.PathOptions;
+          },
+          onEachFeature: (feature, featureLayer) => {
+            const props = (feature.properties ?? {}) as Record<string, unknown>;
+            const barrio = String(props.NOMBRE ?? props.BARRIO ?? "Barrio");
+            const count = Number(props.__obras_count ?? 0);
+            const m2 = Number(props.__obras_m2 ?? 0);
+            featureLayer.bindPopup(
+              `<div style="min-width:220px">`
+              + `<div style="font-weight:700;margin-bottom:4px">${barrio}</div>`
+              + `<div><b>Obras:</b> ${count.toLocaleString("es-AR")}</div>`
+              + `<div><b>m2 declarados:</b> ${Math.round(m2).toLocaleString("es-AR")} m²</div>`
+              + `</div>`,
+            );
+          },
+        });
+
+        layer.addTo(map);
+        layer.bringToFront();
+        obrasHeatLayerRef.current = layer;
+      })
+      .catch(() => {
+        if (!cancelled) setObrasHeatStats(null);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [mapReady, obrasHeatmapActive, obrasHeatmapMetric, filteredWorksFeatures]);
+
+  // ── Cadastral search result ──────────────────────────────────────────────
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleFeatureFound = useCallback((feature: any) => {
     const map = leafletMapRef.current;
@@ -826,6 +1481,36 @@ export default function MapViewer() {
     setVisibleLayers(prev => ({ ...prev, [layerId]: willBeVisible }));
   }, [visibleLayers, mapReady, loadedSources, loadAndAddLayer]);
 
+  const handleSelectObrasPreset = useCallback((preset: "all" | "current" | "last3" | "last5") => {
+    setObrasYearPreset(preset);
+    const nextYears = getPresetYears(obrasYearOptions, preset);
+    if (nextYears.length > 0) {
+      setSelectedObrasYears(nextYears);
+    }
+    setPlanosActive(true);
+  }, [obrasYearOptions]);
+
+  const handleToggleObrasYear = useCallback((year: number) => {
+    setObrasYearPreset("custom");
+    setSelectedObrasYears((prev) => {
+      const has = prev.includes(year);
+      const next = has ? prev.filter(y => y !== year) : [...prev, year].sort((a, b) => b - a);
+      if (next.length === 0) return prev;
+      return next;
+    });
+    setPlanosActive(true);
+  }, []);
+
+  const handleSelectAllObrasYears = useCallback(() => {
+    setObrasYearPreset("all");
+    setSelectedObrasYears(obrasYearOptions);
+    setPlanosActive(true);
+  }, [obrasYearOptions]);
+
+  const handleToggleObrasHeatmap = useCallback(() => {
+    setObrasHeatmapActive(v => !v);
+  }, []);
+
   return (
     <div className="relative w-full h-screen overflow-hidden bg-background">
       <Header
@@ -842,11 +1527,25 @@ export default function MapViewer() {
         analysisPanelOpen={analysisPanelOpen}
         onToggleUpload={() => setUploadPanelOpen(o => !o)}
         uploadPanelOpen={uploadPanelOpen}
+        planosActive={planosActive}
+        onTogglePlanosVisibility={() => setPlanosActive(v => !v)}
+        obrasYearOptions={obrasYearOptions}
+        selectedObrasYears={selectedObrasYears}
+        obrasYearPreset={obrasYearPreset}
+        onSelectObrasPreset={handleSelectObrasPreset}
+        onToggleObrasYear={handleToggleObrasYear}
+        onSelectAllObrasYears={handleSelectAllObrasYears}
+        obrasSummary={worksSummary}
+        obrasRanking={worksRanking}
         measureMode={measureMode}
         onChangeMeasureMode={setMeasureMode}
         mapRef={mapRef as React.RefObject<L.Map | null>}
         onAddressFound={handleAddressFound}
         onOpenAuthPanel={() => setAuthPanelOpen(true)}
+        onToggleRegionalInfo={() => setRegionalInfoOpen(o => !o)}
+        regionalInfoOpen={regionalInfoOpen}
+        dashboardUrl={dashboardUrl}
+        adminEditorUrl={adminEditorUrl}
       />
 
       <div
@@ -855,6 +1554,95 @@ export default function MapViewer() {
         style={{ top: 52 }}
         data-testid="map-container"
       />
+
+      {visibleLayers.zonas && isAdmin && (
+        <div className="absolute z-[900] right-4 top-16 bg-black/75 text-white rounded-md border border-white/15 p-3 w-72 backdrop-blur-sm">
+          <p className="text-xs font-semibold tracking-wide uppercase text-white/85">Calibracion zonificacion</p>
+          <p className="text-[11px] text-white/65 mt-1">Ajuste visual temporal. Se guarda en este navegador.</p>
+
+          <div className="mt-3 space-y-2">
+            <label className="block text-[11px] text-white/80">Rotacion ({zonaTransform.rotateDeg.toFixed(2)}°)</label>
+            <input
+              type="range"
+              min={-3}
+              max={3}
+              step={0.01}
+              value={zonaTransform.rotateDeg}
+              onChange={(e) => setZonaTransform(prev => ({ ...prev, rotateDeg: Number(e.target.value) }))}
+              className="w-full"
+            />
+
+            <label className="block text-[11px] text-white/80">Offset Este/Oeste ({zonaTransform.offsetLng.toFixed(5)})</label>
+            <input
+              type="range"
+              min={-0.003}
+              max={0.003}
+              step={0.00002}
+              value={zonaTransform.offsetLng}
+              onChange={(e) => setZonaTransform(prev => ({ ...prev, offsetLng: Number(e.target.value) }))}
+              className="w-full"
+            />
+
+            <label className="block text-[11px] text-white/80">Offset Norte/Sur ({zonaTransform.offsetLat.toFixed(5)})</label>
+            <input
+              type="range"
+              min={-0.003}
+              max={0.003}
+              step={0.00002}
+              value={zonaTransform.offsetLat}
+              onChange={(e) => setZonaTransform(prev => ({ ...prev, offsetLat: Number(e.target.value) }))}
+              className="w-full"
+            />
+          </div>
+
+          <div className="mt-3 flex gap-2">
+            <button
+              type="button"
+              onClick={() => setZonaTransform(DEFAULT_ZONA_TRANSFORM)}
+              className="px-2 py-1 text-[11px] rounded bg-white/10 hover:bg-white/20 border border-white/20"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
+      )}
+
+      {worksMeta && planosActive && (
+        <div className="absolute z-[900] left-3 bottom-24 bg-black/70 text-white rounded-md border border-white/10 px-3 py-2 backdrop-blur-sm">
+          <div className="text-[10px] uppercase tracking-wide text-white/70">Obras geolocalizadas</div>
+          <div className="text-xs font-semibold">Nivel: {worksMeta.level} · {worksMeta.count} puntos</div>
+          {selectedObrasYears.length > 0 && (
+            <div className="text-[11px] text-white/75">Anos: {selectedObrasYears.join(", ")}</div>
+          )}
+        </div>
+      )}
+
+      {obrasHeatmapActive && obrasHeatStats && (
+        <div className="absolute z-[900] left-3 bottom-40 bg-black/80 text-white rounded-xl border border-white/15 px-3 py-2.5 backdrop-blur-sm" style={{ minWidth: 180 }}>
+          <div className="text-[10px] uppercase tracking-wide text-white/60 mb-1.5">
+            {obrasHeatmapMetric === "count" ? "Obras por barrio" : "m² por barrio"}
+          </div>
+          <div
+            className="h-2.5 rounded-full w-full mb-1"
+            style={{ background: "linear-gradient(to right, #0f172a, #1e3a5f, #1d4ed8, #f59e0b, #ef4444)" }}
+          />
+          <div className="flex justify-between text-[9px] text-white/60">
+            <span>0</span>
+            <span>
+              {obrasHeatmapMetric === "count"
+                ? obrasHeatStats.maxCount.toLocaleString("es-AR")
+                : `${Math.round(obrasHeatStats.maxM2).toLocaleString("es-AR")} m²`}
+            </span>
+          </div>
+          {selectedObrasYears.length > 0 && (
+            <div className="text-[9px] text-white/45 mt-1 truncate" style={{ maxWidth: 170 }}>
+              {selectedObrasYears.length <= 4
+                ? selectedObrasYears.join(", ")
+                : `${selectedObrasYears.length} años seleccionados`}
+            </div>
+          )}
+        </div>
+      )}
 
       {!mapReady && (
         <div className="absolute inset-0 flex items-center justify-center z-50" style={{ top: 52, background: "hsl(220 18% 11%)" }}>
@@ -927,6 +1715,18 @@ export default function MapViewer() {
             setDensidadActive(v => !v);
           }}
           densidadActive={densidadActive}
+          onToggleObrasHeatmap={handleToggleObrasHeatmap}
+          obrasHeatmapActive={obrasHeatmapActive}
+          obrasHeatmapMetric={obrasHeatmapMetric}
+          onSetObrasHeatmapMetric={setObrasHeatmapMetric}
+          obrasHeatStats={obrasHeatStats}
+          obrasHeatBarrioData={obrasHeatBarrioData}
+          obrasYearOptions={obrasYearOptions}
+          selectedObrasYears={selectedObrasYears}
+          obrasYearPreset={obrasYearPreset}
+          onSelectObrasPreset={handleSelectObrasPreset}
+          onToggleObrasYear={handleToggleObrasYear}
+          onSelectAllObrasYears={handleSelectAllObrasYears}
           canRunAnalysis={user ? hasPermission(user.role, "canRunAnalysis") : false}
           basePath={BASE_PATH}
         />
@@ -955,6 +1755,16 @@ export default function MapViewer() {
       <BaseMapSelector
         mapRef={mapRef as React.RefObject<L.Map | null>}
         tileLayerRef={tileLayerRef}
+        labelLayerRef={baseLabelLayerRef}
+        />
+
+      {/* ── Regional information (weather & alerts) ──────────────────── */}
+      <RegionalInfoPanel
+        latitude={-32.4667}
+        longitude={-58.3167}
+        open={regionalInfoOpen}
+        onToggle={() => setRegionalInfoOpen(o => !o)}
+        hideTrigger
       />
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 pointer-events-none" style={{ zIndex: 500 }}>
