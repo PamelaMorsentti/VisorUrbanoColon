@@ -1,7 +1,7 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   Layers, Search, Navigation, MapPin, X, Loader2,
-  BarChart2, Map, Upload, Ruler, Square, ChevronDown,
+  BarChart2, Map, Upload, Ruler, Square, ChevronDown, Cloud,
 } from "lucide-react";
 import L from "leaflet";
 import { COLON_CENTER, COLON_ZOOM } from "@/lib/layers";
@@ -43,15 +43,42 @@ interface HeaderProps {
   densidadPanelOpen: boolean;
   onToggleZonaLegend: () => void;
   zonaLegendOpen: boolean;
+  showZonaLegendButton: boolean;
   onToggleAnalysis: () => void;
   analysisPanelOpen: boolean;
   onToggleUpload: () => void;
   uploadPanelOpen: boolean;
+  planosActive: boolean;
+  onTogglePlanosVisibility: () => void;
+  obrasYearOptions: number[];
+  selectedObrasYears: number[];
+  obrasYearPreset: "all" | "current" | "last3" | "last5" | "custom";
+  onSelectObrasPreset: (preset: "all" | "current" | "last3" | "last5") => void;
+  onToggleObrasYear: (year: number) => void;
+  onSelectAllObrasYears: () => void;
+  obrasSummary?: {
+    count: number;
+    totalM2Construir: number;
+    totalM2Relevado: number;
+    relevamientos: number;
+    nuevas: number;
+    ampliaciones: number;
+    proyectadas: number;
+  } | null;
+  obrasRanking?: {
+    destinos: Array<{ label: string; count: number }>;
+    tipos: Array<{ label: string; count: number }>;
+    zonas: Array<{ label: string; count: number }>;
+  } | null;
   measureMode: MeasureMode;
   onChangeMeasureMode: (m: MeasureMode) => void;
   mapRef: React.RefObject<L.Map | null>;
   onAddressFound: (lat: number, lng: number, name: string) => void;
   onOpenAuthPanel: () => void;
+  onToggleRegionalInfo: () => void;
+  regionalInfoOpen: boolean;
+  dashboardUrl?: string;
+  adminEditorUrl?: string;
 }
 
 export default function Header({
@@ -59,17 +86,45 @@ export default function Header({
   onToggleCadastral, cadastralOpen,
   onToggleDensidad, densidadActive, densidadPanelOpen,
   onToggleZonaLegend, zonaLegendOpen,
+  showZonaLegendButton,
   onToggleAnalysis, analysisPanelOpen,
   onToggleUpload, uploadPanelOpen,
+  planosActive,
+  onTogglePlanosVisibility,
+  obrasYearOptions,
+  selectedObrasYears,
+  obrasYearPreset,
+  onSelectObrasPreset,
+  onToggleObrasYear,
+  onSelectAllObrasYears,
+  obrasSummary,
+  obrasRanking,
   measureMode, onChangeMeasureMode,
   mapRef,
   onAddressFound,
   onOpenAuthPanel,
+  onToggleRegionalInfo,
+  regionalInfoOpen,
+  dashboardUrl,
+  adminEditorUrl,
 }: HeaderProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [searching, setSearching] = useState(false);
   const [searchError, setSearchError] = useState<string | null>(null);
+  const [obrasMenuOpen, setObrasMenuOpen] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
+  const obrasMenuRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const onPointerDown = (event: MouseEvent) => {
+      if (!obrasMenuRef.current) return;
+      if (!obrasMenuRef.current.contains(event.target as Node)) {
+        setObrasMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", onPointerDown);
+    return () => document.removeEventListener("mousedown", onPointerDown);
+  }, []);
 
   const handleReset = () => {
     mapRef.current?.flyTo([COLON_CENTER[1], COLON_CENTER[0]], COLON_ZOOM, { duration: 1.2 });
@@ -108,6 +163,7 @@ export default function Header({
   };
 
   const toggleMeasure = (m: MeasureMode) => onChangeMeasureMode(measureMode === m ? "none" : m);
+  const fmt = (n: number) => n.toLocaleString("es-AR");
 
   return (
     <header
@@ -207,29 +263,190 @@ export default function Header({
           <span className="hidden lg:inline text-xs">Cargá</span>
         </button>
 
+        {/* Planos / obras */}
+        <div className="relative" ref={obrasMenuRef}>
+          <button
+            onClick={() => setObrasMenuOpen(v => !v)}
+            className={`${BTN_BASE} ${(planosActive || obrasMenuOpen) ? BTN_ACTIVE("emerald") : ""}`}
+            title="Filtros y analisis de obras"
+          >
+            <MapPin size={13} />
+            <span className="hidden lg:inline text-xs">Obras</span>
+            <ChevronDown size={12} className={`${obrasMenuOpen ? "rotate-180" : ""} transition-transform`} />
+          </button>
+
+          {obrasMenuOpen && (
+            <div className="absolute right-0 top-full mt-2 w-[320px] max-h-[70vh] overflow-auto rounded-lg border border-border bg-card shadow-2xl p-3 z-[1200]">
+              <div className="flex items-center justify-between gap-2">
+                <div>
+                  <div className="text-xs font-semibold text-foreground">Obras por ano de visado</div>
+                  <div className="text-[10px] text-muted-foreground">Seleccion individual o multianual</div>
+                </div>
+                <button
+                  type="button"
+                  onClick={onTogglePlanosVisibility}
+                  className={`px-2 py-1 rounded text-[11px] border ${planosActive ? "bg-emerald-500/15 border-emerald-500/40 text-emerald-300" : "border-border text-muted-foreground"}`}
+                >
+                  {planosActive ? "Visible" : "Oculta"}
+                </button>
+              </div>
+
+              <div className="mt-3">
+                <div className="text-[10px] uppercase tracking-wide text-muted-foreground mb-1">Periodo predeterminado</div>
+                <div className="grid grid-cols-2 gap-1">
+                  <button
+                    type="button"
+                    onClick={() => onSelectObrasPreset("all")}
+                    className={`px-2 py-1 rounded text-[11px] border ${obrasYearPreset === "all" ? "bg-emerald-500/15 border-emerald-500/40 text-emerald-300" : "border-border text-muted-foreground"}`}
+                  >
+                    Todos
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => onSelectObrasPreset("current")}
+                    className={`px-2 py-1 rounded text-[11px] border ${obrasYearPreset === "current" ? "bg-emerald-500/15 border-emerald-500/40 text-emerald-300" : "border-border text-muted-foreground"}`}
+                  >
+                    Ano actual
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => onSelectObrasPreset("last3")}
+                    className={`px-2 py-1 rounded text-[11px] border ${obrasYearPreset === "last3" ? "bg-emerald-500/15 border-emerald-500/40 text-emerald-300" : "border-border text-muted-foreground"}`}
+                  >
+                    Ultimos 3
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => onSelectObrasPreset("last5")}
+                    className={`px-2 py-1 rounded text-[11px] border ${obrasYearPreset === "last5" ? "bg-emerald-500/15 border-emerald-500/40 text-emerald-300" : "border-border text-muted-foreground"}`}
+                  >
+                    Ultimos 5
+                  </button>
+                </div>
+              </div>
+
+              <div className="mt-3">
+                <div className="flex items-center justify-between mb-1">
+                  <div className="text-[10px] uppercase tracking-wide text-muted-foreground">Anos disponibles</div>
+                  <button
+                    type="button"
+                    onClick={onSelectAllObrasYears}
+                    className="text-[10px] text-primary hover:underline"
+                  >
+                    Seleccionar todos
+                  </button>
+                </div>
+                <div className="grid grid-cols-3 gap-1">
+                  {obrasYearOptions.map((year) => {
+                    const checked = selectedObrasYears.includes(year);
+                    return (
+                      <button
+                        key={year}
+                        type="button"
+                        onClick={() => onToggleObrasYear(year)}
+                        className={`px-2 py-1 rounded text-[11px] border ${checked ? "bg-emerald-500/15 border-emerald-500/40 text-emerald-300" : "border-border text-muted-foreground"}`}
+                      >
+                        {year}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {obrasSummary && (
+                <div className="mt-3 rounded-md border border-border/60 bg-background/40 p-2">
+                  <div className="text-[10px] uppercase tracking-wide text-muted-foreground mb-1">Analisis de seleccion</div>
+                  <div className="text-[11px] text-foreground">Obras: {fmt(obrasSummary.count)}</div>
+                  <div className="text-[11px] text-foreground">m2 a construir: {fmt(Math.round(obrasSummary.totalM2Construir))}</div>
+                  <div className="text-[11px] text-foreground">m2 relevados: {fmt(Math.round(obrasSummary.totalM2Relevado))}</div>
+                  <div className="mt-1 text-[10px] text-muted-foreground">
+                    Relevamientos: {fmt(obrasSummary.relevamientos)} | Nuevas: {fmt(obrasSummary.nuevas)} | Ampliaciones: {fmt(obrasSummary.ampliaciones)} | Proyectadas: {fmt(obrasSummary.proyectadas)}
+                  </div>
+                </div>
+              )}
+
+              {obrasRanking && (
+                <div className="mt-2 rounded-md border border-border/60 bg-background/40 p-2">
+                  <div className="text-[10px] uppercase tracking-wide text-muted-foreground mb-1">Ranking rapido</div>
+
+                  <div className="text-[10px] text-muted-foreground">Top destinos</div>
+                  <div className="space-y-1 mt-1">
+                    {obrasRanking.destinos.slice(0, 3).map((item) => (
+                      <div key={`dest-${item.label}`} className="flex items-center justify-between text-[11px]">
+                        <span className="text-foreground/90 truncate pr-2">{item.label}</span>
+                        <span className="text-muted-foreground">{fmt(item.count)}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="text-[10px] text-muted-foreground mt-2">Top tipos</div>
+                  <div className="space-y-1 mt-1">
+                    {obrasRanking.tipos.slice(0, 3).map((item) => (
+                      <div key={`tipo-${item.label}`} className="flex items-center justify-between text-[11px]">
+                        <span className="text-foreground/90 truncate pr-2">{item.label}</span>
+                        <span className="text-muted-foreground">{fmt(item.count)}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="text-[10px] text-muted-foreground mt-2">Top zonas</div>
+                  <div className="space-y-1 mt-1">
+                    {obrasRanking.zonas.slice(0, 3).map((item) => (
+                      <div key={`zona-${item.label}`} className="flex items-center justify-between text-[11px]">
+                        <span className="text-foreground/90 truncate pr-2">{item.label}</span>
+                        <span className="text-muted-foreground">{fmt(item.count)}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="mt-2 rounded-md border border-border/60 bg-background/40 p-2">
+                <div className="text-[10px] uppercase tracking-wide text-muted-foreground mb-1">Referencia de colores de puntos</div>
+                <div className="grid grid-cols-2 gap-1.5">
+                  {OBRAS_COLOR_LEGEND.map((item) => (
+                    <div key={item.label} className="flex items-center gap-1.5 min-w-0">
+                      <span
+                        className="w-2.5 h-2.5 rounded-full border border-white/20 flex-shrink-0"
+                        style={{ backgroundColor: item.color }}
+                      />
+                      <span className="text-[10px] text-foreground/90 truncate">{item.label}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-1 text-[10px] text-muted-foreground">
+                  Tamano del punto: proporcional a los m² declarados.
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  onToggleAnalysis();
+                  setObrasMenuOpen(false);
+                }}
+                className={`mt-3 w-full px-2 py-1.5 rounded text-[11px] border ${analysisPanelOpen ? "bg-purple-500/15 border-purple-500/40 text-purple-300" : "border-border text-foreground"}`}
+              >
+                {analysisPanelOpen ? "Panel de analisis abierto" : "Abrir panel de analisis"}
+              </button>
+            </div>
+          )}
+        </div>
+
         <div className="w-px h-5 bg-border/50 mx-0.5 flex-shrink-0" />
 
-        {/* Densidad */}
-        <button
-          onClick={onToggleDensidad}
-          className={`${BTN_BASE} ${(densidadActive || densidadPanelOpen) ? BTN_ACTIVE("purple") : ""}`}
-          title="Mapa de calor edilicio"
-          data-testid="button-toggle-densidad"
-        >
-          <BarChart2 size={13} />
-          <span className="hidden xl:inline text-xs">Dens.</span>
-        </button>
-
         {/* Zona legend */}
-        <button
-          onClick={onToggleZonaLegend}
-          className={`${BTN_BASE} ${zonaLegendOpen ? BTN_ACTIVE("emerald") : ""}`}
-          title="Leyenda de zonificación"
-          data-testid="button-toggle-zona-legend"
-        >
-          <Map size={13} />
-          <span className="hidden xl:inline text-xs">Zonif.</span>
-        </button>
+        {showZonaLegendButton && (
+          <button
+            onClick={onToggleZonaLegend}
+            className={`${BTN_BASE} ${zonaLegendOpen ? BTN_ACTIVE("emerald") : ""}`}
+            title="Leyenda de zonificación"
+            data-testid="button-toggle-zona-legend"
+          >
+            <Map size={13} />
+            <span className="hidden xl:inline text-xs">Zonif.</span>
+          </button>
+        )}
 
         {/* Cadastral search */}
         <button
@@ -253,10 +470,25 @@ export default function Header({
           <span className="hidden sm:inline text-xs">Capas</span>
         </button>
 
+        {/* Regional services */}
+        <button
+          onClick={onToggleRegionalInfo}
+          className={`${BTN_BASE} ${regionalInfoOpen ? BTN_ACTIVE("emerald") : ""}`}
+          title="Servicios regionales"
+          data-testid="button-toggle-regional-info"
+        >
+          <Cloud size={13} />
+          <span className="hidden sm:inline text-xs">Servicios</span>
+        </button>
+
         <div className="w-px h-5 bg-border/50 mx-0.5 flex-shrink-0" />
 
         {/* Auth */}
-        <AuthButton onOpenPanel={onOpenAuthPanel} />
+        <AuthButton
+          onOpenPanel={onOpenAuthPanel}
+          dashboardUrl={dashboardUrl}
+          adminEditorUrl={adminEditorUrl}
+        />
       </div>
     </header>
   );
@@ -265,6 +497,14 @@ export default function Header({
 // ─── Style helpers ────────────────────────────────────────────────────────────
 
 const BTN_BASE = "flex items-center gap-1.5 px-2 py-1.5 rounded-lg border border-border bg-card text-muted-foreground hover:text-foreground transition-all flex-shrink-0";
+
+const OBRAS_COLOR_LEGEND: Array<{ label: string; color: string }> = [
+  { label: "Vivienda", color: "#0f766e" },
+  { label: "Comercial", color: "#d97706" },
+  { label: "Productivo", color: "#0ea5e9" },
+  { label: "Mixto", color: "#8b5cf6" },
+  { label: "Otros / Sin destino", color: "#64748b" },
+];
 
 function BTN_ACTIVE(color: string) {
   const map: Record<string, string> = {

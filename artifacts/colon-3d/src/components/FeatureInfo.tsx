@@ -85,8 +85,8 @@ export default function FeatureInfo({ feature, layerLabel, onClose, onPrint }: F
 
   return (
     <div
-      className="absolute bottom-8 right-3 w-72 rounded-xl overflow-hidden shadow-xl border border-border"
-      style={{ background: "hsl(220 16% 12%)", zIndex: 1001 }}
+      className="w-[88vw] sm:w-72 rounded-xl overflow-hidden shadow-xl border border-border"
+      style={{ background: "hsl(220 16% 12%)" }}
       data-testid="feature-info-panel"
     >
       <div className="flex items-center justify-between px-4 py-3 border-b border-border">

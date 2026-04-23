@@ -10,6 +10,7 @@ export interface LayerDef {
   description?: string;
   lazy?: boolean;
   labelZoom?: number;
+  adminOnly?: boolean;
 }
 
 export const COLON_CENTER: [number, number] = [-58.1417, -32.2292];
@@ -106,6 +107,19 @@ export const LAYERS: LayerDef[] = [
     labelZoom: 18,
   },
   {
+    id: "parcela_titularidad",
+    label: "Parcelas por titularidad",
+    source: "parcela_titularidad",
+    file: "Parcela.geojson",
+    type: "fill",
+    color: "#8b5cf6",
+    defaultVisible: false,
+    group: "Catastro",
+    description: "Clasificacion tematica por titularidad segun NOMBRE (Municipalidad/Provincia/Nacion/Privado/Sin dato)",
+    lazy: true,
+    adminOnly: true,
+  },
+  {
     id: "calle",
     label: "Calles",
     source: "calle",
@@ -197,6 +211,17 @@ export const LAYERS: LayerDef[] = [
     description: "Edificios de planta alta (Edif_PAlta.shp)",
   },
   {
+    id: "espverde",
+    label: "Espacios Verdes",
+    source: "espverde",
+    file: "EspVerde.geojson",
+    type: "fill",
+    color: "#4ade80",
+    defaultVisible: false,
+    group: "Verde urbano",
+    description: "Espacios verdes urbanos (EspVerde.shp + EspVerde.dbf)",
+  },
+  {
     id: "arbol",
     label: "Arbolado urbano",
     source: "arbol",
@@ -206,6 +231,18 @@ export const LAYERS: LayerDef[] = [
     defaultVisible: false,
     group: "Verde urbano",
     description: "Inventario de árboles urbanos (copas) — arbol.shp",
+    lazy: true,
+  },
+  {
+    id: "servpaso",
+    label: "Servidumbre de Paso",
+    source: "servpaso",
+    file: "ServPaso.geojson",
+    type: "fill",
+    color: "#fb923c",
+    defaultVisible: false,
+    group: "Catastro",
+    description: "Servidumbres de paso (ServPaso_1776196567877.shp)",
     lazy: true,
   },
   {
@@ -223,3 +260,234 @@ export const LAYERS: LayerDef[] = [
 ];
 
 export const LAYER_GROUPS = ["Catastro", "Infraestructura", "Topografía", "Edificios", "Verde urbano", "Zonificación"];
+
+// ─── External / remote layers (TMS / WMS) ────────────────────────────────────
+
+export interface ExternalLayerDef {
+  id: string;
+  label: string;
+  description: string;
+  /** "tms" = L.tileLayer, "wms" = L.tileLayer.wms */
+  type: "tms" | "wms";
+  url: string;
+  /** WMS: comma-separated layer names */
+  wmsLayers?: string;
+  wmsFormat?: string;
+  wmsTransparent?: boolean;
+  attribution: string;
+  color: string;
+  opacity?: number;
+  maxZoom?: number;
+  subdomains?: string;
+  group: string;
+  /** Color swatches shown inline in LayersPanel when the layer is active */
+  legend?: Array<{ color: string; label: string }>;
+  /** True for WMS layers that support GetFeatureInfo queries on map click */
+  supportsGetFeatureInfo?: boolean;
+}
+
+export const EXTERNAL_LAYER_GROUPS = [
+  "Imágenes base",
+  "Temáticas nacionales",
+  "Clima y riesgo",
+];
+
+export const EXTERNAL_LAYERS: ExternalLayerDef[] = [
+  // ── Imágenes base ──────────────────────────────────────────────────────
+  {
+    id: "ext_ign_satelital",
+    label: "IGN — Mosaico satelital",
+    description: "Imágenes aéreas/satelitales oficiales de Argentina (IGN/ArgenMap)",
+    type: "tms",
+    url: "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{-y}/{x}.png",
+    attribution: '&copy; <a href="https://www.ign.gob.ar" target="_blank">IGN Argentina</a>',
+    color: "#22d3ee",
+    opacity: 0.9,
+    maxZoom: 20,
+    group: "Imágenes base",
+    // Imágenes aéreas — sin leyenda discreta
+  },
+  {
+    id: "ext_esri_satelital",
+    label: "Esri — World Imagery",
+    description: "Imágenes satelitales globales de alta resolución (Esri/DigitalGlobe)",
+    type: "tms",
+    url: "https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    attribution: '&copy; <a href="https://www.esri.com" target="_blank">Esri</a>, DigitalGlobe',
+    color: "#84cc16",
+    opacity: 0.9,
+    maxZoom: 19,
+    group: "Imágenes base",
+  },
+  {
+    id: "ext_opentopomap",
+    label: "OpenTopoMap — Relieve",
+    description: "Mapa topográfico con relieve hillshade basado en datos SRTM",
+    type: "tms",
+    url: "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+    attribution: '&copy; <a href="https://opentopomap.org" target="_blank">OpenTopoMap</a>, SRTM',
+    color: "#a8a29e",
+    opacity: 0.85,
+    maxZoom: 17,
+    subdomains: "abc",
+    group: "Imágenes base",
+    legend: [
+      { color: "#7EB87E", label: "Cotas bajas" },
+      { color: "#C8B880", label: "Cotas medias" },
+      { color: "#A0805A", label: "Cotas altas" },
+      { color: "#E8E8E8", label: "Curvas de nivel" },
+    ],
+  },
+  // ── Temáticas nacionales ───────────────────────────────────────────────
+  {
+    id: "ext_ign_topo",
+    label: "IGN — Carta topográfica",
+    description: "Carta topográfica vectorial 1:100.000 del IGN Argentina",
+    type: "wms",
+    url: "https://wms.ign.gob.ar/geoserver/ows",
+    wmsLayers: "capabasewms",
+    wmsFormat: "image/png",
+    wmsTransparent: true,
+    attribution: '&copy; <a href="https://www.ign.gob.ar" target="_blank">IGN Argentina</a>',
+    color: "#60a5fa",
+    opacity: 0.85,
+    group: "Temáticas nacionales",
+    supportsGetFeatureInfo: true,
+    legend: [
+      { color: "#a8c8a0", label: "Cobertura vegetal" },
+      { color: "#d4c080", label: "Zonas áridas" },
+      { color: "#8080c8", label: "Hidrografía" },
+      { color: "#e0e0e0", label: "Zonas urbanas" },
+    ],
+  },
+  {
+    id: "ext_inta_suelos",
+    label: "INTA — Carta de suelos",
+    description: "Mapa de suelos de Entre Ríos — GeoINTA INTA",
+    type: "wms",
+    url: "https://geointa.inta.gob.ar/geoserver/ows",
+    wmsLayers: "geointa:ig_suelos",
+    wmsFormat: "image/png",
+    wmsTransparent: true,
+    attribution: '&copy; <a href="https://geointa.inta.gov.ar" target="_blank">INTA GeoINTA</a>',
+    color: "#ca8a04",
+    opacity: 0.75,
+    group: "Temáticas nacionales",
+    supportsGetFeatureInfo: true,
+    legend: [
+      { color: "#8B4513", label: "Molisoles (alta fertilidad)" },
+      { color: "#D2B48C", label: "Entisoles (poco desarrollados)" },
+      { color: "#808000", label: "Vertisoles (arcillosos)" },
+      { color: "#4682B4", label: "Áreas inundables" },
+    ],
+  },
+  {
+    id: "ext_segemar_geo",
+    label: "SEGEMAR — Mapa geológico",
+    description: "Carta geológica 1:250.000 de Entre Ríos (SEGEMAR)",
+    type: "wms",
+    url: "https://repositorio.segemar.gov.ar/geoserver/ows",
+    wmsLayers: "mapa_geologico_500",
+    wmsFormat: "image/png",
+    wmsTransparent: true,
+    attribution: '&copy; <a href="https://www.segemar.gov.ar" target="_blank">SEGEMAR</a>',
+    color: "#f97316",
+    opacity: 0.75,
+    group: "Temáticas nacionales",
+    supportsGetFeatureInfo: true,
+    legend: [
+      { color: "#FF6600", label: "Era Cenozoica" },
+      { color: "#FFCC00", label: "Era Mesozoica" },
+      { color: "#CC99FF", label: "Era Paleozoica" },
+      { color: "#FF3333", label: "Rocas ígneas" },
+      { color: "#99CCFF", label: "Depósitos cuaternarios" },
+    ],
+  },
+  {
+    id: "ext_apn_anp",
+    label: "APN — Áreas naturales protegidas",
+    description: "Áreas naturales protegidas nacionales (Administración Parques Nacionales)",
+    type: "wms",
+    url: "https://sig.ambiente.gob.ar/geoserver/ows",
+    wmsLayers: "anp_areas_protegidas",
+    wmsFormat: "image/png",
+    wmsTransparent: true,
+    attribution: '&copy; <a href="https://www.parquesnacionales.gob.ar" target="_blank">APN Argentina</a>',
+    color: "#16a34a",
+    opacity: 0.75,
+    group: "Temáticas nacionales",
+    supportsGetFeatureInfo: true,
+    legend: [
+      { color: "#1a7a1a", label: "Parque Nacional" },
+      { color: "#4db34d", label: "Reserva Nacional" },
+      { color: "#80cc80", label: "Monumento Natural" },
+      { color: "#b3e6b3", label: "Reserva Natural Estricta" },
+    ],
+  },
+  // ── Clima y riesgo ────────────────────────────────────────────────────
+  {
+    id: "ext_nasa_precip",
+    label: "NASA GPM — Precipitación",
+    description: "Tasa de precipitación global estimada por satélite (GPM/IMERG, NASA GIBS). Resolución 1 km, dato reciente disponible.",
+    type: "tms",
+    // {date} es reemplazado dinámicamente en MapViewer con la fecha de hace 3 días
+    url: "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/IMERG_Precipitation_Rate/default/{date}/1km/{z}/{y}/{x}.png",
+    attribution: '&copy; <a href="https://gpm.nasa.gov" target="_blank">NASA GPM</a> vía GIBS/Earthdata',
+    color: "#38bdf8",
+    opacity: 0.75,
+    maxZoom: 7,
+    group: "Clima y riesgo",
+    legend: [
+      { color: "transparent", label: "Sin precipitación" },
+      { color: "#aadaff", label: "< 1 mm/hr" },
+      { color: "#48b0e0", label: "1–5 mm/hr" },
+      { color: "#48c848", label: "5–20 mm/hr" },
+      { color: "#ffcc00", label: "20–50 mm/hr" },
+      { color: "#ff3300", label: "> 50 mm/hr" },
+    ],
+  },
+  {
+    id: "ext_esa_landcover",
+    label: "ESA WorldCover — Cobertura del suelo",
+    description: "Cobertura global del suelo 2021 a 10 m de resolución (ESA WorldCover via Terrascope). Incluye bosque, pastizal, agua, urbano, etc.",
+    type: "wms",
+    url: "https://services.terrascope.be/wms/v2",
+    wmsLayers: "WORLDCOVER_2021_MAP",
+    wmsFormat: "image/png",
+    wmsTransparent: true,
+    attribution: '&copy; <a href="https://esa-worldcover.org" target="_blank">ESA WorldCover</a>',
+    color: "#4ade80",
+    opacity: 0.75,
+    group: "Clima y riesgo",
+    supportsGetFeatureInfo: true,
+    legend: [
+      { color: "#006400", label: "Árboles" },
+      { color: "#FFBB22", label: "Matorral" },
+      { color: "#FFFF4C", label: "Pastizal" },
+      { color: "#F096FF", label: "Cultivos" },
+      { color: "#FA0000", label: "Área urbana" },
+      { color: "#B4B4B4", label: "Suelo desnudo" },
+      { color: "#0064C8", label: "Agua permanente" },
+      { color: "#0096A0", label: "Humedal herbáceo" },
+      { color: "#F0F0F0", label: "Nieve / hielo" },
+    ],
+  },
+  {
+    id: "ext_jrc_surface_water",
+    label: "JRC/Copernicus — Agua superficial",
+    description: "Ocurrencia histórica de agua superficial (JRC Global Surface Water, 1984-2021). Muestra áreas con agua permanente o estacional — útil para riesgo de inundación.",
+    type: "tms",
+    url: "https://storage.googleapis.com/global-surface-water/tiles2021/occurrence/{z}/{x}/{y}.png",
+    attribution: '&copy; <a href="https://global-surface-water.appspot.com" target="_blank">JRC / Copernicus</a>',
+    color: "#0ea5e9",
+    opacity: 0.8,
+    maxZoom: 13,
+    group: "Clima y riesgo",
+    legend: [
+      { color: "#d1edf9", label: "Agua estacional (< 25%)" },
+      { color: "#7ec8e3", label: "Agua frecuente (25–75%)" },
+      { color: "#0064c8", label: "Agua permanente (> 75%)" },
+      { color: "#002070", label: "Agua permanente 100%" },
+    ],
+  },
+];

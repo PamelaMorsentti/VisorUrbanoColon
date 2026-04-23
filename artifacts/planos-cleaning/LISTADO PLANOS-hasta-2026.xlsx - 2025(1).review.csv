@@ -1,0 +1,7 @@
+﻿source_row_number,severity,issue_type,column_name,column_index,value,message
+8,warning,invalid_ar_date,INGRESO,3,1/3/3457,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).
+11,error,spreadsheet_error_token,Monto de la Inversión (estimado y/o declarado),41,#REF!,La celda contiene un error de hoja de calculo.
+38,error,spreadsheet_error_token,Monto de la Inversión (estimado y/o declarado),41,#ERROR!,La celda contiene un error de hoja de calculo.
+109,warning,invalid_ar_date,INGRESO,3,3/10/3470,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).
+124,error,spreadsheet_error_token,F. O. T.,39,#VALUE!,La celda contiene un error de hoja de calculo.
+230,error,spreadsheet_error_token,Monto de la Inversión (estimado y/o declarado),41,#ERROR!,La celda contiene un error de hoja de calculo.

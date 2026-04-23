@@ -5,10 +5,25 @@
   "type": "module",
   "scripts": {
     "hello": "tsx ./src/hello.ts",
+    "clean:planos": "tsx ./src/clean-planos.ts",
+    "geolocate:catastro": "tsx ./src/geolocate-planos-catastro.ts",
+    "queue:catastro": "tsx ./src/build-cadastral-review-queue.ts",
+    "geolocate:refresh": "pnpm geolocate:catastro && pnpm queue:catastro",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "devDependencies": {
-    "@types/node": "catalog:",
-    "tsx": "catalog:"
-  }
+    "@types/node": "^20.0.0",
+    "tsx": "^4.7.0"
+  },
+  "dependencies": {
+    "csv-parse": "^6.2.1",
+    "csv-stringify": "^6.7.0",
+    "proj4": "^2.20.8",
+    "shapefile": "^0.6.6"
+  },
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

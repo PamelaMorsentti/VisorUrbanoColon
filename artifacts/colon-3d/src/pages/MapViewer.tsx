@@ -11,7 +11,7 @@ import FeatureInfo from "@/components/FeatureInfo";
 import ZonaPanel from "@/components/ZonaPanel";
 import ZonaLegend from "@/components/ZonaLegend";
 import CadastralSearch from "@/components/CadastralSearch";
-import DensidadPanel, { getDensityColor } from "@/components/DensidadPanel";
+import { getDensityColor } from "@/components/DensidadPanel";
 import ParcelReport, { ReportData, LayerIntersection } from "@/components/ParcelReport";
 import BaseMapSelector from "@/components/BaseMapSelector";
 import RegionalInfoPanel from "@/components/RegionalInfoPanel";
@@ -19,9 +19,10 @@ import MeasureTool, { type MeasureMode } from "@/components/MeasureTool";
 import LayerUpload from "@/components/LayerUpload";
 import AnalysisPanel from "@/components/AnalysisPanel";
 import AuthPanel from "@/components/AuthGate";
+import ExternalFeatureInfo, { type ExternalFeatureInfoState } from "@/components/ExternalFeatureInfo";
 import { useAuth } from "@/contexts/AuthContext";
 import { hasPermission } from "@/lib/auth";
-import { LAYERS, COLON_CENTER, COLON_ZOOM, ZONA_COLORS } from "@/lib/layers";
+import { LAYERS, COLON_CENTER, COLON_ZOOM, ZONA_COLORS, EXTERNAL_LAYERS } from "@/lib/layers";
 import { ZONA_NORMAS } from "@/lib/zonaData";
 
 const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -56,12 +57,49 @@ type ObrasHeatStats = {
   maxM2: number;
 };
 
+type ParcelOwnerClass = "Sin dato" | "Municipalidad" | "Provincia" | "Nacion" | "Privado";
+type ParcelOwnerFilter = "all" | ParcelOwnerClass;
+
+const PARCEL_OWNER_COLORS: Record<ParcelOwnerClass, string> = {
+  "Sin dato": "#6b7280",
+  "Municipalidad": "#16a34a",
+  "Provincia": "#2563eb",
+  "Nacion": "#ca8a04",
+  "Privado": "#64748b",
+};
+
+const PUBLIC_PARCEL_ALLOWED_KEYS = new Set([
+  "ID", "NCP", "NCM", "SEC", "SECCION", "GRU", "GRUPO", "MANZ", "NMANZ", "LMANZ", "NPARC", "LPARC",
+  "OBJETO", "AREA", "SUPERFICIE", "LARGO", "FRENTE", "PERIMETRO", "ZONA", "BARRIO", "COTA", "Z",
+]);
+
 const DEFAULT_ZONA_TRANSFORM: ZonaTransform = {
-  rotateDeg: 0.79,
-  offsetLng: 0,
-  offsetLat: -0.00072,
+  rotateDeg: 0,
+  offsetLng: -0.00012,
+  offsetLat: -0.00102,
 };
 const ZONA_TRANSFORM_STORAGE_KEY = "colon.zonasTransform";
+const LEGACY_ZONA_TRANSFORM_STORAGE_KEYS = ["colon.zonasTransform.v2"];
+
+function parseZonaTransform(raw: string | null): ZonaTransform | null {
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw) as Partial<ZonaTransform>;
+    const rotateDeg = Number(parsed.rotateDeg ?? 0);
+    const offsetLng = Number(parsed.offsetLng ?? 0);
+    const offsetLat = Number(parsed.offsetLat ?? 0);
+    if (!Number.isFinite(rotateDeg) || !Number.isFinite(offsetLng) || !Number.isFinite(offsetLat)) return null;
+    return { rotateDeg, offsetLng, offsetLat };
+  } catch {
+    return null;
+  }
+}
+
+function sameZonaTransform(a: ZonaTransform, b: ZonaTransform): boolean {
+  return Math.abs(a.rotateDeg - b.rotateDeg) < 1e-6
+    && Math.abs(a.offsetLng - b.offsetLng) < 1e-9
+    && Math.abs(a.offsetLat - b.offsetLat) < 1e-9;
+}
 
 // ─── Geometry helpers ────────────────────────────────────────────────────────
 
@@ -334,6 +372,7 @@ function getLayerStyle(layerId: string): L.PathOptions {
   switch (layerId) {
     case "manzana":    return { fillColor: "#1e2432", fillOpacity: 0.75, color: "#3a4255", weight: 1, opacity: 0.9 };
     case "parcela":    return { fillColor: "transparent", fillOpacity: 0, color: "#5b6882", weight: 0.6, opacity: 0.8 };
+    case "parcela_titularidad": return { fillColor: "#64748b", fillOpacity: 0.45, color: "#334155", weight: 0.5, opacity: 0.75 };
     case "calle":      return { color: "#525861", weight: 1.5, opacity: 0.9 };
     case "vias":       return { color: "#d97706", weight: 2.5, opacity: 0.9 };
     case "municipio":  return { fillColor: "transparent", fillOpacity: 0, color: "#60a5fa", weight: 2, opacity: 0.9, dashArray: "6 4" };
@@ -343,6 +382,8 @@ function getLayerStyle(layerId: string): L.PathOptions {
     case "edif_palta": return { fillColor: "#a05a20", fillOpacity: 1, color: "#7c4015", weight: 0.5, opacity: 1 };
     case "cota10":     return { color: "#5eead4", weight: 0.8, opacity: 0.6 };
     case "hidro":      return { color: "#38bdf8", weight: 1.5, opacity: 0.75 };
+    case "espverde":   return { fillColor: "#4ade80", fillOpacity: 0.35, color: "#16a34a", weight: 1, opacity: 0.9 };
+    case "servpaso":   return { fillColor: "#fb923c", fillOpacity: 0.25, color: "#ea580c", weight: 1.2, opacity: 0.9 };
     case "arbol":      return { fillColor: "#16a34a", fillOpacity: 0.55, color: "#22c55e", weight: 1, opacity: 0.9 };
     case "grupo":      return { fillColor: "#7c3aed", fillOpacity: 0.10, color: "#7c3aed", weight: 1, opacity: 0.6 };
     case "zonas":      return { fillOpacity: 0.18, weight: 2, opacity: 0.9 };
@@ -383,6 +424,122 @@ function colorByDestiny(destino: unknown): string {
   if (value.includes("comercial")) return "#d97706";
   if (value.includes("product")) return "#0ea5e9";
   return "#64748b";
+}
+
+function normalizeOwnerName(value: unknown): string {
+  return String(value ?? "")
+    .toUpperCase()
+    .replace(/[^A-Z]/g, "");
+}
+
+function classifyParcelOwner(nombre: unknown): ParcelOwnerClass {
+  const raw = String(nombre ?? "");
+  if (!raw.trim()) return "Sin dato";
+
+  const normalized = normalizeOwnerName(raw);
+
+  if (normalized.includes("MUNIC") && normalized.includes("COLON")) return "Municipalidad";
+
+  const isIapv = normalized.includes("IAPV")
+    || normalized.includes("INSTITUTOAUTARQUICO")
+    || normalized.includes("PLANEAMIENTOVIVIEN");
+  const isAdj = normalized.includes("ADJ");
+  if (isIapv && isAdj) return "Privado";
+
+  if (
+    isIapv
+    || normalized.includes("PROVINCIA")
+    || normalized.includes("GOBIERNOENTRERIOS")
+    || normalized.includes("SUPERIORGOBIERNODEENTRERIOS")
+    || normalized.includes("SUPGOBDELAPCIADEENTRERIOS")
+  ) {
+    return "Provincia";
+  }
+
+  if (
+    normalized.includes("NACION")
+    || normalized.includes("NACIONAL")
+    || normalized.includes("ARGENTINA")
+    || normalized.includes("MINISTERIO")
+  ) {
+    return "Nacion";
+  }
+
+  return "Privado";
+}
+
+function preprocessParcelaTitularidad(data: FeatureCollection): FeatureCollection {
+  if (!data?.features?.length) return data;
+
+  return {
+    ...data,
+    features: data.features.map((feature: FeatureCollection) => {
+      const props = (feature?.properties || {}) as Record<string, unknown>;
+      const titularidad = classifyParcelOwner(props.NOMBRE);
+      return {
+        ...feature,
+        properties: {
+          ...props,
+          titularidad_clase: titularidad,
+        },
+      };
+    }),
+  };
+}
+
+function getParcelaTitularidadStyle(props: Record<string, unknown>, filter: ParcelOwnerFilter = "all"): L.PathOptions {
+  const ownerClass = classifyParcelOwner(props.NOMBRE);
+  const fillColor = PARCEL_OWNER_COLORS[ownerClass];
+  const matchesFilter = filter === "all" || ownerClass === filter;
+  return {
+    fillColor,
+    fillOpacity: matchesFilter ? 0.45 : 0.03,
+    color: matchesFilter ? "#334155" : "#475569",
+    weight: matchesFilter ? 0.5 : 0.2,
+    opacity: matchesFilter ? 0.75 : 0.25,
+  };
+}
+
+function computeParcelOwnerStats(data: FeatureCollection): Record<ParcelOwnerClass, number> {
+  const stats: Record<ParcelOwnerClass, number> = {
+    "Sin dato": 0,
+    "Municipalidad": 0,
+    "Provincia": 0,
+    "Nacion": 0,
+    "Privado": 0,
+  };
+
+  if (!data?.features?.length) return stats;
+  data.features.forEach((feature: FeatureCollection) => {
+    const props = (feature?.properties || {}) as Record<string, unknown>;
+    const ownerClass = classifyParcelOwner(props.NOMBRE);
+    stats[ownerClass] += 1;
+  });
+
+  return stats;
+}
+
+function sanitizeParcelPropsForPublic(props: Record<string, unknown>): Record<string, unknown> {
+  const safe: Record<string, unknown> = {};
+  Object.entries(props).forEach(([key, value]) => {
+    const upper = key.toUpperCase();
+    if (PUBLIC_PARCEL_ALLOWED_KEYS.has(upper)) {
+      safe[key] = value;
+    }
+  });
+  return safe;
+}
+
+function sanitizeFeaturePropsByRole(
+  props: Record<string, unknown>,
+  layerId: string,
+  level: PublicationLevel,
+): Record<string, unknown> {
+  if (level !== "public") return props;
+  if (layerId === "parcela" || layerId === "parcela_titularidad") {
+    return sanitizeParcelPropsForPublic(props);
+  }
+  return props;
 }
 
 function isReasonablePoint(lat: number, lon: number): boolean {
@@ -550,6 +707,11 @@ const HIGHLIGHT_STYLE: L.PathOptions = {
 export default function MapViewer() {
   const { user } = useAuth();
   const isAdmin = user?.role === "admin";
+  const canAccessLayer = useCallback((layerId: string) => {
+    const layerDef = LAYERS.find(l => l.id === layerId);
+    if (!layerDef) return false;
+    return !layerDef.adminOnly || isAdmin;
+  }, [isAdmin]);
   const publicationLevel = roleToPublicationLevel(user?.role);
   const dashboardUrl = `${BASE_PATH}/tools/analytics-dashboard.html`;
   const adminEditorUrl = `${BASE_PATH}/tools/admin-editor.html`;
@@ -558,6 +720,7 @@ export default function MapViewer() {
   const mapRef = useRef<L.Map | null>(null);
   const tileLayerRef = useRef<L.TileLayer | null>(null);
   const baseLabelLayerRef = useRef<L.TileLayer | null>(null);
+  const appliedZonaTransformRef = useRef<ZonaTransform | null>(null);
   const layerRefs = useRef<Record<string, LeafletLayer>>({});
   const labelRefs = useRef<Record<string, L.LayerGroup>>({});
   const loadingRef = useRef<Set<string>>(new Set());
@@ -573,7 +736,6 @@ export default function MapViewer() {
 
   const [layersPanelOpen, setLayersPanelOpen] = useState(false);
   const [searchPanelOpen, setSearchPanelOpen] = useState(false);
-  const [densidadPanelOpen, setDensidadPanelOpen] = useState(false);
   const [zonaLegendOpen, setZonaLegendOpen] = useState(false);
   const [densidadActive, setDensidadActive] = useState(false);
   const [measureMode, setMeasureMode] = useState<MeasureMode>("none");
@@ -581,7 +743,7 @@ export default function MapViewer() {
   const [uploadPanelOpen, setUploadPanelOpen] = useState(false);
   const [analysisPanelOpen, setAnalysisPanelOpen] = useState(false);
   const [regionalInfoOpen, setRegionalInfoOpen] = useState(false);
-  const [planosActive, setPlanosActive] = useState(true);
+  const [planosActive, setPlanosActive] = useState(false);
   const [worksMeta, setWorksMeta] = useState<{ level: PublicationLevel; count: number } | null>(null);
   const [obrasYearOptions, setObrasYearOptions] = useState<number[]>([]);
   const [selectedObrasYears, setSelectedObrasYears] = useState<number[]>([]);
@@ -599,19 +761,18 @@ export default function MapViewer() {
   const [zonaTransform, setZonaTransform] = useState<ZonaTransform>(() => {
     if (user?.role !== "admin") return DEFAULT_ZONA_TRANSFORM;
     if (typeof window === "undefined") return DEFAULT_ZONA_TRANSFORM;
-    try {
-      const raw = window.localStorage.getItem(ZONA_TRANSFORM_STORAGE_KEY);
-      if (!raw) return DEFAULT_ZONA_TRANSFORM;
-      const parsed = JSON.parse(raw) as Partial<ZonaTransform>;
-      const rotateDeg = Number(parsed.rotateDeg ?? 0);
-      const offsetLng = Number(parsed.offsetLng ?? 0);
-      const offsetLat = Number(parsed.offsetLat ?? 0);
-      if (!Number.isFinite(rotateDeg) || !Number.isFinite(offsetLng) || !Number.isFinite(offsetLat))
-        return DEFAULT_ZONA_TRANSFORM;
-      return { rotateDeg, offsetLng, offsetLat };
-    } catch {
-      return DEFAULT_ZONA_TRANSFORM;
+    const current = parseZonaTransform(window.localStorage.getItem(ZONA_TRANSFORM_STORAGE_KEY));
+    if (current) return current;
+
+    for (const legacyKey of LEGACY_ZONA_TRANSFORM_STORAGE_KEYS) {
+      const legacy = parseZonaTransform(window.localStorage.getItem(legacyKey));
+      if (legacy) {
+        window.localStorage.setItem(ZONA_TRANSFORM_STORAGE_KEY, JSON.stringify(legacy));
+        return legacy;
+      }
     }
+
+    return DEFAULT_ZONA_TRANSFORM;
   });
 
   const [selectedFeature, setSelectedFeature] = useState<{
@@ -624,10 +785,34 @@ export default function MapViewer() {
   const [reportData, setReportData] = useState<ReportData | null>(null);
   const [loadedSources, setLoadedSources] = useState<Set<string>>(new Set());
   const [mapReady, setMapReady] = useState(false);
+  const [parcelOwnerStats, setParcelOwnerStats] = useState<Record<ParcelOwnerClass, number>>({
+    "Sin dato": 0,
+    "Municipalidad": 0,
+    "Provincia": 0,
+    "Nacion": 0,
+    "Privado": 0,
+  });
+  const [parcelOwnerFilter, setParcelOwnerFilter] = useState<ParcelOwnerFilter>("all");
 
   const [visibleLayers, setVisibleLayers] = useState<Record<string, boolean>>(
-    Object.fromEntries(LAYERS.map(l => [l.id, l.defaultVisible]))
+    Object.fromEntries(LAYERS.map(l => [l.id, l.defaultVisible && (!l.adminOnly || isAdmin)]))
   );
+
+  const [visibleExternalLayers, setVisibleExternalLayers] = useState<Record<string, boolean>>(
+    Object.fromEntries(EXTERNAL_LAYERS.map(l => [l.id, false]))
+  );
+  const externalLayerRefsMap = useRef<Record<string, L.TileLayer | L.TileLayer.WMS>>({});
+  // Keep a ref in sync with the state so the stable map click handler can read the latest value
+  const visibleExternalLayersRef = useRef<Record<string, boolean>>({});
+  useEffect(() => { visibleExternalLayersRef.current = visibleExternalLayers; }, [visibleExternalLayers]);
+
+  const [externalLayerInfo, setExternalLayerInfo] = useState<ExternalFeatureInfoState | null>(null);
+
+  useEffect(() => {
+    if (!visibleLayers.zonas && zonaLegendOpen) {
+      setZonaLegendOpen(false);
+    }
+  }, [visibleLayers.zonas, zonaLegendOpen]);
 
   const worksDatasetUrl = `${BASE_PATH}/data/planos/obras-${publicationLevel}.geojson`;
 
@@ -637,20 +822,26 @@ export default function MapViewer() {
   // ── On-demand layer data fetcher (with cache) ────────────────────────────
 
   const fetchAndCacheLayer = useCallback(async (layerId: string): Promise<FeatureCollection | null> => {
+    if (!canAccessLayer(layerId)) return null;
     if (layerCacheRef.current[layerId]) return layerCacheRef.current[layerId];
     const layerDef = LAYERS.find(l => l.id === layerId);
     if (!layerDef) return null;
     try {
       const r = await fetch(`${BASE_PATH}/data/${layerDef.file}`);
       const rawData: FeatureCollection = await r.json();
-      const normalized = layerId === "zonas" ? preprocessZonas(rawData, zonaTransform) : rawData;
+      const normalized = layerId === "zonas"
+        ? preprocessZonas(rawData, zonaTransform)
+        : layerId === "parcela_titularidad"
+          ? preprocessParcelaTitularidad(rawData)
+          : rawData;
       const data = filterOutlierFeatures(normalized);
       layerCacheRef.current[layerId] = data;
       if (layerId === "zonas") zonasRawDataRef.current = data;
       if (layerId === "cota10") cNivelDataRef.current = data;
+      if (layerId === "parcela_titularidad") setParcelOwnerStats(computeParcelOwnerStats(data));
       return data;
     } catch { return null; }
-  }, [zonaTransform]);
+  }, [zonaTransform, canAccessLayer]);
 
   // ── Address search result handler ────────────────────────────────────────
 
@@ -802,8 +993,12 @@ export default function MapViewer() {
       }
     }
 
+    const reportParcelProps = publicationLevel === "public"
+      ? sanitizeParcelPropsForPublic(props)
+      : props;
+
     setReportData({
-      parcelProps: props,
+      parcelProps: reportParcelProps,
       layerLabel: selectedFeature.layerLabel,
       zonaName,
       normas,
@@ -812,7 +1007,7 @@ export default function MapViewer() {
       lng: centroid ? centroid[0] : null,
       intersections,
     });
-  }, [selectedFeature, fetchAndCacheLayer]);
+  }, [selectedFeature, fetchAndCacheLayer, publicationLevel]);
 
   // ── Density data loading ─────────────────────────────────────────────────
 
@@ -885,13 +1080,20 @@ export default function MapViewer() {
   const createGeoJSONLayer = useCallback((layerDef: typeof LAYERS[number], rawData: FeatureCollection): LeafletLayer => {
     const layerId = layerDef.id;
     const isPoint = layerDef.type === "circle";
-    const data = layerId === "zonas" ? preprocessZonas(rawData) : rawData;
+    const data = layerId === "zonas"
+      ? preprocessZonas(rawData)
+      : layerId === "parcela_titularidad"
+        ? preprocessParcelaTitularidad(rawData)
+        : rawData;
     const baseStyle = getLayerStyle(layerId);
 
     const layer = L.geoJSON(data, {
       style: isPoint ? undefined : (feature) => {
         if (layerId === "zonas" && feature?.properties?.ZONA) {
           return getZonaStyle(feature.properties.ZONA as string);
+        }
+        if (layerId === "parcela_titularidad") {
+          return getParcelaTitularidadStyle((feature?.properties || {}) as Record<string, unknown>, parcelOwnerFilter);
         }
         if (layerId === "cota10") {
           const z = Number(feature?.properties?.Z ?? feature?.properties?.COTA ?? 0);
@@ -936,7 +1138,8 @@ export default function MapViewer() {
             const centroidLngLat: [number, number] | null = centroid
               ? [centroid[1], centroid[0]]  // centroid is [lat, lng], convert to [lng, lat]
               : null;
-            setSelectedFeature({ props: displayProps, layerLabel: layerDef.label, centroid: centroidLngLat, geometry: feature.geometry });
+            const visibleProps = sanitizeFeaturePropsByRole(displayProps, layerId, publicationLevel);
+            setSelectedFeature({ props: visibleProps, layerLabel: layerDef.label, centroid: centroidLngLat, geometry: feature.geometry });
             setSelectedZona(null);
           }
         });
@@ -959,6 +1162,8 @@ export default function MapViewer() {
                 const data = densidadDataRef.current;
                 const maxCount = Math.max(...Object.values(data).map(d => d.count));
                 featureLayer.setStyle(getManzanaDensityStyle(feature, data, maxCount));
+              } else if (layerId === "parcela_titularidad") {
+                featureLayer.setStyle(getParcelaTitularidadStyle(rawProps, parcelOwnerFilter));
               } else {
                 featureLayer.setStyle(baseStyle);
               }
@@ -970,13 +1175,14 @@ export default function MapViewer() {
 
     return layer;
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [parcelOwnerFilter, publicationLevel]);
 
   // ── Load & add layer ─────────────────────────────────────────────────────
 
   const loadAndAddLayer = useCallback(async (layerDef: typeof LAYERS[number]) => {
     const map = leafletMapRef.current;
     if (!map) return;
+    if (!canAccessLayer(layerDef.id)) return;
     if (loadingRef.current.has(layerDef.id)) return;
     if (loadedSources.has(layerDef.id)) return;
 
@@ -984,12 +1190,17 @@ export default function MapViewer() {
     try {
       const response = await fetch(`${BASE_PATH}/data/${layerDef.file}`);
       const rawData: FeatureCollection = await response.json();
-      const normalized = layerDef.id === "zonas" ? preprocessZonas(rawData, zonaTransform) : rawData;
+      const normalized = layerDef.id === "zonas"
+        ? preprocessZonas(rawData, zonaTransform)
+        : layerDef.id === "parcela_titularidad"
+          ? preprocessParcelaTitularidad(rawData)
+          : rawData;
       const data = filterOutlierFeatures(normalized);
       // Cache raw data for intersection queries
       layerCacheRef.current[layerDef.id] = data;
       if (layerDef.id === "zonas") zonasRawDataRef.current = data;
       if (layerDef.id === "cota10") cNivelDataRef.current = data;
+      if (layerDef.id === "parcela_titularidad") setParcelOwnerStats(computeParcelOwnerStats(data));
       const geoLayer = createGeoJSONLayer(layerDef, data);
       layerRefs.current[layerDef.id] = geoLayer;
 
@@ -1009,17 +1220,25 @@ export default function MapViewer() {
     } finally {
       loadingRef.current.delete(layerDef.id);
     }
-  }, [loadedSources, visibleLayers, createGeoJSONLayer, createLabelLayer, zonaTransform]);
+  }, [loadedSources, visibleLayers, createGeoJSONLayer, createLabelLayer, zonaTransform, canAccessLayer]);
 
   // ── Persist + hot-reload zoning transform ───────────────────────────────
 
   useEffect(() => {
     if (typeof window !== "undefined" && isAdmin) {
       window.localStorage.setItem(ZONA_TRANSFORM_STORAGE_KEY, JSON.stringify(zonaTransform));
+      for (const legacyKey of LEGACY_ZONA_TRANSFORM_STORAGE_KEYS) {
+        window.localStorage.setItem(legacyKey, JSON.stringify(zonaTransform));
+      }
     }
 
     const map = leafletMapRef.current;
     if (!mapReady || !map) return;
+    if (!visibleLayers.zonas) return;
+    if (appliedZonaTransformRef.current && sameZonaTransform(appliedZonaTransformRef.current, zonaTransform)) {
+      return;
+    }
+    appliedZonaTransformRef.current = zonaTransform;
 
     delete layerCacheRef.current.zonas;
     zonasRawDataRef.current = null;
@@ -1079,9 +1298,59 @@ export default function MapViewer() {
     L.control.zoom({ position: "bottomright" }).addTo(map);
     L.control.scale({ metric: true, imperial: false, position: "bottomright" }).addTo(map);
 
-    map.on("click", () => {
+    map.on("click", (e: L.LeafletMouseEvent) => {
       setSelectedFeature(null);
       setSelectedZona(null);
+      setExternalLayerInfo(null);
+
+      // Query visible WMS external layers for feature info at the clicked point
+      const activeWmsLayers = EXTERNAL_LAYERS.filter(
+        l => l.type === "wms" && l.supportsGetFeatureInfo && visibleExternalLayersRef.current[l.id]
+      );
+      if (activeWmsLayers.length === 0) return;
+
+      setExternalLayerInfo({ status: "loading" });
+
+      const bounds = map.getBounds();
+      const size = map.getSize();
+      const pt = map.latLngToContainerPoint(e.latlng);
+      const bbox = [
+        bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()
+      ].join(",");
+
+      void (async () => {
+        for (const extDef of activeWmsLayers) {
+          try {
+            const params = new URLSearchParams({
+              SERVICE: "WMS", VERSION: "1.1.1", REQUEST: "GetFeatureInfo",
+              LAYERS: extDef.wmsLayers ?? "",
+              QUERY_LAYERS: extDef.wmsLayers ?? "",
+              INFO_FORMAT: "application/json",
+              FEATURE_COUNT: "1",
+              X: String(Math.round(pt.x)),
+              Y: String(Math.round(pt.y)),
+              WIDTH: String(size.x),
+              HEIGHT: String(size.y),
+              BBOX: bbox,
+              SRS: "EPSG:4326",
+            });
+            const res = await fetch(`${extDef.url}?${params.toString()}`, {
+              signal: AbortSignal.timeout(6000),
+            });
+            if (!res.ok) continue;
+            const json = await res.json() as { features?: Array<{ properties?: Record<string, unknown> }> };
+            const props = json.features?.[0]?.properties;
+            if (props && Object.keys(props).length > 0) {
+              setExternalLayerInfo({ status: "result", layerLabel: extDef.label, props });
+              return;
+            }
+          } catch {
+            // network error or timeout — try next layer
+          }
+        }
+        // All layers queried, nothing useful returned
+        setExternalLayerInfo({ status: "empty", layerLabel: activeWmsLayers[0].label });
+      })();
     });
 
     setMapReady(true);
@@ -1102,12 +1371,12 @@ export default function MapViewer() {
 
   useEffect(() => {
     if (!mapReady) return;
-    LAYERS.filter(l => !l.lazy && l.defaultVisible).forEach(layerDef => {
+    LAYERS.filter(l => !l.lazy && l.defaultVisible && (!l.adminOnly || isAdmin)).forEach(layerDef => {
       if (!loadedSources.has(layerDef.id) && !loadingRef.current.has(layerDef.id))
         loadAndAddLayer(layerDef);
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mapReady]);
+  }, [mapReady, isAdmin]);
 
   // ── Layer visibility sync ────────────────────────────────────────────────
 
@@ -1116,6 +1385,7 @@ export default function MapViewer() {
     if (!map || !mapReady) return;
 
     LAYERS.forEach(layerDef => {
+      if (layerDef.adminOnly && !isAdmin) return;
       const layer = layerRefs.current[layerDef.id];
       const labelGroup = labelRefs.current[layerDef.id];
       const shouldBeVisible = visibleLayers[layerDef.id];
@@ -1135,7 +1405,66 @@ export default function MapViewer() {
         if (labelGroup && map.hasLayer(labelGroup)) map.removeLayer(labelGroup);
       }
     });
-  }, [visibleLayers, mapReady, loadedSources, loadAndAddLayer]);
+  }, [visibleLayers, mapReady, loadedSources, loadAndAddLayer, isAdmin]);
+
+  useEffect(() => {
+    const layer = layerRefs.current.parcela_titularidad;
+    if (!(layer instanceof L.GeoJSON)) return;
+    layer.eachLayer((subLayer: L.Layer) => {
+      if (!(subLayer instanceof L.Path)) return;
+      const feature = (subLayer as L.Path & { feature?: FeatureCollection }).feature;
+      const props = (feature?.properties || {}) as Record<string, unknown>;
+      subLayer.setStyle(getParcelaTitularidadStyle(props, parcelOwnerFilter));
+    });
+  }, [parcelOwnerFilter, visibleLayers.parcela_titularidad]);
+
+  // ── External (TMS / WMS) layers ──────────────────────────────────────────
+  useEffect(() => {
+    const map = leafletMapRef.current;
+    if (!map || !mapReady) return;
+    for (const extDef of EXTERNAL_LAYERS) {
+      const shouldShow = visibleExternalLayers[extDef.id];
+      const existing = externalLayerRefsMap.current[extDef.id];
+      if (shouldShow && !existing) {
+        // Compute a date 3 days ago for time-sensitive WMTS layers (e.g. NASA GPM)
+        const d = new Date();
+        d.setDate(d.getDate() - 3);
+        const dynamicDate = d.toISOString().split("T")[0];
+
+        let lyr: L.TileLayer | L.TileLayer.WMS;
+        if (extDef.type === "wms") {
+          lyr = L.tileLayer.wms(extDef.url, {
+            layers: extDef.wmsLayers ?? "",
+            format: extDef.wmsFormat ?? "image/png",
+            transparent: extDef.wmsTransparent ?? true,
+            attribution: extDef.attribution,
+            opacity: extDef.opacity ?? 0.8,
+            maxZoom: extDef.maxZoom ?? 19,
+            crossOrigin: "anonymous",
+          } as L.WMSOptions);
+        } else {
+          // {date} in URL is replaced by Leaflet using the options object
+          lyr = L.tileLayer(extDef.url, {
+            attribution: extDef.attribution,
+            opacity: extDef.opacity ?? 0.85,
+            maxZoom: extDef.maxZoom ?? 19,
+            subdomains: extDef.subdomains ?? "abc",
+            crossOrigin: "anonymous",
+            date: dynamicDate,
+          } as L.TileLayerOptions & { date: string });
+        }
+        lyr.addTo(map);
+        externalLayerRefsMap.current[extDef.id] = lyr;
+      } else if (!shouldShow && existing) {
+        map.removeLayer(existing);
+        delete externalLayerRefsMap.current[extDef.id];
+      }
+    }
+  }, [visibleExternalLayers, mapReady]);
+
+  const handleToggleExternalLayer = useCallback((layerId: string) => {
+    setVisibleExternalLayers(prev => ({ ...prev, [layerId]: !prev[layerId] }));
+  }, []);
 
   // ── Zoom label sync ──────────────────────────────────────────────────────
 
@@ -1467,19 +1796,33 @@ export default function MapViewer() {
     }
     const centroid = computeCentroid(feature.geometry);
     const centroidLngLat: [number, number] | null = centroid ? [centroid[1], centroid[0]] : null;
-    setSelectedFeature({ props, layerLabel: "Parcela catastral", centroid: centroidLngLat, geometry: feature.geometry });
+    const visibleProps = publicationLevel === "public" ? sanitizeParcelPropsForPublic(props) : props;
+    setSelectedFeature({ props: visibleProps, layerLabel: "Parcela catastral", centroid: centroidLngLat, geometry: feature.geometry });
     setSelectedZona(null);
     setSearchPanelOpen(false);
-  }, []);
+  }, [publicationLevel]);
 
   const handleToggleLayer = useCallback((layerId: string) => {
     const layerDef = LAYERS.find(l => l.id === layerId);
     if (!layerDef) return;
+    if (layerDef.adminOnly && !isAdmin) return;
     const willBeVisible = !visibleLayers[layerId];
     if (willBeVisible && layerDef.lazy && !loadedSources.has(layerId) && !loadingRef.current.has(layerId) && mapReady)
       loadAndAddLayer(layerDef);
     setVisibleLayers(prev => ({ ...prev, [layerId]: willBeVisible }));
-  }, [visibleLayers, mapReady, loadedSources, loadAndAddLayer]);
+  }, [visibleLayers, mapReady, loadedSources, loadAndAddLayer, isAdmin]);
+
+  useEffect(() => {
+    if (isAdmin) return;
+    setVisibleLayers(prev => {
+      const next = { ...prev };
+      LAYERS.forEach(layer => {
+        if (layer.adminOnly) next[layer.id] = false;
+      });
+      return next;
+    });
+    setParcelOwnerFilter("all");
+  }, [isAdmin]);
 
   const handleSelectObrasPreset = useCallback((preset: "all" | "current" | "last3" | "last5") => {
     setObrasYearPreset(preset);
@@ -1511,6 +1854,105 @@ export default function MapViewer() {
     setObrasHeatmapActive(v => !v);
   }, []);
 
+  const handleExportParcelOwnerCsv = useCallback(async () => {
+    if (!isAdmin) return;
+
+    const data = await fetchAndCacheLayer("parcela_titularidad");
+    if (!data?.features?.length) return;
+
+    const rows = data.features
+      .map((feature: FeatureCollection, index: number) => {
+        const props = (feature?.properties || {}) as Record<string, unknown>;
+        const ownerClass = classifyParcelOwner(props.NOMBRE);
+        if (parcelOwnerFilter !== "all" && ownerClass !== parcelOwnerFilter) return null;
+        return {
+          indice: index + 1,
+          titularidad_clase: ownerClass,
+          ncp: String(props.NCP ?? ""),
+          sec: String(props.SEC ?? ""),
+          gru: String(props.GRU ?? ""),
+          nmanz: String(props.NMANZ ?? props.LMANZ ?? ""),
+          nparc: String(props.NPARC ?? props.LPARC ?? ""),
+          area: Number(props.AREA ?? 0),
+          nombre_titular: String(props.NOMBRE ?? ""),
+        };
+      })
+      .filter(Boolean) as Array<{
+        indice: number;
+        titularidad_clase: string;
+        ncp: string;
+        sec: string;
+        gru: string;
+        nmanz: string;
+        nparc: string;
+        area: number;
+        nombre_titular: string;
+      }>;
+
+    const header = [
+      "indice",
+      "titularidad_clase",
+      "ncp",
+      "sec",
+      "gru",
+      "nmanz",
+      "nparc",
+      "area_m2",
+      "nombre_titular",
+    ];
+
+    const esc = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+    const csv = [header.join(",")]
+      .concat(rows.map((r) => [
+        esc(r.indice),
+        esc(r.titularidad_clase),
+        esc(r.ncp),
+        esc(r.sec),
+        esc(r.gru),
+        esc(r.nmanz),
+        esc(r.nparc),
+        esc(Math.round(r.area)),
+        esc(r.nombre_titular),
+      ].join(",")))
+      .join("\n");
+
+    const filterTag = parcelOwnerFilter === "all" ? "todas" : parcelOwnerFilter.toLowerCase();
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `parcelas-titularidad-${filterTag}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }, [isAdmin, fetchAndCacheLayer, parcelOwnerFilter]);
+
+  const handleToggleAnalysisPanel = useCallback(() => {
+    setAnalysisPanelOpen(prev => {
+      const next = !prev;
+      if (next) {
+        setRegionalInfoOpen(false);
+        setZonaLegendOpen(false);
+      }
+      return next;
+    });
+  }, []);
+
+  const handleToggleRegionalInfoPanel = useCallback(() => {
+    setRegionalInfoOpen(prev => {
+      const next = !prev;
+      if (next) setAnalysisPanelOpen(false);
+      return next;
+    });
+  }, []);
+
+  const handleToggleZonaLegendPanel = useCallback(() => {
+    setZonaLegendOpen(prev => {
+      const next = !prev;
+      if (next) setAnalysisPanelOpen(false);
+      return next;
+    });
+  }, []);
+
   return (
     <div className="relative w-full h-screen overflow-hidden bg-background">
       <Header
@@ -1518,12 +1960,16 @@ export default function MapViewer() {
         layersPanelOpen={layersPanelOpen}
         onToggleCadastral={() => setSearchPanelOpen(o => !o)}
         cadastralOpen={searchPanelOpen}
-        onToggleDensidad={() => setDensidadPanelOpen(o => !o)}
+        onToggleDensidad={() => {
+          setAnalysisPanelOpen(true);
+          setDensidadActive(v => !v);
+        }}
         densidadActive={densidadActive}
-        densidadPanelOpen={densidadPanelOpen}
-        onToggleZonaLegend={() => setZonaLegendOpen(o => !o)}
+        densidadPanelOpen={false}
+        onToggleZonaLegend={handleToggleZonaLegendPanel}
         zonaLegendOpen={zonaLegendOpen}
-        onToggleAnalysis={() => setAnalysisPanelOpen(o => !o)}
+        showZonaLegendButton={Boolean(visibleLayers.zonas)}
+        onToggleAnalysis={handleToggleAnalysisPanel}
         analysisPanelOpen={analysisPanelOpen}
         onToggleUpload={() => setUploadPanelOpen(o => !o)}
         uploadPanelOpen={uploadPanelOpen}
@@ -1542,7 +1988,7 @@ export default function MapViewer() {
         mapRef={mapRef as React.RefObject<L.Map | null>}
         onAddressFound={handleAddressFound}
         onOpenAuthPanel={() => setAuthPanelOpen(true)}
-        onToggleRegionalInfo={() => setRegionalInfoOpen(o => !o)}
+        onToggleRegionalInfo={handleToggleRegionalInfoPanel}
         regionalInfoOpen={regionalInfoOpen}
         dashboardUrl={dashboardUrl}
         adminEditorUrl={adminEditorUrl}
@@ -1554,58 +2000,6 @@ export default function MapViewer() {
         style={{ top: 52 }}
         data-testid="map-container"
       />
-
-      {visibleLayers.zonas && isAdmin && (
-        <div className="absolute z-[900] right-4 top-16 bg-black/75 text-white rounded-md border border-white/15 p-3 w-72 backdrop-blur-sm">
-          <p className="text-xs font-semibold tracking-wide uppercase text-white/85">Calibracion zonificacion</p>
-          <p className="text-[11px] text-white/65 mt-1">Ajuste visual temporal. Se guarda en este navegador.</p>
-
-          <div className="mt-3 space-y-2">
-            <label className="block text-[11px] text-white/80">Rotacion ({zonaTransform.rotateDeg.toFixed(2)}°)</label>
-            <input
-              type="range"
-              min={-3}
-              max={3}
-              step={0.01}
-              value={zonaTransform.rotateDeg}
-              onChange={(e) => setZonaTransform(prev => ({ ...prev, rotateDeg: Number(e.target.value) }))}
-              className="w-full"
-            />
-
-            <label className="block text-[11px] text-white/80">Offset Este/Oeste ({zonaTransform.offsetLng.toFixed(5)})</label>
-            <input
-              type="range"
-              min={-0.003}
-              max={0.003}
-              step={0.00002}
-              value={zonaTransform.offsetLng}
-              onChange={(e) => setZonaTransform(prev => ({ ...prev, offsetLng: Number(e.target.value) }))}
-              className="w-full"
-            />
-
-            <label className="block text-[11px] text-white/80">Offset Norte/Sur ({zonaTransform.offsetLat.toFixed(5)})</label>
-            <input
-              type="range"
-              min={-0.003}
-              max={0.003}
-              step={0.00002}
-              value={zonaTransform.offsetLat}
-              onChange={(e) => setZonaTransform(prev => ({ ...prev, offsetLat: Number(e.target.value) }))}
-              className="w-full"
-            />
-          </div>
-
-          <div className="mt-3 flex gap-2">
-            <button
-              type="button"
-              onClick={() => setZonaTransform(DEFAULT_ZONA_TRANSFORM)}
-              className="px-2 py-1 text-[11px] rounded bg-white/10 hover:bg-white/20 border border-white/20"
-            >
-              Reset
-            </button>
-          </div>
-        </div>
-      )}
 
       {worksMeta && planosActive && (
         <div className="absolute z-[900] left-3 bottom-24 bg-black/70 text-white rounded-md border border-white/10 px-3 py-2 backdrop-blur-sm">
@@ -1644,6 +2038,60 @@ export default function MapViewer() {
         </div>
       )}
 
+      {isAdmin && visibleLayers.parcela_titularidad && (
+        <div className="absolute z-[900] left-3 bottom-56 bg-black/80 text-white rounded-xl border border-white/15 px-3 py-2.5 backdrop-blur-sm" style={{ minWidth: 280 }}>
+          <div className="flex items-center justify-between mb-2">
+            <div className="text-[10px] uppercase tracking-wide text-white/60">Parcelas por titularidad</div>
+            <button
+              type="button"
+              onClick={() => setParcelOwnerFilter("all")}
+              className="text-[10px] text-primary hover:underline"
+            >
+              Ver todas
+            </button>
+          </div>
+
+          <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-[11px]">
+            {(["Municipalidad", "Provincia", "Nacion", "Privado", "Sin dato"] as ParcelOwnerClass[]).map((label) => {
+              const count = parcelOwnerStats[label] || 0;
+              const total = Object.values(parcelOwnerStats).reduce((sum, n) => sum + n, 0);
+              const pct = total > 0 ? (count * 100) / total : 0;
+              const active = parcelOwnerFilter === label;
+              return (
+                <button
+                  key={label}
+                  type="button"
+                  onClick={() => setParcelOwnerFilter(prev => (prev === label ? "all" : label))}
+                  className={`flex items-center justify-between gap-1.5 px-1.5 py-1 rounded border transition-colors ${active ? "bg-white/10 border-white/40" : "bg-white/0 border-white/10 hover:border-white/25"}`}
+                  title={`Filtrar: ${label}`}
+                >
+                  <span className="inline-flex items-center gap-1.5 min-w-0">
+                    <span
+                      className="inline-block w-2.5 h-2.5 rounded-full border border-white/25"
+                      style={{ background: PARCEL_OWNER_COLORS[label] }}
+                    />
+                    <span className="text-white/90 truncate">{label}</span>
+                  </span>
+                  <span className="text-[10px] text-white/70">{count} · {pct.toFixed(1)}%</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="text-[9px] text-white/45 mt-2">
+            Filtro activo: {parcelOwnerFilter === "all" ? "Todos" : parcelOwnerFilter}
+          </div>
+
+          <button
+            type="button"
+            onClick={handleExportParcelOwnerCsv}
+            className="mt-2 w-full px-2 py-1.5 rounded border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-[10px] font-semibold hover:bg-cyan-500/20 transition-colors"
+          >
+            Exportar CSV auditoria
+          </button>
+        </div>
+      )}
+
       {!mapReady && (
         <div className="absolute inset-0 flex items-center justify-center z-50" style={{ top: 52, background: "hsl(220 18% 11%)" }}>
           <div className="text-center">
@@ -1652,32 +2100,6 @@ export default function MapViewer() {
             <p className="text-xs text-muted-foreground/60 mt-1">Colón, Entre Ríos</p>
           </div>
         </div>
-      )}
-
-      {layersPanelOpen && (
-        <LayersPanel
-          visibleLayers={visibleLayers}
-          onToggleLayer={handleToggleLayer}
-          isOpen={layersPanelOpen}
-          onClose={() => setLayersPanelOpen(false)}
-        />
-      )}
-
-      {searchPanelOpen && (
-        <CadastralSearch
-          basePath={BASE_PATH}
-          onFeatureFound={handleFeatureFound}
-          onClose={() => setSearchPanelOpen(false)}
-        />
-      )}
-
-      {selectedFeature && !selectedZona && (
-        <FeatureInfo
-          feature={selectedFeature.props}
-          layerLabel={selectedFeature.layerLabel}
-          onClose={() => setSelectedFeature(null)}
-          onPrint={handlePrint}
-        />
       )}
 
       {reportData && (
@@ -1694,26 +2116,12 @@ export default function MapViewer() {
         />
       )}
 
-      {densidadPanelOpen && (
-        <DensidadPanel
-          active={densidadActive}
-          onToggle={() => setDensidadActive(v => !v)}
-          onClose={() => setDensidadPanelOpen(false)}
-          stats={densidadStats}
-        />
-      )}
-
-      <ZonaLegend open={zonaLegendOpen} onClose={() => setZonaLegendOpen(false)} />
-
       {/* ── New panels ──────────────────────────────────────────────────── */}
 
       {analysisPanelOpen && (
         <AnalysisPanel
           onClose={() => setAnalysisPanelOpen(false)}
-          onActivateDensidad={() => {
-            setDensidadPanelOpen(true);
-            setDensidadActive(v => !v);
-          }}
+          onActivateDensidad={() => setDensidadActive(v => !v)}
           densidadActive={densidadActive}
           onToggleObrasHeatmap={handleToggleObrasHeatmap}
           obrasHeatmapActive={obrasHeatmapActive}
@@ -1727,51 +2135,246 @@ export default function MapViewer() {
           onSelectObrasPreset={handleSelectObrasPreset}
           onToggleObrasYear={handleToggleObrasYear}
           onSelectAllObrasYears={handleSelectAllObrasYears}
-          canRunAnalysis={user ? hasPermission(user.role, "canRunAnalysis") : false}
+          canRunAnalysis={hasPermission(user?.role ?? "invitado", "canRunAnalysis")}
           basePath={BASE_PATH}
         />
       )}
 
-      {uploadPanelOpen && (
-        <LayerUpload
-          mapRef={mapRef as React.RefObject<L.Map | null>}
-          onClose={() => setUploadPanelOpen(false)}
-          canUpload={user ? hasPermission(user.role, "canUploadLayers") : false}
-        />
-      )}
+      {/* ── Columna izquierda: Capas + Búsqueda catastral ── */}
+      <div
+        className="absolute top-14 left-3 z-[1001] flex flex-col gap-2 pointer-events-none"
+        style={{ maxHeight: "calc(100vh - 80px)", overflowY: "auto" }}
+      >
+        {layersPanelOpen && (
+          <div className="pointer-events-auto">
+            <LayersPanel
+              visibleLayers={visibleLayers}
+              onToggleLayer={handleToggleLayer}
+              isOpen={layersPanelOpen}
+              onClose={() => setLayersPanelOpen(false)}
+              isAdmin={isAdmin}
+              visibleExternalLayers={visibleExternalLayers}
+              onToggleExternalLayer={handleToggleExternalLayer}
+            />
+          </div>
+        )}
+        {searchPanelOpen && (
+          <div className="pointer-events-auto">
+            <CadastralSearch
+              basePath={BASE_PATH}
+              onFeatureFound={handleFeatureFound}
+              onClose={() => setSearchPanelOpen(false)}
+            />
+          </div>
+        )}
+      </div>
 
-      {authPanelOpen && (
-        <AuthPanel onClose={() => setAuthPanelOpen(false)} />
-      )}
+      {/* ── Columna derecha: herramientas flotantes + info de elemento ── */}
+      <div
+        className="absolute top-14 right-3 z-[1001] flex flex-col gap-2 pointer-events-none"
+        style={{ maxHeight: "calc(100vh - 80px)", overflowY: "auto" }}
+      >
+        {regionalInfoOpen && (
+          <div className="pointer-events-auto">
+            <RegionalInfoPanel
+              open={regionalInfoOpen}
+              onToggle={() => setRegionalInfoOpen(false)}
+              hideTrigger
+            />
+          </div>
+        )}
 
-      {/* ── Measure tool (overlay + toolbar) ─────────────────────────── */}
+        {zonaLegendOpen && (
+          <div className="pointer-events-auto">
+            <ZonaLegend open={zonaLegendOpen} onClose={() => setZonaLegendOpen(false)} />
+          </div>
+        )}
+
+        {visibleLayers.zonas && isAdmin && (
+          <div className="pointer-events-auto w-72 bg-black/75 text-white rounded-md border border-white/15 p-3 backdrop-blur-sm">
+            <p className="text-xs font-semibold tracking-wide uppercase text-white/85">Calibracion zonificacion</p>
+            <p className="text-[11px] text-white/65 mt-1">Ajuste visual temporal. Se guarda en este navegador.</p>
+
+            <div className="mt-3 space-y-2">
+              <label className="block text-[11px] text-white/80">Rotacion ({zonaTransform.rotateDeg.toFixed(2)}°)</label>
+              <input
+                type="range"
+                min={-3}
+                max={3}
+                step={0.01}
+                value={zonaTransform.rotateDeg}
+                onChange={(e) => setZonaTransform(prev => ({ ...prev, rotateDeg: Number(e.target.value) }))}
+                className="w-full"
+              />
+
+              <label className="block text-[11px] text-white/80">Offset Este/Oeste ({zonaTransform.offsetLng.toFixed(5)})</label>
+              <input
+                type="range"
+                min={-0.003}
+                max={0.003}
+                step={0.00002}
+                value={zonaTransform.offsetLng}
+                onChange={(e) => setZonaTransform(prev => ({ ...prev, offsetLng: Number(e.target.value) }))}
+                className="w-full"
+              />
+
+              <label className="block text-[11px] text-white/80">Offset Norte/Sur ({zonaTransform.offsetLat.toFixed(5)})</label>
+              <input
+                type="range"
+                min={-0.003}
+                max={0.003}
+                step={0.00002}
+                value={zonaTransform.offsetLat}
+                onChange={(e) => setZonaTransform(prev => ({ ...prev, offsetLat: Number(e.target.value) }))}
+                className="w-full"
+              />
+            </div>
+
+            <div className="mt-3 flex gap-2">
+              <button
+                type="button"
+                onClick={() => setZonaTransform(DEFAULT_ZONA_TRANSFORM)}
+                className="px-2 py-1 text-[11px] rounded bg-white/10 hover:bg-white/20 border border-white/20"
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+        )}
+
+        {isAdmin && visibleLayers.parcela_titularidad && (
+          <div className="pointer-events-auto w-72 bg-black/80 text-white rounded-xl border border-white/15 px-3 py-2.5 backdrop-blur-sm">
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-[10px] uppercase tracking-wide text-white/60">Parcelas por titularidad</div>
+              <button
+                type="button"
+                onClick={() => setParcelOwnerFilter("all")}
+                className="text-[10px] text-primary hover:underline"
+              >
+                Ver todas
+              </button>
+            </div>
+
+            <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-[11px]">
+              {(["Municipalidad", "Provincia", "Nacion", "Privado", "Sin dato"] as ParcelOwnerClass[]).map((label) => {
+                const count = parcelOwnerStats[label] || 0;
+                const total = Object.values(parcelOwnerStats).reduce((sum, n) => sum + n, 0);
+                const pct = total > 0 ? (count * 100) / total : 0;
+                const active = parcelOwnerFilter === label;
+                return (
+                  <button
+                    key={label}
+                    type="button"
+                    onClick={() => setParcelOwnerFilter(prev => (prev === label ? "all" : label))}
+                    className={`flex items-center justify-between gap-1.5 px-1.5 py-1 rounded border transition-colors ${active ? "bg-white/10 border-white/40" : "bg-white/0 border-white/10 hover:border-white/25"}`}
+                    title={`Filtrar: ${label}`}
+                  >
+                    <span className="inline-flex items-center gap-1.5 min-w-0">
+                      <span
+                        className="inline-block w-2.5 h-2.5 rounded-full border border-white/25"
+                        style={{ background: PARCEL_OWNER_COLORS[label] }}
+                      />
+                      <span className="text-white/90 truncate">{label}</span>
+                    </span>
+                    <span className="text-[10px] text-white/70">{count} · {pct.toFixed(1)}%</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="text-[9px] text-white/45 mt-2">
+              Filtro activo: {parcelOwnerFilter === "all" ? "Todos" : parcelOwnerFilter}
+            </div>
+
+            <button
+              type="button"
+              onClick={handleExportParcelOwnerCsv}
+              className="mt-2 w-full px-2 py-1.5 rounded border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-[10px] font-semibold hover:bg-cyan-500/20 transition-colors"
+            >
+              Exportar CSV auditoria
+            </button>
+          </div>
+        )}
+
+        {obrasHeatmapActive && obrasHeatStats && (
+          <div className="pointer-events-auto w-72 bg-black/80 text-white rounded-xl border border-white/15 px-3 py-2.5 backdrop-blur-sm">
+            <div className="text-[10px] uppercase tracking-wide text-white/60 mb-1.5">
+              {obrasHeatmapMetric === "count" ? "Obras por barrio" : "m² por barrio"}
+            </div>
+            <div
+              className="h-2.5 rounded-full w-full mb-1"
+              style={{ background: "linear-gradient(to right, #0f172a, #1e3a5f, #1d4ed8, #f59e0b, #ef4444)" }}
+            />
+            <div className="flex justify-between text-[9px] text-white/60">
+              <span>0</span>
+              <span>
+                {obrasHeatmapMetric === "count"
+                  ? obrasHeatStats.maxCount.toLocaleString("es-AR")
+                  : `${Math.round(obrasHeatStats.maxM2).toLocaleString("es-AR")} m²`}
+              </span>
+            </div>
+            {selectedObrasYears.length > 0 && (
+              <div className="text-[9px] text-white/45 mt-1 truncate">
+                {selectedObrasYears.length <= 4
+                  ? selectedObrasYears.join(", ")
+                  : `${selectedObrasYears.length} años seleccionados`}
+              </div>
+            )}
+          </div>
+        )}
+
+        {worksMeta && planosActive && (
+          <div className="pointer-events-auto w-72 bg-black/70 text-white rounded-md border border-white/10 px-3 py-2 backdrop-blur-sm">
+            <div className="text-[10px] uppercase tracking-wide text-white/70">Obras geolocalizadas</div>
+            <div className="text-xs font-semibold">Nivel: {worksMeta.level} · {worksMeta.count} puntos</div>
+            {selectedObrasYears.length > 0 && (
+              <div className="text-[11px] text-white/75">Anos: {selectedObrasYears.join(", ")}</div>
+            )}
+          </div>
+        )}
+
+        {selectedFeature && !selectedZona && (
+          <div className="pointer-events-auto">
+            <FeatureInfo
+              feature={selectedFeature.props}
+              layerLabel={selectedFeature.layerLabel}
+              onClose={() => setSelectedFeature(null)}
+              onPrint={handlePrint}
+            />
+          </div>
+        )}
+
+        {externalLayerInfo && (
+          <div className="pointer-events-auto">
+            <ExternalFeatureInfo
+              state={externalLayerInfo}
+              onClose={() => setExternalLayerInfo(null)}
+            />
+          </div>
+        )}
+      </div>
+
+      <BaseMapSelector
+        mapRef={mapRef as React.RefObject<L.Map | null>}
+        tileLayerRef={tileLayerRef as React.RefObject<L.TileLayer | null>}
+        labelLayerRef={baseLabelLayerRef as React.RefObject<L.TileLayer | null>}
+      />
+
       <MeasureTool
         mapRef={mapRef as React.RefObject<L.Map | null>}
         mode={measureMode}
         onChangeMode={setMeasureMode}
       />
 
-      {/* ── Base map switcher ─────────────────────────────────────────── */}
-      <BaseMapSelector
-        mapRef={mapRef as React.RefObject<L.Map | null>}
-        tileLayerRef={tileLayerRef}
-        labelLayerRef={baseLabelLayerRef}
+      {uploadPanelOpen && (
+        <LayerUpload
+          mapRef={mapRef as React.RefObject<L.Map | null>}
+          onClose={() => setUploadPanelOpen(false)}
+          canUpload={hasPermission(user?.role ?? "invitado", "canUploadLayers")}
         />
+      )}
 
-      {/* ── Regional information (weather & alerts) ──────────────────── */}
-      <RegionalInfoPanel
-        latitude={-32.4667}
-        longitude={-58.3167}
-        open={regionalInfoOpen}
-        onToggle={() => setRegionalInfoOpen(o => !o)}
-        hideTrigger
-      />
-
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 pointer-events-none" style={{ zIndex: 500 }}>
-        <div className="text-[10px] text-muted-foreground/50 bg-background/70 px-2 py-0.5 rounded-full">
-          Datos: Municipalidad de Colón · IGN · OSM
-        </div>
-      </div>
+      {authPanelOpen && <AuthPanel onClose={() => setAuthPanelOpen(false)} />}
     </div>
   );
 }

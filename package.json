@@ -3,14 +3,28 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "preinstall": "sh -c 'rm -f package-lock.json yarn.lock; case \"$npm_config_user_agent\" in pnpm/*) ;; *) echo \"Use pnpm instead\" >&2; exit 1 ;; esac'",
+    "dev": "pnpm -r --parallel --stream --filter @workspace/api-server --filter @workspace/colon-3d run dev",
+    "dev:fast": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/dev-up.ps1",
+    "dev:api": "pnpm --filter @workspace/api-server run dev",
+    "dev:web": "pnpm --filter @workspace/colon-3d run dev",
     "build": "pnpm run typecheck && pnpm -r --if-present run build",
+    "build:api": "pnpm --filter @workspace/api-server run build",
+    "build:web": "pnpm --filter @workspace/colon-3d run build",
+    "start:api": "pnpm --filter @workspace/api-server run start",
     "typecheck:libs": "tsc --build",
     "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
   },
   "private": true,
   "devDependencies": {
-    "typescript": "~5.9.2",
-    "prettier": "^3.8.1"
-  }
+    "@rollup/rollup-win32-x64-msvc": "^4.60.2",
+    "@tailwindcss/oxide-win32-x64-msvc": "^4.2.2",
+    "lightningcss-win32-x64-msvc": "^1.32.0",
+    "prettier": "^3.8.1",
+    "typescript": "~5.9.2"
+  },
+  "workspaces": [
+    "artifacts/*",
+    "lib/*",
+    "scripts"
+  ]
 }

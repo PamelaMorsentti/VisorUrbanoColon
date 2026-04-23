@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comparación Catastro vs Dirección</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    html, body, #map { height: 100%; margin: 0; }
+    .panel {
+      position: absolute; top: 12px; right: 12px; z-index: 1000; width: 320px;
+      background: rgba(19, 26, 33, 0.92); color: #e5eef6; padding: 14px; border-radius: 12px;
+      font: 12px/1.45 Georgia, "Times New Roman", serif; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      max-height: calc(100% - 24px); overflow: auto;
+    }
+    .swatch { display:inline-block; width:10px; height:10px; border-radius:999px; margin-right:6px; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div class="panel">
+    <div style="font-size:16px;font-weight:700;margin-bottom:8px">Chequeo Visual</div>
+    <div style="margin-bottom:10px">Azul: punto catastral. Naranja: geocodificación IGN. Línea: distancia entre ambos.</div>
+    <div id="rows"></div>
+  </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const rows = [{"row":"7","legajo":"4","address":"E. Gouchón Nº 252, 529 (antes 513)","cadastralLat":-32.21888242,"cadastralLon":-58.14014349,"addressLat":-32.21888242,"addressLon":-58.14014349,"verification":"verified_close","distanceMeters":"0.00","ncp":"0100010000000091--007--"},{"row":"8","legajo":"5","address":"Tucumán Nº  1092 y 1096","cadastralLat":-32.23443425,"cadastralLon":-58.14846875,"addressLat":-32.23426168,"addressLon":-58.14870991,"verification":"verified_close","distanceMeters":"29.71","ncp":"0100011020410394--005--"},{"row":"11","legajo":"8","address":"Cabo Pereyra N° 155 y 157 esq Gouchón","cadastralLat":-32.2318025,"cadastralLon":-58.15838285,"addressLat":-32.23206619,"addressLon":-58.15866156,"verification":"verified_close","distanceMeters":"39.33","ncp":"0100010000000282--012--"},{"row":"13","legajo":"10","address":"San Martín Nº 859","cadastralLat":-32.22734155,"cadastralLon":-58.14877915,"addressLat":-32.22747522,"addressLon":-58.14855674,"verification":"verified_close","distanceMeters":"25.66","ncp":"0100010000000508--017--"},{"row":"15","legajo":"12","address":"9 de Julio N° 309","cadastralLat":-32.218244,"cadastralLon":-58.14482535,"addressLat":-32.21845701,"addressLon":-58.14491185,"verification":"verified_close","distanceMeters":"25.04","ncp":"0100010000000123--021--"},{"row":"17","legajo":"14","address":"Bernard Nº 434","cadastralLat":-32.2303177,"cadastralLon":-58.13406425,"addressLat":-32.23017335,"addressLon":-58.13424021,"verification":"verified_close","distanceMeters":"23.06","ncp":"0100010000000664--011--"},{"row":"26","legajo":"21","address":"Chacabuco Nº 346 esq Maipú Nº 193","cadastralLat":-32.21942485,"cadastralLon":-58.1423047,"addressLat":-32.21937049,"addressLon":-58.14244835,"verification":"verified_close","distanceMeters":"14.80","ncp":"0100010000000147--017--"},{"row":"27","legajo":"22","address":"Tucumán Nº 1175","cadastralLat":-32.2349926,"cadastralLon":-58.1502848,"addressLat":-32.23528997,"addressLon":-58.15011488,"verification":"verified_close","distanceMeters":"36.73","ncp":"0100011020280340--018--"}];
+    const map = L.map('map');
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const bounds = [];
+    const rowsEl = document.getElementById('rows');
+    rows.forEach((row) => {
+      if (!Number.isFinite(row.cadastralLat) || !Number.isFinite(row.cadastralLon) || !Number.isFinite(row.addressLat) || !Number.isFinite(row.addressLon)) {
+        return;
+      }
+
+      const cadastral = [row.cadastralLat, row.cadastralLon];
+      const address = [row.addressLat, row.addressLon];
+      bounds.push(cadastral, address);
+
+      L.circleMarker(cadastral, { radius: 7, color: '#2563eb', fillColor: '#60a5fa', fillOpacity: 0.95, weight: 2 })
+        .addTo(map)
+        .bindPopup('<b>Catastro</b><br>Fila ' + row.row + '<br>NCP: ' + (row.ncp || '-') + '<br>' + row.address);
+
+      L.circleMarker(address, { radius: 7, color: '#c2410c', fillColor: '#fb923c', fillOpacity: 0.95, weight: 2 })
+        .addTo(map)
+        .bindPopup('<b>Dirección IGN</b><br>Fila ' + row.row + '<br>' + row.address);
+
+      L.polyline([cadastral, address], { color: '#facc15', weight: 3, dashArray: '8 6' }).addTo(map);
+
+      const block = document.createElement('div');
+      block.style.marginBottom = '10px';
+      block.innerHTML = '<div><b>Fila ' + row.row + '</b> · legajo ' + row.legajo + '</div>' +
+        '<div>' + row.address + '</div>' +
+        '<div><span class="swatch" style="background:#2563eb"></span>catastro · <span class="swatch" style="background:#fb923c"></span>dirección</div>' +
+        '<div>estado: <b>' + row.verification + '</b></div>' +
+        '<div>distancia: <b>' + row.distanceMeters + ' m</b></div>';
+      rowsEl.appendChild(block);
+    });
+
+    if (bounds.length > 0) {
+      map.fitBounds(bounds, { padding: [40, 40] });
+    } else {
+      map.setView([-32.2236, -58.1436], 13);
+    }
+  </script>
+</body>
+</html>

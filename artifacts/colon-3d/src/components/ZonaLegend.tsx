@@ -12,8 +12,8 @@ export default function ZonaLegend({ open, onClose }: ZonaLegendProps) {
 
   return (
     <div
-      className="absolute top-14 right-3 w-56 rounded-xl overflow-hidden shadow-xl border border-border"
-      style={{ background: "hsl(220 16% 12%)", zIndex: 1001 }}
+      className="w-[88vw] sm:w-72 rounded-xl overflow-hidden shadow-xl border border-border"
+      style={{ background: "hsl(220 16% 12%)" }}
       data-testid="zona-legend"
     >
       <div className="flex items-center justify-between px-3 py-2.5 border-b border-border">

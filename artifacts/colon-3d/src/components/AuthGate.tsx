@@ -5,9 +5,23 @@ import { ADMIN_PASSWORD, ROLE_LABELS, ROLE_BADGES, type Role } from "@/lib/auth"
 
 // ─── Auth button in header (compact) ─────────────────────────────────────────
 
-export function AuthButton({ onOpenPanel }: { onOpenPanel: () => void }) {
+export function AuthButton({
+  onOpenPanel,
+  dashboardUrl,
+  adminEditorUrl,
+}: {
+  onOpenPanel: () => void;
+  dashboardUrl?: string;
+  adminEditorUrl?: string;
+}) {
   const { user, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const openExternal = (url?: string) => {
+    if (!url) return;
+    window.open(url, "_blank", "noopener,noreferrer");
+    setMenuOpen(false);
+  };
 
   if (!user) {
     return (
@@ -43,6 +57,22 @@ export function AuthButton({ onOpenPanel }: { onOpenPanel: () => void }) {
             <div className="text-xs font-semibold text-foreground truncate">{user.username}</div>
           </div>
           <button
+            onClick={() => openExternal(dashboardUrl)}
+            className="w-full flex items-center gap-2 px-3 py-2 text-xs text-muted-foreground hover:text-foreground hover:bg-card/50 transition-colors"
+          >
+            <Eye size={12} />
+            Abrir dashboard
+          </button>
+          {user.role === "admin" && (
+            <button
+              onClick={() => openExternal(adminEditorUrl)}
+              className="w-full flex items-center gap-2 px-3 py-2 text-xs text-muted-foreground hover:text-foreground hover:bg-card/50 transition-colors"
+            >
+              <Shield size={12} />
+              Abrir editor admin
+            </button>
+          )}
+          <button
             onClick={() => { logout(); setMenuOpen(false); }}
             className="w-full flex items-center gap-2 px-3 py-2 text-xs text-muted-foreground hover:text-foreground hover:bg-card/50 transition-colors"
           >
@@ -70,16 +100,20 @@ export default function AuthPanel({ onClose }: AuthPanelProps) {
   const [error, setError] = useState<string | null>(null);
 
   const handleLogin = () => {
-    const uname = username.trim();
-    if (!uname) { setError("Ingresá un nombre de usuario."); return; }
+    const rawName = username.trim();
 
     if (selectedRole === "admin") {
       if (password !== ADMIN_PASSWORD) {
         setError("Contraseña de administrador incorrecta.");
         return;
       }
+      login({ role: "admin", username: rawName || "Administrador" });
+      onClose();
+      return;
     }
-    login({ role: selectedRole, username: uname });
+
+    if (!rawName) { setError("Ingresá un nombre de usuario."); return; }
+    login({ role: selectedRole, username: rawName });
     onClose();
   };
 
@@ -130,13 +164,13 @@ export default function AuthPanel({ onClose }: AuthPanelProps) {
           {/* Username */}
           <div>
             <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-1.5 block">
-              {selectedRole === "invitado" ? "Nombre (opcional)" : "Usuario / nombre"}
+              {selectedRole === "invitado" || selectedRole === "admin" ? "Usuario / nombre (opcional)" : "Usuario / nombre"}
             </label>
             <input
               type="text"
               value={username}
               onChange={e => { setUsername(e.target.value); setError(null); }}
-              placeholder={selectedRole === "admin" ? "Nombre de admin" : "Tu nombre"}
+              placeholder={selectedRole === "admin" ? "Administrador" : "Tu nombre"}
               className="w-full px-3 py-2 text-xs rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary/50"
               onKeyDown={e => e.key === "Enter" && handleLogin()}
             />

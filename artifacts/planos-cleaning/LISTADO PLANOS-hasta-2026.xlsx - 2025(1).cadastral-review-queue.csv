@@ -1,0 +1,107 @@
+priority_score,verification_status,source_row_number,legajo_canonico,confidence,match_method,match_count,address_vs_cadastral_distance_m,geolocation_source,raw_ubicacion,address_query,address_match_name,ncp_formatted,recommended_action
+65,missing_address_point,5,2,medium,gru_parc,1,,automatic,Seraohin Degeneve s/Nº,"Seraohin Degeneve º, Colón",,0100010170020000--073--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,6,3,low,gru_parc,2,,automatic,Calle Privada s/Nº - Los Bretes,"Calle Privada º, Colón",,0100010052740000--001--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,9,6,medium,manz_parc,1,,automatic,Bvard Gaillard esq. Lavalle,"Boulevard Gaillard esq. Lavalle, Colón",,0100010000000751--003--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,10,7,high,gru_manz_parc,1,,automatic,Calle Pública s/Nº,"Calle Pública º, Colón",,0100010162230006--001--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,12,9,high,gru_manz_parc,1,,automatic,Rocamora Nº 1177 e/Piamonte y Penon,"Rocamora 1177 esq Piamonte y Penon, Colón",,0100011010340351--001--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,14,11,low,gru_parc,11,,automatic,Paso de los Andes s/Nº esq. Salsipuedes,"Paso de los Andes º esq. Salsipuedes, Colón",,0100010123270001--003--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,16,13,low,gru_parc,2,,automatic,Calle Pública s/Nº,"Calle Pública º, Colón",,0100010190010000--080--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,18,15,high,gru_manz_parc,1,,automatic,Madres y Abuelas de Plaza de Mayo s/Nº,"Madres y Abuelas de Plaza de Mayo º, Colón",,0100010063540003--002--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,19,16,high,gru_manz_parc,1,,automatic,Calle Pùblica s/Nº,"Calle Pùblica º, Colón",,0100010112250006--004--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,20,17,high,gru_manz_parc,1,,automatic,Calle Chaiñar esq Madres y Abuelas de P. de Mayo,"Calle Chaiñar esq Madres y Abuelas de P. de Mayo, Colón",,0100010063550006--005--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,22,18,high,gru_manz_parc,1,,automatic,Florentina Gómez Miranda esq Mitre Nº 1257,"Florentina Gómez Miranda esq Mitre 1257, Colón",,0100011020270312--005--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,23,19,high,gru_manz_parc,1,,automatic,Milsten esq Espinillo - Loteo Blanc,"Milsten esq Espinillo, Colón",,0100010063550001--001--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,29,24,high,gru_manz_parc,1,,automatic,Calle Lapacho Nº 95,"Calle Lapacho 95, Colón",,0100010123260018--016--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,31,26,high,gru_manz_parc,1,,automatic,"Ruta Nac Nº 14, km…","Ruta Nac 14, km, Colón",,0100010030750001--001--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,32,27,high,gru_manz_parc,1,,automatic,Alberdi s/Nª,"Alberdi ª, Colón",,0100010113100003--005--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,34,29,high,gru_manz_parc,1,,automatic,Paso de los Andes s/Nº 2182,"Paso de los Andes º 2182, Colón",,0100010123270005--015--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,35,30,high,gru_manz_parc,1,,automatic,Calle Privada s/Nº - Los Bretes,"Calle Privada º, Colón",,0100010170030001--032--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,39,33,high,gru_manz_parc,1,,automatic,Calle Pública s/Nº,"Calle Pública º, Colón",,0100010180020006--001--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,41,35,high,gru_manz_parc,1,,automatic,Bvard Gonzalez Nº 640,"Boulevard Gonzalez 640, Colón",,0100011020810523--013--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,46,40,medium,gru_parc,1,,automatic,Calle Pública s/Nº,"Calle Pública º, Colón",,0100010113080000--020--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,49,43,medium,gru_parc,1,,automatic,Calle Pública esq Ruta Nº 135,"Calle Pública esq Ruta 135, Colón",,0100010170020000--137--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,51,45,low,manz_parc,14,,automatic,Calle Pùblica s/Nº - Los Bretes,"Calle Pùblica º, Colón",,0100010000000006--003--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,52,46,high,gru_manz_parc,1,,automatic,Calle Pùblica s/Nº,"Calle Pùblica º, Colón",,0100010112710002--015--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,54,48,high,gru_manz_parc,1,,automatic,Calle Karai Yamandú S/Nº,"Calle Karai Yamandú º, Colón",,0100010113100001--011--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,55,49,high,gru_manz_parc,1,,automatic,Juana Uzurduy s/Nº,"Juana Uzurduy º, Colón",,0100010063310002--016--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,56,50,medium,manz_parc,1,,automatic,"Larpida Nº 51, esq Avda Urquiza","Larpida 51, esq Avenida Urquiza, Colón",,0100010000000170--001--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,57,51,high,gru_manz_parc,1,,automatic,Las Perdices s/Nº,"Las Perdices º, Colón",,0100010162230008--013--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,62,55,low,manz_parc,14,,automatic,Calle ·Echague s/Nº - Colonia Hughes,"Calle Echague º, Colón",,0100010000000006--003--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,63,56,medium,manz_parc,1,,automatic,Noailles Nº,"Noailles, Colón",,0100010000000215--009--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,65,58,medium,gru_parc,1,,automatic,"Primeros Colonos s/Nº, e/ Ara San Juan y Alcoba","Primeros Colonos º, e/ Ara San Juan y Alcoba, Colón",,0100010052310000--007--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,67,59,high,gru_manz_parc,1,,automatic,Salsipuedes s/Nº,"Salsipuedes º, Colón",,0100010123270007--004--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,73,65,medium,gru_parc,1,,automatic,Ruta N° 135,"Ruta 135, Colón",,0100010112680001--011--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,76,68,low,gru_parc,3,,automatic,Vergniaud Nº e/ Avda Paysandù y Rocamora,"Vergniaud e/ Avenida Paysandù y Rocamora, Colón",,0100011010620434--017--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,78,70,medium,gru_parc,1,,automatic,José Brovatti Nº,"José Brovatti, Colón",,0100010112910000--012--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,85,76,high,gru_manz_parc,1,,automatic,Rufino Mir Nº 265,"Rufino Mir 265, Colón",,0100011020410394--006--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,91,82,high,gru_manz_parc,1,,automatic,Calle Pública s/Nº,"Calle Pública º, Colón",,0100010063550015--004--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,94,85,high,gru_manz_parc,1,,automatic,Calle Pública s/Nº,"Calle Pública º, Colón",,0100010162230008--029--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,95,86,medium,gru_parc,1,,automatic,Calle Pública s/Nº,"Calle Pública º, Colón",,0100010101600000--020--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,98,89,high,gru_manz_parc,1,,automatic,"Calle Fresno s/Nº - ""Ayres del 1872""","Calle Fresno º, Colón",,0100010112470005--005--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,104,95,low,gru_parc,2,,automatic,Calle Pública s/Nº,"Calle Pública º, Colón",,0100010112710001--020--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,105,96,low,manz_parc,3,,automatic,Calle Paraná esq Colón s/Nº,"Calle Paraná esq Colón º, Colón",,0100010000000021--004--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,106,97,medium,gru_parc,1,,automatic,Calle ARA San Juan s/Nº,"Calle ARA San Juan º, Colón",,0100010102060000--011--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,109,100,medium,manz_parc,1,,admin_override,María Isabel Fernández Nº 90,"María Isabel Fernández 90, Colón",,0100010000000295--006--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,111,102,high,gru_manz_parc,1,,automatic,Calle Pública s/Nº,"Calle Pública º, Colón",,0100010063410003--003--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,116,107,high,gru_manz_parc,1,,automatic,Calle Pùblica s/Nº,"Calle Pùblica º, Colón",,0100010162230008--002--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,124,115,medium,gru_parc,1,,automatic,Calle Algarrobo s/Nº,"Calle Algarrobo º, Colón",,0100010162880000--004--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,125,116,medium,gru_parc,1,,automatic,Calle Pública s/Nº,"Calle Pública º, Colón",,0100010170020000--123--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,128,119,medium,manz_parc,1,,automatic,Bvard Gaillard s/Nº,"Boulevard Gaillard º, Colón",,0100010000000486--016--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,129,120,medium,manz_parc,1,,automatic,"J. Bernanrd Nº 214, 216","J. Bernanrd 214, 216, Colón",,0100010000000747--012--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,134,125,medium,manz_parc,1,,admin_override,Presbitero Cot Nº 262,"Presbitero Cot 262, Colón",,0100010000000302--019--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,137,127,high,gru_manz_parc,1,,automatic,Calle Pública s/Nº,"Calle Pública º, Colón",,0100010151110008--003--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,139,129,medium,manz_parc,1,,automatic,Avda Urquiza Nº,"Avenida Urquiza, Colón",,0100010000000051--014--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,144,134,medium,manz_parc,1,,automatic,Pasaje 29 de Octubre s/Nº,"Pasaje 29 de Octubre º, Colón",,0100010000000229--001--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,145,135,medium,manz_parc,1,,automatic,M. Moreno Nº 1174,"Mariano Moreno 1174, Colón",,0100010000000341--015--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,146,136,medium,gru_parc,1,,automatic,Alberti s/Nº,"Alberti º, Colón",,0100010063310000--017--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,147,137,high,gru_manz_parc,1,,automatic,"Rocamora Nº 1187,  1191, 1193, 1195","Rocamora 1187, 1191, 1193, 1195, Colón",,0100011010340352--013--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,149,139,medium,manz_parc,1,,automatic,Vergniaud Nº 22,"Vergniaud 22, Colón",,0100010000000427--021--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,150,140,low,gru_parc,2,,automatic,San Martín Nº,"San Martín, Colón",,0100010123250000--005--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,153,143,medium,gru_parc,1,,automatic,Ruta Provincial Nº 26,"Ruta Provincial 26, Colón",,0100010063540000--083--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,156,146,high,gru_manz_parc,1,,automatic,E. J. Vauthay Nº esq Isabel Ortega Nº,"E. J. Vauthay esq Isabel Ortega, Colón",,0100010063540001--002--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,157,147,high,gru_manz_parc,1,,automatic,Angel Elías Nº esq El Mojón,"Angel Elías esq El Mojón, Colón",,0100010151110016--006--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,159,149,high,gru_manz_parc,1,,automatic,Juan Carlos Pozzi s/Nº,"Juan Carlos Pozzi º, Colón",,0100010151110001--004--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,160,150,high,gru_manz_parc,1,,automatic,Juan Carlos Pozzi s/Nº,"Juan Carlos Pozzi º, Colón",,0100010151110001--003--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,161,151,high,gru_manz_parc,1,,automatic,Rufino Mir Nº,"Rufino Mir, Colón",,0100011020400392--011--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,162,152,high,gru_manz_parc,1,,automatic,Lopez Jordan s/Nº,"Lopez Jordan º, Colón",,0100010123240000--017--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,165,154,medium,manz_parc,1,,automatic,,", Colón",,0100010000000154--016--,Sin accion.
+65,missing_address_point,168,157,high,gru_manz_parc,1,,admin_override,Florentina Gómez Miranda Nº 253 esq Tucumán,"Florentina Gómez Miranda 253 esq Tucumán, Colón",,0100011020270312--006--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,169,158,high,gru_manz_parc,1,,automatic,Calle Privada s/N° - Los Bretes,"Calle Privada °, Colón",,0100010170030002--002--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,170,159,high,gru_manz_parc,1,,automatic,Díaz  Velez Nº,"Díaz Velez, Colón",,0100010113100003--046--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,172,161,medium,manz_parc,1,,automatic,Vieytes s/Nº,"Vieytes º, Colón",,0100010000000576--006--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,173,162,medium,manz_parc,1,,admin_override,San Marín esq Celia Pellenc Nº 30,"San Marín esq Celia Pellenc 30, Colón",,0100010000000480--001--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,175,164,medium,manz_parc,1,,automatic,Avda. Urquiza Nº,"Avenida Urquiza, Colón",,0100010000000370--007--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,176,165,high,gru_manz_parc,1,,automatic,Alberdi s/Nº e/ Aguaribay y Salsipuedes,"Alberdi º e/ Aguaribay y Salsipuedes, Colón",,0100010123270005--006--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,178,167,high,gru_manz_parc,1,,automatic,Juan Manuel de Rosas s/Nº,"Juan Manuel de Rosas º, Colón",,0100010063550009--002--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,183,172,high,gru_manz_parc,1,,automatic,Jacarandaes s/Nº - Los Bretes,"Jacarandaes º, Colón",,0100010170030006--005--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,185,174,low,gru_parc,2,,automatic,Camino Horne Nº 1167,"Camino Horne 1167, Colón",,0100010030500000--007--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,189,178,medium,manz_parc,1,,automatic,Gral. Paz Nº 130,"General Paz 130, Colón",,0100010000000090--003--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,190,179,medium,gru_parc,1,,automatic,Molle Nº,"Molle, Colón",,0100010113100003--040--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,191,180,high,gru_manz_parc,1,,automatic,Calle Privada s/Nº - Los Bretes,"Calle Privada º, Colón",,0100010170030006--012--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,194,183,high,gru_manz_parc,1,,automatic,Jacarandaes s/Nº - Los Bretes,"Jacarandaes º, Colón",,0100010170030004--021--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,197,186,medium,manz_parc,1,,automatic,Jorge Duce Nº 79,"Jorge Duce 79, Colón",,0100010000000319--012--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,202,191,low,manz_parc,4,,automatic,Creppy Nº,"Creppy, Colón",,0100010000000018--005--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,203,192,medium,gru_parc,1,,automatic,José Artalaz s/Nº - Servidumbre de Paso,"José Artalaz º, Colón",,0100010053120000--011--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,204,193,high,gru_manz_parc,1,,automatic,Faustino Dominchin s/Nº,"Faustino Dominchin º, Colón",,0100010123270011--009--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,206,195,high,gru_manz_parc,1,,automatic,Isabel Ortega Nº,"Isabel Ortega, Colón",,0100010063540004--005--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,209,198,medium,gru_parc,1,,automatic,Juan Manuel de Rosas s/Nº,"Juan Manuel de Rosas º, Colón",,0100010063310000--019--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,211,200,high,gru_manz_parc,1,,automatic,Calle Agua-Í s/Nº,"Calle Agua-Í º, Colón",,0100010063670001--013--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,213,202,medium,manz_parc,1,,automatic,Cabo Pereyra s/Nº,"Cabo Pereyra º, Colón",,0100010000000282--021--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,217,204,high,gru_manz_parc,1,,automatic,Salsipuedes Nº,"Salsipuedes, Colón",,0100010123270007--004--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,223,210,high,gru_manz_parc,1,,automatic,Calle Los Gorriones s/Nº,"Calle Los Gorriones º, Colón",,0100010112710002--011--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,224,211,high,gru_manz_parc,1,,automatic,Isabel Ortega Nº,"Isabel Ortega, Colón",,0100010063540004--009--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,225,212,high,gru_manz_parc,1,,automatic,Karai Yamandú Nº,"Karai Yamandú, Colón",,0100010123270012--001--,Normalizar direccion y reintentar geocodificacion.
+65,missing_address_point,228,215,high,gru_manz_parc,1,,automatic,"Ruta Nac. Nº 14, Km 154,5","Ruta Nac. 14, Km 154,5, Colón",,0100010030750004--008--,Normalizar direccion y reintentar geocodificacion.
+55,missing_cadastral_point,103,94,low,none,0,,automatic,Avda. Pte. Perón N° 316,"Avenida Presidente Perón 316, Colón","AV PRES PERON 316, Colón, Entre Ríos",,Completar referencia catastral o confirmar que no aplica.
+55,missing_cadastral_point,136,126,low,none,0,,automatic,Brown Nº 38,"Brown 38, Colón","ALMTE BROWN 38, Colón, Entre Ríos",,Completar referencia catastral o confirmar que no aplica.
+55,missing_cadastral_point,155,145,low,none,0,,automatic,"Moreno Nº 468, 470, 474, 478 (antes 472)","Moreno 468, Colón","MARIANO MORENO 468, Colón, Entre Ríos",,Completar referencia catastral o confirmar que no aplica.
+55,missing_cadastral_point,218,205,low,none,0,,automatic,Batalla de Cepeda Nº 283,"Batalla de Cepeda 283, Colón","BATALLA DE CEPEDA 283, Colón, Entre Ríos",,Completar referencia catastral o confirmar que no aplica.
+45,no_comparison_points,21,17,low,none,0,,automatic,Madres y Abuelas de P de Mayo,"Madres y Abuelas de P de Mayo, Colón",,,Completar referencia catastral o confirmar que no aplica.
+45,no_comparison_points,47,41,low,none,0,,automatic,Calle Pública s/N°,"Calle Pública °, Colón",,,Completar referencia catastral o confirmar que no aplica.
+45,no_comparison_points,66,58,low,none,0,,automatic,,", Colón",,,Completar referencia catastral o confirmar que no aplica.
+45,no_comparison_points,70,62,low,none,0,,automatic,"Ruta Nac. Nº 14, km","Ruta Nac. 14, km, Colón",,,Completar referencia catastral o confirmar que no aplica.
+45,no_comparison_points,79,70,low,none,0,,automatic,,", Colón",,,Completar referencia catastral o confirmar que no aplica.
+45,no_comparison_points,133,124,low,none,0,,automatic,Servidumbre de paso,"Servidumbre de paso, Colón",,,Completar referencia catastral o confirmar que no aplica.
+22,verified_nearby,114,105,medium,manz_parc,1,107.37,automatic,"Rocamora Nº 739, 741, 743","Rocamora 739, Colón","TOMAS DE ROCAMORA 739, Colón, Entre Ríos",0100010000000544--012--,Aceptar con observacion.
+21,verified_nearby,83,74,medium,manz_parc,1,60.09,automatic,"Piamonte Nº 332, 334","Piamonte 332, Colón","PIAMONTE 332, Colón, Entre Ríos",0100010000000350--001--,Aceptar con observacion.
+21,verified_nearby,140,130,high,gru_manz_parc,1,72.47,automatic,"Bvard. Gaillard Nº 987, 989","Gaillard 987, Colón","AMILCAR GAILLARD 987, Colón, Entre Ríos",0100011010620461--019--,Aceptar con observacion.

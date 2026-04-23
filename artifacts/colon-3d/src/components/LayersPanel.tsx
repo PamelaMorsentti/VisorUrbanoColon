@@ -1,15 +1,18 @@
 import { useState } from "react";
-import { ChevronDown, ChevronRight, Layers, Eye, EyeOff } from "lucide-react";
-import { LAYERS, LAYER_GROUPS } from "@/lib/layers";
+import { ChevronDown, ChevronRight, Layers, Eye, EyeOff, Globe } from "lucide-react";
+import { LAYERS, LAYER_GROUPS, EXTERNAL_LAYERS, EXTERNAL_LAYER_GROUPS, type ExternalLayerDef } from "@/lib/layers";
 
 interface LayersPanelProps {
   visibleLayers: Record<string, boolean>;
   onToggleLayer: (layerId: string) => void;
   isOpen: boolean;
   onClose: () => void;
+  isAdmin: boolean;
+  visibleExternalLayers: Record<string, boolean>;
+  onToggleExternalLayer: (layerId: string) => void;
 }
 
-export default function LayersPanel({ visibleLayers, onToggleLayer, isOpen, onClose }: LayersPanelProps) {
+export default function LayersPanel({ visibleLayers, onToggleLayer, isOpen, onClose, isAdmin, visibleExternalLayers, onToggleExternalLayer }: LayersPanelProps) {
   const [collapsedGroups, setCollapsedGroups] = useState<Record<string, boolean>>({});
 
   const toggleGroup = (group: string) => {
@@ -20,8 +23,8 @@ export default function LayersPanel({ visibleLayers, onToggleLayer, isOpen, onCl
 
   return (
     <div
-      className="absolute top-14 left-3 w-64 rounded-xl overflow-hidden shadow-xl border border-border"
-      style={{ background: "hsl(220 16% 12%)", maxHeight: "calc(100vh - 80px)", zIndex: 1001 }}
+      className="w-[88vw] sm:w-72 rounded-xl overflow-hidden shadow-xl border border-border"
+      style={{ background: "hsl(220 16% 12%)" }}
       data-testid="layers-panel"
     >
       <div className="flex items-center justify-between px-4 py-3 border-b border-border">
@@ -38,9 +41,9 @@ export default function LayersPanel({ visibleLayers, onToggleLayer, isOpen, onCl
         </button>
       </div>
 
-      <div className="overflow-y-auto" style={{ maxHeight: "calc(100vh - 150px)" }}>
+      <div className="overflow-y-auto">
         {LAYER_GROUPS.map(group => {
-          const groupLayers = LAYERS.filter(l => l.group === group);
+          const groupLayers = LAYERS.filter(l => l.group === group && (!l.adminOnly || isAdmin));
           if (groupLayers.length === 0) return null;
           const isCollapsed = collapsedGroups[group];
           const visibleCount = groupLayers.filter(l => visibleLayers[l.id]).length;
@@ -112,7 +115,102 @@ export default function LayersPanel({ visibleLayers, onToggleLayer, isOpen, onCl
             </div>
           );
         })}
+
+        {/* ── Capas externas (TMS / WMS) ──────────────────────────────── */}
+        <div className="border-t border-border mt-1">
+          <div className="px-4 py-2.5 flex items-center gap-2">
+            <Globe size={13} className="text-sky-400" />
+            <span className="text-xs font-semibold text-sky-400 uppercase tracking-wider">Capas externas</span>
+            <span className="ml-auto text-[9px] text-muted-foreground/60">TMS / WMS</span>
+          </div>
+          {EXTERNAL_LAYER_GROUPS.map(group => {
+            const groupLayers = EXTERNAL_LAYERS.filter(l => l.group === group);
+            if (groupLayers.length === 0) return null;
+            const isCollapsed = collapsedGroups[`ext_${group}`];
+            const visibleCount = groupLayers.filter(l => visibleExternalLayers[l.id]).length;
+            return (
+              <div key={group} className="border-b border-border/50 last:border-b-0">
+                <button
+                  className="w-full flex items-center justify-between px-4 py-2 hover:bg-accent transition-colors"
+                  onClick={() => toggleGroup(`ext_${group}`)}
+                >
+                  <div className="flex items-center gap-2">
+                    {isCollapsed ? (
+                      <ChevronRight size={13} className="text-muted-foreground" />
+                    ) : (
+                      <ChevronDown size={13} className="text-muted-foreground" />
+                    )}
+                    <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">{group}</span>
+                  </div>
+                  {visibleCount > 0 && (
+                    <span className="text-xs bg-sky-500/20 text-sky-400 px-1.5 py-0.5 rounded-full">{visibleCount}</span>
+                  )}
+                </button>
+                {!isCollapsed && (
+                  <div className="pb-1">
+                    {groupLayers.map(layer => {
+                      const isVisible = visibleExternalLayers[layer.id] ?? false;
+                      return (
+                        <div key={layer.id}>
+                          <div
+                            className="flex items-center gap-3 px-4 py-2 hover:bg-accent/50 transition-colors cursor-pointer group"
+                            onClick={() => onToggleExternalLayer(layer.id)}
+                            title={layer.description}
+                          >
+                            <div
+                              className="w-3.5 h-3.5 rounded-sm flex-shrink-0"
+                              style={{
+                                background: isVisible ? layer.color : "transparent",
+                                border: `2px solid ${layer.color}`,
+                              }}
+                            />
+                            <span className={`text-xs flex-1 transition-colors ${isVisible ? "text-foreground" : "text-muted-foreground"}`}>
+                              {layer.label}
+                              <span className="ml-1 text-[9px] text-muted-foreground/50">{layer.type.toUpperCase()}</span>
+                            </span>
+                            <span className="opacity-0 group-hover:opacity-100 transition-opacity">
+                              {isVisible ? (
+                                <Eye size={12} className="text-sky-400" />
+                              ) : (
+                                <EyeOff size={12} className="text-muted-foreground" />
+                              )}
+                            </span>
+                          </div>
+                          {isVisible && layer.legend && layer.legend.length > 0 && (
+                            <div className="mx-4 mb-2 px-2 py-1.5 rounded bg-black/30 border border-white/5">
+                              <div className="grid grid-cols-2 gap-x-3 gap-y-1">
+                                {layer.legend.map(entry => (
+                                  <div key={entry.label} className="flex items-center gap-1.5 min-w-0">
+                                    <div
+                                      className="w-2.5 h-2.5 rounded-sm flex-shrink-0 ring-1 ring-white/10"
+                                      style={{
+                                        background: entry.color === "transparent" ? "transparent" : entry.color,
+                                        borderColor: entry.color === "transparent" ? "#555" : entry.color,
+                                        border: `1.5px solid ${entry.color === "transparent" ? "#555" : entry.color}`,
+                                      }}
+                                    />
+                                    <span className="text-[9px] text-muted-foreground/80 truncate leading-tight">
+                                      {entry.label}
+                                    </span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
 }
+
+// helper consumed only by this file
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+type _ExternalLayerDefUsed = ExternalLayerDef;

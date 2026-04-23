@@ -1,13 +1,8 @@
-import app from "./app";
-import { logger } from "./lib/logger";
+import "dotenv/config";
+import app from "./app.ts";
+import { logger } from "./lib/logger.ts";
 
-const rawPort = process.env["PORT"];
-
-if (!rawPort) {
-  throw new Error(
-    "PORT environment variable is required but was not provided.",
-  );
-}
+const rawPort = process.env["PORT"] ?? "5180";
 
 const port = Number(rawPort);
 

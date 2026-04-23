@@ -125,8 +125,8 @@ export default function CadastralSearch({ basePath, onFeatureFound, onClose }: C
 
   return (
     <div
-      className="absolute top-14 left-3 w-72 rounded-xl overflow-hidden shadow-xl border border-border"
-      style={{ background: "hsl(220 16% 12%)", maxHeight: "calc(100vh - 80px)", zIndex: 1002 }}
+      className="w-[88vw] sm:w-72 rounded-xl overflow-hidden shadow-xl border border-border"
+      style={{ background: "hsl(220 16% 12%)" }}
       data-testid="cadastral-search-panel"
     >
       <div className="flex items-center justify-between px-4 py-3 border-b border-border">
