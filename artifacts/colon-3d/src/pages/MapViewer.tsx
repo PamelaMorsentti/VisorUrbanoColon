@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type FeatureCollection = any;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -611,7 +611,7 @@ function sameYearList(a: number[], b: number[]): boolean {
 function rankTop(values: Record<string, number>, top = 5): Array<{ label: string; count: number }> {
   return Object.entries(values)
     .map(([label, count]) => ({ label, count }))
-    .sort((a, b) => b.count - a.count)
+    .sort((a: { label: string; count: number }, b: { label: string; count: number }) => b.count - a.count)
     .slice(0, top);
 }
 
@@ -830,9 +830,14 @@ export default function MapViewer() {
   }, [visibleLayers.zonas, zonaLegendOpen]);
 
   const worksDatasetUrl = `${BASE_PATH}/data/planos/obras-${publicationLevel}.geojson`;
-  const worksApiUrl = API_BASE
-    ? `${API_BASE}/api/obras/points?level=${publicationLevel}`
-    : "";
+  const worksApiUrl = useMemo(() => {
+    if (!API_BASE) return "";
+    const params = new URLSearchParams({ level: publicationLevel });
+    if (selectedObrasYears.length > 0) {
+      params.set("years", selectedObrasYears.join(","));
+    }
+    return `${API_BASE}/api/obras/points?${params.toString()}`;
+  }, [publicationLevel, selectedObrasYears]);
 
   // Keep ref in sync with state for use in closures
   useEffect(() => { densidadActiveRef.current = densidadActive; }, [densidadActive]);
@@ -1734,11 +1739,11 @@ export default function MapViewer() {
         const maxM2 = Math.max(0, ...aggs.map(a => a.m2));
         const maxValue = obrasHeatmapMetric === "count" ? maxCount : maxM2;
 
-        const barrioRows = barrios.map((feature: { properties?: Record<string, unknown> }, i: number) => ({
+        const barrioRows: Array<{ barrio: string; count: number; m2: number }> = barrios.map((feature: { properties?: Record<string, unknown> }, i: number) => ({
           barrio: String(feature.properties?.NOMBRE ?? feature.properties?.BARRIO ?? `Barrio ${i + 1}`),
           count: aggs[i].count,
           m2: aggs[i].m2,
-        })).sort((a, b) => b.count - a.count);
+        })).sort((a: { barrio: string; count: number; m2: number }, b: { barrio: string; count: number; m2: number }) => b.count - a.count);
         setObrasHeatBarrioData(barrioRows);
 
         setObrasHeatStats({
