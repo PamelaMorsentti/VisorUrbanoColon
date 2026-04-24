@@ -172,6 +172,18 @@ export default function LayersPanel({ visibleLayers, onToggleLayer, isOpen, onCl
                               {layer.label}
                               <span className="ml-1 text-[9px] text-muted-foreground/50">{layer.type.toUpperCase()}</span>
                             </span>
+                            {layer.healthStatus && layer.healthStatus !== "unknown" && (
+                              <span
+                                className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                                style={{
+                                  background:
+                                    layer.healthStatus === "ok" ? "#22c55e" :
+                                    layer.healthStatus === "degraded" ? "#eab308" :
+                                    "#ef4444",
+                                }}
+                                title={`Estado del servicio: ${layer.healthStatus}`}
+                              />
+                            )}
                             <span className="opacity-0 group-hover:opacity-100 transition-opacity">
                               {isVisible ? (
                                 <Eye size={12} className="text-sky-400" />

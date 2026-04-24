@@ -1,6 +1,7 @@
 import "dotenv/config";
 import app from "./app.ts";
 import { logger } from "./lib/logger.ts";
+import { startHealthCheckScheduler } from "./lib/layerHealthChecker.ts";
 
 const rawPort = process.env["PORT"] ?? "5180";
 
@@ -17,4 +18,5 @@ app.listen(port, (err) => {
   }
 
   logger.info({ port }, "Server listening");
+  startHealthCheckScheduler();
 });

@@ -284,6 +284,8 @@ export interface ExternalLayerDef {
   legend?: Array<{ color: string; label: string }>;
   /** True for WMS layers that support GetFeatureInfo queries on map click */
   supportsGetFeatureInfo?: boolean;
+  /** Last known health status from the periodic health check */
+  healthStatus?: "unknown" | "ok" | "degraded" | "down";
 }
 
 export const EXTERNAL_LAYER_GROUPS = [

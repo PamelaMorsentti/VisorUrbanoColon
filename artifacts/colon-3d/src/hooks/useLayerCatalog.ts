@@ -46,6 +46,7 @@ interface CatalogRow {
   isActive: boolean;
   supportsGetFeatureInfo: boolean;
   legend: Array<{ color: string; label: string }> | null;
+  healthStatus: "unknown" | "ok" | "degraded" | "down";
 }
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "";
@@ -70,6 +71,7 @@ function rowToLayerDef(row: CatalogRow): ExternalLayerDef | null {
     group: row.group,
     legend: row.legend ?? undefined,
     supportsGetFeatureInfo: row.supportsGetFeatureInfo,
+    healthStatus: row.healthStatus,
   };
 }
 
