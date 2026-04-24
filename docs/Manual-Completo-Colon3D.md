@@ -35,11 +35,21 @@ El objetivo principal es centralizar informacion territorial para soporte tecnic
 
 ### 2.2 Backend actual
 
-- API Express para:
-  - health check,
-  - hidrometria de Colon (CARU + fallback legible).
+- API Express (puerto 3000 / 5180) con los siguientes endpoints:
+  - `GET /api/healthz` — health check
+  - `GET /api/hydrology/colon` — nivel del río (CARU + fallback)
+  - `GET /api/layers/catalog` — catálogo de capas desde PostgreSQL
+  - `POST /api/layers/catalog/upsert` — alta/actualización de capa por key
+  - `PATCH /api/layers/catalog/:key/health` — actualizar estado de salud
+  - `GET /api/layers/catalog/health` — dashboard de estado de todas las capas
+  - `POST /api/layers/catalog/bootstrap-external` — sembrado idempotente de las 10 capas externas
 
-No hay todavia un backend transaccional completo para almacenar capas tematicas versionadas ni expedientes de Obras Privadas.
+- Base de datos PostgreSQL (`colondb`) con Drizzle ORM:
+  - Tabla `layer_catalog`: catálogo centralizado de capas (locales y externas)
+  - Enums: `layer_type` (`tms`/`wms`/`geojson`) y `layer_health_status` (`unknown`/`ok`/`degraded`/`down`)
+  - Schema en `lib/db/src/schema/layerCatalog.ts`
+  - Aplicar schema: `cd lib/db && pnpm run push`
+  - GUI: `pnpm exec drizzle-kit studio --port 4983` → https://local.drizzle.studio
 
 ---
 
@@ -84,14 +94,19 @@ Colon-Entre-Rios/
 │  │     ├─ routes/
 │  │     │  ├─ health.ts
 │  │     │  ├─ hydrology.ts
+│  │     │  ├─ layerCatalog.ts         # ← NUEVO: CRUD catálogo de capas
 │  │     │  └─ index.ts
-│  │     └─ lib/logger.ts
+│  │     └─ lib/
+│  │        ├─ logger.ts
+│  │        └─ externalLayersSeed.ts   # ← NUEVO: datos semilla 10 capas externas
 │  └─ mockup-sandbox/                  # Espacio de pruebas UI
 ├─ lib/
 │  ├─ api-client-react/                # Cliente tipado de API
 │  ├─ api-zod/                         # Contratos y validaciones API
 │  ├─ api-spec/                        # Configuracion OpenAPI/Orval
-│  └─ db/                              # Base Drizzle (esqueleto)
+│  └─ db/                              # Base Drizzle + PostgreSQL
+│     └─ src/schema/
+│        └─ layerCatalog.ts            # ← NUEVO: tabla layer_catalog + Zod validators
 ├─ attached_assets/                    # Insumos originales SHP/DBF/GeoJSON
 │  ├─ geojson/
 │  └─ geojson_wgs84/
@@ -123,10 +138,25 @@ Colon-Entre-Rios/
 ### 4.2 Backend
 
 - Framework: Express 5 + pino.
-- Endpoints actuales:
+- Base de datos: PostgreSQL con Drizzle ORM (`lib/db`).
+- Endpoints operativos:
   - `/api/healthz`
   - `/api/hydrology/colon`
-- Diseño preparado para ampliar rutas de negocio.
+  - `/api/layers/catalog` (GET, POST upsert, PATCH health, GET health, POST bootstrap)
+- Variables de entorno requeridas: `DATABASE_URL` (en `.env` raíz), `ADMIN_PASSWORD`.
+- Build: `pnpm run build:api` → `pnpm run start:api` (requiere `.env` cargado en el entorno).
+
+### 4.3 Capas externas
+
+Capas servidas por terceros (IGN, INTA, CONAE, ESA, NASA, SAyDS, SMN) definidas en:
+- `artifacts/colon-3d/src/lib/layers.ts` → `EXTERNAL_LAYERS[]` (fuente frontend, estática)
+- `lib/db` → tabla `layer_catalog` (fuente DB, dinámica, sembrada con bootstrap)
+
+Las capas WMS con `supportsGetFeatureInfo: true` responden al click en el mapa mostrando
+atributos en el componente `ExternalFeatureInfo.tsx`.
+
+> **Próximo paso**: conectar el frontend a `GET /api/layers/catalog?externalOnly=true`
+> para eliminar la duplicación y que la config provenga exclusivamente de la DB.
 
 ### 4.3 Datos geoespaciales
 
@@ -226,123 +256,95 @@ Colon-Entre-Rios/
 
 ---
 
-## 8. Estado tecnico observado en esta revision
+## 8. Estado tecnico observado en esta revision (abril 2026)
 
-- Frontend build: correcto.
-- Restriccion de calibracion de zonificacion a admin: implementada.
-- Typecheck monorepo: pendiente de ajuste en `lib/api-zod` por imports con extension `.ts`.
+- Frontend build: correcto. Typecheck limpio.
+- Backend: operativo con catálogo de capas en DB.
+- Schema PostgreSQL aplicado (`layer_catalog`, enums `layer_type` y `layer_health_status`).
+- 10 capas externas sembradas en DB (bootstrap idempotente verificado).
+- Capas externas: URLs corregidas (INTA `.gob.ar`, NASA WMTS, SAyDS dominio nuevo).
+- Leyendas inline en `LayersPanel` implementadas.
+- `ExternalFeatureInfo.tsx`: GetFeatureInfo sobre capas WMS activas.
+- Drizzle Studio disponible en `https://local.drizzle.studio` cuando se ejecuta `pnpm exec drizzle-kit studio`.
 
-Recomendacion inmediata:
-- Corregir exports en `lib/api-zod` para eliminar extensiones en imports y recuperar typecheck global limpio.
+Pendientes técnicos inmediatos:
+- Conectar frontend al endpoint `GET /api/layers/catalog` (eliminar array estático).
+- Implementar health-check automático periódico (job en el servidor).
+- Mostrar badge de salud por capa en el panel.
+- Resolver script `dev:local` del api-server (ts-node no instalado; usar `build + start`).
 
 ---
 
-## 9. Hoja de ruta de nuevas herramientas (propuesta)
+## 9. Hoja de ruta de nuevas herramientas (propuesta actualizada)
 
-A continuacion se priorizan herramientas concretas para tu necesidad de servicios publicos y Obras Privadas.
+### 9.0 Conexion frontend → catalogo DB (prioridad inmediata)
 
-### 9.1 Modulo de redes de servicios publicos (prioridad alta)
+- Reemplazar `EXTERNAL_LAYERS` estático en `layers.ts` por hook `useLayerCatalog()`
+  que llama `GET /api/layers/catalog?externalOnly=true&onlyActive=true`.
+- Eliminar duplicación de datos entre `externalLayersSeed.ts` y `layers.ts`.
+- Manejar loading/error en `LayersPanel`.
 
-Capas objetivo:
-- agua
-- cloacas
-- pavimento
-- gas
-- electricidad
-- alumbrado
-- desagues pluviales
+### 9.1 Health-check automatico de capas (prioridad alta)
+
+- Job periódico (cron/interval) en el servidor que prueba cada capa activa:
+  - TMS: solicita una tile conocida y verifica HTTP 200.
+  - WMS: solicita `GetCapabilities` y verifica respuesta válida.
+- Actualiza `health_status` y `last_error` via `PATCH /api/layers/catalog/:key/health`.
+- Badge visual en `LayersPanel` (verde/amarillo/rojo).
+
+### 9.2 Modulo de redes de servicios publicos (prioridad alta)
+
+Capas objetivo: agua, cloacas, pavimento, gas, electricidad, alumbrado, desagues pluviales.
 
 Funcionalidades propuestas:
-
 1. Catalogo de capas de servicio con esquema estandar por tipo.
 2. Versionado por fecha de relevamiento y fuente.
 3. Simbologia tematica por estado (activo/proyectado/fuera de servicio).
-4. Filtros operativos:
-   - por barrio,
-   - por tipo de red,
-   - por estado,
-   - por anio de obra.
-5. Trazabilidad de cambios y auditoria de ediciones.
-6. Descarga de capas filtradas (GeoJSON/CSV).
+4. Filtros: por barrio, tipo de red, estado, anio de obra.
+5. Descarga de capas filtradas (GeoJSON/CSV).
 
-### 9.2 Modulo Obras Privadas (prioridad alta)
+### 9.3 Modulo Obras Privadas (prioridad alta)
 
-Problema actual:
-- datos en Excel, separados por hojas por anio, sin georreferencia operativa unica.
+1. Ingesta del Excel historico multihoja → tabla canonica en DB.
+2. Geocodificacion: NCP/parcela → geocodificacion de direccion (IGN) → manual asistida.
+3. Capa historica temporal (slider por anio).
+4. Filtros: tipo de obra, estado de tramite, zona.
+5. Tablero KPI: cantidad, superficie, tiempos, distribucion territorial.
+6. Exportes CSV/GeoJSON/Excel/PDF.
 
-Propuesta de solucion:
+### 9.4 Modulo de calidad de datos (prioridad media-alta)
 
-1. Ingesta Excel multihoja
-- Cargar archivo xlsx.
-- Detectar hojas (por anio) y unificarlas en una tabla canonica.
-- Mapeo asistido de columnas (expediente, titular, direccion, nomenclatura, estado, superficie, destino, fecha, etc.).
-
-2. Georreferenciacion de expedientes
-- Estrategia 1: NCP/parcela (si existe clave catastral).
-- Estrategia 2: geocodificacion de direccion (IGN/Nominatim).
-- Estrategia 3: ubicacion manual asistida en mapa para casos no resueltos.
-- Guardar nivel de confianza de geocodificacion.
-
-3. Capa historica temporal
-- Visualizacion por anio (slider temporal).
-- Filtro por tipo de obra (nueva, ampliacion, regularizacion, demolicion, etc.).
-- Filtro por estado de tramite.
-- Densidad de expedientes por zona/manzana.
-
-4. Tablero de gestion
-- KPI por periodo:
-  - cantidad de expedientes,
-  - superficie aprobada,
-  - tiempos promedio de tramitacion,
-  - distribucion territorial.
-
-5. Exportes y reportes
-- Exportar resultados filtrados a Excel/CSV/PDF.
-- Reporte por parcela y reporte anual de Obras Privadas.
-
-### 9.3 Modulo de calidad de datos (prioridad media-alta)
-
-1. Validador automatico pre-publicacion:
-- CRS valido,
-- geometria valida,
-- campos obligatorios,
-- duplicados,
-- vacios criticos.
-
-2. Semaforo de calidad por capa:
-- verde: apta,
-- amarillo: observaciones,
-- rojo: no publicar.
-
+1. Validador automatico pre-publicacion (CRS, geometria, campos obligatorios, duplicados).
+2. Semaforo de calidad por capa (verde/amarillo/rojo).
 3. Registro de errores con sugerencia de correccion.
 
-### 9.4 Modulo de administracion de datos (prioridad media)
+### 9.5 Administracion de datos (prioridad media)
 
 1. Repositorio de capas versionadas (metadatos + changelog).
-2. Publicacion por ambiente (borrador, validado, productivo).
-3. Control de acceso por permisos finos (RBAC):
-- visualizar,
-- cargar,
-- validar,
-- publicar,
-- administrar.
+2. Publicacion por ambiente: borrador → validado → productivo.
+3. RBAC fino: visualizar / cargar / validar / publicar / administrar.
 
 ---
 
 ## 10. Plan de implementacion sugerido (por etapas)
 
-### Etapa 1 (rapida, 2-3 semanas)
+### Etapa 0 — Completar infraestructura existente (inmediata)
+
+- Conectar frontend al endpoint `GET /api/layers/catalog` (eliminar array estático en `layers.ts`).
+- Implementar health-check automático y badge de salud en LayersPanel.
+
+### Etapa 1 — Obras Privadas (corto plazo)
 
 - Normalizar ingestion Excel Obras Privadas (multihoja -> tabla unica).
 - Georreferencia inicial por NCP + direccion.
 - Vista de puntos/parcelas de Obras Privadas con filtros por anio y estado.
 
-### Etapa 2 (3-5 semanas)
+### Etapa 2 — Redes de servicios (mediano plazo)
 
 - Modulo servicios publicos con catalogo de capas y filtros avanzados.
 - Panel de indicadores basicos por red y cobertura territorial.
 
-### Etapa 3 (4-6 semanas)
+### Etapa 3 — Calidad y publicacion (mediano plazo)
 
 - Calidad de datos automatica + versionado + flujo de publicacion.
 - Reportes institucionales y exportes consolidados.
@@ -380,6 +382,7 @@ Esto permite analitica historica, trazabilidad y control de calidad espacial.
 
 Se considera implementacion exitosa cuando:
 
+- El frontend lee las capas desde la DB (sin array estático).
 - Obras Privadas se visualiza por anio, estado y tipo de obra en mapa.
 - Servicios publicos se gestionan por capa con filtros y calidad de datos.
 - Cualquier publicacion nueva pasa por validacion tecnica previa.
@@ -389,4 +392,7 @@ Se considera implementacion exitosa cuando:
 
 ## 13. Siguiente paso recomendado
 
-Iniciar con el modulo de ingesta y georreferenciacion de Obras Privadas (Excel multihoja), porque genera impacto directo en tu operacion diaria y luego alimenta analisis y decisiones en todas las demas capas.
+**Inmediato**: conectar el frontend al endpoint `GET /api/layers/catalog` para
+eliminar la duplicación entre código y base de datos.  
+**Corto plazo**: módulo de ingesta y georreferenciación de Obras Privadas (Excel
+multihoja), que genera impacto directo en la operación diaria municipal.
