@@ -27,6 +27,7 @@ import { useLayerCatalog } from "@/hooks/useLayerCatalog";
 import { ZONA_NORMAS } from "@/lib/zonaData";
 
 const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");
+const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "";
 
 type LeafletLayer = L.GeoJSON | L.LayerGroup;
 type DensidadData = Record<string, { count: number; area: number }>;
@@ -829,6 +830,9 @@ export default function MapViewer() {
   }, [visibleLayers.zonas, zonaLegendOpen]);
 
   const worksDatasetUrl = `${BASE_PATH}/data/planos/obras-${publicationLevel}.geojson`;
+  const worksApiUrl = API_BASE
+    ? `${API_BASE}/api/obras/points?level=${publicationLevel}`
+    : "";
 
   // Keep ref in sync with state for use in closures
   useEffect(() => { densidadActiveRef.current = densidadActive; }, [densidadActive]);
@@ -1523,11 +1527,27 @@ export default function MapViewer() {
     }
 
     let cancelled = false;
-    void fetch(worksDatasetUrl)
-      .then((res) => {
-        if (!res.ok) throw new Error("No se pudo cargar capa de obras");
-        return res.json() as Promise<FeatureCollection>;
-      })
+    const loadWorksDataset = async (): Promise<FeatureCollection> => {
+      if (worksApiUrl) {
+        try {
+          const res = await fetch(worksApiUrl);
+          if (res.ok) {
+            const body = await res.json() as { data?: FeatureCollection };
+            if (body?.data && Array.isArray(body.data.features)) {
+              return body.data;
+            }
+          }
+        } catch {
+          // fallback to static GeoJSON below
+        }
+      }
+
+      const fallbackRes = await fetch(worksDatasetUrl);
+      if (!fallbackRes.ok) throw new Error("No se pudo cargar capa de obras");
+      return fallbackRes.json() as Promise<FeatureCollection>;
+    };
+
+    void loadWorksDataset()
       .then((geojson) => {
         if (cancelled) return;
 
@@ -1658,7 +1678,7 @@ export default function MapViewer() {
     return () => {
       cancelled = true;
     };
-  }, [mapReady, planosActive, publicationLevel, worksDatasetUrl, obrasYearOptions, selectedObrasYears, obrasYearPreset]);
+  }, [mapReady, planosActive, publicationLevel, worksDatasetUrl, worksApiUrl, obrasYearOptions, selectedObrasYears, obrasYearPreset]);
 
   // ── Obras temporal heatmap (barrios) ─────────────────────────────────────
 
@@ -2049,60 +2069,6 @@ export default function MapViewer() {
                 : `${selectedObrasYears.length} años seleccionados`}
             </div>
           )}
-        </div>
-      )}
-
-      {isAdmin && visibleLayers.parcela_titularidad && (
-        <div className="absolute z-[900] left-3 bottom-56 bg-black/80 text-white rounded-xl border border-white/15 px-3 py-2.5 backdrop-blur-sm" style={{ minWidth: 280 }}>
-          <div className="flex items-center justify-between mb-2">
-            <div className="text-[10px] uppercase tracking-wide text-white/60">Parcelas por titularidad</div>
-            <button
-              type="button"
-              onClick={() => setParcelOwnerFilter("all")}
-              className="text-[10px] text-primary hover:underline"
-            >
-              Ver todas
-            </button>
-          </div>
-
-          <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-[11px]">
-            {(["Municipalidad", "Provincia", "Nacion", "Privado", "Sin dato"] as ParcelOwnerClass[]).map((label) => {
-              const count = parcelOwnerStats[label] || 0;
-              const total = Object.values(parcelOwnerStats).reduce((sum, n) => sum + n, 0);
-              const pct = total > 0 ? (count * 100) / total : 0;
-              const active = parcelOwnerFilter === label;
-              return (
-                <button
-                  key={label}
-                  type="button"
-                  onClick={() => setParcelOwnerFilter(prev => (prev === label ? "all" : label))}
-                  className={`flex items-center justify-between gap-1.5 px-1.5 py-1 rounded border transition-colors ${active ? "bg-white/10 border-white/40" : "bg-white/0 border-white/10 hover:border-white/25"}`}
-                  title={`Filtrar: ${label}`}
-                >
-                  <span className="inline-flex items-center gap-1.5 min-w-0">
-                    <span
-                      className="inline-block w-2.5 h-2.5 rounded-full border border-white/25"
-                      style={{ background: PARCEL_OWNER_COLORS[label] }}
-                    />
-                    <span className="text-white/90 truncate">{label}</span>
-                  </span>
-                  <span className="text-[10px] text-white/70">{count} · {pct.toFixed(1)}%</span>
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="text-[9px] text-white/45 mt-2">
-            Filtro activo: {parcelOwnerFilter === "all" ? "Todos" : parcelOwnerFilter}
-          </div>
-
-          <button
-            type="button"
-            onClick={handleExportParcelOwnerCsv}
-            className="mt-2 w-full px-2 py-1.5 rounded border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-[10px] font-semibold hover:bg-cyan-500/20 transition-colors"
-          >
-            Exportar CSV auditoria
-          </button>
         </div>
       )}
 
