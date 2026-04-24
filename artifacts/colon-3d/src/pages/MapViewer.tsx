@@ -22,7 +22,8 @@ import AuthPanel from "@/components/AuthGate";
 import ExternalFeatureInfo, { type ExternalFeatureInfoState } from "@/components/ExternalFeatureInfo";
 import { useAuth } from "@/contexts/AuthContext";
 import { hasPermission } from "@/lib/auth";
-import { LAYERS, COLON_CENTER, COLON_ZOOM, ZONA_COLORS, EXTERNAL_LAYERS } from "@/lib/layers";
+import { LAYERS, COLON_CENTER, COLON_ZOOM, ZONA_COLORS } from "@/lib/layers";
+import { useLayerCatalog } from "@/hooks/useLayerCatalog";
 import { ZONA_NORMAS } from "@/lib/zonaData";
 
 const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -798,13 +799,26 @@ export default function MapViewer() {
     Object.fromEntries(LAYERS.map(l => [l.id, l.defaultVisible && (!l.adminOnly || isAdmin)]))
   );
 
-  const [visibleExternalLayers, setVisibleExternalLayers] = useState<Record<string, boolean>>(
-    Object.fromEntries(EXTERNAL_LAYERS.map(l => [l.id, false]))
-  );
+  const { layers: catalogLayers, groups: catalogGroups } = useLayerCatalog();
+
+  const [visibleExternalLayers, setVisibleExternalLayers] = useState<Record<string, boolean>>({});
+  // When catalog loads (or changes), register any new layer IDs as hidden
+  useEffect(() => {
+    setVisibleExternalLayers(prev => {
+      const next = { ...prev };
+      let changed = false;
+      for (const l of catalogLayers) {
+        if (!(l.id in next)) { next[l.id] = false; changed = true; }
+      }
+      return changed ? next : prev;
+    });
+  }, [catalogLayers]);
   const externalLayerRefsMap = useRef<Record<string, L.TileLayer | L.TileLayer.WMS>>({});
-  // Keep a ref in sync with the state so the stable map click handler can read the latest value
+  // Keep refs in sync so the stable map click handler can read the latest values
   const visibleExternalLayersRef = useRef<Record<string, boolean>>({});
+  const catalogLayersRef = useRef(catalogLayers);
   useEffect(() => { visibleExternalLayersRef.current = visibleExternalLayers; }, [visibleExternalLayers]);
+  useEffect(() => { catalogLayersRef.current = catalogLayers; }, [catalogLayers]);
 
   const [externalLayerInfo, setExternalLayerInfo] = useState<ExternalFeatureInfoState | null>(null);
 
@@ -1304,7 +1318,7 @@ export default function MapViewer() {
       setExternalLayerInfo(null);
 
       // Query visible WMS external layers for feature info at the clicked point
-      const activeWmsLayers = EXTERNAL_LAYERS.filter(
+      const activeWmsLayers = catalogLayersRef.current.filter(
         l => l.type === "wms" && l.supportsGetFeatureInfo && visibleExternalLayersRef.current[l.id]
       );
       if (activeWmsLayers.length === 0) return;
@@ -1422,7 +1436,7 @@ export default function MapViewer() {
   useEffect(() => {
     const map = leafletMapRef.current;
     if (!map || !mapReady) return;
-    for (const extDef of EXTERNAL_LAYERS) {
+    for (const extDef of catalogLayers) {
       const shouldShow = visibleExternalLayers[extDef.id];
       const existing = externalLayerRefsMap.current[extDef.id];
       if (shouldShow && !existing) {
@@ -2155,6 +2169,8 @@ export default function MapViewer() {
               isAdmin={isAdmin}
               visibleExternalLayers={visibleExternalLayers}
               onToggleExternalLayer={handleToggleExternalLayer}
+              externalLayers={catalogLayers}
+              externalLayerGroups={catalogGroups}
             />
           </div>
         )}

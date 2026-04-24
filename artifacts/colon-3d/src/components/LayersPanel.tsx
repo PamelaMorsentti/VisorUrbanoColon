@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ChevronDown, ChevronRight, Layers, Eye, EyeOff, Globe } from "lucide-react";
-import { LAYERS, LAYER_GROUPS, EXTERNAL_LAYERS, EXTERNAL_LAYER_GROUPS, type ExternalLayerDef } from "@/lib/layers";
+import { LAYERS, LAYER_GROUPS, type ExternalLayerDef } from "@/lib/layers";
 
 interface LayersPanelProps {
   visibleLayers: Record<string, boolean>;
@@ -10,9 +10,13 @@ interface LayersPanelProps {
   isAdmin: boolean;
   visibleExternalLayers: Record<string, boolean>;
   onToggleExternalLayer: (layerId: string) => void;
+  /** External layer definitions from the catalog (API or static fallback) */
+  externalLayers: ExternalLayerDef[];
+  /** Ordered list of external group names */
+  externalLayerGroups: string[];
 }
 
-export default function LayersPanel({ visibleLayers, onToggleLayer, isOpen, onClose, isAdmin, visibleExternalLayers, onToggleExternalLayer }: LayersPanelProps) {
+export default function LayersPanel({ visibleLayers, onToggleLayer, isOpen, onClose, isAdmin, visibleExternalLayers, onToggleExternalLayer, externalLayers, externalLayerGroups }: LayersPanelProps) {
   const [collapsedGroups, setCollapsedGroups] = useState<Record<string, boolean>>({});
 
   const toggleGroup = (group: string) => {
@@ -123,8 +127,8 @@ export default function LayersPanel({ visibleLayers, onToggleLayer, isOpen, onCl
             <span className="text-xs font-semibold text-sky-400 uppercase tracking-wider">Capas externas</span>
             <span className="ml-auto text-[9px] text-muted-foreground/60">TMS / WMS</span>
           </div>
-          {EXTERNAL_LAYER_GROUPS.map(group => {
-            const groupLayers = EXTERNAL_LAYERS.filter(l => l.group === group);
+          {externalLayerGroups.map(group => {
+            const groupLayers = externalLayers.filter(l => l.group === group);
             if (groupLayers.length === 0) return null;
             const isCollapsed = collapsedGroups[`ext_${group}`];
             const visibleCount = groupLayers.filter(l => visibleExternalLayers[l.id]).length;
