@@ -157,31 +157,33 @@ export default function RegionalInfoPanel({
       setRiverLoading(true);
       setRiverError(null);
       try {
-        // Prefer local API proxy to avoid CORS and improve source control.
-        const apiUrl = `${API_BASE_URL}/api/hydrology/colon`;
-        const apiRes = await fetch(apiUrl);
+        if (API_BASE_URL) {
+          // Prefer configured API proxy to avoid CORS and improve source control.
+          const apiUrl = `${API_BASE_URL}/api/hydrology/colon`;
+          const apiRes = await fetch(apiUrl);
 
-        if (apiRes.ok) {
-          const data = await apiRes.json() as {
-            level: number;
-            delta: number;
-            trend: string;
-            updatedAt: string;
-            thresholds?: { alert?: number; evacuation?: number };
-          };
+          if (apiRes.ok) {
+            const data = await apiRes.json() as {
+              level: number;
+              delta: number;
+              trend: string;
+              updatedAt: string;
+              thresholds?: { alert?: number; evacuation?: number };
+            };
 
-          if (!alive) return;
+            if (!alive) return;
 
-          setRiver({
-            level: data.level,
-            trend: data.trend,
-            delta: data.delta,
-            updatedAt: data.updatedAt,
-            source: "api",
-            alertLevel: data.thresholds?.alert ?? COLON_RIVER_ALERT_LEVEL,
-            evacuationLevel: data.thresholds?.evacuation ?? COLON_RIVER_EVAC_LEVEL,
-          });
-          return;
+            setRiver({
+              level: data.level,
+              trend: data.trend,
+              delta: data.delta,
+              updatedAt: data.updatedAt,
+              source: "api",
+              alertLevel: data.thresholds?.alert ?? COLON_RIVER_ALERT_LEVEL,
+              evacuationLevel: data.thresholds?.evacuation ?? COLON_RIVER_EVAC_LEVEL,
+            });
+            return;
+          }
         }
 
         // Fallback: readable CARU feed when API is unavailable.
