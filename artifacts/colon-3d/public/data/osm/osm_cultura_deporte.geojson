@@ -1,0 +1,4347 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2178907,
+          -32.2124845
+        ]
+      },
+      "properties": {
+        "osm_id": 3279483616,
+        "osm_type": "node",
+        "NOMBRE": "Cine Urquiza",
+        "amenity": "cinema",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1340455,
+          -32.2204608
+        ]
+      },
+      "properties": {
+        "osm_id": 3426013044,
+        "osm_type": "node",
+        "NOMBRE": "Teatro Gran Colón",
+        "amenity": "theatre",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0840349,
+          -32.317664
+        ]
+      },
+      "properties": {
+        "osm_id": 3996251088,
+        "osm_type": "node",
+        "NOMBRE": "Florencio Sanchez",
+        "amenity": "theatre",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0834741,
+          -32.3172511
+        ]
+      },
+      "properties": {
+        "osm_id": 4357797396,
+        "osm_type": "node",
+        "NOMBRE": "Cine Shopping",
+        "amenity": "cinema",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "Mo-Su 17:00-00:00",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0845554,
+          -32.3161887
+        ]
+      },
+      "properties": {
+        "osm_id": 4762031122,
+        "osm_type": "node",
+        "NOMBRE": "Oficina Territorial MIDES Paysandú",
+        "amenity": "community_centre",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1526925,
+          -32.2230302
+        ]
+      },
+      "properties": {
+        "osm_id": 6693587482,
+        "osm_type": "node",
+        "NOMBRE": "Grupo Scout Nuestra Señora de Fátima",
+        "amenity": "community_centre",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "Sa 15:00-18:00",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1318028,
+          -32.225459
+        ]
+      },
+      "properties": {
+        "osm_id": 6693596655,
+        "osm_type": "node",
+        "NOMBRE": "Grupo Scout Colón",
+        "amenity": "community_centre",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "Sa 15:00-18:00",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0930237,
+          -32.3102661
+        ]
+      },
+      "properties": {
+        "osm_id": 8331946307,
+        "osm_type": "node",
+        "NOMBRE": "Sede Club Atlético Los Sauces",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "sports_centre",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2156215,
+          -32.179099
+        ]
+      },
+      "properties": {
+        "osm_id": 9179032280,
+        "osm_type": "node",
+        "NOMBRE": "Centro Integrador Comunitario de El Brillante",
+        "amenity": "community_centre",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0939811,
+          -32.3084581
+        ]
+      },
+      "properties": {
+        "osm_id": 11191828328,
+        "osm_type": "node",
+        "NOMBRE": "Complejo deportivo Irene Sosa",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "sports_centre",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1420582,
+          -32.2253051
+        ]
+      },
+      "properties": {
+        "osm_id": 12753292308,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "theatre",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2191384,
+          -32.2123498
+        ]
+      },
+      "properties": {
+        "osm_id": 31404072,
+        "osm_type": "way",
+        "NOMBRE": "Plaza Urquiza",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2188809,
+          -32.2087401
+        ]
+      },
+      "properties": {
+        "osm_id": 31404148,
+        "osm_type": "way",
+        "NOMBRE": "Plaza de la Madre",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0821634,
+          -32.3283256
+        ]
+      },
+      "properties": {
+        "osm_id": 167466950,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.087156,
+          -32.3343483
+        ]
+      },
+      "properties": {
+        "osm_id": 167469405,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0858679,
+          -32.334528
+        ]
+      },
+      "properties": {
+        "osm_id": 167469406,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0906145,
+          -32.2976522
+        ]
+      },
+      "properties": {
+        "osm_id": 167478597,
+        "osm_type": "way",
+        "NOMBRE": "Anfiteatro del Rio Uruguay",
+        "amenity": "theatre",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.087555,
+          -32.2995019
+        ]
+      },
+      "properties": {
+        "osm_id": 167480423,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0807798,
+          -32.3170664
+        ]
+      },
+      "properties": {
+        "osm_id": 167480424,
+        "osm_type": "way",
+        "NOMBRE": "Plaza Constitución",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1426088,
+          -32.2247652
+        ]
+      },
+      "properties": {
+        "osm_id": 186427640,
+        "osm_type": "way",
+        "NOMBRE": "Plaza Washigton",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1420901,
+          -32.2252867
+        ]
+      },
+      "properties": {
+        "osm_id": 186433936,
+        "osm_type": "way",
+        "NOMBRE": "Plaza Artigas",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1353574,
+          -32.2185428
+        ]
+      },
+      "properties": {
+        "osm_id": 186434901,
+        "osm_type": "way",
+        "NOMBRE": "San Martín",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.163106,
+          -32.1919447
+        ]
+      },
+      "properties": {
+        "osm_id": 202761730,
+        "osm_type": "way",
+        "NOMBRE": "Termas San José",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "water_park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "http://termassanjose.com/",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1326059,
+          -32.2262307
+        ]
+      },
+      "properties": {
+        "osm_id": 209285868,
+        "osm_type": "way",
+        "NOMBRE": "Parque Quiros",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0831372,
+          -32.2687715
+        ]
+      },
+      "properties": {
+        "osm_id": 244042018,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0910423,
+          -32.3006065
+        ]
+      },
+      "properties": {
+        "osm_id": 247059826,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0914348,
+          -32.3000339
+        ]
+      },
+      "properties": {
+        "osm_id": 247059829,
+        "osm_type": "way",
+        "NOMBRE": "Plazoleta República del Líbano",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0942319,
+          -32.3110882
+        ]
+      },
+      "properties": {
+        "osm_id": 247059830,
+        "osm_type": "way",
+        "NOMBRE": "Las Granadas",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.090982,
+          -32.2995518
+        ]
+      },
+      "properties": {
+        "osm_id": 247059834,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0892387,
+          -32.3298307
+        ]
+      },
+      "properties": {
+        "osm_id": 247059840,
+        "osm_type": "way",
+        "NOMBRE": "Cairo Cosio",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1467467,
+          -32.2089512
+        ]
+      },
+      "properties": {
+        "osm_id": 289313918,
+        "osm_type": "way",
+        "NOMBRE": "Termas de Colón",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "water_park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "https://termascolon.gov.ar/",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1467292,
+          -32.2100405
+        ]
+      },
+      "properties": {
+        "osm_id": 289313919,
+        "osm_type": "way",
+        "NOMBRE": "Club Social y Deportivo Ñapindá",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "sports_centre",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.215609,
+          -32.2191165
+        ]
+      },
+      "properties": {
+        "osm_id": 305869995,
+        "osm_type": "way",
+        "NOMBRE": "Polideportivo Municipal",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "sports_centre",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2236348,
+          -32.2092356
+        ]
+      },
+      "properties": {
+        "osm_id": 321216559,
+        "osm_type": "way",
+        "NOMBRE": "Club San Jose",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "stadium",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2186183,
+          -32.2048561
+        ]
+      },
+      "properties": {
+        "osm_id": 321217449,
+        "osm_type": "way",
+        "NOMBRE": "Club Santa Rosa",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "stadium",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2362167,
+          -32.2218204
+        ]
+      },
+      "properties": {
+        "osm_id": 321217450,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.230861,
+          -32.2179721
+        ]
+      },
+      "properties": {
+        "osm_id": 321218316,
+        "osm_type": "way",
+        "NOMBRE": "Recreo",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1471407,
+          -32.2296147
+        ]
+      },
+      "properties": {
+        "osm_id": 334797605,
+        "osm_type": "way",
+        "NOMBRE": "Club Defensores",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1306924,
+          -32.2300941
+        ]
+      },
+      "properties": {
+        "osm_id": 334797609,
+        "osm_type": "way",
+        "NOMBRE": "Club Atlético Campito",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "sports_centre",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1491752,
+          -32.2139845
+        ]
+      },
+      "properties": {
+        "osm_id": 334797611,
+        "osm_type": "way",
+        "NOMBRE": "Club Sauce",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "sports_centre",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1378184,
+          -32.2163144
+        ]
+      },
+      "properties": {
+        "osm_id": 334797613,
+        "osm_type": "way",
+        "NOMBRE": "Plaza de los Colonizadores",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1468371,
+          -32.2170028
+        ]
+      },
+      "properties": {
+        "osm_id": 334797617,
+        "osm_type": "way",
+        "NOMBRE": "Plazoleta Malvinas Argentina",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0862828,
+          -32.3105113
+        ]
+      },
+      "properties": {
+        "osm_id": 335446643,
+        "osm_type": "way",
+        "NOMBRE": "Plaza Lavalleja",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1304334,
+          -32.2304525
+        ]
+      },
+      "properties": {
+        "osm_id": 335514135,
+        "osm_type": "way",
+        "NOMBRE": "Fútbol 5",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0924311,
+          -32.2541212
+        ]
+      },
+      "properties": {
+        "osm_id": 341884014,
+        "osm_type": "way",
+        "NOMBRE": "Playa de Ancap",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1348161,
+          -32.2164316
+        ]
+      },
+      "properties": {
+        "osm_id": 342360981,
+        "osm_type": "way",
+        "NOMBRE": "Plazoleta Cristobal Colón",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0799395,
+          -32.3047619
+        ]
+      },
+      "properties": {
+        "osm_id": 397841732,
+        "osm_type": "way",
+        "NOMBRE": "Estudiantil Sanducero Fútbol Club",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1918473,
+          -32.2197527
+        ]
+      },
+      "properties": {
+        "osm_id": 411501819,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0954179,
+          -32.3079885
+        ]
+      },
+      "properties": {
+        "osm_id": 492642518,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0819671,
+          -32.3246631
+        ]
+      },
+      "properties": {
+        "osm_id": 492643595,
+        "osm_type": "way",
+        "NOMBRE": "Plaza de deportes",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "sports_centre",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0797152,
+          -32.3114736
+        ]
+      },
+      "properties": {
+        "osm_id": 492643857,
+        "osm_type": "way",
+        "NOMBRE": "Plaza Bella Vista",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0870982,
+          -32.332516
+        ]
+      },
+      "properties": {
+        "osm_id": 494002073,
+        "osm_type": "way",
+        "NOMBRE": "Bohemios FC",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0891934,
+          -32.3217415
+        ]
+      },
+      "properties": {
+        "osm_id": 593948593,
+        "osm_type": "way",
+        "NOMBRE": "Plaza Acuña de Figueroa",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0904688,
+          -32.2977549
+        ]
+      },
+      "properties": {
+        "osm_id": 693022975,
+        "osm_type": "way",
+        "NOMBRE": "Parque del anfiteatro de verano de Paysandú",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0917043,
+          -32.2985582
+        ]
+      },
+      "properties": {
+        "osm_id": 693022976,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "theatre",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1913174,
+          -32.1548921
+        ]
+      },
+      "properties": {
+        "osm_id": 738075869,
+        "osm_type": "way",
+        "NOMBRE": "Plaza San Martín",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0961267,
+          -32.2405464
+        ]
+      },
+      "properties": {
+        "osm_id": 759703593,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0968376,
+          -32.2435681
+        ]
+      },
+      "properties": {
+        "osm_id": 759711730,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0967432,
+          -32.2410323
+        ]
+      },
+      "properties": {
+        "osm_id": 759712596,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0879124,
+          -32.2311442
+        ]
+      },
+      "properties": {
+        "osm_id": 759715153,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2110513,
+          -32.2034248
+        ]
+      },
+      "properties": {
+        "osm_id": 808619582,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2123083,
+          -32.1809948
+        ]
+      },
+      "properties": {
+        "osm_id": 808619603,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1477178,
+          -32.2276939
+        ]
+      },
+      "properties": {
+        "osm_id": 835595667,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1610603,
+          -32.2277521
+        ]
+      },
+      "properties": {
+        "osm_id": 839795478,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1610153,
+          -32.2277419
+        ]
+      },
+      "properties": {
+        "osm_id": 839795479,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "sports_centre",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1308436,
+          -32.2298781
+        ]
+      },
+      "properties": {
+        "osm_id": 879859018,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1584286,
+          -32.3449725
+        ]
+      },
+      "properties": {
+        "osm_id": 886233880,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1586845,
+          -32.345032
+        ]
+      },
+      "properties": {
+        "osm_id": 886233881,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1588839,
+          -32.2125956
+        ]
+      },
+      "properties": {
+        "osm_id": 886958145,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1476102,
+          -32.2093632
+        ]
+      },
+      "properties": {
+        "osm_id": 886993747,
+        "osm_type": "way",
+        "NOMBRE": "Octogonal",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1472347,
+          -32.2090427
+        ]
+      },
+      "properties": {
+        "osm_id": 887017448,
+        "osm_type": "way",
+        "NOMBRE": "Diamante",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1473458,
+          -32.2089883
+        ]
+      },
+      "properties": {
+        "osm_id": 887017449,
+        "osm_type": "way",
+        "NOMBRE": "L",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1472943,
+          -32.2082444
+        ]
+      },
+      "properties": {
+        "osm_id": 887017461,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1472409,
+          -32.2082209
+        ]
+      },
+      "properties": {
+        "osm_id": 887017462,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1470807,
+          -32.2081472
+        ]
+      },
+      "properties": {
+        "osm_id": 887017464,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.145836,
+          -32.2096595
+        ]
+      },
+      "properties": {
+        "osm_id": 887023611,
+        "osm_type": "way",
+        "NOMBRE": "Parque Acuático",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "water_park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1469063,
+          -32.2099913
+        ]
+      },
+      "properties": {
+        "osm_id": 887024413,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1494141,
+          -32.214152
+        ]
+      },
+      "properties": {
+        "osm_id": 887031020,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1492442,
+          -32.2132761
+        ]
+      },
+      "properties": {
+        "osm_id": 887031021,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1459438,
+          -32.2095388
+        ]
+      },
+      "properties": {
+        "osm_id": 887075947,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1457168,
+          -32.209759
+        ]
+      },
+      "properties": {
+        "osm_id": 887075948,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.145758,
+          -32.2095918
+        ]
+      },
+      "properties": {
+        "osm_id": 887075949,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1635489,
+          -32.1912061
+        ]
+      },
+      "properties": {
+        "osm_id": 888990399,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1633074,
+          -32.1911306
+        ]
+      },
+      "properties": {
+        "osm_id": 889192597,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1634593,
+          -32.1915849
+        ]
+      },
+      "properties": {
+        "osm_id": 889192598,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1634808,
+          -32.191801
+        ]
+      },
+      "properties": {
+        "osm_id": 889192599,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1637157,
+          -32.1919027
+        ]
+      },
+      "properties": {
+        "osm_id": 889192600,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1638643,
+          -32.1918363
+        ]
+      },
+      "properties": {
+        "osm_id": 889192601,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1641386,
+          -32.1917412
+        ]
+      },
+      "properties": {
+        "osm_id": 889192602,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1640304,
+          -32.1917967
+        ]
+      },
+      "properties": {
+        "osm_id": 889192603,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0805381,
+          -32.3003278
+        ]
+      },
+      "properties": {
+        "osm_id": 892768543,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.089646,
+          -32.2919087
+        ]
+      },
+      "properties": {
+        "osm_id": 892768545,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0899943,
+          -32.2944437
+        ]
+      },
+      "properties": {
+        "osm_id": 892768546,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0990345,
+          -32.314011
+        ]
+      },
+      "properties": {
+        "osm_id": 892776128,
+        "osm_type": "way",
+        "NOMBRE": "Plaza Los Inmigrantes",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1001981,
+          -32.3285292
+        ]
+      },
+      "properties": {
+        "osm_id": 892776135,
+        "osm_type": "way",
+        "NOMBRE": "La Chapita",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0928881,
+          -32.310369
+        ]
+      },
+      "properties": {
+        "osm_id": 896312929,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0914063,
+          -32.3039949
+        ]
+      },
+      "properties": {
+        "osm_id": 896749955,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1613768,
+          -32.2362031
+        ]
+      },
+      "properties": {
+        "osm_id": 904795075,
+        "osm_type": "way",
+        "NOMBRE": "Velódromo Núñez",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "sports_centre",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2184419,
+          -32.2048379
+        ]
+      },
+      "properties": {
+        "osm_id": 920549078,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2181955,
+          -32.2038478
+        ]
+      },
+      "properties": {
+        "osm_id": 920549079,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2147576,
+          -32.2193615
+        ]
+      },
+      "properties": {
+        "osm_id": 920582140,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2049413,
+          -32.2056629
+        ]
+      },
+      "properties": {
+        "osm_id": 920582141,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2186866,
+          -32.2145037
+        ]
+      },
+      "properties": {
+        "osm_id": 920582142,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1818326,
+          -32.331682
+        ]
+      },
+      "properties": {
+        "osm_id": 934465789,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1005267,
+          -32.329354
+        ]
+      },
+      "properties": {
+        "osm_id": 951783306,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2147815,
+          -32.2191809
+        ]
+      },
+      "properties": {
+        "osm_id": 969647925,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2157091,
+          -32.2181661
+        ]
+      },
+      "properties": {
+        "osm_id": 969647926,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2155228,
+          -32.2191857
+        ]
+      },
+      "properties": {
+        "osm_id": 969647927,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2166007,
+          -32.2189751
+        ]
+      },
+      "properties": {
+        "osm_id": 969647928,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1505145,
+          -32.2197123
+        ]
+      },
+      "properties": {
+        "osm_id": 988861203,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1664933,
+          -32.2029104
+        ]
+      },
+      "properties": {
+        "osm_id": 989764524,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1660046,
+          -32.2027262
+        ]
+      },
+      "properties": {
+        "osm_id": 989764525,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1803988,
+          -32.1920498
+        ]
+      },
+      "properties": {
+        "osm_id": 989764526,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1802069,
+          -32.1920022
+        ]
+      },
+      "properties": {
+        "osm_id": 989764527,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1820152,
+          -32.2322103
+        ]
+      },
+      "properties": {
+        "osm_id": 989764530,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1968403,
+          -32.1588615
+        ]
+      },
+      "properties": {
+        "osm_id": 989764536,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1964452,
+          -32.1596469
+        ]
+      },
+      "properties": {
+        "osm_id": 989764537,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1961804,
+          -32.159581
+        ]
+      },
+      "properties": {
+        "osm_id": 989764538,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2049574,
+          -32.1652043
+        ]
+      },
+      "properties": {
+        "osm_id": 989764543,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2101245,
+          -32.1803142
+        ]
+      },
+      "properties": {
+        "osm_id": 993529105,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.209334,
+          -32.1801457
+        ]
+      },
+      "properties": {
+        "osm_id": 993529106,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.152136,
+          -32.2604621
+        ]
+      },
+      "properties": {
+        "osm_id": 1024663902,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1522265,
+          -32.261318
+        ]
+      },
+      "properties": {
+        "osm_id": 1024663903,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1335989,
+          -32.2267711
+        ]
+      },
+      "properties": {
+        "osm_id": 1033245234,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1966999,
+          -32.1841698
+        ]
+      },
+      "properties": {
+        "osm_id": 1036644699,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1009482,
+          -32.3124232
+        ]
+      },
+      "properties": {
+        "osm_id": 1078837194,
+        "osm_type": "way",
+        "NOMBRE": "Club Remeros de Paysandu",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "sports_centre",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2234537,
+          -32.2091575
+        ]
+      },
+      "properties": {
+        "osm_id": 1083890728,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2197558,
+          -32.1941412
+        ]
+      },
+      "properties": {
+        "osm_id": 1083890742,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0992816,
+          -32.3172667
+        ]
+      },
+      "properties": {
+        "osm_id": 1086135096,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.100829,
+          -32.3182469
+        ]
+      },
+      "properties": {
+        "osm_id": 1086135097,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0994033,
+          -32.3145597
+        ]
+      },
+      "properties": {
+        "osm_id": 1093143168,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.098253,
+          -32.313136
+        ]
+      },
+      "properties": {
+        "osm_id": 1093143169,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0979897,
+          -32.3132228
+        ]
+      },
+      "properties": {
+        "osm_id": 1093143170,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0975434,
+          -32.3132674
+        ]
+      },
+      "properties": {
+        "osm_id": 1093143171,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0981995,
+          -32.3135634
+        ]
+      },
+      "properties": {
+        "osm_id": 1093143172,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.098292,
+          -32.313769
+        ]
+      },
+      "properties": {
+        "osm_id": 1093143173,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0971698,
+          -32.3117038
+        ]
+      },
+      "properties": {
+        "osm_id": 1103670899,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0821143,
+          -32.337399
+        ]
+      },
+      "properties": {
+        "osm_id": 1103750351,
+        "osm_type": "way",
+        "NOMBRE": "París Londres",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0813612,
+          -32.3397779
+        ]
+      },
+      "properties": {
+        "osm_id": 1103750353,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0819192,
+          -32.3395551
+        ]
+      },
+      "properties": {
+        "osm_id": 1103750354,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0819507,
+          -32.3398366
+        ]
+      },
+      "properties": {
+        "osm_id": 1103750355,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0842756,
+          -32.3345842
+        ]
+      },
+      "properties": {
+        "osm_id": 1103750356,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.095462,
+          -32.3224639
+        ]
+      },
+      "properties": {
+        "osm_id": 1109901010,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "park",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1325968,
+          -32.2267969
+        ]
+      },
+      "properties": {
+        "osm_id": 1300349743,
+        "osm_type": "way",
+        "NOMBRE": "semitubo",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1329568,
+          -32.2262739
+        ]
+      },
+      "properties": {
+        "osm_id": 1300352100,
+        "osm_type": "way",
+        "NOMBRE": "Cancha del oso",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1328108,
+          -32.2255769
+        ]
+      },
+      "properties": {
+        "osm_id": 1300352104,
+        "osm_type": "way",
+        "NOMBRE": "Cancha tenis",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1495307,
+          -32.2120958
+        ]
+      },
+      "properties": {
+        "osm_id": 1335208983,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1484245,
+          -32.2140729
+        ]
+      },
+      "properties": {
+        "osm_id": 1335208986,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1823008,
+          -32.1923532
+        ]
+      },
+      "properties": {
+        "osm_id": 1335208987,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2270926,
+          -32.205326
+        ]
+      },
+      "properties": {
+        "osm_id": 1335209281,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0894579,
+          -32.2918705
+        ]
+      },
+      "properties": {
+        "osm_id": 1366725019,
+        "osm_type": "way",
+        "NOMBRE": "Rosedal",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "garden",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0943161,
+          -32.3094981
+        ]
+      },
+      "properties": {
+        "osm_id": 1367329684,
+        "osm_type": "way",
+        "NOMBRE": "U",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0931722,
+          -32.3116519
+        ]
+      },
+      "properties": {
+        "osm_id": 1443290835,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "garden",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0931334,
+          -32.3114242
+        ]
+      },
+      "properties": {
+        "osm_id": 1443290837,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "garden",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0930543,
+          -32.3116672
+        ]
+      },
+      "properties": {
+        "osm_id": 1443305235,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "garden",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0929554,
+          -32.3116745
+        ]
+      },
+      "properties": {
+        "osm_id": 1443305236,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "garden",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0928762,
+          -32.3116862
+        ]
+      },
+      "properties": {
+        "osm_id": 1444076372,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "garden",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0928476,
+          -32.3115341
+        ]
+      },
+      "properties": {
+        "osm_id": 1444076373,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "garden",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0927336,
+          -32.3115479
+        ]
+      },
+      "properties": {
+        "osm_id": 1444076375,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "garden",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0928007,
+          -32.311452
+        ]
+      },
+      "properties": {
+        "osm_id": 1444076376,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "garden",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0927955,
+          -32.3113373
+        ]
+      },
+      "properties": {
+        "osm_id": 1444076378,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "garden",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0930971,
+          -32.3112474
+        ]
+      },
+      "properties": {
+        "osm_id": 1444076391,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "garden",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.092676,
+          -32.3112235
+        ]
+      },
+      "properties": {
+        "osm_id": 1444076406,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "garden",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0938538,
+          -32.3079812
+        ]
+      },
+      "properties": {
+        "osm_id": 1447577969,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0806908,
+          -32.304744
+        ]
+      },
+      "properties": {
+        "osm_id": 1447577981,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "pitch",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1731877,
+          -32.1794308
+        ]
+      },
+      "properties": {
+        "osm_id": 1485115931,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.173303,
+          -32.1793069
+        ]
+      },
+      "properties": {
+        "osm_id": 1485115932,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "swimming_pool",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura_deporte"
+      }
+    }
+  ]
+}

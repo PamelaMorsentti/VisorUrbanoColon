@@ -9,7 +9,9 @@
   },
   "scripts": {
     "push": "drizzle-kit push --config ./drizzle.config.ts",
-    "push-force": "drizzle-kit push --force --config ./drizzle.config.ts"
+    "push-force": "drizzle-kit push --force --config ./drizzle.config.ts",
+    "sql:ide-core": "node ./run-sql.mjs ./sql/ide_core_schema.sql",
+    "sql:qa": "node ./run-sql.mjs ./sql/qa_topology_checks.sql"
   },
   "dependencies": {
     "drizzle-orm": "^0.45.1",

@@ -1,0 +1,119 @@
+{
+  "source": "https://mapa.buenosaires.gob.ar/mapas/",
+  "capturedAt": "2026-04-29",
+  "modo": "transporte",
+  "categorias": {
+    "Transporte": [
+      "Ecobici",
+      "Estacionamiento de bicis",
+      "Bicicleterías",
+      "Red Vial",
+      "Accesibilidad (COPIDIS)",
+      "Paradas de Taxi",
+      "Estaciones de Servicio"
+    ],
+    "Urbanismo": [
+      "Comunas",
+      "Distritos Económicos",
+      "Arbolado censo 2017-2018",
+      "Manzanas Atípicas",
+      "Mapa Oficial",
+      "Precios de Terrenos ofertados 2001 - 2011",
+      "Relevamiento de Usos del Suelo 2011",
+      "Accesibilidad (COPIDIS)",
+      "Código de Planeamiento Urbano",
+      "Inspecciones de obras en construcción",
+      "Concesiones",
+      "Población por radio censal",
+      "Especies de árboles permitidas"
+    ],
+    "Servicios": [
+      "Comisarías y cuarteles de Bomberos",
+      "Servicios Sociales",
+      "Fiscalías de la Ciudad",
+      "WiFi Gratis (CABA)",
+      "Arquidiócesis",
+      "Centros de Integración Laboral",
+      "Bancos",
+      "Cajeros Automáticos",
+      "Embajadas y Consulados",
+      "Organizaciones Sociales",
+      "Trámites Vehiculares",
+      "Ferias Itinerantes de Abastecimiento Barrial"
+    ],
+    "Salud": [
+      "Salud (CABA)",
+      "Farmacias",
+      "Centros vacunatorios",
+      "Unidades Febriles de Urgencia"
+    ],
+    "Educación": [
+      "Establecimientos Educativos de Gestión Estatal (CABA)",
+      "Establecimientos Educativos de Gestión Privada (CABA)",
+      "Universidades",
+      "Senderos Escolares",
+      "Centros de Atención Plan Sarmiento BA",
+      "Centros de Educación No Formal"
+    ],
+    "Cultura": [
+      "Bibliotecas de la Ciudad",
+      "Centros Culturales",
+      "Espacios Culturales",
+      "Cines",
+      "Espacios Escénicos (Teatro, Música y Danza)",
+      "Museos",
+      "Espacios de formación",
+      "Galerías de arte y salas de exposición",
+      "Librerías y disquerías",
+      "Bares culturales",
+      "Peñas",
+      "Milongas",
+      "Bibliotecas y Archivos",
+      "Calesitas"
+    ],
+    "Deportes y Esparcimiento": [
+      "Sedes Deportivas",
+      "Actividades Deportivas Gratuitas",
+      "Pistas de Skate",
+      "Esparcimiento",
+      "Gastronomía",
+      "Ferias",
+      "Colectividades"
+    ],
+    "Medio Ambiente": [
+      "Ciudad Limpia",
+      "Sitios privados de recolección de pilas",
+      "Transformadores",
+      "Medición de antenas",
+      "Información hídrica",
+      "Mapa de Ruido Período Diurno",
+      "Mapa de Ruido Período Nocturno",
+      "Áreas de Sensibilidad Acústica en el Ambiente Exterior (ASAE)"
+    ],
+    "Imágenes y Fotografías": [
+      "Vista Aérea 1940",
+      "Vista Aérea 1965",
+      "Vista Aérea 1978",
+      "Vista Satelital 2004",
+      "Vista Satelital 2006",
+      "Vista Satelital 2008",
+      "Vista Satelital 2009",
+      "Vista Aérea 2014",
+      "Vista Aérea 2017"
+    ],
+    "Diversidad": [
+      "Lugares Emblemáticos",
+      "Espacios comprometidos con la diversidad",
+      "Semana del Orgullo"
+    ],
+    "Memoria BA": [
+      "Memoria BA: todas las huellas",
+      "Terrorismo Internacional",
+      "Malvinas",
+      "Recordatorios Urbanos",
+      "Genocidios Internacionales",
+      "Terrorismo de Estado",
+      "30 Años de Autonomía de la Ciudad"
+    ]
+  }
+}

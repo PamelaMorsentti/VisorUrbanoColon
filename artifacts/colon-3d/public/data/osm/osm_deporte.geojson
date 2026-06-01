@@ -1,0 +1,2689 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0930237,
+          -32.3102661
+        ]
+      },
+      "properties": {
+        "osm_id": 8331946307,
+        "NOMBRE": "Sede Club Atlético Los Sauces",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "sports_centre",
+        "layers_group": "deporte",
+        "name": "Sede Club Atlético Los Sauces",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0939811,
+          -32.3084581
+        ]
+      },
+      "properties": {
+        "osm_id": 11191828328,
+        "NOMBRE": "Complejo deportivo Irene Sosa",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "sports_centre",
+        "layers_group": "deporte",
+        "name": "Complejo deportivo Irene Sosa"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2191384,
+          -32.2123498
+        ]
+      },
+      "properties": {
+        "osm_id": 31404072,
+        "NOMBRE": "Plaza Urquiza",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "name": "Plaza Urquiza"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2188809,
+          -32.2087401
+        ]
+      },
+      "properties": {
+        "osm_id": 31404148,
+        "NOMBRE": "Plaza de la Madre",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "name": "Plaza de la Madre"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0821634,
+          -32.3283256
+        ]
+      },
+      "properties": {
+        "osm_id": 167466950,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.087156,
+          -32.3343483
+        ]
+      },
+      "properties": {
+        "osm_id": 167469405,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0858679,
+          -32.334528
+        ]
+      },
+      "properties": {
+        "osm_id": 167469406,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.087555,
+          -32.2995019
+        ]
+      },
+      "properties": {
+        "osm_id": 167480423,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0807798,
+          -32.3170664
+        ]
+      },
+      "properties": {
+        "osm_id": 167480424,
+        "NOMBRE": "Plaza Constitución",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "name": "Plaza Constitución"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1426088,
+          -32.2247652
+        ]
+      },
+      "properties": {
+        "osm_id": 186427640,
+        "NOMBRE": "Plaza Washigton",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "name": "Plaza Washigton"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1420901,
+          -32.2252867
+        ]
+      },
+      "properties": {
+        "osm_id": 186433936,
+        "NOMBRE": "Plaza Artigas",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "name": "Plaza Artigas"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1353574,
+          -32.2185428
+        ]
+      },
+      "properties": {
+        "osm_id": 186434901,
+        "NOMBRE": "San Martín",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "name": "San Martín"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1326059,
+          -32.2262307
+        ]
+      },
+      "properties": {
+        "osm_id": 209285868,
+        "NOMBRE": "Parque Quiros",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "name": "Parque Quiros"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0831372,
+          -32.2687715
+        ]
+      },
+      "properties": {
+        "osm_id": 244042018,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0910423,
+          -32.3006065
+        ]
+      },
+      "properties": {
+        "osm_id": 247059826,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0914348,
+          -32.3000339
+        ]
+      },
+      "properties": {
+        "osm_id": 247059829,
+        "NOMBRE": "Plazoleta República del Líbano",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "name": "Plazoleta República del Líbano"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0942319,
+          -32.3110882
+        ]
+      },
+      "properties": {
+        "osm_id": 247059830,
+        "NOMBRE": "Las Granadas",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "access": "yes",
+        "addr:city": "Paysandú",
+        "addr:postcode": "60000",
+        "addr:street": "Entre Ríos",
+        "name": "Las Granadas"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.090982,
+          -32.2995518
+        ]
+      },
+      "properties": {
+        "osm_id": 247059834,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0892387,
+          -32.3298307
+        ]
+      },
+      "properties": {
+        "osm_id": 247059840,
+        "NOMBRE": "Cairo Cosio",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "name": "Cairo Cosio",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1467292,
+          -32.2100405
+        ]
+      },
+      "properties": {
+        "osm_id": 289313919,
+        "NOMBRE": "Club Social y Deportivo Ñapindá",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "sports_centre",
+        "layers_group": "deporte",
+        "name": "Club Social y Deportivo Ñapindá"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.215609,
+          -32.2191165
+        ]
+      },
+      "properties": {
+        "osm_id": 305869995,
+        "NOMBRE": "Polideportivo Municipal",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "sports_centre",
+        "layers_group": "deporte",
+        "barrier": "fence",
+        "fence_type": "wood",
+        "name": "Polideportivo Municipal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2236348,
+          -32.2092356
+        ]
+      },
+      "properties": {
+        "osm_id": 321216559,
+        "NOMBRE": "Club San Jose",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "stadium",
+        "layers_group": "deporte",
+        "name": "Club San Jose"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2186183,
+          -32.2048561
+        ]
+      },
+      "properties": {
+        "osm_id": 321217449,
+        "NOMBRE": "Club Santa Rosa",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "stadium",
+        "layers_group": "deporte",
+        "name": "Club Santa Rosa"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2362167,
+          -32.2218204
+        ]
+      },
+      "properties": {
+        "osm_id": 321217450,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "lit": "yes",
+        "sport": "tennis"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.230861,
+          -32.2179721
+        ]
+      },
+      "properties": {
+        "osm_id": 321218316,
+        "NOMBRE": "Recreo",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "name": "Recreo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1471407,
+          -32.2296147
+        ]
+      },
+      "properties": {
+        "osm_id": 334797605,
+        "NOMBRE": "Club Defensores",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "name": "Club Defensores",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1306924,
+          -32.2300941
+        ]
+      },
+      "properties": {
+        "osm_id": 334797609,
+        "NOMBRE": "Club Atlético Campito",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "sports_centre",
+        "layers_group": "deporte",
+        "name": "Club Atlético Campito",
+        "start_date": "1945-07-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1491752,
+          -32.2139845
+        ]
+      },
+      "properties": {
+        "osm_id": 334797611,
+        "NOMBRE": "Club Sauce",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "sports_centre",
+        "layers_group": "deporte",
+        "addr:city": "Colón",
+        "addr:street": "Maipú",
+        "name": "Club Sauce",
+        "start_date": "1951-03-31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1378184,
+          -32.2163144
+        ]
+      },
+      "properties": {
+        "osm_id": 334797613,
+        "NOMBRE": "Plaza de los Colonizadores",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "name": "Plaza de los Colonizadores"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1468371,
+          -32.2170028
+        ]
+      },
+      "properties": {
+        "osm_id": 334797617,
+        "NOMBRE": "Plazoleta Malvinas Argentina",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "name": "Plazoleta Malvinas Argentina"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0862828,
+          -32.3105113
+        ]
+      },
+      "properties": {
+        "osm_id": 335446643,
+        "NOMBRE": "Plaza Lavalleja",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "name": "Plaza Lavalleja"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1304334,
+          -32.2304525
+        ]
+      },
+      "properties": {
+        "osm_id": 335514135,
+        "NOMBRE": "Fútbol 5",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "name": "Fútbol 5",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0924311,
+          -32.2541212
+        ]
+      },
+      "properties": {
+        "osm_id": 341884014,
+        "NOMBRE": "Playa de Ancap",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "name": "Playa de Ancap"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1348161,
+          -32.2164316
+        ]
+      },
+      "properties": {
+        "osm_id": 342360981,
+        "NOMBRE": "Plazoleta Cristobal Colón",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "name": "Plazoleta Cristobal Colón"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0799395,
+          -32.3047619
+        ]
+      },
+      "properties": {
+        "osm_id": 397841732,
+        "NOMBRE": "Estudiantil Sanducero Fútbol Club",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "name": "Estudiantil Sanducero Fútbol Club",
+        "sport": "soccer",
+        "surface": "grass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1918473,
+          -32.2197527
+        ]
+      },
+      "properties": {
+        "osm_id": 411501819,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0954179,
+          -32.3079885
+        ]
+      },
+      "properties": {
+        "osm_id": 492642518,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0819671,
+          -32.3246631
+        ]
+      },
+      "properties": {
+        "osm_id": 492643595,
+        "NOMBRE": "Plaza de deportes",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "sports_centre",
+        "layers_group": "deporte",
+        "name": "Plaza de deportes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0797152,
+          -32.3114736
+        ]
+      },
+      "properties": {
+        "osm_id": 492643857,
+        "NOMBRE": "Plaza Bella Vista",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "name": "Plaza Bella Vista"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0870982,
+          -32.332516
+        ]
+      },
+      "properties": {
+        "osm_id": 494002073,
+        "NOMBRE": "Bohemios FC",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "name": "Bohemios FC",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0891934,
+          -32.3217415
+        ]
+      },
+      "properties": {
+        "osm_id": 593948593,
+        "NOMBRE": "Plaza Acuña de Figueroa",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "name": "Plaza Acuña de Figueroa"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0904688,
+          -32.2977549
+        ]
+      },
+      "properties": {
+        "osm_id": 693022975,
+        "NOMBRE": "Parque del anfiteatro de verano de Paysandú",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "name": "Parque del anfiteatro de verano de Paysandú",
+        "operator": "Intendendia Departamental de Paysandú"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1913174,
+          -32.1548921
+        ]
+      },
+      "properties": {
+        "osm_id": 738075869,
+        "NOMBRE": "Plaza San Martín",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "name": "Plaza San Martín"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0961267,
+          -32.2405464
+        ]
+      },
+      "properties": {
+        "osm_id": 759703593,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "access": "private",
+        "sport": "paddle_tennis",
+        "surface": "concrete"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0968376,
+          -32.2435681
+        ]
+      },
+      "properties": {
+        "osm_id": 759711730,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte",
+        "access": "private",
+        "location": "outdoor",
+        "swimming_pool": "inground"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0967432,
+          -32.2410323
+        ]
+      },
+      "properties": {
+        "osm_id": 759712596,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte",
+        "access": "private"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0879124,
+          -32.2311442
+        ]
+      },
+      "properties": {
+        "osm_id": 759715153,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte",
+        "access": "private",
+        "location": "outdoor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2110513,
+          -32.2034248
+        ]
+      },
+      "properties": {
+        "osm_id": 808619582,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2123083,
+          -32.1809948
+        ]
+      },
+      "properties": {
+        "osm_id": 808619603,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1477178,
+          -32.2276939
+        ]
+      },
+      "properties": {
+        "osm_id": 835595667,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1610603,
+          -32.2277521
+        ]
+      },
+      "properties": {
+        "osm_id": 839795478,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "futsal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1610153,
+          -32.2277419
+        ]
+      },
+      "properties": {
+        "osm_id": 839795479,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "sports_centre",
+        "layers_group": "deporte",
+        "sport": "futsal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1308436,
+          -32.2298781
+        ]
+      },
+      "properties": {
+        "osm_id": 879859018,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1584286,
+          -32.3449725
+        ]
+      },
+      "properties": {
+        "osm_id": 886233880,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1586845,
+          -32.345032
+        ]
+      },
+      "properties": {
+        "osm_id": 886233881,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1588839,
+          -32.2125956
+        ]
+      },
+      "properties": {
+        "osm_id": 886958145,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1476102,
+          -32.2093632
+        ]
+      },
+      "properties": {
+        "osm_id": 886993747,
+        "NOMBRE": "Octogonal",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte",
+        "description": "Hidrojet con laterales vidriados; temperatura de 36º a 38º; tiempo de permanencia recomendado 15 minutos.",
+        "name": "Octogonal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1472347,
+          -32.2090427
+        ]
+      },
+      "properties": {
+        "osm_id": 887017448,
+        "NOMBRE": "Diamante",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte",
+        "description": "Profundidad 1.20 mts; temperatura de 37º a 40º; tiempo de inmersión recomendado 15 minutos; sistemas de hidrojet.",
+        "name": "Diamante"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1473458,
+          -32.2089883
+        ]
+      },
+      "properties": {
+        "osm_id": 887017449,
+        "NOMBRE": "L",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte",
+        "description": "Profundidad 1.20 mts; temperatura de 37º a 40º; tiempo de inmersión recomendado 15 minutos; sistemas de hidrojet.",
+        "name": "L"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1472943,
+          -32.2082444
+        ]
+      },
+      "properties": {
+        "osm_id": 887017461,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "shuffleboard"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1472409,
+          -32.2082209
+        ]
+      },
+      "properties": {
+        "osm_id": 887017462,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "shuffleboard"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1470807,
+          -32.2081472
+        ]
+      },
+      "properties": {
+        "osm_id": 887017464,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "beachvolleyball",
+        "surface": "sand"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1469063,
+          -32.2099913
+        ]
+      },
+      "properties": {
+        "osm_id": 887024413,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1494141,
+          -32.214152
+        ]
+      },
+      "properties": {
+        "osm_id": 887031020,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1492442,
+          -32.2132761
+        ]
+      },
+      "properties": {
+        "osm_id": 887031021,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1459438,
+          -32.2095388
+        ]
+      },
+      "properties": {
+        "osm_id": 887075947,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1457168,
+          -32.209759
+        ]
+      },
+      "properties": {
+        "osm_id": 887075948,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.145758,
+          -32.2095918
+        ]
+      },
+      "properties": {
+        "osm_id": 887075949,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1635489,
+          -32.1912061
+        ]
+      },
+      "properties": {
+        "osm_id": 888990399,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1633074,
+          -32.1911306
+        ]
+      },
+      "properties": {
+        "osm_id": 889192597,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1634593,
+          -32.1915849
+        ]
+      },
+      "properties": {
+        "osm_id": 889192598,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1634808,
+          -32.191801
+        ]
+      },
+      "properties": {
+        "osm_id": 889192599,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1637157,
+          -32.1919027
+        ]
+      },
+      "properties": {
+        "osm_id": 889192600,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1638643,
+          -32.1918363
+        ]
+      },
+      "properties": {
+        "osm_id": 889192601,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1641386,
+          -32.1917412
+        ]
+      },
+      "properties": {
+        "osm_id": 889192602,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1640304,
+          -32.1917967
+        ]
+      },
+      "properties": {
+        "osm_id": 889192603,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0805381,
+          -32.3003278
+        ]
+      },
+      "properties": {
+        "osm_id": 892768543,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.089646,
+          -32.2919087
+        ]
+      },
+      "properties": {
+        "osm_id": 892768545,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0899943,
+          -32.2944437
+        ]
+      },
+      "properties": {
+        "osm_id": 892768546,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0990345,
+          -32.314011
+        ]
+      },
+      "properties": {
+        "osm_id": 892776128,
+        "NOMBRE": "Plaza Los Inmigrantes",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "name": "Plaza Los Inmigrantes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1001981,
+          -32.3285292
+        ]
+      },
+      "properties": {
+        "osm_id": 892776135,
+        "NOMBRE": "La Chapita",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "name": "La Chapita"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0928881,
+          -32.310369
+        ]
+      },
+      "properties": {
+        "osm_id": 896312929,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0914063,
+          -32.3039949
+        ]
+      },
+      "properties": {
+        "osm_id": 896749955,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "multi"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1613768,
+          -32.2362031
+        ]
+      },
+      "properties": {
+        "osm_id": 904795075,
+        "NOMBRE": "Velódromo Núñez",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "sports_centre",
+        "layers_group": "deporte",
+        "name": "Velódromo Núñez",
+        "sport": "cycling"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2184419,
+          -32.2048379
+        ]
+      },
+      "properties": {
+        "osm_id": 920549078,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2181955,
+          -32.2038478
+        ]
+      },
+      "properties": {
+        "osm_id": 920549079,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2147576,
+          -32.2193615
+        ]
+      },
+      "properties": {
+        "osm_id": 920582140,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2049413,
+          -32.2056629
+        ]
+      },
+      "properties": {
+        "osm_id": 920582141,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2186866,
+          -32.2145037
+        ]
+      },
+      "properties": {
+        "osm_id": 920582142,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "basketball"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1818326,
+          -32.331682
+        ]
+      },
+      "properties": {
+        "osm_id": 934465789,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1005267,
+          -32.329354
+        ]
+      },
+      "properties": {
+        "osm_id": 951783306,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2147815,
+          -32.2191809
+        ]
+      },
+      "properties": {
+        "osm_id": 969647925,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2157091,
+          -32.2181661
+        ]
+      },
+      "properties": {
+        "osm_id": 969647926,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "basketball"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2155228,
+          -32.2191857
+        ]
+      },
+      "properties": {
+        "osm_id": 969647927,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2166007,
+          -32.2189751
+        ]
+      },
+      "properties": {
+        "osm_id": 969647928,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "rugby"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1505145,
+          -32.2197123
+        ]
+      },
+      "properties": {
+        "osm_id": 988861203,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "basketball"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1664933,
+          -32.2029104
+        ]
+      },
+      "properties": {
+        "osm_id": 989764524,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1660046,
+          -32.2027262
+        ]
+      },
+      "properties": {
+        "osm_id": 989764525,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1803988,
+          -32.1920498
+        ]
+      },
+      "properties": {
+        "osm_id": 989764526,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1802069,
+          -32.1920022
+        ]
+      },
+      "properties": {
+        "osm_id": 989764527,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1820152,
+          -32.2322103
+        ]
+      },
+      "properties": {
+        "osm_id": 989764530,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1968403,
+          -32.1588615
+        ]
+      },
+      "properties": {
+        "osm_id": 989764536,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1964452,
+          -32.1596469
+        ]
+      },
+      "properties": {
+        "osm_id": 989764537,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "basketball"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1961804,
+          -32.159581
+        ]
+      },
+      "properties": {
+        "osm_id": 989764538,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2049574,
+          -32.1652043
+        ]
+      },
+      "properties": {
+        "osm_id": 989764543,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2101245,
+          -32.1803142
+        ]
+      },
+      "properties": {
+        "osm_id": 993529105,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.209334,
+          -32.1801457
+        ]
+      },
+      "properties": {
+        "osm_id": 993529106,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.152136,
+          -32.2604621
+        ]
+      },
+      "properties": {
+        "osm_id": 1024663902,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1522265,
+          -32.261318
+        ]
+      },
+      "properties": {
+        "osm_id": 1024663903,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1335989,
+          -32.2267711
+        ]
+      },
+      "properties": {
+        "osm_id": 1033245234,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1966999,
+          -32.1841698
+        ]
+      },
+      "properties": {
+        "osm_id": 1036644699,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "basketball"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1009482,
+          -32.3124232
+        ]
+      },
+      "properties": {
+        "osm_id": 1078837194,
+        "NOMBRE": "Club Remeros de Paysandu",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "sports_centre",
+        "layers_group": "deporte",
+        "building": "yes",
+        "name": "Club Remeros de Paysandu",
+        "sport": "rowing"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2234537,
+          -32.2091575
+        ]
+      },
+      "properties": {
+        "osm_id": 1083890728,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2197558,
+          -32.1941412
+        ]
+      },
+      "properties": {
+        "osm_id": 1083890742,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0992816,
+          -32.3172667
+        ]
+      },
+      "properties": {
+        "osm_id": 1086135096,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.100829,
+          -32.3182469
+        ]
+      },
+      "properties": {
+        "osm_id": 1086135097,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0994033,
+          -32.3145597
+        ]
+      },
+      "properties": {
+        "osm_id": 1093143168,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.098253,
+          -32.313136
+        ]
+      },
+      "properties": {
+        "osm_id": 1093143169,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0979897,
+          -32.3132228
+        ]
+      },
+      "properties": {
+        "osm_id": 1093143170,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0975434,
+          -32.3132674
+        ]
+      },
+      "properties": {
+        "osm_id": 1093143171,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0981995,
+          -32.3135634
+        ]
+      },
+      "properties": {
+        "osm_id": 1093143172,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.098292,
+          -32.313769
+        ]
+      },
+      "properties": {
+        "osm_id": 1093143173,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0971698,
+          -32.3117038
+        ]
+      },
+      "properties": {
+        "osm_id": 1103670899,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "rugby",
+        "surface": "ground"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0821143,
+          -32.337399
+        ]
+      },
+      "properties": {
+        "osm_id": 1103750351,
+        "NOMBRE": "París Londres",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte",
+        "name": "París Londres"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0813612,
+          -32.3397779
+        ]
+      },
+      "properties": {
+        "osm_id": 1103750353,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0819192,
+          -32.3395551
+        ]
+      },
+      "properties": {
+        "osm_id": 1103750354,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0819507,
+          -32.3398366
+        ]
+      },
+      "properties": {
+        "osm_id": 1103750355,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0842756,
+          -32.3345842
+        ]
+      },
+      "properties": {
+        "osm_id": 1103750356,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.095462,
+          -32.3224639
+        ]
+      },
+      "properties": {
+        "osm_id": 1109901010,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "park",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1325968,
+          -32.2267969
+        ]
+      },
+      "properties": {
+        "osm_id": 1300349743,
+        "NOMBRE": "semitubo",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "access": "yes",
+        "name": "semitubo",
+        "sport": "skateboard",
+        "surface": "wood"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1329568,
+          -32.2262739
+        ]
+      },
+      "properties": {
+        "osm_id": 1300352100,
+        "NOMBRE": "Cancha del oso",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "access": "yes",
+        "hoops": "2",
+        "name": "Cancha del oso",
+        "sport": "basketball",
+        "surface": "asphalt"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1328108,
+          -32.2255769
+        ]
+      },
+      "properties": {
+        "osm_id": 1300352104,
+        "NOMBRE": "Cancha tenis",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "access": "permissive",
+        "lit": "yes",
+        "name": "Cancha tenis",
+        "sport": "tennis",
+        "surface": "ground"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1495307,
+          -32.2120958
+        ]
+      },
+      "properties": {
+        "osm_id": 1335208983,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1484245,
+          -32.2140729
+        ]
+      },
+      "properties": {
+        "osm_id": 1335208986,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1823008,
+          -32.1923532
+        ]
+      },
+      "properties": {
+        "osm_id": 1335208987,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2270926,
+          -32.205326
+        ]
+      },
+      "properties": {
+        "osm_id": 1335209281,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0943161,
+          -32.3094981
+        ]
+      },
+      "properties": {
+        "osm_id": 1367329684,
+        "NOMBRE": "U",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "name": "U",
+        "sport": "skateboard;bmx"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0938538,
+          -32.3079812
+        ]
+      },
+      "properties": {
+        "osm_id": 1447577969,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0806908,
+          -32.304744
+        ]
+      },
+      "properties": {
+        "osm_id": 1447577981,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "pitch",
+        "layers_group": "deporte",
+        "sport": "soccer",
+        "surface": "grass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1731877,
+          -32.1794308
+        ]
+      },
+      "properties": {
+        "osm_id": 1485115931,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.173303,
+          -32.1793069
+        ]
+      },
+      "properties": {
+        "osm_id": 1485115932,
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "leisure": "swimming_pool",
+        "layers_group": "deporte"
+      }
+    }
+  ]
+}

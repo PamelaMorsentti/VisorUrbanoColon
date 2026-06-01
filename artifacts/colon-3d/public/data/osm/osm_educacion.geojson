@@ -1,0 +1,1773 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2189693,
+          -32.213965
+        ]
+      },
+      "properties": {
+        "osm_id": 3282750499,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 5",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2173856,
+          -32.213402
+        ]
+      },
+      "properties": {
+        "osm_id": 3282750500,
+        "osm_type": "node",
+        "NOMBRE": "Colegio Niño Jesús",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1519458,
+          -32.2645198
+        ]
+      },
+      "properties": {
+        "osm_id": 3593687022,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 10 Mauricio Loker",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1335679,
+          -32.2256629
+        ]
+      },
+      "properties": {
+        "osm_id": 3771405250,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 85 Prefectura Naval Argentina",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0846962,
+          -32.3159777
+        ]
+      },
+      "properties": {
+        "osm_id": 4282811627,
+        "osm_type": "node",
+        "NOMBRE": "Centro Universitario de Paysandú",
+        "amenity": "university",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1785395,
+          -32.2418846
+        ]
+      },
+      "properties": {
+        "osm_id": 4462123192,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 4 Martin Reibel",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0925774,
+          -32.31538
+        ]
+      },
+      "properties": {
+        "osm_id": 4515530999,
+        "osm_type": "node",
+        "NOMBRE": "Liceo 5",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+598 4723 4539;+598 4722 0006",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0928019,
+          -32.315843
+        ]
+      },
+      "properties": {
+        "osm_id": 4515531000,
+        "osm_type": "node",
+        "NOMBRE": "Liceo 1 Departamental Química Farmacéutica Élida Heinzen",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+598 4722 2532;+598 4722 8484",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0843745,
+          -32.2676045
+        ]
+      },
+      "properties": {
+        "osm_id": 5098012219,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 13 República Argentina",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+598 4722 2521",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0864907,
+          -32.3047215
+        ]
+      },
+      "properties": {
+        "osm_id": 5688621187,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 33 Maestro Héctor Ferrari",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+598 4722 2320",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0898489,
+          -32.3063764
+        ]
+      },
+      "properties": {
+        "osm_id": 5688621188,
+        "osm_type": "node",
+        "NOMBRE": "Liberty School",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "https://www.libertyschool.edu.uy",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1407059,
+          -32.2197041
+        ]
+      },
+      "properties": {
+        "osm_id": 7868429154,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "kindergarten",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1406936,
+          -32.2205668
+        ]
+      },
+      "properties": {
+        "osm_id": 7868429155,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "kindergarten",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.217148,
+          -32.2133327
+        ]
+      },
+      "properties": {
+        "osm_id": 8546946401,
+        "osm_type": "node",
+        "NOMBRE": "Escuela Justo Jose De Urquiza 110",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.220539,
+          -32.2113806
+        ]
+      },
+      "properties": {
+        "osm_id": 8546965236,
+        "osm_type": "node",
+        "NOMBRE": "Instituto San José",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2213436,
+          -32.2115984
+        ]
+      },
+      "properties": {
+        "osm_id": 8546965237,
+        "osm_type": "node",
+        "NOMBRE": "Escuela Secundaria 1 Colonia San José",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2240214,
+          -32.2070808
+        ]
+      },
+      "properties": {
+        "osm_id": 8546965238,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 30 Augusto Vanerio",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2220521,
+          -32.1999752
+        ]
+      },
+      "properties": {
+        "osm_id": 8546965240,
+        "osm_type": "node",
+        "NOMBRE": "Escuela Secundaria 9 Heroes De Malvinas",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2180354,
+          -32.2126274
+        ]
+      },
+      "properties": {
+        "osm_id": 8547207618,
+        "osm_type": "node",
+        "NOMBRE": "Biblioteca Popular General Urquiza",
+        "amenity": "library",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1544663,
+          -32.2335305
+        ]
+      },
+      "properties": {
+        "osm_id": 9130084417,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 56 Hipólito Irigoyen",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2847043,
+          -32.2551393
+        ]
+      },
+      "properties": {
+        "osm_id": 9136537048,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 7 Tomás Godoy Cruz",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1489016,
+          -32.2180712
+        ]
+      },
+      "properties": {
+        "osm_id": 9139829044,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 82 Emilio Gouchon",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1712255,
+          -32.2040129
+        ]
+      },
+      "properties": {
+        "osm_id": 9147097112,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 69 - Tierra del Fuego",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2337938,
+          -32.1735459
+        ]
+      },
+      "properties": {
+        "osm_id": 9147104085,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 54 Carlos Sourigues",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2580886,
+          -32.1883363
+        ]
+      },
+      "properties": {
+        "osm_id": 9147104169,
+        "osm_type": "node",
+        "NOMBRE": "Pasitos De Las Piedras 31",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.3370694,
+          -32.2433329
+        ]
+      },
+      "properties": {
+        "osm_id": 9147104297,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 6 Martín Rodriguez",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1447163,
+          -32.2328043
+        ]
+      },
+      "properties": {
+        "osm_id": 9179010496,
+        "osm_type": "node",
+        "NOMBRE": "Jardín Maternal Medalla Milagrosa",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.214058,
+          -32.1794397
+        ]
+      },
+      "properties": {
+        "osm_id": 9179032303,
+        "osm_type": "node",
+        "NOMBRE": "Escuela Secundaria 6 Esmeralda Bertelli",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2138286,
+          -32.179191
+        ]
+      },
+      "properties": {
+        "osm_id": 9179032305,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 32 Pronunciamiento",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2141453,
+          -32.1786497
+        ]
+      },
+      "properties": {
+        "osm_id": 9179032306,
+        "osm_type": "node",
+        "NOMBRE": "Jardín Maternal Rinconcito De Esperanza",
+        "amenity": "kindergarten",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1928247,
+          -32.1556768
+        ]
+      },
+      "properties": {
+        "osm_id": 9181513803,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 16 Hipólito Vieytes",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1803501,
+          -32.3325656
+        ]
+      },
+      "properties": {
+        "osm_id": 9202782380,
+        "osm_type": "node",
+        "NOMBRE": "Escuela Nº 79 Puerto Almirón",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2268473,
+          -32.2471008
+        ]
+      },
+      "properties": {
+        "osm_id": 9448292763,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 13 General Jose De San Martín",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1373443,
+          -32.2212332
+        ]
+      },
+      "properties": {
+        "osm_id": 9448292783,
+        "osm_type": "node",
+        "NOMBRE": "Escuela Secundaria Normal Superior 7 Republica Oriental Del Uruguay",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1620903,
+          -32.2312293
+        ]
+      },
+      "properties": {
+        "osm_id": 9448439250,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 86 Lazarina Lambert De Sardou",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1405267,
+          -32.2181109
+        ]
+      },
+      "properties": {
+        "osm_id": 9448439252,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 112 San José",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.146011,
+          -32.2539525
+        ]
+      },
+      "properties": {
+        "osm_id": 9448439273,
+        "osm_type": "node",
+        "NOMBRE": "Justo José De Urquiza Agrotecnica",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1338689,
+          -32.2254584
+        ]
+      },
+      "properties": {
+        "osm_id": 9448468534,
+        "osm_type": "node",
+        "NOMBRE": "Escuela Secundaria 13 Rene Favaloro",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1623734,
+          -32.2313764
+        ]
+      },
+      "properties": {
+        "osm_id": 9448468535,
+        "osm_type": "node",
+        "NOMBRE": "Escuela Secundaria 15",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.145564,
+          -32.2198123
+        ]
+      },
+      "properties": {
+        "osm_id": 9448468536,
+        "osm_type": "node",
+        "NOMBRE": "Escuela Técnica 2 Canonigo Narciso Goiburu",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1458655,
+          -32.2200325
+        ]
+      },
+      "properties": {
+        "osm_id": 9448468537,
+        "osm_type": "node",
+        "NOMBRE": "Escuela Técnica 1 Herminio Juan Quiros",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1403611,
+          -32.2182979
+        ]
+      },
+      "properties": {
+        "osm_id": 9448468538,
+        "osm_type": "node",
+        "NOMBRE": "Madre Isabel Fernandez D-204",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1946854,
+          -32.185601
+        ]
+      },
+      "properties": {
+        "osm_id": 9550474678,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 12 Juan Bautista Alberdi",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.3000144,
+          -32.2024475
+        ]
+      },
+      "properties": {
+        "osm_id": 9550474695,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 9 Francisco Narciso Laprida",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1372268,
+          -32.2206809
+        ]
+      },
+      "properties": {
+        "osm_id": 10028785030,
+        "osm_type": "node",
+        "NOMBRE": "Biblioteca Popular Fiat Lux",
+        "amenity": "library",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0834683,
+          -32.2615942
+        ]
+      },
+      "properties": {
+        "osm_id": 11339254053,
+        "osm_type": "node",
+        "NOMBRE": "Polo Educativo Tecnológico Paysandú",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "https://polotecpaysandu.utu.edu.uy/",
+        "phone": "+598 4723 2993",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0853454,
+          -32.304904
+        ]
+      },
+      "properties": {
+        "osm_id": 11369877905,
+        "osm_type": "node",
+        "NOMBRE": "Instituto de Alta Especialización Paysandú",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0866086,
+          -32.3045319
+        ]
+      },
+      "properties": {
+        "osm_id": 11481484547,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 107",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+598 4723 4376",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0939716,
+          -32.3250172
+        ]
+      },
+      "properties": {
+        "osm_id": 11481484548,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 95 Luisa Luisi",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+598 4722 6063",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0954468,
+          -32.3134129
+        ]
+      },
+      "properties": {
+        "osm_id": 11481484549,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 1 José Pedro Varela",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+598 4722 2140",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0865798,
+          -32.3224768
+        ]
+      },
+      "properties": {
+        "osm_id": 11481484551,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 6 República del Paraguay",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+598 4722 2660",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0821231,
+          -32.3167302
+        ]
+      },
+      "properties": {
+        "osm_id": 11481484552,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 8 John F. Kennedy",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+598 4722 3094",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0967401,
+          -32.3493218
+        ]
+      },
+      "properties": {
+        "osm_id": 11481484567,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 25",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+598 4722 8535",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0866037,
+          -32.3156543
+        ]
+      },
+      "properties": {
+        "osm_id": 11481530921,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 91",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+598 4722 4657",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0817901,
+          -32.3164173
+        ]
+      },
+      "properties": {
+        "osm_id": 11481531145,
+        "osm_type": "node",
+        "NOMBRE": "Instituto de Formación Docente de Paysandú",
+        "amenity": "college",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "http://ifdpaysandu.cfe.edu.uy/",
+        "phone": "+598 4722 9068;+598 4772 2733",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0838006,
+          -32.3193318
+        ]
+      },
+      "properties": {
+        "osm_id": 11481531694,
+        "osm_type": "node",
+        "NOMBRE": "Instituto Tecnológico Superior Paysand��",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+598 4722 9685",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0805885,
+          -32.3189985
+        ]
+      },
+      "properties": {
+        "osm_id": 11481531695,
+        "osm_type": "node",
+        "NOMBRE": "Escuela Técnica Paysandú",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+598 4722 2580;+598 4723 4830;+598 4722 5716",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0856848,
+          -32.3143091
+        ]
+      },
+      "properties": {
+        "osm_id": 11481532233,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 94 General Leandro Gómez",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+598 4722 5215",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0865677,
+          -32.3224201
+        ]
+      },
+      "properties": {
+        "osm_id": 11481532235,
+        "osm_type": "node",
+        "NOMBRE": "Escuela 106 Apolo Ronchi",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+598 4722 8244",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1410884,
+          -32.2201772
+        ]
+      },
+      "properties": {
+        "osm_id": 338209812,
+        "osm_type": "way",
+        "NOMBRE": "Escuela 1 Juan José Paso",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1476336,
+          -32.2273711
+        ]
+      },
+      "properties": {
+        "osm_id": 835595664,
+        "osm_type": "way",
+        "NOMBRE": "Escuela 60 Capital Federal",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.148298,
+          -32.2266481
+        ]
+      },
+      "properties": {
+        "osm_id": 835595665,
+        "osm_type": "way",
+        "NOMBRE": "Normal",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0895176,
+          -32.305195
+        ]
+      },
+      "properties": {
+        "osm_id": 878764828,
+        "osm_type": "way",
+        "NOMBRE": "Marco Malki",
+        "amenity": "library",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2119928,
+          -32.210903
+        ]
+      },
+      "properties": {
+        "osm_id": 920549077,
+        "osm_type": "way",
+        "NOMBRE": "Escuela Alejo Peyret 53",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2221129,
+          -32.1998241
+        ]
+      },
+      "properties": {
+        "osm_id": 920549080,
+        "osm_type": "way",
+        "NOMBRE": "Escuela Justo José De Urquiza 83",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2336354,
+          -32.2980389
+        ]
+      },
+      "properties": {
+        "osm_id": 934465779,
+        "osm_type": "way",
+        "NOMBRE": "Escuela 3 de Febrero 8",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2792091,
+          -32.3011077
+        ]
+      },
+      "properties": {
+        "osm_id": 934465798,
+        "osm_type": "way",
+        "NOMBRE": "Escuela 15 Sargento Cabral",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0845028,
+          -32.2687297
+        ]
+      },
+      "properties": {
+        "osm_id": 1225215049,
+        "osm_type": "way",
+        "NOMBRE": "Liceo 6",
+        "amenity": "school",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+598 4724 2367",
+        "opening_hours": "",
+        "layers_group": "educacion"
+      }
+    }
+  ]
+}

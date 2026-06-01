@@ -1,0 +1,96 @@
+{
+  "documento_origen": "Codigo Tributario Municipal ENERO 2026.docx",
+  "ordenanza_referencia": "Ordenanza 2/2025",
+  "fuente_texto": "docs/_tmp_document_text.txt",
+  "fecha_extraccion": "2026-04-29",
+  "jurisdiccion": "Colon, Entre Rios",
+  "zonificacion_tributaria": {
+    "tasa_general_inmobiliaria": {
+      "articulo_principal": "Art. 218 (remite a Arts. 126-132)",
+      "categorias": [
+        {
+          "categoria": "A",
+          "criterio": "Inmuebles con servicios, cordon cuneta y pavimento/asfalto/articulado",
+          "coeficiente_categoria": 1.0,
+          "fuente": "Art. 218 y bloque de coeficiente por categoria"
+        },
+        {
+          "categoria": "B",
+          "criterio": "Inmuebles con servicios y cordon cuneta",
+          "coeficiente_categoria": 0.95,
+          "fuente": "Art. 218 y bloque de coeficiente por categoria"
+        },
+        {
+          "categoria": "C",
+          "criterio": "Nucleo urbano no incluido en A/B y area periurbana consolidada con apertura de calles (tratamiento urbano)",
+          "coeficiente_categoria": 0.9,
+          "fuente": "Art. 218 y definicion de categorias por Art. 127"
+        },
+        {
+          "categoria": "D",
+          "criterio": "Sector productivo y area periurbana no incluida en C",
+          "coeficiente_categoria": 0.9,
+          "fuente": "Art. 218 y definicion de categorias por Art. 127"
+        }
+      ],
+      "notas": [
+        "El texto indica que Catastro puede recategorizar inmuebles automaticamente cuando se ejecuten obras de infraestructura.",
+        "En el bloque de coeficientes aparece 'Otras zonas: 0,90'; para operatividad GIS se aplico 0,90 a C y D hasta contar con acto administrativo mas especifico."
+      ]
+    },
+    "tasa_higiene_actividades": {
+      "articulo_principal": "Art. 225",
+      "temporadas": [
+        {
+          "nombre": "Temporada Alta",
+          "periodo": "Enero a Febrero"
+        },
+        {
+          "nombre": "Temporada Baja",
+          "periodo": "Marzo a Diciembre"
+        }
+      ],
+      "zonas": [
+        {
+          "zona": "Zona 1",
+          "descripcion": "Actividades en calles y tramos definidos en el texto de Art. 225",
+          "limites_textuales": [
+            "Urquiza y 12 de Abril: desde Av. Quiros a Bvard. Gonzalez-Sanguinetti",
+            "San Martin, Pte. Peron, A. Peyret, J. J. Paso, Av. Quiros, Camino Costero Norte y Sur: toda su extension",
+            "Paysandu: desde A. Peyret hasta Pte. Peron",
+            "Transversales entre Urquiza y San Martin, desde Av. Quiros hasta Bvard. Gonzalez-Sanguinetti"
+          ],
+          "regla_temporada_baja": "Abona 100% de los minimos establecidos para temporada baja",
+          "fuente": "Art. 225"
+        },
+        {
+          "zona": "Zona 2",
+          "descripcion": "Actividades fuera de Zona 1",
+          "regla_temporada_baja": "Abona 60% de los minimos establecidos para temporada baja",
+          "fuente": "Art. 225"
+        }
+      ],
+      "excepciones": [
+        {
+          "aplica_distincion_zona": false,
+          "tributacion": "100% de minimos todo el ano",
+          "rubros": [
+            "Servicios de alojamiento en hoteles, hosterias, residenciales y similares (excepto por hora), cualquier categoria",
+            "Servicios de hospedaje temporal n.c.p."
+          ],
+          "fuente": "Art. 225"
+        }
+      ]
+    }
+  },
+  "sugerencias_para_mapa": {
+    "capas_recomendadas": [
+      "zona_actividades_z1_z2",
+      "categoria_inmobiliaria_a_b_c_d"
+    ],
+    "observaciones": [
+      "Zona 1/Zona 2 se define por ejes viales; requiere digitalizacion por tramos de calle para construccion de poligonos.",
+      "Categorias A/B/C/D dependen de atributos de servicios e infraestructura; requiere union espacial con catastro y capas de servicios."
+    ]
+  }
+}

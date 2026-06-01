@@ -1,0 +1,499 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0816064,
+          -32.3226502
+        ]
+      },
+      "properties": {
+        "osm_id": 4234640589,
+        "osm_type": "node",
+        "NOMBRE": "Comepa",
+        "amenity": "clinic",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "https://www.comepa.com.uy/",
+        "phone": "+598 4723 2100",
+        "opening_hours": "",
+        "layers_group": "salud"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2236503,
+          -32.2112363
+        ]
+      },
+      "properties": {
+        "osm_id": 4888127221,
+        "osm_type": "node",
+        "NOMBRE": "Quiropraxia San José",
+        "amenity": "clinic",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+543447499895",
+        "opening_hours": "",
+        "layers_group": "salud"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2184732,
+          -32.2079014
+        ]
+      },
+      "properties": {
+        "osm_id": 5800024747,
+        "osm_type": "node",
+        "NOMBRE": "Marzorati",
+        "amenity": "pharmacy",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "salud"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1948452,
+          -32.155009
+        ]
+      },
+      "properties": {
+        "osm_id": 6910829099,
+        "osm_type": "node",
+        "NOMBRE": "Sala de primeros auxilios",
+        "amenity": "doctors",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "salud"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0935068,
+          -32.315856
+        ]
+      },
+      "properties": {
+        "osm_id": 7248945755,
+        "osm_type": "node",
+        "NOMBRE": "Dorotte 1",
+        "amenity": "pharmacy",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "(+598) 4722 2645",
+        "opening_hours": "",
+        "layers_group": "salud"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1527585,
+          -32.2231899
+        ]
+      },
+      "properties": {
+        "osm_id": 7785339560,
+        "osm_type": "node",
+        "NOMBRE": "Doctor Mariano Pedro Rebord",
+        "amenity": "clinic",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "salud"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.080198,
+          -32.3223353
+        ]
+      },
+      "properties": {
+        "osm_id": 8530430317,
+        "osm_type": "node",
+        "NOMBRE": "Sanatorio Comepa",
+        "amenity": "hospital",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "47232100",
+        "opening_hours": "24/7",
+        "layers_group": "salud"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2190767,
+          -32.2114093
+        ]
+      },
+      "properties": {
+        "osm_id": 8546965225,
+        "osm_type": "node",
+        "NOMBRE": "Jaén",
+        "amenity": "pharmacy",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "salud"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2080378,
+          -32.2053463
+        ]
+      },
+      "properties": {
+        "osm_id": 8546965235,
+        "osm_type": "node",
+        "NOMBRE": "2 de Abril",
+        "amenity": "pharmacy",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "salud"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2224545,
+          -32.1993956
+        ]
+      },
+      "properties": {
+        "osm_id": 8546965239,
+        "osm_type": "node",
+        "NOMBRE": "Bravo",
+        "amenity": "pharmacy",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "salud"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2169768,
+          -32.2126443
+        ]
+      },
+      "properties": {
+        "osm_id": 8546965421,
+        "osm_type": "node",
+        "NOMBRE": "Farma Salud",
+        "amenity": "pharmacy",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "salud"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2183549,
+          -32.2104044
+        ]
+      },
+      "properties": {
+        "osm_id": 8546965422,
+        "osm_type": "node",
+        "NOMBRE": "Ferrari",
+        "amenity": "pharmacy",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "salud"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1616989,
+          -32.1901456
+        ]
+      },
+      "properties": {
+        "osm_id": 10574011860,
+        "osm_type": "node",
+        "NOMBRE": "Enfermería",
+        "amenity": "doctors",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "salud"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1364755,
+          -32.2247559
+        ]
+      },
+      "properties": {
+        "osm_id": 334797606,
+        "osm_type": "way",
+        "NOMBRE": "Hospital San Benjamin",
+        "amenity": "hospital",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "salud"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0806969,
+          -32.3255677
+        ]
+      },
+      "properties": {
+        "osm_id": 470907941,
+        "osm_type": "way",
+        "NOMBRE": "Hospital Escuela del Litoral Galan y Rocha",
+        "amenity": "hospital",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "http://www.asse.com.uy",
+        "phone": "+598 4722 4836",
+        "opening_hours": "",
+        "layers_group": "salud"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2263009,
+          -32.2112918
+        ]
+      },
+      "properties": {
+        "osm_id": 785406288,
+        "osm_type": "way",
+        "NOMBRE": "Hospital San Jose",
+        "amenity": "hospital",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+54 3447 470894",
+        "opening_hours": "",
+        "layers_group": "salud"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.138972,
+          -32.2263573
+        ]
+      },
+      "properties": {
+        "osm_id": 785964460,
+        "osm_type": "way",
+        "NOMBRE": "Sanatorio Medico Quirurgico",
+        "amenity": "hospital",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "salud"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1467731,
+          -32.2191856
+        ]
+      },
+      "properties": {
+        "osm_id": 886979975,
+        "osm_type": "way",
+        "NOMBRE": "Hospital Rio Uruguay",
+        "amenity": "hospital",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "salud"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1469563,
+          -32.2091705
+        ]
+      },
+      "properties": {
+        "osm_id": 888792375,
+        "osm_type": "way",
+        "NOMBRE": "Enfermería",
+        "amenity": "doctors",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "salud"
+      }
+    }
+  ]
+}

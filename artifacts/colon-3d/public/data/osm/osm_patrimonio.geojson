@@ -1,0 +1,1071 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1372669,
+          -32.2205188
+        ]
+      },
+      "properties": {
+        "osm_id": 3677903825,
+        "osm_type": "node",
+        "NOMBRE": "Llama de la Esperanza",
+        "amenity": "",
+        "tourism": "",
+        "historic": "memorial",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0950102,
+          -32.3157293
+        ]
+      },
+      "properties": {
+        "osm_id": 4846318401,
+        "osm_type": "node",
+        "NOMBRE": "Monumento al Gral. José Gervasio Artigas",
+        "amenity": "",
+        "tourism": "",
+        "historic": "memorial",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0802911,
+          -32.3169131
+        ]
+      },
+      "properties": {
+        "osm_id": 5484560239,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "monument",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0801321,
+          -32.3171626
+        ]
+      },
+      "properties": {
+        "osm_id": 5484560241,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "",
+        "historic": "memorial",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1913289,
+          -32.1548817
+        ]
+      },
+      "properties": {
+        "osm_id": 6910805379,
+        "osm_type": "node",
+        "NOMBRE": "General San Martín",
+        "amenity": "",
+        "tourism": "",
+        "historic": "memorial",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1911528,
+          -32.1541933
+        ]
+      },
+      "properties": {
+        "osm_id": 6910829112,
+        "osm_type": "node",
+        "NOMBRE": "Corned beef Liebig",
+        "amenity": "",
+        "tourism": "",
+        "historic": "memorial",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1913829,
+          -32.1544075
+        ]
+      },
+      "properties": {
+        "osm_id": 6911934045,
+        "osm_type": "node",
+        "NOMBRE": "Homenaje a Justus von Liebig",
+        "amenity": "",
+        "tourism": "",
+        "historic": "memorial",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1589034,
+          -32.2382364
+        ]
+      },
+      "properties": {
+        "osm_id": 7223246485,
+        "osm_type": "node",
+        "NOMBRE": "Bodega Vulliez-Sermet",
+        "amenity": "",
+        "tourism": "",
+        "historic": "castle",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "https://www.vulliezsermet.com/",
+        "phone": "+543447505095",
+        "opening_hours": "Mo-Su 11:00-12:00",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0805044,
+          -32.3172728
+        ]
+      },
+      "properties": {
+        "osm_id": 10091364291,
+        "osm_type": "node",
+        "NOMBRE": "Monumento de la Libertad",
+        "amenity": "",
+        "tourism": "",
+        "historic": "memorial",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.261292,
+          -32.3419168
+        ]
+      },
+      "properties": {
+        "osm_id": 10307201778,
+        "osm_type": "node",
+        "NOMBRE": "Monumento a Urquiza",
+        "amenity": "",
+        "tourism": "attraction",
+        "historic": "memorial",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1617425,
+          -32.1904696
+        ]
+      },
+      "properties": {
+        "osm_id": 10574550793,
+        "osm_type": "node",
+        "NOMBRE": "Santa María",
+        "amenity": "",
+        "tourism": "",
+        "historic": "wayside_shrine",
+        "leisure": "",
+        "office": "",
+        "religion": "christian",
+        "denomination": "catholic",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0808976,
+          -32.3243882
+        ]
+      },
+      "properties": {
+        "osm_id": 12648130993,
+        "osm_type": "node",
+        "NOMBRE": "Eugenio Plotter y Familia",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0807681,
+          -32.324404
+        ]
+      },
+      "properties": {
+        "osm_id": 12648130994,
+        "osm_type": "node",
+        "NOMBRE": "Stirling Argois",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0806833,
+          -32.3243969
+        ]
+      },
+      "properties": {
+        "osm_id": 12648130995,
+        "osm_type": "node",
+        "NOMBRE": "Familia Brian",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.08062,
+          -32.324393
+        ]
+      },
+      "properties": {
+        "osm_id": 12648130996,
+        "osm_type": "node",
+        "NOMBRE": "Felipe Argentó y Familia",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0805264,
+          -32.3243559
+        ]
+      },
+      "properties": {
+        "osm_id": 12648130997,
+        "osm_type": "node",
+        "NOMBRE": "Luis Galán Rocha y Familia",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0804265,
+          -32.3243894
+        ]
+      },
+      "properties": {
+        "osm_id": 12648130998,
+        "osm_type": "node",
+        "NOMBRE": "Víctimas de las luchas civiles",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.080264,
+          -32.3243813
+        ]
+      },
+      "properties": {
+        "osm_id": 12648130999,
+        "osm_type": "node",
+        "NOMBRE": "Familia de Félix Horta",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0808523,
+          -32.3243197
+        ]
+      },
+      "properties": {
+        "osm_id": 12648131000,
+        "osm_type": "node",
+        "NOMBRE": "Ida Aguilar",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0807819,
+          -32.3243214
+        ]
+      },
+      "properties": {
+        "osm_id": 12648145201,
+        "osm_type": "node",
+        "NOMBRE": "Familia de Miguel Horta",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0806632,
+          -32.3243254
+        ]
+      },
+      "properties": {
+        "osm_id": 12648145202,
+        "osm_type": "node",
+        "NOMBRE": "Familia de José Sierra y Mónica Reyes",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0809636,
+          -32.3242574
+        ]
+      },
+      "properties": {
+        "osm_id": 12648145203,
+        "osm_type": "node",
+        "NOMBRE": "A los caídos del Quebracho",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0807604,
+          -32.3241662
+        ]
+      },
+      "properties": {
+        "osm_id": 12648145204,
+        "osm_type": "node",
+        "NOMBRE": "A los servidores de la patria",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.080981,
+          -32.3244693
+        ]
+      },
+      "properties": {
+        "osm_id": 12648145206,
+        "osm_type": "node",
+        "NOMBRE": "Manuel Adolfo Olaechea",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0808032,
+          -32.324551
+        ]
+      },
+      "properties": {
+        "osm_id": 12648145207,
+        "osm_type": "node",
+        "NOMBRE": "Eusebio Francia",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0802627,
+          -32.3241959
+        ]
+      },
+      "properties": {
+        "osm_id": 12648145209,
+        "osm_type": "node",
+        "NOMBRE": "Familia de Sebastián Etcheveste",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.080194,
+          -32.3243315
+        ]
+      },
+      "properties": {
+        "osm_id": 12666771735,
+        "osm_type": "node",
+        "NOMBRE": "Don Tomás Paredes y Cecilia Borjes de Paredes e hijos",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.080504,
+          -32.3244372
+        ]
+      },
+      "properties": {
+        "osm_id": 12666771736,
+        "osm_type": "node",
+        "NOMBRE": "Bernabé Silveira de Andrade",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0803182,
+          -32.3244664
+        ]
+      },
+      "properties": {
+        "osm_id": 12666771737,
+        "osm_type": "node",
+        "NOMBRE": "Josefa Laballeja de Iglesias",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0801055,
+          -32.3244735
+        ]
+      },
+      "properties": {
+        "osm_id": 12666771738,
+        "osm_type": "node",
+        "NOMBRE": "Josefina de Ravizzini",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.080423,
+          -32.3243328
+        ]
+      },
+      "properties": {
+        "osm_id": 12666771739,
+        "osm_type": "node",
+        "NOMBRE": "Santiago Lasarga",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0805794,
+          -32.3244356
+        ]
+      },
+      "properties": {
+        "osm_id": 12666771740,
+        "osm_type": "node",
+        "NOMBRE": "Clemente Apotheloz",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0802641,
+          -32.3243328
+        ]
+      },
+      "properties": {
+        "osm_id": 12666771741,
+        "osm_type": "node",
+        "NOMBRE": "Juan G. Escayola y familia",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.080095,
+          -32.3244199
+        ]
+      },
+      "properties": {
+        "osm_id": 12666771742,
+        "osm_type": "node",
+        "NOMBRE": "Teniente Coronel D. Pedro Rivero",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0805725,
+          -32.3242774
+        ]
+      },
+      "properties": {
+        "osm_id": 12666771743,
+        "osm_type": "node",
+        "NOMBRE": "Dr. Vicente Mongrell",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0805114,
+          -32.3245163
+        ]
+      },
+      "properties": {
+        "osm_id": 12666771744,
+        "osm_type": "node",
+        "NOMBRE": "Francisco de Souza",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0801922,
+          -32.3243827
+        ]
+      },
+      "properties": {
+        "osm_id": 12666771745,
+        "osm_type": "node",
+        "NOMBRE": "Familia Thevenet",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0801015,
+          -32.3244446
+        ]
+      },
+      "properties": {
+        "osm_id": 12666771746,
+        "osm_type": "node",
+        "NOMBRE": "Sepulcro Catalá",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0803469,
+          -32.3243301
+        ]
+      },
+      "properties": {
+        "osm_id": 12666771747,
+        "osm_type": "node",
+        "NOMBRE": "Bonifacia Guedes de Morales",
+        "amenity": "",
+        "tourism": "",
+        "historic": "tomb",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0807645,
+          -32.3170788
+        ]
+      },
+      "properties": {
+        "osm_id": 1102773038,
+        "osm_type": "way",
+        "NOMBRE": "Monumento Leandro Gómez",
+        "amenity": "",
+        "tourism": "artwork",
+        "historic": "memorial",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1326236,
+          -32.2260729
+        ]
+      },
+      "properties": {
+        "osm_id": 1300352105,
+        "osm_type": "way",
+        "NOMBRE": "Templete",
+        "amenity": "",
+        "tourism": "",
+        "historic": "building",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "patrimonio"
+      }
+    }
+  ]
+}

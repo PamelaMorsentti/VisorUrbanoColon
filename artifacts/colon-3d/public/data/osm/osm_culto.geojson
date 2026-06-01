@@ -1,0 +1,395 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2183617,
+          -32.2120679
+        ]
+      },
+      "properties": {
+        "osm_id": 2482952274,
+        "osm_type": "node",
+        "NOMBRE": "Parroquia San José",
+        "amenity": "place_of_worship",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "christian",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "culto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0817452,
+          -32.3058286
+        ]
+      },
+      "properties": {
+        "osm_id": 6072871319,
+        "osm_type": "node",
+        "NOMBRE": "La iglesia de Jesucristo de los ultimos Dias",
+        "amenity": "place_of_worship",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "culto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0851236,
+          -32.3233462
+        ]
+      },
+      "properties": {
+        "osm_id": 6072907406,
+        "osm_type": "node",
+        "NOMBRE": "La Iglesia de Jesucristo de los Santos de los Últimos Días",
+        "amenity": "place_of_worship",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "christian",
+        "denomination": "mormon",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "culto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0817653,
+          -32.3022821
+        ]
+      },
+      "properties": {
+        "osm_id": 7147830985,
+        "osm_type": "node",
+        "NOMBRE": "Bhone",
+        "amenity": "place_of_worship",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "buddhist",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "Tu-Sa 11:30-14:15,20:00-23:15; Su 11:30-14:15",
+        "layers_group": "culto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0865592,
+          -32.3078547
+        ]
+      },
+      "properties": {
+        "osm_id": 8401328031,
+        "osm_type": "node",
+        "NOMBRE": "Iglesia Bíblica de Paysandú",
+        "amenity": "place_of_worship",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "culto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2134347,
+          -32.1789676
+        ]
+      },
+      "properties": {
+        "osm_id": 9179032304,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "place_of_worship",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "christian",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "culto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0847079,
+          -32.2904788
+        ]
+      },
+      "properties": {
+        "osm_id": 99496007,
+        "osm_type": "way",
+        "NOMBRE": "La Iglesia de Jesucristo de los Santos de los Últimos Días",
+        "amenity": "place_of_worship",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "christian",
+        "denomination": "mormon",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "culto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.143608,
+          -32.2252896
+        ]
+      },
+      "properties": {
+        "osm_id": 334797623,
+        "osm_type": "way",
+        "NOMBRE": "Parroquia Santos Justo y Pastor",
+        "amenity": "place_of_worship",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "christian",
+        "denomination": "roman_catholic",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "culto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1416256,
+          -32.2177806
+        ]
+      },
+      "properties": {
+        "osm_id": 334797625,
+        "osm_type": "way",
+        "NOMBRE": "Parroquia Nuestra Señora del Carmen",
+        "amenity": "place_of_worship",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "christian",
+        "denomination": "roman_catholic",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "culto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0819931,
+          -32.3270246
+        ]
+      },
+      "properties": {
+        "osm_id": 470907937,
+        "osm_type": "way",
+        "NOMBRE": "Congregación Cristiana en el Uruguay - Central",
+        "amenity": "place_of_worship",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "christian",
+        "denomination": "evangelical",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "culto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1915455,
+          -32.1544556
+        ]
+      },
+      "properties": {
+        "osm_id": 635478296,
+        "osm_type": "way",
+        "NOMBRE": "Sagrado Corazón de Jesús",
+        "amenity": "place_of_worship",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "christian",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "culto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0798236,
+          -32.3171718
+        ]
+      },
+      "properties": {
+        "osm_id": 672861291,
+        "osm_type": "way",
+        "NOMBRE": "Basílica Nuestra Señora del Rosario",
+        "amenity": "place_of_worship",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "christian",
+        "denomination": "catholic",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "culto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0798881,
+          -32.2917358
+        ]
+      },
+      "properties": {
+        "osm_id": 841404983,
+        "osm_type": "way",
+        "NOMBRE": "Iglesia Pentecostal Unida del Uruguay",
+        "amenity": "place_of_worship",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "christian",
+        "denomination": "pentecostal",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "culto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1420876,
+          -32.2304911
+        ]
+      },
+      "properties": {
+        "osm_id": 881471467,
+        "osm_type": "way",
+        "NOMBRE": "Nueva Vida",
+        "amenity": "place_of_worship",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "christian",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "culto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2261778,
+          -32.2109134
+        ]
+      },
+      "properties": {
+        "osm_id": 897310681,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "place_of_worship",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "christian",
+        "denomination": "roman_catholic",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "culto"
+      }
+    }
+  ]
+}

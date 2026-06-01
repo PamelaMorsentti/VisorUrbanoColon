@@ -6,4 +6,4 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export * from './healthStatus.ts';
+export * from './healthStatus';

@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-04-30T02:39:58.529Z",
+  "source": {
+    "calle": "artifacts/colon-3d/public/data/Calle.geojson",
+    "parcela": "artifacts/colon-3d/public/data/Parcela.geojson",
+    "seccion": "artifacts/colon-3d/public/data/seccion.geojson"
+  },
+  "outputs": {
+    "zonaGeoJson": "artifacts/colon-3d/public/data/zona_tributaria_actividades_z1_z2.geojson",
+    "zonaAxisGeoJson": "artifacts/colon-3d/public/data/zona_tributaria_ejes_z1.geojson",
+    "parcelaCsv": "docs/parcela_categoria_tributaria_preliminar.csv"
+  },
+  "matchingStats": {
+    "fullStreetLines": 91,
+    "segmentStreetLines": 94,
+    "clippedSegmentLines": 94,
+    "corridorBoundaryLines": 124,
+    "polygonizedFaces": 0,
+    "bufferMeters": 25
+  },
+  "counts": {
+    "total": 13651,
+    "zona1": 4301,
+    "zona2": 9350,
+    "categoriaA": 4301,
+    "categoriaB": 8732,
+    "categoriaC": 603,
+    "categoriaD": 15
+  },
+  "assumptions": [
+    "Zona 1 se construye como union de corredor central y buffers de calles normativas.",
+    "Zona 2 se define como diferencia entre ejido municipal y Zona 1.",
+    "Categoria parcelaria es preliminar y usa reglas proxy: Zona 1->A, sino NMANZ>0->B, sino GRU>0->C, resto->D."
+  ]
+}

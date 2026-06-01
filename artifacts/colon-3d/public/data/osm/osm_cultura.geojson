@@ -1,0 +1,291 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2178907,
+          -32.2124845
+        ]
+      },
+      "properties": {
+        "osm_id": 3279483616,
+        "osm_type": "node",
+        "NOMBRE": "Cine Urquiza",
+        "amenity": "cinema",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1340455,
+          -32.2204608
+        ]
+      },
+      "properties": {
+        "osm_id": 3426013044,
+        "osm_type": "node",
+        "NOMBRE": "Teatro Gran Colón",
+        "amenity": "theatre",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0840349,
+          -32.317664
+        ]
+      },
+      "properties": {
+        "osm_id": 3996251088,
+        "osm_type": "node",
+        "NOMBRE": "Florencio Sanchez",
+        "amenity": "theatre",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0834741,
+          -32.3172511
+        ]
+      },
+      "properties": {
+        "osm_id": 4357797396,
+        "osm_type": "node",
+        "NOMBRE": "Cine Shopping",
+        "amenity": "cinema",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "Mo-Su 17:00-00:00",
+        "layers_group": "cultura"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0845554,
+          -32.3161887
+        ]
+      },
+      "properties": {
+        "osm_id": 4762031122,
+        "osm_type": "node",
+        "NOMBRE": "Oficina Territorial MIDES Paysandú",
+        "amenity": "community_centre",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1526925,
+          -32.2230302
+        ]
+      },
+      "properties": {
+        "osm_id": 6693587482,
+        "osm_type": "node",
+        "NOMBRE": "Grupo Scout Nuestra Señora de Fátima",
+        "amenity": "community_centre",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "Sa 15:00-18:00",
+        "layers_group": "cultura"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1318028,
+          -32.225459
+        ]
+      },
+      "properties": {
+        "osm_id": 6693596655,
+        "osm_type": "node",
+        "NOMBRE": "Grupo Scout Colón",
+        "amenity": "community_centre",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "Sa 15:00-18:00",
+        "layers_group": "cultura"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2156215,
+          -32.179099
+        ]
+      },
+      "properties": {
+        "osm_id": 9179032280,
+        "osm_type": "node",
+        "NOMBRE": "Centro Integrador Comunitario de El Brillante",
+        "amenity": "community_centre",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1420582,
+          -32.2253051
+        ]
+      },
+      "properties": {
+        "osm_id": 12753292308,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "theatre",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0906145,
+          -32.2976522
+        ]
+      },
+      "properties": {
+        "osm_id": 167478597,
+        "osm_type": "way",
+        "NOMBRE": "Anfiteatro del Rio Uruguay",
+        "amenity": "theatre",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0917043,
+          -32.2985582
+        ]
+      },
+      "properties": {
+        "osm_id": 693022976,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "theatre",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "cultura"
+      }
+    }
+  ]
+}

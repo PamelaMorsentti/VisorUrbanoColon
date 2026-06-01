@@ -19,6 +19,7 @@ Visor interactivo de la ciudad de Colón, Entre Ríos. Permite explorar capas de
 - [Comandos Útiles](#comandos-útiles)
 - [API Endpoints](#api-endpoints)
 - [Notas y Pendientes](#notas-y-pendientes)
+- [Documentacion Tecnica de Mantenimiento](#documentacion-tecnica-de-mantenimiento)
 
 ---
 
@@ -247,6 +248,14 @@ Invoke-RestMethod -Method Post -Uri http://localhost:3000/api/layers/catalog/boo
 Las capas WMS con `supportsGetFeatureInfo: true` muestran atributos al hacer click en el mapa.
 
 ---
+
+## Documentacion Tecnica de Mantenimiento
+
+Documentacion recomendada para mantenimiento y correccion del sistema:
+
+- `docs/ARQUITECTURA-CODIGO-Y-MANTENIMIENTO.md`
+- `docs/INVENTARIO-CODIGO-CLAVE.md`
+- `docs/OPERACION-Y-SOPORTE.md`
 
 
 

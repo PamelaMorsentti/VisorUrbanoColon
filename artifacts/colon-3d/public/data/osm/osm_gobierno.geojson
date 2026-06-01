@@ -1,0 +1,655 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0943394,
+          -32.2404229
+        ]
+      },
+      "properties": {
+        "osm_id": 3489506485,
+        "osm_type": "node",
+        "NOMBRE": "Prefectura",
+        "amenity": "police",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0849522,
+          -32.3171019
+        ]
+      },
+      "properties": {
+        "osm_id": 3996251082,
+        "osm_type": "node",
+        "NOMBRE": "Correo Urguayo",
+        "amenity": "post_office",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0818569,
+          -32.3186568
+        ]
+      },
+      "properties": {
+        "osm_id": 3996251089,
+        "osm_type": "node",
+        "NOMBRE": "Seccional Primera",
+        "amenity": "police",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0854856,
+          -32.3178814
+        ]
+      },
+      "properties": {
+        "osm_id": 4426059690,
+        "osm_type": "node",
+        "NOMBRE": "Jefatura de Policía",
+        "amenity": "police",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0810094,
+          -32.3175206
+        ]
+      },
+      "properties": {
+        "osm_id": 4873163421,
+        "osm_type": "node",
+        "NOMBRE": "Oficina de Turismo",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "government",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "47228526",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.092877,
+          -32.2667777
+        ]
+      },
+      "properties": {
+        "osm_id": 5249483922,
+        "osm_type": "node",
+        "NOMBRE": "CARU",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "government",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.194982,
+          -32.1546671
+        ]
+      },
+      "properties": {
+        "osm_id": 6910829085,
+        "osm_type": "node",
+        "NOMBRE": "Sub Comisaría Liebig",
+        "amenity": "police",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0946763,
+          -32.2652031
+        ]
+      },
+      "properties": {
+        "osm_id": 7098302134,
+        "osm_type": "node",
+        "NOMBRE": "Control Aduanero",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "government",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2197719,
+          -32.2131763
+        ]
+      },
+      "properties": {
+        "osm_id": 8546965234,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "police",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+54 3447 470111",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2211384,
+          -32.2019727
+        ]
+      },
+      "properties": {
+        "osm_id": 8546965423,
+        "osm_type": "node",
+        "NOMBRE": "Bomberos",
+        "amenity": "fire_station",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+54 3447 470890",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2191076,
+          -32.2093871
+        ]
+      },
+      "properties": {
+        "osm_id": 8546965425,
+        "osm_type": "node",
+        "NOMBRE": "Gendarmería Nacional",
+        "amenity": "police",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2181128,
+          -32.2116797
+        ]
+      },
+      "properties": {
+        "osm_id": 8547207619,
+        "osm_type": "node",
+        "NOMBRE": "Casa del Bicentenario",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "government",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2168736,
+          -32.2122493
+        ]
+      },
+      "properties": {
+        "osm_id": 8547207620,
+        "osm_type": "node",
+        "NOMBRE": "Dirección Provincial del Trabajo",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "government",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2212082,
+          -32.2113561
+        ]
+      },
+      "properties": {
+        "osm_id": 8547207621,
+        "osm_type": "node",
+        "NOMBRE": "Correo Argentino",
+        "amenity": "post_office",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2182994,
+          -32.2131252
+        ]
+      },
+      "properties": {
+        "osm_id": 8547207622,
+        "osm_type": "node",
+        "NOMBRE": "Municipalidad de San José",
+        "amenity": "townhall",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2181692,
+          -32.2134044
+        ]
+      },
+      "properties": {
+        "osm_id": 8547207623,
+        "osm_type": "node",
+        "NOMBRE": "Consejo Deliberante de Municipalidad de San José",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "government",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2172678,
+          -32.2129837
+        ]
+      },
+      "properties": {
+        "osm_id": 8547207624,
+        "osm_type": "node",
+        "NOMBRE": "Juzgado de Paz",
+        "amenity": "courthouse",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2394052,
+          -32.145247
+        ]
+      },
+      "properties": {
+        "osm_id": 9517451143,
+        "osm_type": "node",
+        "NOMBRE": "Gendarmería Nacional Argentina",
+        "amenity": "police",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.140899,
+          -32.2233272
+        ]
+      },
+      "properties": {
+        "osm_id": 12809660544,
+        "osm_type": "node",
+        "NOMBRE": "Registro de la Propiedad Inmueble",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "government",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+54(3447)422441",
+        "opening_hours": "Mo-Fr 08:00-12:00",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.09408,
+          -32.2655749
+        ]
+      },
+      "properties": {
+        "osm_id": 182965863,
+        "osm_type": "way",
+        "NOMBRE": "Aduana Argentina Uruguaya",
+        "amenity": "",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "government",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1410423,
+          -32.2246814
+        ]
+      },
+      "properties": {
+        "osm_id": 209252124,
+        "osm_type": "way",
+        "NOMBRE": "Bomberos",
+        "amenity": "fire_station",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1367302,
+          -32.2159533
+        ]
+      },
+      "properties": {
+        "osm_id": 334797615,
+        "osm_type": "way",
+        "NOMBRE": "Destacamento Colón",
+        "amenity": "police",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+54 (3447) 42-1619",
+        "opening_hours": "24/7",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.142629,
+          -32.2240004
+        ]
+      },
+      "properties": {
+        "osm_id": 334797628,
+        "osm_type": "way",
+        "NOMBRE": "Policía Departamental",
+        "amenity": "police",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1419025,
+          -32.224103
+        ]
+      },
+      "properties": {
+        "osm_id": 334797630,
+        "osm_type": "way",
+        "NOMBRE": "Municipalidad de Colón",
+        "amenity": "townhall",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1317242,
+          -32.2621396
+        ]
+      },
+      "properties": {
+        "osm_id": 759853862,
+        "osm_type": "way",
+        "NOMBRE": "Gendarmería",
+        "amenity": "police",
+        "tourism": "",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "gobierno"
+      }
+    }
+  ]
+}

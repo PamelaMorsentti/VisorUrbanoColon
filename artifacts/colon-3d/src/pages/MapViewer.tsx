@@ -28,10 +28,15 @@ import { ZONA_NORMAS } from "@/lib/zonaData";
 
 const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");
 const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "";
+const DATA_CACHE_BUST = String(Date.now());
 
 type LeafletLayer = L.GeoJSON | L.LayerGroup;
 type DensidadData = Record<string, { count: number; area: number }>;
 type ZonaTransform = { rotateDeg: number; offsetLng: number; offsetLat: number };
+
+function getLayerDataUrl(file: string): string {
+  return `${BASE_PATH}/data/${file}?v=${DATA_CACHE_BUST}`;
+}
 
 type PublicationLevel = "public" | "professional" | "admin";
 type ObrasYearPreset = "all" | "current" | "last3" | "last5" | "custom";
@@ -61,6 +66,7 @@ type ObrasHeatStats = {
 
 type ParcelOwnerClass = "Sin dato" | "Municipalidad" | "Provincia" | "Nacion" | "Privado";
 type ParcelOwnerFilter = "all" | ParcelOwnerClass;
+type ManzanaVisualMode = "suaves" | "normales";
 
 const PARCEL_OWNER_COLORS: Record<ParcelOwnerClass, string> = {
   "Sin dato": "#6b7280",
@@ -364,7 +370,11 @@ function getLabelText(layerId: string, props: Record<string, unknown>, index: nu
     case "barrios": return props.NOMBRE ? String(props.NOMBRE) : `B${index + 1}`;
     case "grupo": return props.GRUPO != null ? `G-${props.GRUPO}` : `G${index + 1}`;
     case "calle": return props.CALLE ? String(props.CALLE).replace(/^CALLE\s+/i, "") : "";
-    default: return "";
+    default: {
+      // OSM POI layers: show name at close zoom
+      if (layerId.startsWith("osm_")) return String(props.NOMBRE || "");
+      return "";
+    }
   }
 }
 
@@ -372,18 +382,22 @@ function getLabelText(layerId: string, props: Record<string, unknown>, index: nu
 
 function getLayerStyle(layerId: string): L.PathOptions {
   switch (layerId) {
-    case "manzana":    return { fillColor: "#1e2432", fillOpacity: 0.75, color: "#3a4255", weight: 1, opacity: 0.9 };
+    case "manzana":    return { fillColor: "#7c8799", fillOpacity: 0.22, color: "#9aa8bd", weight: 0.8, opacity: 0.55 };
     case "parcela":    return { fillColor: "transparent", fillOpacity: 0, color: "#5b6882", weight: 0.6, opacity: 0.8 };
     case "parcela_titularidad": return { fillColor: "#64748b", fillOpacity: 0.45, color: "#334155", weight: 0.5, opacity: 0.75 };
     case "calle":      return { color: "#525861", weight: 1.5, opacity: 0.9 };
     case "vias":       return { color: "#d97706", weight: 2.5, opacity: 0.9 };
-    case "municipio":  return { fillColor: "transparent", fillOpacity: 0, color: "#60a5fa", weight: 2, opacity: 0.9, dashArray: "6 4" };
+    case "municipio":  return { fillColor: "transparent", fillOpacity: 0, color: "#60a5fa", weight: 2.5, opacity: 0.95, dashArray: "8 5" };
+    case "municipio_radio_urbano": return { fillColor: "#3b82f6", fillOpacity: 0.07, color: "#93c5fd", weight: 1.5, opacity: 0.85, dashArray: "4 3" };
     case "seccion":    return { fillColor: "transparent", fillOpacity: 0, color: "#a78bfa", weight: 1.5, opacity: 0.8, dashArray: "5 3" };
     case "barrios":    return { fillColor: "#3b82f6", fillOpacity: 0.06, color: "#60a5fa", weight: 1.5, opacity: 0.8 };
     case "edif":       return { fillColor: "#4a6080", fillOpacity: 1, color: "#364d68", weight: 0.5, opacity: 1 };
     case "edif_palta": return { fillColor: "#a05a20", fillOpacity: 1, color: "#7c4015", weight: 0.5, opacity: 1 };
     case "cota10":     return { color: "#5eead4", weight: 0.8, opacity: 0.6 };
     case "hidro":      return { color: "#38bdf8", weight: 1.5, opacity: 0.75 };
+    case "enersa_mt_13_2": return { color: "#facc15", weight: 1.5, opacity: 0.85 };
+    case "enersa_mt_33":   return { color: "#f97316", weight: 3,   opacity: 0.9 };
+    case "enersa_mt_132":  return { color: "#ef4444", weight: 5,   opacity: 0.95 };
     case "espverde":   return { fillColor: "#4ade80", fillOpacity: 0.35, color: "#16a34a", weight: 1, opacity: 0.9 };
     case "servpaso":   return { fillColor: "#fb923c", fillOpacity: 0.25, color: "#ea580c", weight: 1.2, opacity: 0.9 };
     case "arbol":      return { fillColor: "#16a34a", fillOpacity: 0.55, color: "#22c55e", weight: 1, opacity: 0.9 };
@@ -391,6 +405,13 @@ function getLayerStyle(layerId: string): L.PathOptions {
     case "zonas":      return { fillOpacity: 0.18, weight: 2, opacity: 0.9 };
     default:           return { fillColor: "#4b5563", fillOpacity: 0.5, color: "#6b7280", weight: 1 };
   }
+}
+
+function getManzanaStyle(mode: ManzanaVisualMode): L.PathOptions {
+  if (mode === "suaves") {
+    return { fillColor: "#cbd5e1", fillOpacity: 0.08, color: "#94a3b8", weight: 0.6, opacity: 0.35 };
+  }
+  return { fillColor: "#7c8799", fillOpacity: 0.22, color: "#9aa8bd", weight: 0.8, opacity: 0.55 };
 }
 
 function getZonaStyle(zonaName: string | null): L.PathOptions {
@@ -407,10 +428,23 @@ function getManzanaDensityStyle(feature: FeatureCollection, densData: DensidadDa
 }
 
 function getPointLayer(layerId: string, latlng: L.LatLng): L.Layer {
+  const OSM_COLORS: Record<string, string> = {
+    osm_culto: "#a855f7",
+    osm_turismo: "#f59e0b",
+    osm_gobierno: "#3b82f6",
+    osm_educacion: "#0ea5e9",
+    osm_salud: "#ef4444",
+    osm_patrimonio: "#d97706",
+    osm_cultura: "#ec4899",
+    osm_deporte: "#22c55e",
+    osm_alojamiento: "#8b5cf6",
+    osm_gastronomia: "#f97316",
+  };
   let color = "#6b7280", radius = 3;
-  if (layerId === "postes") { color = "#fbbf24"; radius = 2.5; }
+  if (layerId in OSM_COLORS) { color = OSM_COLORS[layerId]; radius = 5; }
+  else if (layerId === "postes") { color = "#fbbf24"; radius = 2.5; }
   else if (layerId === "bocas") { color = "#38bdf8"; radius = 4.5; }
-  return L.circleMarker(latlng, { radius, fillColor: color, fillOpacity: 0.85, color, weight: 1, opacity: 0.9 });
+  return L.circleMarker(latlng, { radius, fillColor: color, fillOpacity: 0.85, color: "#fff", weight: 1, opacity: 0.9 });
 }
 
 function roleToPublicationLevel(role: string | undefined): PublicationLevel {
@@ -795,6 +829,7 @@ export default function MapViewer() {
     "Privado": 0,
   });
   const [parcelOwnerFilter, setParcelOwnerFilter] = useState<ParcelOwnerFilter>("all");
+  const [manzanaVisualMode, setManzanaVisualMode] = useState<ManzanaVisualMode>("suaves");
 
   const [visibleLayers, setVisibleLayers] = useState<Record<string, boolean>>(
     Object.fromEntries(LAYERS.map(l => [l.id, l.defaultVisible && (!l.adminOnly || isAdmin)]))
@@ -850,7 +885,10 @@ export default function MapViewer() {
     const layerDef = LAYERS.find(l => l.id === layerId);
     if (!layerDef) return null;
     try {
-      const r = await fetch(`${BASE_PATH}/data/${layerDef.file}`);
+      const r = await fetch(getLayerDataUrl(layerDef.file), {
+        cache: "no-store",
+        headers: { "Cache-Control": "no-cache" },
+      });
       const rawData: FeatureCollection = await r.json();
       const normalized = layerId === "zonas"
         ? preprocessZonas(rawData, zonaTransform)
@@ -1108,13 +1146,20 @@ export default function MapViewer() {
       : layerId === "parcela_titularidad"
         ? preprocessParcelaTitularidad(rawData)
         : rawData;
-    const baseStyle = getLayerStyle(layerId);
+    const baseStyle = layerId === "manzana" ? getManzanaStyle(manzanaVisualMode) : getLayerStyle(layerId);
 
     const layer = L.geoJSON(data, {
       style: isPoint ? undefined : (feature) => {
+        if (layerId === "municipio") {
+          const tipo = feature?.properties?.tipo as string | undefined;
+          return tipo === "radio_urbano"
+            ? getLayerStyle("municipio_radio_urbano")
+            : getLayerStyle("municipio");
+        }
         if (layerId === "zonas" && feature?.properties?.ZONA) {
           return getZonaStyle(feature.properties.ZONA as string);
         }
+
         if (layerId === "parcela_titularidad") {
           return getParcelaTitularidadStyle((feature?.properties || {}) as Record<string, unknown>, parcelOwnerFilter);
         }
@@ -1198,7 +1243,7 @@ export default function MapViewer() {
 
     return layer;
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [parcelOwnerFilter, publicationLevel]);
+  }, [parcelOwnerFilter, publicationLevel, manzanaVisualMode]);
 
   // ── Load & add layer ─────────────────────────────────────────────────────
 
@@ -1211,7 +1256,10 @@ export default function MapViewer() {
 
     loadingRef.current.add(layerDef.id);
     try {
-      const response = await fetch(`${BASE_PATH}/data/${layerDef.file}`);
+      const response = await fetch(getLayerDataUrl(layerDef.file), {
+        cache: "no-store",
+        headers: { "Cache-Control": "no-cache" },
+      });
       const rawData: FeatureCollection = await response.json();
       const normalized = layerDef.id === "zonas"
         ? preprocessZonas(rawData, zonaTransform)
@@ -1514,9 +1562,9 @@ export default function MapViewer() {
         manzLayer.setStyle((feature) => getManzanaDensityStyle(feature, data, maxCount));
       });
     } else {
-      manzLayer.setStyle(getLayerStyle("manzana"));
+      manzLayer.setStyle(getManzanaStyle(manzanaVisualMode));
     }
-  }, [densidadActive, mapReady, loadDensidadData]);
+  }, [densidadActive, mapReady, loadDensidadData, manzanaVisualMode]);
 
   // ── Cadastral search result ──────────────────────────────────────────────
 
@@ -2142,6 +2190,8 @@ export default function MapViewer() {
               onToggleExternalLayer={handleToggleExternalLayer}
               externalLayers={catalogLayers}
               externalLayerGroups={catalogGroups}
+              manzanaVisualMode={manzanaVisualMode}
+              onChangeManzanaVisualMode={setManzanaVisualMode}
             />
           </div>
         )}

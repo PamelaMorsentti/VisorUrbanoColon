@@ -1,0 +1,714 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1372031,
+          -32.2156681
+        ]
+      },
+      "properties": {
+        "osm_id": 2127037144,
+        "NOMBRE": "Sótano de los Quesos",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "name": "Sótano de los Quesos"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1395418,
+          -32.214389
+        ]
+      },
+      "properties": {
+        "osm_id": 2316422173,
+        "NOMBRE": "La Gran Cabaña de Antonio",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "cuisine": "regional",
+        "name": "La Gran Cabaña de Antonio"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2191482,
+          -32.2111195
+        ]
+      },
+      "properties": {
+        "osm_id": 3279483615,
+        "NOMBRE": "Menú",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "addr:city": "San José",
+        "addr:postcode": "3283",
+        "name": "Menú"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2189135,
+          -32.2083744
+        ]
+      },
+      "properties": {
+        "osm_id": 3282751279,
+        "NOMBRE": "SC",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "name": "SC"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2392146,
+          -32.1940885
+        ]
+      },
+      "properties": {
+        "osm_id": 3817703011,
+        "NOMBRE": "Artesanias El Palmar",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "addr:city": "San Jose",
+        "addr:housenumber": "158.5",
+        "addr:postcode": "3283",
+        "addr:street": "Ruta Nacional 14 José Gervasio Artigas",
+        "capacity": "80",
+        "cuisine": "pizza;pasta",
+        "delivery": "no",
+        "description": "Establecimiento dedicado a la plantación de mates orgánicos.Visitas guiadas.Servicio gastronómico. Atendemos excursiones.",
+        "name": "Artesanias El Palmar",
+        "opening_hours": "10:00-18:00",
+        "phone": "3447 455239",
+        "smoking": "outside",
+        "takeaway": "yes",
+        "website": "https://www.facebook.com/artesanias.elpalmar/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0830156,
+          -32.3171245
+        ]
+      },
+      "properties": {
+        "osm_id": 3996251083,
+        "NOMBRE": "El Bar",
+        "amenity": "bar",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "name": "El Bar"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0838203,
+          -32.3170384
+        ]
+      },
+      "properties": {
+        "osm_id": 3996251086,
+        "NOMBRE": "Trouville",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "name": "Trouville"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1342506,
+          -32.2188751
+        ]
+      },
+      "properties": {
+        "osm_id": 3999968313,
+        "NOMBRE": "Brown 38",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "addr:housenumber": "38",
+        "addr:street": "Brown",
+        "name": "Brown 38"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1500329,
+          -32.2211588
+        ]
+      },
+      "properties": {
+        "osm_id": 4433718089,
+        "NOMBRE": "",
+        "amenity": "fast_food",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1441882,
+          -32.2229163
+        ]
+      },
+      "properties": {
+        "osm_id": 4433718090,
+        "NOMBRE": "",
+        "amenity": "fast_food",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1434695,
+          -32.2236453
+        ]
+      },
+      "properties": {
+        "osm_id": 4433718091,
+        "NOMBRE": "",
+        "amenity": "fast_food",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1349873,
+          -32.2197409
+        ]
+      },
+      "properties": {
+        "osm_id": 4433718389,
+        "NOMBRE": "El Viejo Almacén",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "name": "El Viejo Almacén"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0807858,
+          -32.3193916
+        ]
+      },
+      "properties": {
+        "osm_id": 4472065389,
+        "NOMBRE": "Chivitos eme",
+        "amenity": "fast_food",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "addr:housenumber": "1244",
+        "addr:street": "Sarandí",
+        "cuisine": "burger;pizza;chicken",
+        "name": "Chivitos eme",
+        "phone": "47237070"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1447252,
+          -32.2146727
+        ]
+      },
+      "properties": {
+        "osm_id": 4934263630,
+        "NOMBRE": "Peña Don Lopez",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "addr:city": "Colón",
+        "addr:housenumber": "262",
+        "addr:postcode": "3280",
+        "addr:street": "Paysandú",
+        "cuisine": "regional",
+        "description": "Cena Show musicos en vivo todos los fines de semana, abierto como restaurant todos los dias,atencion a grupos de contingentes,comidas tipicas del litoral,eventos culturales",
+        "name": "Peña Don Lopez",
+        "opening_hours": "Mo-Su 11:00-14:00,20:00+",
+        "outdoor_seating": "yes",
+        "smoking": "outside",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1352893,
+          -32.2192118
+        ]
+      },
+      "properties": {
+        "osm_id": 5519055376,
+        "NOMBRE": "Gluck resto-bar",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "name": "Gluck resto-bar"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2398719,
+          -32.2206005
+        ]
+      },
+      "properties": {
+        "osm_id": 5799984932,
+        "NOMBRE": "Alma Mora",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "name": "Alma Mora"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2337081,
+          -32.2312444
+        ]
+      },
+      "properties": {
+        "osm_id": 5799984934,
+        "NOMBRE": "Brasa Maestro",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "name": "Brasa Maestro"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2351083,
+          -32.2427243
+        ]
+      },
+      "properties": {
+        "osm_id": 5799984936,
+        "NOMBRE": "La Buena Estancia",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "internet_access": "wlan",
+        "name": "La Buena Estancia"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1364085,
+          -32.2162132
+        ]
+      },
+      "properties": {
+        "osm_id": 5941413985,
+        "NOMBRE": "Cervecería Noah",
+        "amenity": "bar",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "name": "Cervecería Noah"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1375865,
+          -32.2201614
+        ]
+      },
+      "properties": {
+        "osm_id": 5941414185,
+        "NOMBRE": "Finca de sabores - empanadas XXL",
+        "amenity": "fast_food",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "name": "Finca de sabores - empanadas XXL",
+        "phone": "1138748393"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1353107,
+          -32.2178751
+        ]
+      },
+      "properties": {
+        "osm_id": 6502138386,
+        "NOMBRE": "Juanes",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "name": "Juanes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1413759,
+          -32.2234122
+        ]
+      },
+      "properties": {
+        "osm_id": 6655156894,
+        "NOMBRE": "Bocatto",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "addr:street": "esquina Jose Artigas",
+        "cuisine": "chinese;friture;burger;pasta;fish;chicken;pizza;sandwich;noodles",
+        "internet_access": "wlan",
+        "name": "Bocatto",
+        "opening_hours": "Mo-Su 12:00-15:00,20:00-00:30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0831044,
+          -32.3177869
+        ]
+      },
+      "properties": {
+        "osm_id": 8819197317,
+        "NOMBRE": "Vem",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "addr:housenumber": "925",
+        "addr:postcode": "60000",
+        "addr:street": "Doctor Luis Alberto de Herrera",
+        "name": "Vem",
+        "opening_hours": "Mo-Tu 11:30-20:00; We-Sa 11:30-22:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1612379,
+          -32.1887159
+        ]
+      },
+      "properties": {
+        "osm_id": 10554265460,
+        "NOMBRE": "Black Vip",
+        "amenity": "bar",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "name": "Black Vip"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.160702,
+          -32.189651
+        ]
+      },
+      "properties": {
+        "osm_id": 10554288361,
+        "NOMBRE": "Bora Bora",
+        "amenity": "bar",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "name": "Bora Bora"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1595502,
+          -32.1909523
+        ]
+      },
+      "properties": {
+        "osm_id": 10554293925,
+        "NOMBRE": "",
+        "amenity": "fast_food",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.157203,
+          -32.1936567
+        ]
+      },
+      "properties": {
+        "osm_id": 10559485930,
+        "NOMBRE": "El Dique",
+        "amenity": "fast_food",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "name": "El Dique"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1472134,
+          -32.2171099
+        ]
+      },
+      "properties": {
+        "osm_id": 10565188063,
+        "NOMBRE": "Confitería La Terminal",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "name": "Confitería La Terminal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1362184,
+          -32.2160148
+        ]
+      },
+      "properties": {
+        "osm_id": 12634638801,
+        "NOMBRE": "Bodegón del Puerto",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "addr:housenumber": "28",
+        "addr:street": "Gouchón",
+        "name": "Bodegón del Puerto"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0807075,
+          -32.3203898
+        ]
+      },
+      "properties": {
+        "osm_id": 13643990917,
+        "NOMBRE": "El Antojo",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "addr:city": "Paysandú",
+        "addr:housenumber": "797",
+        "addr:postcode": "60000",
+        "addr:street": "Montecaseros e Ituzaingó",
+        "cuisine": "buffet",
+        "diet:local": "yes",
+        "name": "El Antojo",
+        "opening_hours": "08:00-22:00",
+        "phone": "092419293",
+        "website": "https://www.instagram.com/elantojo_pdu/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.3068084,
+          -32.1531131
+        ]
+      },
+      "properties": {
+        "osm_id": 315560020,
+        "NOMBRE": "Don Bautista",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "building": "yes",
+        "cuisine": "regional",
+        "name": "Don Bautista"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1605833,
+          -32.3466397
+        ]
+      },
+      "properties": {
+        "osm_id": 886233882,
+        "NOMBRE": "",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "building": "yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1476888,
+          -32.2097064
+        ]
+      },
+      "properties": {
+        "osm_id": 888792376,
+        "NOMBRE": "",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "building": "yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0934202,
+          -32.3113636
+        ]
+      },
+      "properties": {
+        "osm_id": 964094166,
+        "NOMBRE": "El Titan",
+        "amenity": "restaurant",
+        "tourism": "",
+        "leisure": "",
+        "layers_group": "gastronomia",
+        "addr:city": "Paysandú",
+        "addr:housenumber": "629",
+        "addr:postcode": "60000",
+        "addr:street": "Washington",
+        "building": "yes",
+        "building:levels": "0",
+        "cuisine": "regional;burger;pizza;barbecue;chicken;seafood",
+        "height": "4",
+        "name": "El Titan",
+        "roof:colour": "white",
+        "roof:height": "4",
+        "roof:material": "concrete",
+        "roof:shape": "flat"
+      }
+    }
+  ]
+}

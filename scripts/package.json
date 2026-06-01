@@ -5,7 +5,16 @@
   "type": "module",
   "scripts": {
     "hello": "tsx ./src/hello.ts",
+    "build:zonas-tributarias": "node ./src/build-zonas-tributarias.mjs",
+    "docs:fichas-src": "node ./src/generate-src-fichas.mjs",
+    "maint:archive-temp": "node ./src/archive-temporals.mjs --apply",
+    "maint:archive-temp:dry": "node ./src/archive-temporals.mjs",
     "clean:planos": "tsx ./src/clean-planos.ts",
+    "convert:enersa": "tsx ./src/convert-enersa-csv.ts",
+    "clip:enersa": "node ./src/clip-enersa-to-colon.mjs",
+    "convert:dxf": "python ./src/convert_dxf_networks.py",
+    "build:jurisdiccion": "node ./src/build-jurisdiccion-municipal.mjs",
+    "etl:load-core-postgis": "node ./src/load-core-to-postgis.mjs",
     "geolocate:catastro": "tsx ./src/geolocate-planos-catastro.ts",
     "queue:catastro": "tsx ./src/build-cadastral-review-queue.ts",
     "geolocate:refresh": "pnpm geolocate:catastro && pnpm queue:catastro",
@@ -16,9 +25,11 @@
     "tsx": "^4.7.0"
   },
   "dependencies": {
+    "@turf/turf": "^7.3.5",
     "csv-parse": "^6.2.1",
     "csv-stringify": "^6.7.0",
     "proj4": "^2.20.8",
+    "pg": "^8.16.3",
     "shapefile": "^0.6.6"
   },
   "description": "",

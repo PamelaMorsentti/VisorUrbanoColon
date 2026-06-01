@@ -1,0 +1,7363 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1728032,
+          -32.193817
+        ]
+      },
+      "properties": {
+        "osm_id": 349924357,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "artwork",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1866516,
+          -32.2171967
+        ]
+      },
+      "properties": {
+        "osm_id": 512926538,
+        "osm_type": "node",
+        "NOMBRE": "Molino Forclaz",
+        "amenity": "",
+        "tourism": "museum",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1366719,
+          -32.214908
+        ]
+      },
+      "properties": {
+        "osm_id": 1560698899,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "viewpoint",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1543475,
+          -32.213317
+        ]
+      },
+      "properties": {
+        "osm_id": 2127037143,
+        "osm_type": "node",
+        "NOMBRE": "Bavarian Suites",
+        "amenity": "",
+        "tourism": "chalet",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1546282,
+          -32.2133619
+        ]
+      },
+      "properties": {
+        "osm_id": 2127037146,
+        "osm_type": "node",
+        "NOMBRE": "Torre Colón",
+        "amenity": "",
+        "tourism": "chalet",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "https://www.torrecolon.com/",
+        "phone": "03447-15408997",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1471388,
+          -32.2146495
+        ]
+      },
+      "properties": {
+        "osm_id": 2328128392,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.147036,
+          -32.211219
+        ]
+      },
+      "properties": {
+        "osm_id": 2328480325,
+        "osm_type": "node",
+        "NOMBRE": "Cepeda",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.140038,
+          -32.215177
+        ]
+      },
+      "properties": {
+        "osm_id": 2328480326,
+        "osm_type": "node",
+        "NOMBRE": "Costa Norte",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "(03447) 425019/ 15453129",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.133256,
+          -32.22941
+        ]
+      },
+      "properties": {
+        "osm_id": 2328480327,
+        "osm_type": "node",
+        "NOMBRE": "El Colonial",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1358557,
+          -32.2189238
+        ]
+      },
+      "properties": {
+        "osm_id": 2328480328,
+        "osm_type": "node",
+        "NOMBRE": "Holimasu",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "(03447) 421305",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1364814,
+          -32.2183063
+        ]
+      },
+      "properties": {
+        "osm_id": 2328480329,
+        "osm_type": "node",
+        "NOMBRE": "Hotel Canton de Valais",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "(03447) 427324/ 427385",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.13464,
+          -32.231608
+        ]
+      },
+      "properties": {
+        "osm_id": 2328480330,
+        "osm_type": "node",
+        "NOMBRE": "Hotel Cristobal de Colon",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.140109,
+          -32.217708
+        ]
+      },
+      "properties": {
+        "osm_id": 2328480331,
+        "osm_type": "node",
+        "NOMBRE": "Hotel El Aljibe",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1360011,
+          -32.2205225
+        ]
+      },
+      "properties": {
+        "osm_id": 2328480332,
+        "osm_type": "node",
+        "NOMBRE": "Hotel Futuro",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "(03447) 423712",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.134655,
+          -32.228652
+        ]
+      },
+      "properties": {
+        "osm_id": 2328480333,
+        "osm_type": "node",
+        "NOMBRE": "Hotel Olivos Kosta",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1461079,
+          -32.2156566
+        ]
+      },
+      "properties": {
+        "osm_id": 2328480334,
+        "osm_type": "node",
+        "NOMBRE": "Hotel Paysandu",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.144586,
+          -32.212704
+        ]
+      },
+      "properties": {
+        "osm_id": 2328480335,
+        "osm_type": "node",
+        "NOMBRE": "Hotel Queguay",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1449063,
+          -32.2241313
+        ]
+      },
+      "properties": {
+        "osm_id": 2328480336,
+        "osm_type": "node",
+        "NOMBRE": "Hotel Residencial Bolivar",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.145391,
+          -32.210565
+        ]
+      },
+      "properties": {
+        "osm_id": 2328480337,
+        "osm_type": "node",
+        "NOMBRE": "Hotel Termas y Río",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1561264,
+          -32.2395985
+        ]
+      },
+      "properties": {
+        "osm_id": 2328480338,
+        "osm_type": "node",
+        "NOMBRE": "Hotel Victoria",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.14106,
+          -32.220796
+        ]
+      },
+      "properties": {
+        "osm_id": 2328480339,
+        "osm_type": "node",
+        "NOMBRE": "Hotel Vieja Calera",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1427212,
+          -32.2132666
+        ]
+      },
+      "properties": {
+        "osm_id": 2328480340,
+        "osm_type": "node",
+        "NOMBRE": "La Casona de Susana",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.147034,
+          -32.213858
+        ]
+      },
+      "properties": {
+        "osm_id": 2328480341,
+        "osm_type": "node",
+        "NOMBRE": "La Posada de Colon",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1455,
+          -32.216284
+        ]
+      },
+      "properties": {
+        "osm_id": 2328480342,
+        "osm_type": "node",
+        "NOMBRE": "Posada Los Fresnos",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.14273,
+          -32.219061
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921159,
+        "osm_type": "node",
+        "NOMBRE": "ABC Servicios turisticos",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.136481,
+          -32.226871
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921160,
+        "osm_type": "node",
+        "NOMBRE": "Abriles Colon",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1494,
+          -32.210447
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921161,
+        "osm_type": "node",
+        "NOMBRE": "Aldea del Golf",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.144917,
+          -32.211096
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921162,
+        "osm_type": "node",
+        "NOMBRE": "Alojamiento Barrio Norte",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1509059,
+          -32.2217765
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921163,
+        "osm_type": "node",
+        "NOMBRE": "Alojamiento Kety",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.148215,
+          -32.222277
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921164,
+        "osm_type": "node",
+        "NOMBRE": "Alojamiento Lo de Sara",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.136598,
+          -32.222429
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921165,
+        "osm_type": "node",
+        "NOMBRE": "Alojamiento Lumi",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.154396,
+          -32.221731
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921166,
+        "osm_type": "node",
+        "NOMBRE": "Alojamiento Paysandú",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.140871,
+          -32.216562
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921167,
+        "osm_type": "node",
+        "NOMBRE": "Alojamientos Alberdi",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.14748,
+          -32.220893
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921168,
+        "osm_type": "node",
+        "NOMBRE": "Alquileres Bondioni",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.133213,
+          -32.228691
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921170,
+        "osm_type": "node",
+        "NOMBRE": "Alquileres Fatima",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.142089,
+          -32.228289
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921171,
+        "osm_type": "node",
+        "NOMBRE": "Alquileres Girard",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.146449,
+          -32.212064
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921172,
+        "osm_type": "node",
+        "NOMBRE": "Alquileres Mirta",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1361032,
+          -32.2182787
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921173,
+        "osm_type": "node",
+        "NOMBRE": "Alquileres San Martin",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.144387,
+          -32.225429
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921174,
+        "osm_type": "node",
+        "NOMBRE": "Alquileres Treboux",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.148507,
+          -32.210412
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921175,
+        "osm_type": "node",
+        "NOMBRE": "Alquileres Tron",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.142705,
+          -32.218291
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921176,
+        "osm_type": "node",
+        "NOMBRE": "Alquileres Turisticos Bernay",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.134026,
+          -32.224849
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921177,
+        "osm_type": "node",
+        "NOMBRE": "Altos Coloniales",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.142769,
+          -32.214584
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921178,
+        "osm_type": "node",
+        "NOMBRE": "Altos de Villa Maria",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1346501,
+          -32.227454
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921179,
+        "osm_type": "node",
+        "NOMBRE": "Altos del Parque",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.136202,
+          -32.225682
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921181,
+        "osm_type": "node",
+        "NOMBRE": "Ana Maria",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.141547,
+          -32.214751
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921182,
+        "osm_type": "node",
+        "NOMBRE": "Atalaya del Rio",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.139445,
+          -32.220946
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921183,
+        "osm_type": "node",
+        "NOMBRE": "Ay Rosita",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.144785,
+          -32.21084
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921184,
+        "osm_type": "node",
+        "NOMBRE": "Aya Bungalows",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.134493,
+          -32.222812
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921185,
+        "osm_type": "node",
+        "NOMBRE": "Ayres de Rio",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "(011) 15-4437-3793/ 15-4399-9685",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.13613,
+          -32.227223
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921186,
+        "osm_type": "node",
+        "NOMBRE": "Azaleas",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.146206,
+          -32.212705
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921187,
+        "osm_type": "node",
+        "NOMBRE": "Brisas del Norte",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.13302,
+          -32.220481
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921188,
+        "osm_type": "node",
+        "NOMBRE": "Bungalow El Pontón",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "(03447) 422174/ 15438100",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1527809,
+          -32.2334415
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921189,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Aloguis",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.133463,
+          -32.2231772
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921190,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Amambay I y II",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.138303,
+          -32.224996
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921191,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Angel",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.146046,
+          -32.218234
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921192,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Anita",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.133357,
+          -32.229483
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921193,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Azul",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.137214,
+          -32.228408
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921194,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Del Carmen",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.155454,
+          -32.229877
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921195,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Don Eloy",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.133265,
+          -32.221409
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921196,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Dopazo",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.151781,
+          -32.226075
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921197,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows El Rancho",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.14851,
+          -32.211788
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921198,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows El Remanso",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.14748,
+          -32.215403
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921199,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Emanuel",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.142406,
+          -32.221784
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921200,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Flor I y II",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.141706,
+          -32.212857
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921201,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Frente al Rio",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.145852,
+          -32.217474
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921202,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows La Mora",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.134222,
+          -32.229086
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921203,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows La Siesta",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.134134,
+          -32.221878
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921204,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows La Soñada",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "(03447) 424279",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.134683,
+          -32.228623
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921205,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Los Pinos",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.147589,
+          -32.211654
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921206,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Los Soles",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.149446,
+          -32.216809
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921207,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Los Troncos",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.140625,
+          -32.216846
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921208,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Mi Rio",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.146316,
+          -32.213339
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921209,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Pastos",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.13431,
+          -32.23017
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921210,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Puerto Soñado",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.132962,
+          -32.228894
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921211,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Roca de Luna",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.132262,
+          -32.229598
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921212,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Romances",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.155347,
+          -32.231025
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921213,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Romdal",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1481685,
+          -32.2172802
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921214,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows San Agustin",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.133684,
+          -32.229679
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921215,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Shalom",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.145029,
+          -32.210919
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921216,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Tataya",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.13561,
+          -32.221114
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921217,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Vida Mia",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.135694,
+          -32.223295
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921218,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Yeshua",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.143745,
+          -32.22104
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921219,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Yo Ju",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.133521,
+          -32.231264
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921220,
+        "osm_type": "node",
+        "NOMBRE": "Cabañas Arco Iris",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.13533,
+          -32.224595
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921221,
+        "osm_type": "node",
+        "NOMBRE": "Cabañas El Sueño de Pedro",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.134101,
+          -32.228736
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921222,
+        "osm_type": "node",
+        "NOMBRE": "Cabañas Mi Viejo",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.144078,
+          -32.211957
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921223,
+        "osm_type": "node",
+        "NOMBRE": "Cabañas Rancho Unelen",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.130921,
+          -32.228938
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921224,
+        "osm_type": "node",
+        "NOMBRE": "Cabañas Victoria",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.149432,
+          -32.211783
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921225,
+        "osm_type": "node",
+        "NOMBRE": "Cabañas del Uru",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.142311,
+          -32.216563
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921226,
+        "osm_type": "node",
+        "NOMBRE": "Cacatua",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1494952,
+          -32.2107292
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921227,
+        "osm_type": "node",
+        "NOMBRE": "Canoas Apart",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.136469,
+          -32.229833
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921228,
+        "osm_type": "node",
+        "NOMBRE": "Casa Continente",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.143088,
+          -32.214793
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921229,
+        "osm_type": "node",
+        "NOMBRE": "Casa Don Felipe",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.142373,
+          -32.227475
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921230,
+        "osm_type": "node",
+        "NOMBRE": "Casa Marita",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.144168,
+          -32.21934
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921231,
+        "osm_type": "node",
+        "NOMBRE": "Casa Rosita",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.143187,
+          -32.223072
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921233,
+        "osm_type": "node",
+        "NOMBRE": "Chalet La Alemana",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.152229,
+          -32.227953
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921234,
+        "osm_type": "node",
+        "NOMBRE": "Ciudad Paraiso",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.131716,
+          -32.231648
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921235,
+        "osm_type": "node",
+        "NOMBRE": "Claro de Luna",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.144732,
+          -32.213434
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921236,
+        "osm_type": "node",
+        "NOMBRE": "Coloracion del Tiempo",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.140179,
+          -32.231062
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921237,
+        "osm_type": "node",
+        "NOMBRE": "Complejo Aquarela",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1371,
+          -32.218024
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921238,
+        "osm_type": "node",
+        "NOMBRE": "Complejo Bungalows La Matilde",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.135361,
+          -32.224617
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921239,
+        "osm_type": "node",
+        "NOMBRE": "Complejo Canilu",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.152988,
+          -32.225689
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921240,
+        "osm_type": "node",
+        "NOMBRE": "Complejo Los Gurises",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.147688,
+          -32.21252
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921241,
+        "osm_type": "node",
+        "NOMBRE": "Complejo lo de Nai",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.134952,
+          -32.231837
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921242,
+        "osm_type": "node",
+        "NOMBRE": "Costas del Paraíso",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.139427,
+          -32.222437
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921243,
+        "osm_type": "node",
+        "NOMBRE": "Costero Sur",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.147897,
+          -32.212322
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921244,
+        "osm_type": "node",
+        "NOMBRE": "Del Aljibe",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.14559,
+          -32.214654
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921245,
+        "osm_type": "node",
+        "NOMBRE": "Del Parral",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.130847,
+          -32.231072
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921246,
+        "osm_type": "node",
+        "NOMBRE": "Departamento Andrade",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.147176,
+          -32.214644
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921247,
+        "osm_type": "node",
+        "NOMBRE": "Departamento Luchi",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.147553,
+          -32.220867
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921248,
+        "osm_type": "node",
+        "NOMBRE": "Departamento Madreselva",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.14053,
+          -32.224704
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921249,
+        "osm_type": "node",
+        "NOMBRE": "Departamento Moreno",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.153969,
+          -32.223152
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921250,
+        "osm_type": "node",
+        "NOMBRE": "Departamento Sol de Abril",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.145849,
+          -32.21039
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921251,
+        "osm_type": "node",
+        "NOMBRE": "Departamento Termas",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.15609,
+          -32.227064
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921252,
+        "osm_type": "node",
+        "NOMBRE": "Departamentos Alcira",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.136649,
+          -32.217648
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921253,
+        "osm_type": "node",
+        "NOMBRE": "Departamentos Arenales",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "(03447) 15461693",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.143704,
+          -32.220206
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921254,
+        "osm_type": "node",
+        "NOMBRE": "Departamentos Chacabuco",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.134064,
+          -32.220539
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921255,
+        "osm_type": "node",
+        "NOMBRE": "Departamentos El Palihue",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "(03447) 15435146 / 15435149",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.143409,
+          -32.216338
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921256,
+        "osm_type": "node",
+        "NOMBRE": "Departamentos Elal",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.143653,
+          -32.216276
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921257,
+        "osm_type": "node",
+        "NOMBRE": "Departamentos Gaillard",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.134504,
+          -32.223961
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921258,
+        "osm_type": "node",
+        "NOMBRE": "Departamentos Noguer",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.141338,
+          -32.220976
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921259,
+        "osm_type": "node",
+        "NOMBRE": "Departamentos Suarez",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1475014,
+          -32.2174885
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921260,
+        "osm_type": "node",
+        "NOMBRE": "Departamentos Titin",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.149324,
+          -32.228094
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921261,
+        "osm_type": "node",
+        "NOMBRE": "Deptos Sueños",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.143943,
+          -32.215406
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921262,
+        "osm_type": "node",
+        "NOMBRE": "Don Pedro",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1409183,
+          -32.2266604
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921263,
+        "osm_type": "node",
+        "NOMBRE": "Don Quijote",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.146679,
+          -32.224583
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921264,
+        "osm_type": "node",
+        "NOMBRE": "Dptos y Casa Bonin",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.132523,
+          -32.229336
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921265,
+        "osm_type": "node",
+        "NOMBRE": "Dulce Amanecer Colon",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.136593,
+          -32.221864
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921266,
+        "osm_type": "node",
+        "NOMBRE": "Dulce Atardecer",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.136663,
+          -32.217861
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921267,
+        "osm_type": "node",
+        "NOMBRE": "El Centrico",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.138921,
+          -32.223542
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921268,
+        "osm_type": "node",
+        "NOMBRE": "El Recuerdo",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.141141,
+          -32.223666
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921269,
+        "osm_type": "node",
+        "NOMBRE": "El Silencio",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1507928,
+          -32.2219049
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921270,
+        "osm_type": "node",
+        "NOMBRE": "El Tano",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.144317,
+          -32.218213
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921271,
+        "osm_type": "node",
+        "NOMBRE": "Elymar Monoambientes",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.143756,
+          -32.212735
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921272,
+        "osm_type": "node",
+        "NOMBRE": "Esperanza",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.137223,
+          -32.229032
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921273,
+        "osm_type": "node",
+        "NOMBRE": "Estrellas Azules",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.133661,
+          -32.229703
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921274,
+        "osm_type": "node",
+        "NOMBRE": "Girasoles",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.13735,
+          -32.226001
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921275,
+        "osm_type": "node",
+        "NOMBRE": "Gisela Maria",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.147955,
+          -32.218234
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921276,
+        "osm_type": "node",
+        "NOMBRE": "Griselda",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.134448,
+          -32.221565
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921278,
+        "osm_type": "node",
+        "NOMBRE": "Ique Departamento",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.141184,
+          -32.223395
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921279,
+        "osm_type": "node",
+        "NOMBRE": "Isla Formosa",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1343295,
+          -32.2278092
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921280,
+        "osm_type": "node",
+        "NOMBRE": "Ita Guazu",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1432728,
+          -32.220439
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921282,
+        "osm_type": "node",
+        "NOMBRE": "Jazmin Loft",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.137831,
+          -32.228427
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921283,
+        "osm_type": "node",
+        "NOMBRE": "La Casa de Paulina",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.148382,
+          -32.222949
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921284,
+        "osm_type": "node",
+        "NOMBRE": "La Colonialita",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.135533,
+          -32.225932
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921285,
+        "osm_type": "node",
+        "NOMBRE": "La Daimale",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.130759,
+          -32.226723
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921286,
+        "osm_type": "node",
+        "NOMBRE": "La Posada de Dana",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.133314,
+          -32.219879
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921287,
+        "osm_type": "node",
+        "NOMBRE": "La Rusita",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1461361,
+          -32.2222222
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921288,
+        "osm_type": "node",
+        "NOMBRE": "Las Acacias",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.133924,
+          -32.229385
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921289,
+        "osm_type": "node",
+        "NOMBRE": "Las Marias Complejo",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.143128,
+          -32.212829
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921290,
+        "osm_type": "node",
+        "NOMBRE": "Las Moras",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.133718,
+          -32.223853
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921291,
+        "osm_type": "node",
+        "NOMBRE": "Las Pindo",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.141859,
+          -32.227992
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921292,
+        "osm_type": "node",
+        "NOMBRE": "Las Tejas",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.134947,
+          -32.223096
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921293,
+        "osm_type": "node",
+        "NOMBRE": "Le Soleil",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.141056,
+          -32.229899
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921294,
+        "osm_type": "node",
+        "NOMBRE": "Lo de Beba",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.147564,
+          -32.22059
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921295,
+        "osm_type": "node",
+        "NOMBRE": "Lo de Cacha",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.147033,
+          -32.212494
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921296,
+        "osm_type": "node",
+        "NOMBRE": "Lo de Juan",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.142574,
+          -32.23095
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921297,
+        "osm_type": "node",
+        "NOMBRE": "Lo de Susana",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.14496,
+          -32.213905
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921299,
+        "osm_type": "node",
+        "NOMBRE": "Los Amigos",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.146266,
+          -32.218494
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921300,
+        "osm_type": "node",
+        "NOMBRE": "Los Dos Soles",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.143882,
+          -32.212192
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921301,
+        "osm_type": "node",
+        "NOMBRE": "Los Gemelos",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.141559,
+          -32.218712
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921302,
+        "osm_type": "node",
+        "NOMBRE": "Los Preferidos",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.135896,
+          -32.227463
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921303,
+        "osm_type": "node",
+        "NOMBRE": "Los Ranchos",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.140517,
+          -32.217964
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921304,
+        "osm_type": "node",
+        "NOMBRE": "Luale Departamento",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.145079,
+          -32.227985
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921305,
+        "osm_type": "node",
+        "NOMBRE": "M2m",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.13353,
+          -32.231303
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921306,
+        "osm_type": "node",
+        "NOMBRE": "Mari Jo",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.144106,
+          -32.230117
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921307,
+        "osm_type": "node",
+        "NOMBRE": "Mari­a Rosa",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.137675,
+          -32.2242
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921308,
+        "osm_type": "node",
+        "NOMBRE": "Mi Casa",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.138056,
+          -32.228252
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921309,
+        "osm_type": "node",
+        "NOMBRE": "Mi Lugar en el Mundo",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.135762,
+          -32.228668
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921310,
+        "osm_type": "node",
+        "NOMBRE": "Mis Sobrinos",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1343839,
+          -32.231362
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921311,
+        "osm_type": "node",
+        "NOMBRE": "Mis Soles",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.134489,
+          -32.225141
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921312,
+        "osm_type": "node",
+        "NOMBRE": "Monoambientes Catalina",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.132355,
+          -32.228071
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921313,
+        "osm_type": "node",
+        "NOMBRE": "Oasis",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.131931,
+          -32.231385
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921314,
+        "osm_type": "node",
+        "NOMBRE": "Oga Pora",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.129555,
+          -32.22793
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921315,
+        "osm_type": "node",
+        "NOMBRE": "Orion Departamento",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1345555,
+          -32.231624
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921316,
+        "osm_type": "node",
+        "NOMBRE": "Paisaje Caraguatai",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.148554,
+          -32.2117
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921317,
+        "osm_type": "node",
+        "NOMBRE": "Pal Disfrute",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.146183,
+          -32.211867
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921318,
+        "osm_type": "node",
+        "NOMBRE": "Posada Las Acacias",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.143252,
+          -32.21192
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921319,
+        "osm_type": "node",
+        "NOMBRE": "Postal del Río",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.140967,
+          -32.222321
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921320,
+        "osm_type": "node",
+        "NOMBRE": "Puerto Paraiso",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1328994,
+          -32.2251772
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921321,
+        "osm_type": "node",
+        "NOMBRE": "Qiguay",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.137145,
+          -32.227621
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921322,
+        "osm_type": "node",
+        "NOMBRE": "RL Departamentos",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.145267,
+          -32.210652
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921323,
+        "osm_type": "node",
+        "NOMBRE": "Residencia Mis Amigos",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.14627,
+          -32.222143
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921324,
+        "osm_type": "node",
+        "NOMBRE": "Rey Casas",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.149345,
+          -32.210948
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921325,
+        "osm_type": "node",
+        "NOMBRE": "Rincon del Rio",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.132697,
+          -32.229161
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921326,
+        "osm_type": "node",
+        "NOMBRE": "Rio Manso",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1440575,
+          -32.2301647
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921327,
+        "osm_type": "node",
+        "NOMBRE": "Silvana Daniela",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.134739,
+          -32.230089
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921328,
+        "osm_type": "node",
+        "NOMBRE": "Sol y Luna del Parque",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.133431,
+          -32.231354
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921329,
+        "osm_type": "node",
+        "NOMBRE": "Solares de Colon",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.147184,
+          -32.211726
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921330,
+        "osm_type": "node",
+        "NOMBRE": "Sueño Verde Bungalows",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.142473,
+          -32.213115
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921331,
+        "osm_type": "node",
+        "NOMBRE": "Suyana",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1339094,
+          -32.2282639
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921332,
+        "osm_type": "node",
+        "NOMBRE": "Terrazas del Quiros",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.145984,
+          -32.212927
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921333,
+        "osm_type": "node",
+        "NOMBRE": "Tio Kelo",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.136964,
+          -32.224913
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921334,
+        "osm_type": "node",
+        "NOMBRE": "Tu Lugar",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.133014,
+          -32.231821
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921335,
+        "osm_type": "node",
+        "NOMBRE": "Villa Mora",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.142466,
+          -32.213502
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921336,
+        "osm_type": "node",
+        "NOMBRE": "Village le Jardín",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.143926,
+          -32.212897
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921337,
+        "osm_type": "node",
+        "NOMBRE": "Ya - Li",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.139182,
+          -32.229861
+        ]
+      },
+      "properties": {
+        "osm_id": 2328921338,
+        "osm_type": "node",
+        "NOMBRE": "Ñanderoga Bungalows",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2613818,
+          -32.3351086
+        ]
+      },
+      "properties": {
+        "osm_id": 2743571301,
+        "osm_type": "node",
+        "NOMBRE": "Camping El Viejo Molino",
+        "amenity": "",
+        "tourism": "camp_site",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.307145,
+          -32.1742266
+        ]
+      },
+      "properties": {
+        "osm_id": 3120736286,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "picnic_site",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2225172,
+          -32.2083157
+        ]
+      },
+      "properties": {
+        "osm_id": 3279483613,
+        "osm_type": "node",
+        "NOMBRE": "Romance de Luna",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2209513,
+          -32.208202
+        ]
+      },
+      "properties": {
+        "osm_id": 3279483614,
+        "osm_type": "node",
+        "NOMBRE": "Hotel Las Colonias",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2177099,
+          -32.208883
+        ]
+      },
+      "properties": {
+        "osm_id": 3282704185,
+        "osm_type": "node",
+        "NOMBRE": "El Hotelito",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2317439,
+          -32.2118137
+        ]
+      },
+      "properties": {
+        "osm_id": 3282717735,
+        "osm_type": "node",
+        "NOMBRE": "Mi Dulcinea",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2222876,
+          -32.2116898
+        ]
+      },
+      "properties": {
+        "osm_id": 3282717736,
+        "osm_type": "node",
+        "NOMBRE": "Apart Morena",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "https://www.turismoentrerios.com/apartmorena/",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2230031,
+          -32.2138431
+        ]
+      },
+      "properties": {
+        "osm_id": 3282717737,
+        "osm_type": "node",
+        "NOMBRE": "Las Golondrinas",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "https://www.turismoentrerios.com/lasgolondrinas/",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2095766,
+          -32.207643
+        ]
+      },
+      "properties": {
+        "osm_id": 3282729806,
+        "osm_type": "node",
+        "NOMBRE": "Altos de Villa María",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "http://www.altosdevillamaria.com.ar/",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2456068,
+          -32.1922184
+        ]
+      },
+      "properties": {
+        "osm_id": 3282729807,
+        "osm_type": "node",
+        "NOMBRE": "Los Francos Suizos",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "http://www.losfrancosuizos.com.ar/",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.220136,
+          -32.2125585
+        ]
+      },
+      "properties": {
+        "osm_id": 3727884778,
+        "osm_type": "node",
+        "NOMBRE": "Museo Històrico Regional de la Colonia de San José",
+        "amenity": "",
+        "tourism": "museum",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "www.museocoloniasanjose.com.ar",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1577996,
+          -32.2343334
+        ]
+      },
+      "properties": {
+        "osm_id": 3771405251,
+        "osm_type": "node",
+        "NOMBRE": "Información Turística",
+        "amenity": "",
+        "tourism": "information",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1355969,
+          -32.2191865
+        ]
+      },
+      "properties": {
+        "osm_id": 3772003846,
+        "osm_type": "node",
+        "NOMBRE": "Hotel Plaza",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1001462,
+          -32.3149647
+        ]
+      },
+      "properties": {
+        "osm_id": 3808590091,
+        "osm_type": "node",
+        "NOMBRE": "Hotel Papiros",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2397624,
+          -32.1938893
+        ]
+      },
+      "properties": {
+        "osm_id": 3817707425,
+        "osm_type": "node",
+        "NOMBRE": "La Comarca",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0814707,
+          -32.3183123
+        ]
+      },
+      "properties": {
+        "osm_id": 3996251081,
+        "osm_type": "node",
+        "NOMBRE": "Hotel Plaza",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0807733,
+          -32.3165805
+        ]
+      },
+      "properties": {
+        "osm_id": 3996251084,
+        "osm_type": "node",
+        "NOMBRE": "Casa Grande",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1314876,
+          -32.2232452
+        ]
+      },
+      "properties": {
+        "osm_id": 4096301635,
+        "osm_type": "node",
+        "NOMBRE": "Club Piedras Coloradas",
+        "amenity": "",
+        "tourism": "camp_site",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1337521,
+          -32.2181209
+        ]
+      },
+      "properties": {
+        "osm_id": 4212959600,
+        "osm_type": "node",
+        "NOMBRE": "Hotel Costarena",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0819856,
+          -32.319113
+        ]
+      },
+      "properties": {
+        "osm_id": 4357740697,
+        "osm_type": "node",
+        "NOMBRE": "Intendencia de Paysandu",
+        "amenity": "",
+        "tourism": "attraction",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "https://www.paysandu.gub.uy/",
+        "phone": "",
+        "opening_hours": "Mo-Fr 12:00-18:00",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1579171,
+          -32.2143121
+        ]
+      },
+      "properties": {
+        "osm_id": 4364899676,
+        "osm_type": "node",
+        "NOMBRE": "La Agustina Apart Boutique",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1500349,
+          -32.2214577
+        ]
+      },
+      "properties": {
+        "osm_id": 4433718390,
+        "osm_type": "node",
+        "NOMBRE": "Alojamiento Cumbeto",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1897339,
+          -32.1558005
+        ]
+      },
+      "properties": {
+        "osm_id": 4463400609,
+        "osm_type": "node",
+        "NOMBRE": "Hostería Casa Vieja",
+        "amenity": "",
+        "tourism": "hostel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1596955,
+          -32.207115
+        ]
+      },
+      "properties": {
+        "osm_id": 4508454935,
+        "osm_type": "node",
+        "NOMBRE": "Terra Nova",
+        "amenity": "",
+        "tourism": "apartment",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "https://www.turismoentrerios.com/terranova/",
+        "phone": "+54 11 5826 2331;+54 11 4471 5865",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1591636,
+          -32.2060658
+        ]
+      },
+      "properties": {
+        "osm_id": 4508454936,
+        "osm_type": "node",
+        "NOMBRE": "Bungalows Amancay",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "http://www.bungalowsamancay.com/",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.158985,
+          -32.2060099
+        ]
+      },
+      "properties": {
+        "osm_id": 4508454937,
+        "osm_type": "node",
+        "NOMBRE": "Complejo Reencuentro",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "https://www.complejoreencuentro.com/",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1581701,
+          -32.2067251
+        ]
+      },
+      "properties": {
+        "osm_id": 4508454938,
+        "osm_type": "node",
+        "NOMBRE": "Di Caro Cabañas Boutique",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "https://www.dicaro.com.ar/",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1578092,
+          -32.2061796
+        ]
+      },
+      "properties": {
+        "osm_id": 4508454939,
+        "osm_type": "node",
+        "NOMBRE": "Los Palmares del Urugua-I",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "https://www.turismoentrerios.com/lospalmaresdelurugua-i/",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0821638,
+          -32.3171089
+        ]
+      },
+      "properties": {
+        "osm_id": 4539426690,
+        "osm_type": "node",
+        "NOMBRE": "Nuevo Hotel Rafaela",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0862971,
+          -32.3179336
+        ]
+      },
+      "properties": {
+        "osm_id": 4873153121,
+        "osm_type": "node",
+        "NOMBRE": "Hotel París",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "092545887",
+        "opening_hours": "24/7",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0805339,
+          -32.3030323
+        ]
+      },
+      "properties": {
+        "osm_id": 4970245027,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "chalet",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1739382,
+          -32.1767083
+        ]
+      },
+      "properties": {
+        "osm_id": 5095293006,
+        "osm_type": "node",
+        "NOMBRE": "Los Mėdanos",
+        "amenity": "",
+        "tourism": "camp_site",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1699777,
+          -32.2085684
+        ]
+      },
+      "properties": {
+        "osm_id": 5095293013,
+        "osm_type": "node",
+        "NOMBRE": "Hostel",
+        "amenity": "",
+        "tourism": "hostel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0838503,
+          -32.3168766
+        ]
+      },
+      "properties": {
+        "osm_id": 5267901816,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0928077,
+          -32.2651869
+        ]
+      },
+      "properties": {
+        "osm_id": 5371377822,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "attraction",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1353452,
+          -32.2158088
+        ]
+      },
+      "properties": {
+        "osm_id": 5691208621,
+        "osm_type": "node",
+        "NOMBRE": "Esculturas de caricaturas en Madera",
+        "amenity": "",
+        "tourism": "attraction",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1358048,
+          -32.2195113
+        ]
+      },
+      "properties": {
+        "osm_id": 5799984918,
+        "osm_type": "node",
+        "NOMBRE": "Jardín Escondido",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1620281,
+          -32.2234518
+        ]
+      },
+      "properties": {
+        "osm_id": 6216289149,
+        "osm_type": "node",
+        "NOMBRE": "Brisas del Uruguay",
+        "amenity": "",
+        "tourism": "apartment",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "https://www.brisasdeluruguay.com.ar/",
+        "phone": "+5491169327651",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0914094,
+          -32.2987917
+        ]
+      },
+      "properties": {
+        "osm_id": 6506319558,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "artwork",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.148198,
+          -32.2272996
+        ]
+      },
+      "properties": {
+        "osm_id": 7799423454,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "artwork",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1480929,
+          -32.2079385
+        ]
+      },
+      "properties": {
+        "osm_id": 8248051703,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "viewpoint",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1469832,
+          -32.2080026
+        ]
+      },
+      "properties": {
+        "osm_id": 8248118079,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "viewpoint",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2265543,
+          -32.2108003
+        ]
+      },
+      "properties": {
+        "osm_id": 8340063514,
+        "osm_type": "node",
+        "NOMBRE": "Doctor Alberto F Bolvin",
+        "amenity": "",
+        "tourism": "artwork",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2200484,
+          -32.2092114
+        ]
+      },
+      "properties": {
+        "osm_id": 8547207617,
+        "osm_type": "node",
+        "NOMBRE": "Museo de Ciencias Naturales Guillermo Goméz Cadret",
+        "amenity": "",
+        "tourism": "museum",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1952251,
+          -32.1508135
+        ]
+      },
+      "properties": {
+        "osm_id": 10131481968,
+        "osm_type": "node",
+        "NOMBRE": "Santa Rita",
+        "amenity": "",
+        "tourism": "hostel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.261292,
+          -32.3419168
+        ]
+      },
+      "properties": {
+        "osm_id": 10307201778,
+        "osm_type": "node",
+        "NOMBRE": "Monumento a Urquiza",
+        "amenity": "",
+        "tourism": "attraction",
+        "historic": "memorial",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1651867,
+          -32.1916455
+        ]
+      },
+      "properties": {
+        "osm_id": 10554273778,
+        "osm_type": "node",
+        "NOMBRE": "Cabañas del Corral",
+        "amenity": "",
+        "tourism": "chalet",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1689626,
+          -32.1924516
+        ]
+      },
+      "properties": {
+        "osm_id": 10565182602,
+        "osm_type": "node",
+        "NOMBRE": "Cabañas Itatí",
+        "amenity": "",
+        "tourism": "cabin",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1721626,
+          -32.1953735
+        ]
+      },
+      "properties": {
+        "osm_id": 10565229779,
+        "osm_type": "node",
+        "NOMBRE": "Puerto Verde",
+        "amenity": "",
+        "tourism": "apartment",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1618652,
+          -32.1904611
+        ]
+      },
+      "properties": {
+        "osm_id": 10574011858,
+        "osm_type": "node",
+        "NOMBRE": "Plano Turístico",
+        "amenity": "",
+        "tourism": "information",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1559804,
+          -32.1959019
+        ]
+      },
+      "properties": {
+        "osm_id": 10575714713,
+        "osm_type": "node",
+        "NOMBRE": "Viejo Muelle",
+        "amenity": "",
+        "tourism": "camp_site",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.213938,
+          -32.1913053
+        ]
+      },
+      "properties": {
+        "osm_id": 12076195469,
+        "osm_type": "node",
+        "NOMBRE": "La Trinidad Casa de Campo",
+        "amenity": "",
+        "tourism": "chalet",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "https://latrinidadcasadecampo.mitiendanube.com/",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1675733,
+          -32.2132316
+        ]
+      },
+      "properties": {
+        "osm_id": 12352499703,
+        "osm_type": "node",
+        "NOMBRE": "Cabañas Adelu",
+        "amenity": "",
+        "tourism": "chalet",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1824061,
+          -32.1924914
+        ]
+      },
+      "properties": {
+        "osm_id": 12352499704,
+        "osm_type": "node",
+        "NOMBRE": "Complejo Ruca Anay",
+        "amenity": "",
+        "tourism": "chalet",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1753847,
+          -32.1812913
+        ]
+      },
+      "properties": {
+        "osm_id": 12628578101,
+        "osm_type": "node",
+        "NOMBRE": "Complejo Costa Alta",
+        "amenity": "",
+        "tourism": "chalet",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "https://complejocostaalta.com.ar/",
+        "phone": "+54 111540225270",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0924219,
+          -32.3062883
+        ]
+      },
+      "properties": {
+        "osm_id": 12662730942,
+        "osm_type": "node",
+        "NOMBRE": "San Martín",
+        "amenity": "",
+        "tourism": "artwork",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0840448,
+          -32.3173263
+        ]
+      },
+      "properties": {
+        "osm_id": 12675450264,
+        "osm_type": "node",
+        "NOMBRE": "Eduardo Franco",
+        "amenity": "",
+        "tourism": "artwork",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1318643,
+          -32.2254275
+        ]
+      },
+      "properties": {
+        "osm_id": 12753292310,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "viewpoint",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1330952,
+          -32.2183812
+        ]
+      },
+      "properties": {
+        "osm_id": 12753292412,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "viewpoint",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1354872,
+          -32.2155865
+        ]
+      },
+      "properties": {
+        "osm_id": 12753292414,
+        "osm_type": "node",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "viewpoint",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.3101144,
+          -32.1748835
+        ]
+      },
+      "properties": {
+        "osm_id": 312076350,
+        "osm_type": "way",
+        "NOMBRE": "Balneario Camping Municipal Rocha",
+        "amenity": "",
+        "tourism": "picnic_site",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0818524,
+          -32.2446732
+        ]
+      },
+      "properties": {
+        "osm_id": 341884012,
+        "osm_type": "way",
+        "NOMBRE": "Campamento Centros Biblicos",
+        "amenity": "",
+        "tourism": "camp_site",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1921187,
+          -32.2194666
+        ]
+      },
+      "properties": {
+        "osm_id": 379239917,
+        "osm_type": "way",
+        "NOMBRE": "Casa de la Primera Administración de la Colonia de San José",
+        "amenity": "",
+        "tourism": "museum",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1590181,
+          -32.2123763
+        ]
+      },
+      "properties": {
+        "osm_id": 886958144,
+        "osm_type": "way",
+        "NOMBRE": "La Arbolada",
+        "amenity": "",
+        "tourism": "chalet",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1746897,
+          -32.2342595
+        ]
+      },
+      "properties": {
+        "osm_id": 886975867,
+        "osm_type": "way",
+        "NOMBRE": "Noha Casa de Campo",
+        "amenity": "",
+        "tourism": "chalet",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "https://nohacasadecampo.com/",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1587047,
+          -32.2131876
+        ]
+      },
+      "properties": {
+        "osm_id": 886975868,
+        "osm_type": "way",
+        "NOMBRE": "La Matera",
+        "amenity": "",
+        "tourism": "chalet",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1638055,
+          -32.2366464
+        ]
+      },
+      "properties": {
+        "osm_id": 904799820,
+        "osm_type": "way",
+        "NOMBRE": "Cabañas La Escondida",
+        "amenity": "",
+        "tourism": "chalet",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1665363,
+          -32.2229555
+        ]
+      },
+      "properties": {
+        "osm_id": 904894399,
+        "osm_type": "way",
+        "NOMBRE": "Cabañas El Descanso",
+        "amenity": "",
+        "tourism": "chalet",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2369659,
+          -32.2201958
+        ]
+      },
+      "properties": {
+        "osm_id": 1083890733,
+        "osm_type": "way",
+        "NOMBRE": "Del Molino",
+        "amenity": "",
+        "tourism": "hotel",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0807645,
+          -32.3170788
+        ]
+      },
+      "properties": {
+        "osm_id": 1102773038,
+        "osm_type": "way",
+        "NOMBRE": "Monumento Leandro Gómez",
+        "amenity": "",
+        "tourism": "artwork",
+        "historic": "memorial",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1611341,
+          -32.1896162
+        ]
+      },
+      "properties": {
+        "osm_id": 1134197321,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "picnic_site",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1595619,
+          -32.1914644
+        ]
+      },
+      "properties": {
+        "osm_id": 1134197348,
+        "osm_type": "way",
+        "NOMBRE": "Balneario Camping San José",
+        "amenity": "",
+        "tourism": "camp_site",
+        "historic": "",
+        "leisure": "beach_resort",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "https://sanjose.tur.ar/balneario-municipal-san-jose/",
+        "phone": "+54 3447 641-922",
+        "opening_hours": "24/7",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1592715,
+          -32.1919627
+        ]
+      },
+      "properties": {
+        "osm_id": 1134259034,
+        "osm_type": "way",
+        "NOMBRE": "Sector Juvenil",
+        "amenity": "",
+        "tourism": "camp_pitch",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1598441,
+          -32.1912806
+        ]
+      },
+      "properties": {
+        "osm_id": 1134259035,
+        "osm_type": "way",
+        "NOMBRE": "Sector 2",
+        "amenity": "",
+        "tourism": "camp_pitch",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1600782,
+          -32.1904828
+        ]
+      },
+      "properties": {
+        "osm_id": 1134259036,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "picnic_site",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1605308,
+          -32.1904214
+        ]
+      },
+      "properties": {
+        "osm_id": 1134259037,
+        "osm_type": "way",
+        "NOMBRE": "Sector 1",
+        "amenity": "",
+        "tourism": "camp_pitch",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1611262,
+          -32.1906694
+        ]
+      },
+      "properties": {
+        "osm_id": 1134259039,
+        "osm_type": "way",
+        "NOMBRE": "Sector Motorhome",
+        "amenity": "",
+        "tourism": "camp_pitch",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "24/7",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1610833,
+          -32.1905326
+        ]
+      },
+      "properties": {
+        "osm_id": 1134259040,
+        "osm_type": "way",
+        "NOMBRE": "Sector Familiar",
+        "amenity": "",
+        "tourism": "camp_pitch",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.162056,
+          -32.1905025
+        ]
+      },
+      "properties": {
+        "osm_id": 1134259050,
+        "osm_type": "way",
+        "NOMBRE": "Administración",
+        "amenity": "reception_desk",
+        "tourism": "information",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1615775,
+          -32.1905371
+        ]
+      },
+      "properties": {
+        "osm_id": 1134262274,
+        "osm_type": "way",
+        "NOMBRE": "Sector Discapacidad",
+        "amenity": "",
+        "tourism": "camp_pitch",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1585755,
+          -32.1927298
+        ]
+      },
+      "properties": {
+        "osm_id": 1134341989,
+        "osm_type": "way",
+        "NOMBRE": "Sector Isla",
+        "amenity": "",
+        "tourism": "camp_pitch",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1614935,
+          -32.1920515
+        ]
+      },
+      "properties": {
+        "osm_id": 1134341992,
+        "osm_type": "way",
+        "NOMBRE": "Sector Arroyo",
+        "amenity": "",
+        "tourism": "camp_pitch",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1610766,
+          -32.1915211
+        ]
+      },
+      "properties": {
+        "osm_id": 1134341993,
+        "osm_type": "way",
+        "NOMBRE": "",
+        "amenity": "",
+        "tourism": "camp_pitch",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1614394,
+          -32.1941882
+        ]
+      },
+      "properties": {
+        "osm_id": 1134406240,
+        "osm_type": "way",
+        "NOMBRE": "Mi GRAN Amor Termas",
+        "amenity": "",
+        "tourism": "apartment",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "+54 11 3643-9111",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.1364901,
+          -32.21568
+        ]
+      },
+      "properties": {
+        "osm_id": 1377331294,
+        "osm_type": "way",
+        "NOMBRE": "Oficina de Turismo Colón Entre Ríos",
+        "amenity": "",
+        "tourism": "information",
+        "historic": "",
+        "leisure": "",
+        "office": "",
+        "religion": "",
+        "denomination": "",
+        "website": "",
+        "phone": "",
+        "opening_hours": "",
+        "layers_group": "turismo"
+      }
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, ChevronRight, Layers, Eye, EyeOff, Globe } from "lucide-react";
+import { ChevronDown, ChevronRight, Layers, Eye, EyeOff, Globe, Download } from "lucide-react";
 import { LAYERS, LAYER_GROUPS, type ExternalLayerDef } from "@/lib/layers";
 
 interface LayersPanelProps {
@@ -14,10 +14,13 @@ interface LayersPanelProps {
   externalLayers: ExternalLayerDef[];
   /** Ordered list of external group names */
   externalLayerGroups: string[];
+  manzanaVisualMode: "suaves" | "normales";
+  onChangeManzanaVisualMode: (mode: "suaves" | "normales") => void;
 }
 
-export default function LayersPanel({ visibleLayers, onToggleLayer, isOpen, onClose, isAdmin, visibleExternalLayers, onToggleExternalLayer, externalLayers, externalLayerGroups }: LayersPanelProps) {
+export default function LayersPanel({ visibleLayers, onToggleLayer, isOpen, onClose, isAdmin, visibleExternalLayers, onToggleExternalLayer, externalLayers, externalLayerGroups, manzanaVisualMode, onChangeManzanaVisualMode }: LayersPanelProps) {
   const [collapsedGroups, setCollapsedGroups] = useState<Record<string, boolean>>({});
+  const [manzanaOptionsOpen, setManzanaOptionsOpen] = useState(false);
 
   const toggleGroup = (group: string) => {
     setCollapsedGroups(prev => ({ ...prev, [group]: !prev[group] }));
@@ -79,38 +82,100 @@ export default function LayersPanel({ visibleLayers, onToggleLayer, isOpen, onCl
                   {groupLayers.map(layer => {
                     const isVisible = visibleLayers[layer.id] ?? layer.defaultVisible;
                     return (
-                      <div
-                        key={layer.id}
-                        className="flex items-center gap-3 px-4 py-2 hover:bg-accent/50 transition-colors cursor-pointer group"
-                        onClick={() => onToggleLayer(layer.id)}
-                        data-testid={`layer-toggle-${layer.id}`}
-                        title={layer.description}
-                      >
+                      <div key={layer.id}>
                         <div
-                          className="w-3.5 h-3.5 rounded-sm flex-shrink-0 ring-1 ring-white/10"
-                          style={{
-                            background: isVisible ? layer.color : "transparent",
-                            borderColor: layer.color,
-                            border: `2px solid ${layer.color}`,
+                          className="flex items-center gap-3 px-4 py-2 hover:bg-accent/50 transition-colors cursor-pointer group"
+                          onClick={() => {
+                            const nextVisible = !isVisible;
+                            onToggleLayer(layer.id);
+                            if (layer.id === "manzana" && nextVisible) setManzanaOptionsOpen(true);
                           }}
-                        />
-                        <span
-                          className={`text-xs flex-1 transition-colors ${
-                            isVisible ? "text-foreground" : "text-muted-foreground"
-                          }`}
+                          data-testid={`layer-toggle-${layer.id}`}
+                          title={layer.description}
                         >
-                          {layer.label}
-                          {layer.lazy && (
-                            <span className="ml-1 text-[9px] text-muted-foreground opacity-60">(bajo demanda)</span>
+                          <div
+                            className="w-3.5 h-3.5 rounded-sm flex-shrink-0 ring-1 ring-white/10"
+                            style={{
+                              background: isVisible ? layer.color : "transparent",
+                              borderColor: layer.color,
+                              border: `2px solid ${layer.color}`,
+                            }}
+                          />
+                          <span
+                            className={`text-xs flex-1 transition-colors ${
+                              isVisible ? "text-foreground" : "text-muted-foreground"
+                            }`}
+                          >
+                            {layer.label}
+                            {layer.lazy && (
+                              <span className="ml-1 text-[9px] text-muted-foreground opacity-60">(bajo demanda)</span>
+                            )}
+                          </span>
+
+                          {/* Descarga disponible para todos los usuarios en capas públicas,
+                              y para admins en capas adminOnly */}
+                          {(!layer.adminOnly || isAdmin) && (
+                            <a
+                              href={`/data/${layer.file}`}
+                              download={layer.file}
+                              onClick={(e) => e.stopPropagation()}
+                              className="opacity-0 group-hover:opacity-100 transition-opacity text-[10px] px-1 py-0.5 rounded border border-white/20 text-white/60 hover:text-white hover:bg-white/10 flex items-center"
+                              title={`Descargar ${layer.label} (GeoJSON)`}
+                            >
+                              <Download size={10} />
+                            </a>
                           )}
-                        </span>
-                        <span className="opacity-0 group-hover:opacity-100 transition-opacity">
-                          {isVisible ? (
-                            <Eye size={12} className="text-primary" />
-                          ) : (
-                            <EyeOff size={12} className="text-muted-foreground" />
+
+                          {layer.id === "manzana" && isVisible && (
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setManzanaOptionsOpen((v) => !v);
+                              }}
+                              className="text-[10px] px-1.5 py-0.5 rounded border border-white/20 text-white/80 hover:bg-white/10"
+                              aria-label="Opciones de manzanas"
+                            >
+                              {manzanaOptionsOpen ? "Ocultar" : "Modo"}
+                            </button>
                           )}
-                        </span>
+
+                          <span className="opacity-0 group-hover:opacity-100 transition-opacity">
+                            {isVisible ? (
+                              <Eye size={12} className="text-primary" />
+                            ) : (
+                              <EyeOff size={12} className="text-muted-foreground" />
+                            )}
+                          </span>
+                        </div>
+
+                        {layer.id === "manzana" && isVisible && manzanaOptionsOpen && (
+                          <div className="mx-4 mb-2 px-2 py-2 rounded bg-black/35 border border-white/10">
+                            <p className="text-[10px] text-white/70 mb-1">Modo visual de manzanas</p>
+                            <div className="flex gap-2">
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  onChangeManzanaVisualMode("suaves");
+                                }}
+                                className={`px-2 py-1 text-[11px] rounded border transition-colors ${manzanaVisualMode === "suaves" ? "bg-white/20 border-white/40 text-white" : "bg-white/10 hover:bg-white/15 border-white/20 text-white/80"}`}
+                              >
+                                Suaves
+                              </button>
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  onChangeManzanaVisualMode("normales");
+                                }}
+                                className={`px-2 py-1 text-[11px] rounded border transition-colors ${manzanaVisualMode === "normales" ? "bg-white/20 border-white/40 text-white" : "bg-white/10 hover:bg-white/15 border-white/20 text-white/80"}`}
+                              >
+                                Normales
+                              </button>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     );
                   })}

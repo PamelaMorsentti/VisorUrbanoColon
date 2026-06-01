@@ -10,7 +10,12 @@
     "build": "pnpm run typecheck && pnpm -r --if-present run build",
     "build:api": "pnpm --filter @workspace/api-server run build",
     "build:web": "pnpm --filter @workspace/colon-3d run build",
+    "build:netlify": "pnpm run build:web",
     "start:api": "pnpm --filter @workspace/api-server run start",
+    "docs:fichas-src": "pnpm --filter @workspace/scripts run docs:fichas-src",
+    "build:zonas-tributarias": "pnpm --filter @workspace/scripts run build:zonas-tributarias",
+    "maint:archive-temp": "pnpm --filter @workspace/scripts run maint:archive-temp",
+    "maint:archive-temp:dry": "pnpm --filter @workspace/scripts run maint:archive-temp:dry",
     "typecheck:libs": "tsc --build",
     "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
   },
