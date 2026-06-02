@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import {
   Layers, Search, Navigation, MapPin, X, Loader2,
-  BarChart2, Map, Upload, Ruler, Square, ChevronDown, Cloud,
+  BarChart2, Map, Upload, Ruler, Square, ChevronDown, Cloud, MoreHorizontal,
 } from "lucide-react";
 import L from "leaflet";
 import { COLON_CENTER, COLON_ZOOM } from "@/lib/layers";
@@ -112,15 +112,16 @@ export default function Header({
   const [searching, setSearching] = useState(false);
   const [searchError, setSearchError] = useState<string | null>(null);
   const [obrasMenuOpen, setObrasMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
   const obrasMenuRef = useRef<HTMLDivElement | null>(null);
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const onPointerDown = (event: MouseEvent) => {
-      if (!obrasMenuRef.current) return;
-      if (!obrasMenuRef.current.contains(event.target as Node)) {
-        setObrasMenuOpen(false);
-      }
+      const target = event.target as Node;
+      if (obrasMenuRef.current && !obrasMenuRef.current.contains(target)) setObrasMenuOpen(false);
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(target)) setMobileMenuOpen(false);
     };
     document.addEventListener("mousedown", onPointerDown);
     return () => document.removeEventListener("mousedown", onPointerDown);
@@ -216,6 +217,74 @@ export default function Header({
 
       {/* Toolbar buttons */}
       <div className="flex items-center gap-1 ml-auto">
+        {/* Mobile overflow menu */}
+        <div className="relative lg:hidden" ref={mobileMenuRef}>
+          <button
+            onClick={() => setMobileMenuOpen(v => !v)}
+            className={`${BTN_BASE} ${mobileMenuOpen ? BTN_ACTIVE("sky") : ""}`}
+            title="Más herramientas"
+          >
+            <MoreHorizontal size={13} />
+            <span className="text-xs">Mas</span>
+          </button>
+
+          {mobileMenuOpen && (
+            <div className="absolute right-0 top-full mt-2 w-56 rounded-lg border border-border bg-card shadow-2xl p-2 z-[1200]">
+              <button
+                onClick={() => { handleReset(); setMobileMenuOpen(false); }}
+                className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60"
+              >
+                <span>Centrar en Colon</span>
+                <Navigation size={12} />
+              </button>
+              <button
+                onClick={() => { toggleMeasure("distance"); setMobileMenuOpen(false); }}
+                className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60"
+              >
+                <span>{measureMode === "distance" ? "Desactivar distancia" : "Medir distancia"}</span>
+                <Ruler size={12} />
+              </button>
+              <button
+                onClick={() => { toggleMeasure("area"); setMobileMenuOpen(false); }}
+                className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60"
+              >
+                <span>{measureMode === "area" ? "Desactivar superficie" : "Medir superficie"}</span>
+                <Square size={12} />
+              </button>
+              <button
+                onClick={() => { onToggleAnalysis(); setMobileMenuOpen(false); }}
+                className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60"
+              >
+                <span>{analysisPanelOpen ? "Ocultar analisis" : "Panel de analisis"}</span>
+                <BarChart2 size={12} />
+              </button>
+              <button
+                onClick={() => { onToggleUpload(); setMobileMenuOpen(false); }}
+                className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60"
+              >
+                <span>{uploadPanelOpen ? "Ocultar carga GIS" : "Cargar capas GIS"}</span>
+                <Upload size={12} />
+              </button>
+              <button
+                onClick={() => { onTogglePlanosVisibility(); setMobileMenuOpen(false); }}
+                className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60"
+              >
+                <span>{planosActive ? "Ocultar obras" : "Mostrar obras"}</span>
+                <MapPin size={12} />
+              </button>
+              {showZonaLegendButton && (
+                <button
+                  onClick={() => { onToggleZonaLegend(); setMobileMenuOpen(false); }}
+                  className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60"
+                >
+                  <span>{zonaLegendOpen ? "Ocultar zonificacion" : "Ver zonificacion"}</span>
+                  <Map size={12} />
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+
         {/* Reset view */}
         <button onClick={handleReset} className={`hidden sm:flex ${BTN_BASE}`} title="Centrar en Colón" data-testid="button-reset-view">
           <Navigation size={13} />
