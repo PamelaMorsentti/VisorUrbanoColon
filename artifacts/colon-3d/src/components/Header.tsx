@@ -186,7 +186,7 @@ export default function Header({
       </div>
 
       {/* Address search – IGN Argentina */}
-      <form onSubmit={handleSearch} className="flex-1 max-w-xs relative">
+      <form onSubmit={handleSearch} className="hidden md:block flex-1 max-w-xs relative">
         <div className="relative">
           <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
           <input
@@ -217,14 +217,14 @@ export default function Header({
       {/* Toolbar buttons */}
       <div className="flex items-center gap-1 ml-auto">
         {/* Reset view */}
-        <button onClick={handleReset} className={BTN_BASE} title="Centrar en Colón" data-testid="button-reset-view">
+        <button onClick={handleReset} className={`hidden sm:flex ${BTN_BASE}`} title="Centrar en Colón" data-testid="button-reset-view">
           <Navigation size={13} />
         </button>
 
         {/* Measure distance */}
         <button
           onClick={() => toggleMeasure("distance")}
-          className={`${BTN_BASE} ${measureMode === "distance" ? BTN_ACTIVE("cyan") : ""}`}
+          className={`hidden lg:flex ${BTN_BASE} ${measureMode === "distance" ? BTN_ACTIVE("cyan") : ""}`}
           title="Medir distancia"
         >
           <Ruler size={13} />
@@ -234,19 +234,19 @@ export default function Header({
         {/* Measure area */}
         <button
           onClick={() => toggleMeasure("area")}
-          className={`${BTN_BASE} ${measureMode === "area" ? BTN_ACTIVE("cyan") : ""}`}
+          className={`hidden lg:flex ${BTN_BASE} ${measureMode === "area" ? BTN_ACTIVE("cyan") : ""}`}
           title="Medir superficie"
         >
           <Square size={13} />
           <span className="hidden xl:inline text-xs">Sup.</span>
         </button>
 
-        <div className="w-px h-5 bg-border/50 mx-0.5 flex-shrink-0" />
+        <div className="hidden lg:block w-px h-5 bg-border/50 mx-0.5 flex-shrink-0" />
 
         {/* Analysis */}
         <button
           onClick={onToggleAnalysis}
-          className={`${BTN_BASE} ${analysisPanelOpen ? BTN_ACTIVE("purple") : ""}`}
+          className={`hidden lg:flex ${BTN_BASE} ${analysisPanelOpen ? BTN_ACTIVE("purple") : ""}`}
           title="Panel de análisis"
         >
           <BarChart2 size={13} />
@@ -256,7 +256,7 @@ export default function Header({
         {/* Upload layers */}
         <button
           onClick={onToggleUpload}
-          className={`${BTN_BASE} ${uploadPanelOpen ? BTN_ACTIVE("amber") : ""}`}
+          className={`hidden lg:flex ${BTN_BASE} ${uploadPanelOpen ? BTN_ACTIVE("amber") : ""}`}
           title="Cargar capas GIS"
         >
           <Upload size={13} />
@@ -264,7 +264,7 @@ export default function Header({
         </button>
 
         {/* Planos / obras */}
-        <div className="relative" ref={obrasMenuRef}>
+        <div className="hidden lg:block relative" ref={obrasMenuRef}>
           <button
             onClick={() => setObrasMenuOpen(v => !v)}
             className={`${BTN_BASE} ${(planosActive || obrasMenuOpen) ? BTN_ACTIVE("emerald") : ""}`}
@@ -433,13 +433,13 @@ export default function Header({
           )}
         </div>
 
-        <div className="w-px h-5 bg-border/50 mx-0.5 flex-shrink-0" />
+        <div className="hidden md:block w-px h-5 bg-border/50 mx-0.5 flex-shrink-0" />
 
         {/* Zona legend */}
         {showZonaLegendButton && (
           <button
             onClick={onToggleZonaLegend}
-            className={`${BTN_BASE} ${zonaLegendOpen ? BTN_ACTIVE("emerald") : ""}`}
+            className={`hidden md:flex ${BTN_BASE} ${zonaLegendOpen ? BTN_ACTIVE("emerald") : ""}`}
             title="Leyenda de zonificación"
             data-testid="button-toggle-zona-legend"
           >
@@ -496,7 +496,7 @@ export default function Header({
 
 // ─── Style helpers ────────────────────────────────────────────────────────────
 
-const BTN_BASE = "flex items-center gap-1.5 px-2 py-1.5 rounded-lg border border-border bg-card text-muted-foreground hover:text-foreground transition-all flex-shrink-0";
+const BTN_BASE = "flex items-center gap-1 px-1.5 sm:gap-1.5 sm:px-2 py-1.5 rounded-lg border border-border bg-card text-muted-foreground hover:text-foreground transition-all flex-shrink-0";
 
 const OBRAS_COLOR_LEGEND: Array<{ label: string; color: string }> = [
   { label: "Vivienda", color: "#0f766e" },
