@@ -19,6 +19,7 @@ import MeasureTool, { type MeasureMode } from "@/components/MeasureTool";
 import LayerUpload from "@/components/LayerUpload";
 import AnalysisPanel from "@/components/AnalysisPanel";
 import AuthPanel from "@/components/AuthGate";
+import AdminDataPanel from "@/components/AdminDataPanel";
 import ExternalFeatureInfo, { type ExternalFeatureInfoState } from "@/components/ExternalFeatureInfo";
 import { useAuth } from "@/contexts/AuthContext";
 import { hasPermission } from "@/lib/auth";
@@ -778,6 +779,7 @@ export default function MapViewer() {
   const [authPanelOpen, setAuthPanelOpen] = useState(false);
   const [uploadPanelOpen, setUploadPanelOpen] = useState(false);
   const [analysisPanelOpen, setAnalysisPanelOpen] = useState(false);
+  const [adminDataPanelOpen, setAdminDataPanelOpen] = useState(false);
   const [regionalInfoOpen, setRegionalInfoOpen] = useState(false);
   const [planosActive, setPlanosActive] = useState(false);
   const [worksMeta, setWorksMeta] = useState<{ level: PublicationLevel; count: number } | null>(null);
@@ -2211,6 +2213,18 @@ export default function MapViewer() {
         className="absolute top-14 right-3 z-[1001] flex flex-col gap-2 pointer-events-none"
         style={{ maxHeight: "calc(100vh - 80px)", overflowY: "auto" }}
       >
+        {isAdmin && (
+          <div className="pointer-events-auto">
+            <button
+              type="button"
+              onClick={() => setAdminDataPanelOpen(true)}
+              className="w-full px-3 py-2 rounded-lg border border-primary/35 bg-primary/10 text-primary text-xs font-semibold hover:bg-primary/20 transition-colors"
+            >
+              Panel admin de datos
+            </button>
+          </div>
+        )}
+
         {regionalInfoOpen && (
           <div className="pointer-events-auto">
             <RegionalInfoPanel
@@ -2408,6 +2422,14 @@ export default function MapViewer() {
           mapRef={mapRef as React.RefObject<L.Map | null>}
           onClose={() => setUploadPanelOpen(false)}
           canUpload={hasPermission(user?.role ?? "invitado", "canUploadLayers")}
+        />
+      )}
+
+      {isAdmin && adminDataPanelOpen && (
+        <AdminDataPanel
+          basePath={BASE_PATH}
+          open={adminDataPanelOpen}
+          onClose={() => setAdminDataPanelOpen(false)}
         />
       )}
 
