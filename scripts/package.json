@@ -18,6 +18,7 @@
     "geolocate:catastro": "tsx ./src/geolocate-planos-catastro.ts",
     "queue:catastro": "tsx ./src/build-cadastral-review-queue.ts",
     "geolocate:refresh": "pnpm geolocate:catastro && pnpm queue:catastro",
+    "import:obras:years": "tsx ./src/import-obras-years-to-db.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "devDependencies": {

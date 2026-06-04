@@ -12,6 +12,14 @@ Guardar el 100% de columnas y filas del Excel original y, en paralelo, tener tab
 
 ## Modelo de datos
 
+## Cobertura de columnas Excel (2020-2025)
+- Archivos detectados: `2020.xlsx`, `2021.xlsx`, `2022.xlsx`, `2023.xlsx`, `2024.xlsx`, `2025.xlsx`.
+- Inventario generado: `artifacts/planos-cleaning/excel-columns-2020-2025.cleaned.json`.
+- Union real de encabezados: 49 columnas.
+- Diferencias detectadas:
+  - `CONDICION del trámite` aparece en 2024 y 2025.
+  - `Columna1` aparece en 2023 (residual de origen; conservar hasta depuracion).
+
 ### 1) Raw completo (sin perder columnas)
 - Tabla: `core.obras_ingest_raw`
 - Campos clave:
@@ -22,6 +30,15 @@ Guardar el 100% de columnas y filas del Excel original y, en paralelo, tener tab
   - `legajo_canonico` text
   - `raw_payload` jsonb (todas las columnas originales)
   - `created_at`, `updated_at`
+
+### 1.1) Ingesta ancha con columnas explicitas
+- Tabla: `core.obras_ingest_wide`
+- Incluye 49 columnas del Excel como campos dedicados (text) + `raw_payload`.
+- Permite filtrar rapido sin parsear JSON para consultas operativas.
+
+### 1.2) Catalogo de columnas
+- Tabla: `core.obras_excel_column_catalog`
+- Mantiene trazabilidad entre nombre original Excel y `canonical_key` en DB.
 
 ### 2) Legajos/obras normalizados
 - Tabla: `core.obras`
