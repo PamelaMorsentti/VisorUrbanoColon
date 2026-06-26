@@ -34,6 +34,33 @@ const COLON_RIVER_EVAC_LEVEL = 7.9;
 const CARU_ALTURAS_READABLE_URL = "https://r.jina.ai/http://190.0.152.194:8080/alturas/web/user/alturas";
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/$/, "") ?? "";
 
+function getHydrologyApiCandidates(): string[] {
+  const urls: string[] = [];
+  if (API_BASE_URL) urls.push(`${API_BASE_URL}/api/hydrology/colon`);
+  urls.push("/api/hydrology/colon");
+
+  if (typeof window !== "undefined") {
+    const host = window.location.hostname;
+    if (host === "localhost" || host === "127.0.0.1") {
+      urls.push("http://localhost:5180/api/hydrology/colon");
+      // Legacy local setups may still expose API on 3000.
+      urls.push("http://localhost:3000/api/hydrology/colon");
+    }
+  }
+
+  return Array.from(new Set(urls));
+}
+
+async function fetchJsonWithTimeout(url: string, timeoutMs = 10000): Promise<Response> {
+  const ctrl = new AbortController();
+  const timer = window.setTimeout(() => ctrl.abort(), timeoutMs);
+  try {
+    return await fetch(url, { signal: ctrl.signal });
+  } finally {
+    window.clearTimeout(timer);
+  }
+}
+
 export default function RegionalInfoPanel({
   latitude = -32.4667,
   longitude = -58.3167,
@@ -157,12 +184,12 @@ export default function RegionalInfoPanel({
       setRiverLoading(true);
       setRiverError(null);
       try {
-        if (API_BASE_URL) {
-          // Prefer configured API proxy to avoid CORS and improve source control.
-          const apiUrl = `${API_BASE_URL}/api/hydrology/colon`;
-          const apiRes = await fetch(apiUrl);
+        const apiCandidates = getHydrologyApiCandidates();
+        for (const apiUrl of apiCandidates) {
+          try {
+            const apiRes = await fetchJsonWithTimeout(apiUrl, 10000);
+            if (!apiRes.ok) continue;
 
-          if (apiRes.ok) {
             const data = await apiRes.json() as {
               level: number;
               delta: number;
@@ -171,23 +198,29 @@ export default function RegionalInfoPanel({
               thresholds?: { alert?: number; evacuation?: number };
             };
 
+            const level = Number(data.level);
+            const delta = Number(data.delta);
+            if (Number.isNaN(level) || Number.isNaN(delta)) continue;
+
             if (!alive) return;
 
             setRiver({
-              level: data.level,
+              level,
               trend: data.trend,
-              delta: data.delta,
+              delta,
               updatedAt: data.updatedAt,
               source: "api",
               alertLevel: data.thresholds?.alert ?? COLON_RIVER_ALERT_LEVEL,
               evacuationLevel: data.thresholds?.evacuation ?? COLON_RIVER_EVAC_LEVEL,
             });
             return;
+          } catch {
+            // Try next API candidate.
           }
         }
 
         // Fallback: readable CARU feed when API is unavailable.
-        const res = await fetch(CARU_ALTURAS_READABLE_URL);
+        const res = await fetchJsonWithTimeout(CARU_ALTURAS_READABLE_URL, 12000);
         const text = await res.text();
         const row = extractColonRiverRow(text);
 
@@ -619,8 +652,9 @@ function stripMarkdown(value: string): string {
 }
 
 function parseSpanishNumber(value: string): number {
-  const normalized = value.includes(",")
-    ? value.replace(/\./g, "").replace(/,/g, ".")
-    : value;
+  const clean = value.replace(/[^0-9,.-]/g, "");
+  const normalized = clean.includes(",")
+    ? clean.replace(/\./g, "").replace(/,/g, ".")
+    : clean;
   return Number(normalized);
 }

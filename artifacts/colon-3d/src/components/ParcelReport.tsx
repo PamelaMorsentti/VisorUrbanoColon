@@ -123,10 +123,57 @@ const PRINT_CSS = `
   .feature-sub { border-top: 1px solid #dde; }
   .feature-num { background: #f0f4ff; padding: 3px 9px; font-size: 9px; color: #1a3a6b; font-weight: bold; }
   .footer { margin-top: 18px; border-top: 1px solid #ccc; padding-top: 9px; font-size: 8.5px; color: #888; display: flex; justify-content: space-between; }
+  .alert-box { margin: 0 0 10px 0; padding: 8px 10px; border-left: 4px solid #b45309; background: #fff7ed; color: #7c2d12; border-radius: 4px; }
+  .alert-box strong { color: #7c2d12; }
+  .alert-box ul { margin: 4px 0 0 14px; }
+  .alert-box li { margin: 2px 0; }
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
   .two-col td.label { width: 120px; }
   @media print { body { padding: 10px; } }
 `;
+
+function getTextValue(value: unknown): string {
+  return String(value ?? "").trim().toLowerCase();
+}
+
+function buildRiskAlerts(data: ReportData): string[] {
+  const alerts: string[] = [];
+  const afectacion = getTextValue(data.parcelProps.inund_afectacion);
+
+  if (afectacion === "total" || afectacion === "parcial") {
+    const detalle = afectacion === "total"
+      ? "afectacion total"
+      : "afectacion parcial";
+    alerts.push(
+      `ALERTA ALTIMETRICA: esta parcela fue clasificada con ${detalle} bajo el criterio de cota <= +10,00 m (inclusive).`
+    );
+  }
+
+  const hasHydro = data.intersections.some(i => i.id === "hidro" && i.features.length > 0);
+  const hasStormDrain = data.intersections.some(i => i.id === "bocas" && i.features.length > 0);
+  const hasHistoricWater = data.intersections.some(i => i.id === "ext_jrc_surface_water" && i.features.length > 0);
+  const hasLowContourNearby = data.cotas.some(c => Number(c.COTA) <= 10 || Number(c.Z) <= 10);
+
+  if (hasHydro || hasStormDrain || hasHistoricWater || hasLowContourNearby) {
+    const fuentes: string[] = [];
+    if (hasHydro) fuentes.push("hidrografia cercana");
+    if (hasStormDrain) fuentes.push("infraestructura pluvial cercana");
+    if (hasHistoricWater) fuentes.push("agua superficial historica");
+    if (hasLowContourNearby) fuentes.push("curvas de nivel bajas proximas");
+
+    alerts.push(
+      `AVISO COMPLEMENTARIO: existen indicios de susceptibilidad a inundacion/anegamiento por otras causas segun datos disponibles (${fuentes.join(", ")}).`
+    );
+  }
+
+  if (!alerts.length) {
+    alerts.push(
+      "SIN ALERTA HIDRICA AUTOMATICA: este informe no reemplaza estudios hidrologicos/hidraulicos de detalle ni verificaciones de campo."
+    );
+  }
+
+  return alerts;
+}
 
 // ─── Build print HTML sections for intersections ─────────────────────────────
 
@@ -179,6 +226,7 @@ function buildIntersectionHtml(ints: LayerIntersection[]): string {
 export default function ParcelReport({ data, onClose }: ParcelReportProps) {
   const { parcelProps, layerLabel, zonaName, normas, cotas, lat, lng, intersections } = data;
   const today = new Date().toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric" });
+  const riskAlerts = buildRiskAlerts(data);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -240,6 +288,9 @@ export default function ParcelReport({ data, onClose }: ParcelReportProps) {
       </section>` : "";
 
     const intersectionsHtml = buildIntersectionHtml(intersections);
+    const alertHtml = riskAlerts.length > 0
+      ? `<section class="section"><h2 class="section-title amber">⚠ Alertas y Avisos</h2><div class="alert-box"><ul>${riskAlerts.map(a => `<li>${a}</li>`).join("")}</ul></div></section>`
+      : "";
 
     const html = `<!DOCTYPE html>
 <html lang="es">
@@ -268,6 +319,7 @@ export default function ParcelReport({ data, onClose }: ParcelReportProps) {
 
 ${zonaSection}
 ${cotasSection}
+${alertHtml}
 ${intersectionsHtml}
 
 <div class="footer">
@@ -359,6 +411,16 @@ ${intersectionsHtml}
             )}
           </Section>
 
+          <Section icon={<AlertCircle size={12} className="text-amber-400" />} title="Alertas y Avisos" color="text-amber-400">
+            <div className="rounded-lg border border-amber-500/40 bg-amber-500/10 p-2.5 space-y-1.5">
+              {riskAlerts.map((alert, i) => (
+                <p key={i} className="text-[10px] text-amber-100 leading-snug">
+                  {alert}
+                </p>
+              ))}
+            </div>
+          </Section>
+
           {/* Dynamic intersections */}
           {intersections.map(int => (
             <IntersectionSection key={int.id} int={int} />
@@ -447,6 +509,7 @@ const INTERSECTION_COLORS: Record<string, string> = {
   calle: "text-slate-300",
   hidro: "text-cyan-400",
   bocas: "text-blue-400",
+  ext_jrc_surface_water: "text-cyan-300",
 };
 
 function IntersectionSection({ int }: { int: LayerIntersection }) {
@@ -455,7 +518,7 @@ function IntersectionSection({ int }: { int: LayerIntersection }) {
   const color = INTERSECTION_COLORS[int.id] || "text-muted-foreground";
 
   const iconEl = int.id === "arbol" ? <TreePine size={12} className={color} /> :
-    int.id === "hidro" || int.id === "bocas" ? <Droplets size={12} className={color} /> :
+    int.id === "hidro" || int.id === "bocas" || int.id === "ext_jrc_surface_water" ? <Droplets size={12} className={color} /> :
     int.id === "calle" ? <Landmark size={12} className={color} /> :
     int.id === "edif" || int.id === "edif_palta" || int.id === "superp" ? <Building size={12} className={color} /> :
     <MapPin size={12} className={color} />;

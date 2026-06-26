@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-06-26T22:00:18.798Z",
+  "input": {
+    "parcelas": 13651,
+    "cNivelLinesZLe10": 389,
+    "cNivelClosedRingsZLe10": 44,
+    "floodPolygonsFromNetwork": 0,
+    "floodPolygonsUsed": 31,
+    "openContourBufferMeters": 3
+  },
+  "output": {
+    "parcelasAfectadas": 863,
+    "total": 8,
+    "parcial": 855,
+    "criterio": "interseccion de area de parcela con mascara de curvas Z<=10 (anillos cerrados + buffer de lineas abiertas)",
+    "cotaReferencia": "+10.00 m"
+  }
+}

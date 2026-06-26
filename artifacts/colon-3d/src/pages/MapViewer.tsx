@@ -326,6 +326,7 @@ const REPORT_LAYERS: ReportLayerCfg[] = [
   { id: "calle",     label: "Calles lindantes",       relation: "proximity", proximityM: 80,  maxResults: 5,  relationLabel: "Calles a menos de 80 m del centroide" },
   { id: "hidro",     label: "Hidrografía cercana",    relation: "proximity", proximityM: 200, maxResults: 3,  relationLabel: "Cursos de agua a menos de 200 m" },
   { id: "bocas",     label: "Bocas de tormenta",      relation: "proximity", proximityM: 120, maxResults: 4,  relationLabel: "Bocas de tormenta a menos de 120 m" },
+  { id: "ext_jrc_surface_water", label: "Agua superficial histórica", relation: "centroid_in_feature", maxResults: 1, relationLabel: "El centroide de la parcela cae en una zona de ocurrencia histórica de agua superficial" },
 ];
 
 // ─── Geometry helpers (spatial) ──────────────────────────────────────────────
@@ -395,6 +396,8 @@ function getLayerStyle(layerId: string): L.PathOptions {
     case "edif":       return { fillColor: "#4a6080", fillOpacity: 1, color: "#364d68", weight: 0.5, opacity: 1 };
     case "edif_palta": return { fillColor: "#a05a20", fillOpacity: 1, color: "#7c4015", weight: 0.5, opacity: 1 };
     case "cota10":     return { color: "#5eead4", weight: 0.8, opacity: 0.6 };
+    case "parcela_inundacion_cota10":
+      return { fillColor: "#f59e0b", fillOpacity: 0.35, color: "#b45309", weight: 0.7, opacity: 0.85 };
     case "hidro":      return { color: "#38bdf8", weight: 1.5, opacity: 0.75 };
     case "enersa_mt_13_2": return { color: "#facc15", weight: 1.5, opacity: 0.85 };
     case "enersa_mt_33":   return { color: "#f97316", weight: 3,   opacity: 0.9 };
@@ -1170,6 +1173,13 @@ export default function MapViewer() {
           if (z === 10) return { color: "#f97316", weight: 1.5, opacity: 0.85 };
           return { ...baseStyle, weight: z % 5 === 0 ? 1.2 : 0.7, opacity: z % 5 === 0 ? 0.75 : 0.45 };
         }
+        if (layerId === "parcela_inundacion_cota10") {
+          const afectacion = String(feature?.properties?.inund_afectacion ?? "").toLowerCase();
+          if (afectacion === "total") {
+            return { fillColor: "#ef4444", fillOpacity: 0.42, color: "#b91c1c", weight: 0.9, opacity: 0.9 };
+          }
+          return { fillColor: "#f59e0b", fillOpacity: 0.32, color: "#b45309", weight: 0.7, opacity: 0.85 };
+        }
         return baseStyle;
       },
       pointToLayer: isPoint ? (_, latlng) => getPointLayer(layerId, latlng) : undefined,
@@ -1234,6 +1244,20 @@ export default function MapViewer() {
                 featureLayer.setStyle(getManzanaDensityStyle(feature, data, maxCount));
               } else if (layerId === "parcela_titularidad") {
                 featureLayer.setStyle(getParcelaTitularidadStyle(rawProps, parcelOwnerFilter));
+              } else if (layerId === "cota10") {
+                const z = Number(rawProps.Z ?? rawProps.COTA ?? 0);
+                if (z === 10) {
+                  featureLayer.setStyle({ color: "#f97316", weight: 1.5, opacity: 0.85 });
+                } else {
+                  featureLayer.setStyle({ ...baseStyle, weight: z % 5 === 0 ? 1.2 : 0.7, opacity: z % 5 === 0 ? 0.75 : 0.45 });
+                }
+              } else if (layerId === "parcela_inundacion_cota10") {
+                const afectacion = String(rawProps.inund_afectacion ?? "").toLowerCase();
+                if (afectacion === "total") {
+                  featureLayer.setStyle({ fillColor: "#ef4444", fillOpacity: 0.42, color: "#b91c1c", weight: 0.9, opacity: 0.9 });
+                } else {
+                  featureLayer.setStyle({ fillColor: "#f59e0b", fillOpacity: 0.32, color: "#b45309", weight: 0.7, opacity: 0.85 });
+                }
               } else {
                 featureLayer.setStyle(baseStyle);
               }
@@ -2201,6 +2225,7 @@ export default function MapViewer() {
           <div className="pointer-events-auto">
             <CadastralSearch
               basePath={BASE_PATH}
+              isAdmin={isAdmin}
               onFeatureFound={handleFeatureFound}
               onClose={() => setSearchPanelOpen(false)}
             />
