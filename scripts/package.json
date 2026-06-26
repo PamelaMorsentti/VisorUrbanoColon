@@ -6,6 +6,7 @@
   "scripts": {
     "hello": "tsx ./src/hello.ts",
     "build:zonas-tributarias": "node ./src/build-zonas-tributarias.mjs",
+    "build:parcelas-inundacion": "node ./src/build-parcelas-inundacion-cota10.mjs",
     "docs:fichas-src": "node ./src/generate-src-fichas.mjs",
     "maint:archive-temp": "node ./src/archive-temporals.mjs --apply",
     "maint:archive-temp:dry": "node ./src/archive-temporals.mjs",
@@ -19,6 +20,10 @@
     "queue:catastro": "tsx ./src/build-cadastral-review-queue.ts",
     "geolocate:refresh": "pnpm geolocate:catastro && pnpm queue:catastro",
     "import:obras:years": "tsx ./src/import-obras-years-to-db.ts",
+    "backfill:obras:geom": "tsx ./src/backfill-obras-geom.ts",
+    "audit:obras:source-counts": "tsx ./src/audit-obras-source-counts.ts",
+    "convert:obras:xlsx-csv": "tsx ./src/convert-obras-years-xlsx-to-csv.ts",
+    "export:obras:planos-from-db": "tsx ./src/export-obras-db-to-planos.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "devDependencies": {
@@ -29,9 +34,10 @@
     "@turf/turf": "^7.3.5",
     "csv-parse": "^6.2.1",
     "csv-stringify": "^6.7.0",
-    "proj4": "^2.20.8",
     "pg": "^8.16.3",
-    "shapefile": "^0.6.6"
+    "proj4": "^2.20.8",
+    "shapefile": "^0.6.6",
+    "xlsx": "^0.18.5"
   },
   "description": "",
   "main": "index.js",

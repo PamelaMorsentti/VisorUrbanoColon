@@ -150,17 +150,130 @@ function asText(value: unknown): string {
   return String(value ?? "").trim();
 }
 
+function hasSignal(value: string): boolean {
+  const v = asText(value);
+  if (!v) return false;
+  if (/[a-zA-Z]/.test(v)) return true;
+  return parseNumeric(v) > 0;
+}
+
+function normalizeLegajo(value: string): string {
+  const digits = asText(value).replace(/\D+/g, "");
+  // Business rule: legajo should be at most 3 digits.
+  if (!digits || digits.length > 3) return "";
+  return String(Number(digits));
+}
+
+function normalizeExpediente(value: string): string {
+  const withoutMail = asText(value)
+    .replace(/\bmail\b[\s:.-]*/gi, "")
+    .replace(/^,+\s*/, "")
+    .trim();
+
+  if (!withoutMail) return "";
+
+  const parts = withoutMail
+    .split(/[,;/]+/)
+    .map((p) => p.trim())
+    .filter(Boolean)
+    .map((p) => p.replace(/\D+/g, ""))
+    .filter(Boolean);
+
+  if (parts.length === 0) return "";
+  return parts.join(", ");
+}
+
+function parseIntegerComponent(value: string, maxDigits: number): number | null {
+  const digits = asText(value).replace(/\D+/g, "");
+  if (!digits) return null;
+  const clipped = digits.length > maxDigits ? digits.slice(-maxDigits) : digits;
+  const n = Number(clipped);
+  return Number.isFinite(n) ? n : null;
+}
+
+function padNumber(value: number, width: number): string {
+  return String(Math.max(0, Math.trunc(value))).padStart(width, "0");
+}
+
+function formatParcelNcp(sec: number | null, gru: number | null, manz: number | null, parc: number | null): string {
+  if (manz === null || parc === null) return "";
+  const secSafe = sec ?? 0;
+  const gruSafe = gru ?? 0;
+  return `010001${padNumber(secSafe, 3)}${padNumber(gruSafe, 3)}${padNumber(manz, 4)}--${padNumber(parc, 3)}--`;
+}
+
+function deriveTipo(wide: WideRecord): string {
+  const direct = asText(wide.condicion_del_tramite);
+  if (direct) return direct;
+
+  const parts: string[] = [];
+  if (hasSignal(wide.relevamiento_o_existente)) parts.push("Relevamiento o existente");
+  if (hasSignal(wide.a_construir_obra_nueva)) parts.push("A construir / obra nueva");
+  if (hasSignal(wide.ampliacion_obra_existente)) parts.push("Ampliacion de obra existente");
+  if (hasSignal(wide.proyectado_no_iniciado)) parts.push("Proyectado (no iniciado)");
+
+  return parts.length > 0 ? parts.join(" + ") : "Sin tipo";
+}
+
 function parseNumeric(value: string): number {
-  const v = value.trim().replace(/\./g, "").replace(/,/g, ".");
-  const n = Number(v);
+  const raw = value.trim();
+  if (!raw) return 0;
+
+  // Keep only characters that can participate in a numeric literal.
+  const cleaned = raw.replace(/\s+/g, "").replace(/[^0-9,.-]/g, "");
+  if (!cleaned) return 0;
+
+  const lastComma = cleaned.lastIndexOf(",");
+  const lastDot = cleaned.lastIndexOf(".");
+  const hasComma = lastComma !== -1;
+  const hasDot = lastDot !== -1;
+
+  let normalized = cleaned;
+
+  if (hasComma && hasDot) {
+    // If both are present, the rightmost one is the decimal separator.
+    const decimalSep = lastComma > lastDot ? "," : ".";
+    const thousandsSep = decimalSep === "," ? "." : ",";
+    normalized = cleaned.split(thousandsSep).join("");
+    normalized = normalized.replace(decimalSep, ".");
+  } else if (hasComma || hasDot) {
+    const sep = hasComma ? "," : ".";
+    const parts = cleaned.split(sep);
+
+    if (parts.length > 2) {
+      const allGroupsAreThousands = parts.slice(1).every((p) => p.length === 3);
+      if (allGroupsAreThousands) {
+        normalized = parts.join("");
+      } else {
+        const decimalPart = parts.pop() ?? "";
+        normalized = `${parts.join("")}.${decimalPart}`;
+      }
+    } else {
+      const integerPart = parts[0] ?? "";
+      const fractionPart = parts[1] ?? "";
+
+      if (fractionPart.length === 0) {
+        normalized = integerPart;
+      } else if (fractionPart.length > 3 || fractionPart.length <= 2) {
+        normalized = `${integerPart}.${fractionPart}`;
+      } else {
+        // 3 digits after separator is usually a thousands separator in this dataset.
+        normalized = `${integerPart}${fractionPart}`;
+      }
+    }
+  }
+
+  const n = Number(normalized);
   return Number.isFinite(n) ? n : 0;
 }
 
 function parseDate(value: string): string | null {
   const v = value.trim();
   if (!v) return null;
+
   const iso = v.match(/^(\d{4})-(\d{2})-(\d{2})/);
   if (iso) return `${iso[1]}-${iso[2]}-${iso[3]}`;
+
   const dmy = v.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{2,4})/);
   if (!dmy) return null;
   const dd = dmy[1].padStart(2, "0");
@@ -305,13 +418,13 @@ async function main(): Promise<void> {
     INSERT INTO core.obras (
       legajo_canonico, expediente, fecha_visado, destino_uso, tipo,
       propietario, constructor, profesional_proyecto, raw_ubicacion,
-      direccion_obra, zonificacion, m2_total, m2_a_construir, m2_relevado,
+      direccion_obra, ncp, ncp_formatted, zonificacion, m2_total, m2_a_construir, m2_relevado,
       source_file, source_row_number
     ) VALUES (
       $1,$2,$3,$4,$5,
       $6,$7,$8,$9,
-      $10,$11,$12,$13,$14,
-      $15,$16
+      $10,$11,$12,$13,$14,$15,$16,
+      $17,$18
     )
     ON CONFLICT (source_file, source_row_number)
     DO UPDATE SET
@@ -325,6 +438,8 @@ async function main(): Promise<void> {
       profesional_proyecto = EXCLUDED.profesional_proyecto,
       raw_ubicacion = EXCLUDED.raw_ubicacion,
       direccion_obra = EXCLUDED.direccion_obra,
+      ncp = EXCLUDED.ncp,
+      ncp_formatted = EXCLUDED.ncp_formatted,
       zonificacion = EXCLUDED.zonificacion,
       m2_total = EXCLUDED.m2_total,
       m2_a_construir = EXCLUDED.m2_a_construir,
@@ -376,7 +491,15 @@ async function main(): Promise<void> {
 
           const sourceFile = `${year}.csv`;
           const sourceRowNumber = String(i + 1);
-          const legajoCanonico = wide.legajo || "";
+          const legajoCanonico = normalizeLegajo(wide.legajo);
+          const expedienteNormalizado = normalizeExpediente(wide.expediente);
+
+          const sec = parseIntegerComponent(wide.ex_quinta, 3);
+          const gru = parseIntegerComponent(wide.concesion, 3);
+          const manz = parseIntegerComponent(wide.manzana, 4);
+          const parc = parseIntegerComponent(wide.parcela, 3);
+          const ncpFormatted = formatParcelNcp(sec, gru, manz, parc);
+          const ncpRaw = ncpFormatted ? ncpFormatted.replace(/-/g, "") : null;
 
           const wideRecord: WideRecord = {
             source_file: sourceFile,
@@ -435,6 +558,8 @@ async function main(): Promise<void> {
             raw_payload: payload,
           };
 
+          const tipo = deriveTipo(wideRecord);
+
           await client.query(rawUpsertSql, [
             sourceFile,
             year,
@@ -467,15 +592,17 @@ async function main(): Promise<void> {
 
           await client.query(obrasUpsertSql, [
             legajoCanonico || null,
-            wideRecord.expediente || null,
+            expedienteNormalizado || null,
             parseDate(wideRecord.visado),
             wideRecord.uso || null,
-            null,
+            tipo || null,
             wideRecord.propietario || null,
             wideRecord.constructor || null,
             wideRecord.proyecto || null,
             wideRecord.ubicacion || null,
             wideRecord.direccion_de_obra || null,
+            ncpRaw,
+            ncpFormatted || null,
             wideRecord.zonificacion || null,
             m2Total || null,
             m2Construir || null,

@@ -221,6 +221,17 @@ export const LAYERS: LayerDef[] = [
     description: "Curvas de nivel altimétrica — Z=10 m destacada en naranja (c_nivel.shp)",
   },
   {
+    id: "parcela_inundacion_cota10",
+    label: "Parcelas afectadas por inundación (+10 m)",
+    source: "parcela_inundacion_cota10",
+    file: "parcela_inundacion_cota10.geojson",
+    type: "fill",
+    color: "#f97316",
+    defaultVisible: false,
+    group: "Topografía",
+    description: "Parcelas total o parcialmente afectadas por áreas de inundación asociadas a cota +10 m (clasificación por porcentaje de intersección).",
+  },
+  {
     id: "edif",
     label: "Edificios (PB)",
     source: "edif",
@@ -449,8 +460,10 @@ export interface ExternalLayerDef {
 
 export const EXTERNAL_LAYER_GROUPS = [
   "Imágenes base",
-  "Temáticas nacionales",
-  "Clima y riesgo",
+  "Referencia cartográfica",
+  "Ambiente y territorio",
+  "Riesgo e incendios",
+  "Clima e hidrología",
 ];
 
 export const EXTERNAL_LAYERS: ExternalLayerDef[] = [
@@ -499,7 +512,7 @@ export const EXTERNAL_LAYERS: ExternalLayerDef[] = [
       { color: "#E8E8E8", label: "Curvas de nivel" },
     ],
   },
-  // ── Temáticas nacionales ───────────────────────────────────────────────
+  // ── Referencia cartográfica ────────────────────────────────────────────
   {
     id: "ext_ign_topo",
     label: "IGN — Carta topográfica",
@@ -512,7 +525,7 @@ export const EXTERNAL_LAYERS: ExternalLayerDef[] = [
     attribution: '&copy; <a href="https://www.ign.gob.ar" target="_blank">IGN Argentina</a>',
     color: "#60a5fa",
     opacity: 0.85,
-    group: "Temáticas nacionales",
+    group: "Referencia cartográfica",
     supportsGetFeatureInfo: true,
     legend: [
       { color: "#a8c8a0", label: "Cobertura vegetal" },
@@ -521,6 +534,7 @@ export const EXTERNAL_LAYERS: ExternalLayerDef[] = [
       { color: "#e0e0e0", label: "Zonas urbanas" },
     ],
   },
+  // ── Ambiente y territorio ──────────────────────────────────────────────
   {
     id: "ext_inta_suelos",
     label: "INTA — Carta de suelos",
@@ -533,7 +547,7 @@ export const EXTERNAL_LAYERS: ExternalLayerDef[] = [
     attribution: '&copy; <a href="https://geointa.inta.gov.ar" target="_blank">INTA GeoINTA</a>',
     color: "#ca8a04",
     opacity: 0.75,
-    group: "Temáticas nacionales",
+    group: "Ambiente y territorio",
     supportsGetFeatureInfo: true,
     legend: [
       { color: "#8B4513", label: "Molisoles (alta fertilidad)" },
@@ -554,7 +568,7 @@ export const EXTERNAL_LAYERS: ExternalLayerDef[] = [
     attribution: '&copy; <a href="https://www.segemar.gov.ar" target="_blank">SEGEMAR</a>',
     color: "#f97316",
     opacity: 0.75,
-    group: "Temáticas nacionales",
+    group: "Ambiente y territorio",
     supportsGetFeatureInfo: true,
     legend: [
       { color: "#FF6600", label: "Era Cenozoica" },
@@ -576,7 +590,7 @@ export const EXTERNAL_LAYERS: ExternalLayerDef[] = [
     attribution: '&copy; <a href="https://www.parquesnacionales.gob.ar" target="_blank">APN Argentina</a>',
     color: "#16a34a",
     opacity: 0.75,
-    group: "Temáticas nacionales",
+    group: "Ambiente y territorio",
     supportsGetFeatureInfo: true,
     legend: [
       { color: "#1a7a1a", label: "Parque Nacional" },
@@ -585,7 +599,85 @@ export const EXTERNAL_LAYERS: ExternalLayerDef[] = [
       { color: "#b3e6b3", label: "Reserva Natural Estricta" },
     ],
   },
-  // ── Clima y riesgo ────────────────────────────────────────────────────
+  // ── Riesgo e incendios ────────────────────────────────────────────────
+  {
+    id: "ext_conae_focos_viirs",
+    label: "CONAE — Focos de calor VIIRS",
+    description: "Detección de focos de calor por sensor VIIRS (CONAE GeoServicios)",
+    type: "wms",
+    url: "https://geoservicios.conae.gov.ar/geoserver/GeoServiciosCONAE/wms",
+    wmsLayers: "FocosDeCalorVIIRS",
+    wmsFormat: "image/png",
+    wmsTransparent: true,
+    attribution: '&copy; <a href="https://catalogos.conae.gov.ar" target="_blank">CONAE</a>',
+    color: "#f97316",
+    opacity: 0.8,
+    group: "Riesgo e incendios",
+    supportsGetFeatureInfo: true,
+    legend: [
+      { color: "#f97316", label: "Foco de calor VIIRS" },
+    ],
+  },
+  {
+    id: "ext_conae_focos_modis",
+    label: "CONAE — Focos de calor MODIS",
+    description: "Detección de focos de calor por sensor MODIS (CONAE GeoServicios)",
+    type: "wms",
+    url: "https://geoservicios.conae.gov.ar/geoserver/GeoServiciosCONAE/wms",
+    wmsLayers: "FocosDeCalor",
+    wmsFormat: "image/png",
+    wmsTransparent: true,
+    attribution: '&copy; <a href="https://catalogos.conae.gov.ar" target="_blank">CONAE</a>',
+    color: "#ef4444",
+    opacity: 0.8,
+    group: "Riesgo e incendios",
+    supportsGetFeatureInfo: true,
+    legend: [
+      { color: "#ef4444", label: "Foco de calor MODIS" },
+    ],
+  },
+  // ── Clima e hidrología ────────────────────────────────────────────────
+  {
+    id: "ext_conae_humedad_smap",
+    label: "CONAE — Humedad de suelo SMAP",
+    description: "Humedad de suelo SMAP (pasada ascendente) publicada por CONAE",
+    type: "wms",
+    url: "https://geoservicios2.conae.gov.ar/geoserver/HumedadDeSuelos/wms",
+    wmsLayers: "SMAP_Pasada_Ascendente",
+    wmsFormat: "image/png",
+    wmsTransparent: true,
+    attribution: '&copy; <a href="https://catalogos.conae.gov.ar" target="_blank">CONAE</a>',
+    color: "#38bdf8",
+    opacity: 0.75,
+    group: "Clima e hidrología",
+    supportsGetFeatureInfo: true,
+    legend: [
+      { color: "#1d4ed8", label: "Humedad baja" },
+      { color: "#38bdf8", label: "Humedad media" },
+      { color: "#86efac", label: "Humedad alta" },
+    ],
+  },
+  {
+    id: "ext_conae_combustible_l89",
+    label: "CONAE — Combustible L89",
+    description: "Disponibilidad de combustible derivada de Landsat 8/9 (SIAR-TIV)",
+    type: "wms",
+    url: "https://geoservicios.conae.gov.ar/geoserver/AlertaTemprana/wms",
+    wmsLayers: "INC_SIARTIVGEOL89_DC_1",
+    wmsFormat: "image/png",
+    wmsTransparent: true,
+    attribution: '&copy; <a href="https://catalogos.conae.gov.ar" target="_blank">CONAE</a>',
+    color: "#a855f7",
+    opacity: 0.75,
+    group: "Riesgo e incendios",
+    supportsGetFeatureInfo: true,
+    legend: [
+      { color: "#14532d", label: "Combustible bajo" },
+      { color: "#eab308", label: "Combustible medio" },
+      { color: "#b91c1c", label: "Combustible alto" },
+    ],
+  },
+  // ── Clima e hidrología ────────────────────────────────────────────────
   {
     id: "ext_nasa_precip",
     label: "NASA GPM — Precipitación",
@@ -597,7 +689,7 @@ export const EXTERNAL_LAYERS: ExternalLayerDef[] = [
     color: "#38bdf8",
     opacity: 0.75,
     maxZoom: 7,
-    group: "Clima y riesgo",
+    group: "Clima e hidrología",
     legend: [
       { color: "transparent", label: "Sin precipitación" },
       { color: "#aadaff", label: "< 1 mm/hr" },
@@ -619,7 +711,7 @@ export const EXTERNAL_LAYERS: ExternalLayerDef[] = [
     attribution: '&copy; <a href="https://esa-worldcover.org" target="_blank">ESA WorldCover</a>',
     color: "#4ade80",
     opacity: 0.75,
-    group: "Clima y riesgo",
+    group: "Ambiente y territorio",
     supportsGetFeatureInfo: true,
     legend: [
       { color: "#006400", label: "Árboles" },
@@ -643,7 +735,7 @@ export const EXTERNAL_LAYERS: ExternalLayerDef[] = [
     color: "#0ea5e9",
     opacity: 0.8,
     maxZoom: 13,
-    group: "Clima y riesgo",
+    group: "Clima e hidrología",
     legend: [
       { color: "#d1edf9", label: "Agua estacional (< 25%)" },
       { color: "#7ec8e3", label: "Agua frecuente (25–75%)" },

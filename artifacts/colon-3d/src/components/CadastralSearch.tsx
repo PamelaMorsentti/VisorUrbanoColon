@@ -16,16 +16,20 @@ interface SearchParams {
 
 interface CadastralSearchProps {
   basePath: string;
+  isAdmin: boolean;
   onFeatureFound: (feature: GeoFeature) => void;
   onClose: () => void;
 }
+
+type SearchMode = "ncp" | "partida" | "titular";
 
 const EMPTY_PARAMS: SearchParams = {
   ncp: "", sec: "", gru: "", manz: "", nparc: "", objeto: "", nombre: ""
 };
 
-export default function CadastralSearch({ basePath, onFeatureFound, onClose }: CadastralSearchProps) {
+export default function CadastralSearch({ basePath, isAdmin, onFeatureFound, onClose }: CadastralSearchProps) {
   const [params, setParams] = useState<SearchParams>(EMPTY_PARAMS);
+  const [searchMode, setSearchMode] = useState<SearchMode>("ncp");
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<GeoFeature[]>([]);
   const [searched, setSearched] = useState(false);
@@ -42,6 +46,23 @@ export default function CadastralSearch({ basePath, onFeatureFound, onClose }: C
 
   const normalize = (v: unknown) => String(v ?? "").trim().toLowerCase();
 
+  const normalizePartidaNumber = (v: unknown) => {
+    const clean = String(v ?? "").trim().toLowerCase().replace(/[^a-z0-9]/g, "");
+    const noPrefix = clean.replace(/^[a-z]+/, "");
+    return noPrefix.replace(/^0+/, "");
+  };
+
+  const matchesPartida = (partidaValue: unknown, query: string) => {
+    const qRaw = normalize(query);
+    const vRaw = normalize(partidaValue);
+    const qNum = normalizePartidaNumber(query);
+    const vNum = normalizePartidaNumber(partidaValue);
+    const textMatch = vRaw.includes(qRaw);
+    // Allows searching by short numeric form: "8178" -> "I008178"
+    const numMatch = qNum.length > 0 && (vNum === qNum || vNum.includes(qNum));
+    return textMatch || numMatch;
+  };
+
   const matches = (feature: GeoFeature, p: SearchParams): boolean => {
     const pr = feature.properties || {};
     if (p.ncp && !normalize(pr.NCP).includes(normalize(p.ncp))) return false;
@@ -52,8 +73,10 @@ export default function CadastralSearch({ basePath, onFeatureFound, onClose }: C
       if (manzVal !== Number(p.manz)) return false;
     }
     if (p.nparc && Number(pr.NPARC) !== Number(p.nparc)) return false;
-    if (p.objeto && !normalize(pr.OBJETO).includes(normalize(p.objeto))) return false;
-    if (p.nombre && !normalize(pr.NOMBRE).includes(normalize(p.nombre))) return false;
+    if (p.objeto) {
+      if (!matchesPartida(pr.OBJETO, p.objeto)) return false;
+    }
+    if (p.nombre && isAdmin && !normalize(pr.NOMBRE).includes(normalize(p.nombre))) return false;
     return true;
   };
 
@@ -66,7 +89,19 @@ export default function CadastralSearch({ basePath, onFeatureFound, onClose }: C
     setSearched(false);
     try {
       const features = await loadData();
-      const found = features.filter(f => matches(f, params));
+      const effective: SearchParams = { ...params };
+      if (searchMode === "ncp") {
+        effective.objeto = "";
+        effective.nombre = "";
+      } else if (searchMode === "partida") {
+        effective.ncp = "";
+        effective.nombre = "";
+      } else {
+        effective.ncp = "";
+        effective.objeto = "";
+      }
+      if (!isAdmin) effective.nombre = "";
+      const found = features.filter(f => matches(f, effective));
       setResults(found.slice(0, 50));
       setSearched(true);
     } catch (err) {
@@ -123,6 +158,12 @@ export default function CadastralSearch({ basePath, onFeatureFound, onClose }: C
     </div>
   );
 
+  const partidaHelp = (
+    <p className="text-[10px] text-muted-foreground/80 -mt-1">
+      Formatos validos: I008178 o solo 8178 (sin letra ni ceros iniciales).
+    </p>
+  );
+
   return (
     <div
       className="w-[88vw] sm:w-72 rounded-xl overflow-hidden shadow-xl border border-border"
@@ -141,7 +182,43 @@ export default function CadastralSearch({ basePath, onFeatureFound, onClose }: C
 
       <form onSubmit={handleSearch} className="overflow-y-auto" style={{ maxHeight: "calc(100vh - 180px)" }}>
         <div className="p-3 space-y-2.5">
-          {field("ncp", "NCP (Nomenclatura)", "0100010000000295--011--")}
+          <div>
+            <label className="block text-[10px] text-muted-foreground mb-1 font-medium uppercase tracking-wider">Modo de búsqueda</label>
+            <div className="grid grid-cols-2 gap-1.5">
+              <button
+                type="button"
+                onClick={() => setSearchMode("ncp")}
+                className={`px-2 py-1.5 text-[10px] rounded-lg border transition-colors ${searchMode === "ncp" ? "border-primary/50 bg-primary/10 text-primary" : "border-border text-muted-foreground hover:text-foreground"}`}
+              >
+                Nomenclatura (NCP)
+              </button>
+              <button
+                type="button"
+                onClick={() => setSearchMode("partida")}
+                className={`px-2 py-1.5 text-[10px] rounded-lg border transition-colors ${searchMode === "partida" ? "border-primary/50 bg-primary/10 text-primary" : "border-border text-muted-foreground hover:text-foreground"}`}
+              >
+                Partida municipal
+              </button>
+              {isAdmin && (
+                <button
+                  type="button"
+                  onClick={() => setSearchMode("titular")}
+                  className={`col-span-2 px-2 py-1.5 text-[10px] rounded-lg border transition-colors ${searchMode === "titular" ? "border-primary/50 bg-primary/10 text-primary" : "border-border text-muted-foreground hover:text-foreground"}`}
+                >
+                  Titular / Nombre (solo admin)
+                </button>
+              )}
+            </div>
+          </div>
+
+          {searchMode === "ncp" && field("ncp", "NCP (Nomenclatura)", "0100010000000295--011--")}
+          {searchMode === "partida" && (
+            <>
+              {field("objeto", "Partida municipal (OBJETO)", "p. ej. I008178 o solo 8178")}
+              {partidaHelp}
+            </>
+          )}
+          {isAdmin && searchMode === "titular" && field("nombre", "Titular / Nombre", "apellido o nombre")}
 
           <div className="grid grid-cols-2 gap-2">
             {field("sec", "Sección", "p. ej. 1", "number")}
@@ -164,8 +241,7 @@ export default function CadastralSearch({ basePath, onFeatureFound, onClose }: C
 
           {showAdvanced && (
             <div className="space-y-2.5 pt-1">
-              {field("objeto", "Partida municipal (OBJETO)", "p. ej. I006646")}
-              {field("nombre", "Titular / Nombre", "apellido o nombre")}
+              {isAdmin && field("nombre", "Titular / Nombre", "apellido o nombre")}
             </div>
           )}
         </div>

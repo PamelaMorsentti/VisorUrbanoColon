@@ -3,6 +3,11 @@
 
 BEGIN;
 
+CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA extensions;
+CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA extensions;
+
+SET search_path = public, core, extensions;
+
 CREATE SCHEMA IF NOT EXISTS core;
 
 CREATE TABLE IF NOT EXISTS core.obras_ingest_raw (
@@ -201,7 +206,7 @@ CREATE TABLE IF NOT EXISTS core.obras (
   m2_relevado numeric,
   source_file text,
   source_row_number text,
-  geom_point geometry(Point, 4326),
+  geom_point extensions.geometry(Point, 4326),
   created_at timestamptz NOT NULL DEFAULT now(),
   updated_at timestamptz NOT NULL DEFAULT now()
 );
