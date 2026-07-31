@@ -1,7 +1,15 @@
 import { useState } from "react";
 import { Shield, User, Eye, Lock, X, LogOut, ChevronDown } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
-import { ADMIN_PASSWORD, ROLE_LABELS, ROLE_BADGES, type Role } from "@/lib/auth";
+import {
+  getAdminPassword,
+  hasAdminPasswordOverride,
+  resetAdminPasswordOverride,
+  ROLE_LABELS,
+  ROLE_BADGES,
+  setAdminPasswordOverride,
+  type Role,
+} from "@/lib/auth";
 
 // ─── Auth button in header (compact) ─────────────────────────────────────────
 
@@ -97,13 +105,17 @@ export default function AuthPanel({ onClose }: AuthPanelProps) {
   const [selectedRole, setSelectedRole] = useState<Role>("registrado");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordInfo, setPasswordInfo] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const handleLogin = () => {
     const rawName = username.trim();
+    const adminPassword = getAdminPassword();
 
     if (selectedRole === "admin") {
-      if (password !== ADMIN_PASSWORD) {
+      if (password !== adminPassword) {
         setError("Contraseña de administrador incorrecta.");
         return;
       }
@@ -115,6 +127,53 @@ export default function AuthPanel({ onClose }: AuthPanelProps) {
     if (!rawName) { setError("Ingresá un nombre de usuario."); return; }
     login({ role: selectedRole, username: rawName });
     onClose();
+  };
+
+  const handleChangeAdminPassword = () => {
+    const current = getAdminPassword();
+    if (password !== current) {
+      setError("Ingresá primero la contraseña actual de administrador para cambiarla.");
+      return;
+    }
+    if (newPassword.trim().length < 6) {
+      setError("La nueva contraseña debe tener al menos 6 caracteres.");
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      setError("La confirmación de contraseña no coincide.");
+      return;
+    }
+
+    const ok = setAdminPasswordOverride(newPassword);
+    if (!ok) {
+      setError("No se pudo guardar la nueva contraseña en este navegador.");
+      return;
+    }
+
+    setError(null);
+    setPassword(newPassword);
+    setNewPassword("");
+    setConfirmPassword("");
+    setPasswordInfo("Contraseña de administrador actualizada correctamente.");
+  };
+
+  const handleResetAdminPassword = () => {
+    const current = getAdminPassword();
+    if (password !== current) {
+      setError("Ingresá la contraseña actual de administrador para restablecerla.");
+      return;
+    }
+    const ok = resetAdminPasswordOverride();
+    if (!ok) {
+      setError("No se pudo restablecer la contraseña en este navegador.");
+      return;
+    }
+
+    setError(null);
+    setPassword("");
+    setNewPassword("");
+    setConfirmPassword("");
+    setPasswordInfo("Contraseña restablecida al valor base de entorno o al predeterminado.");
   };
 
   const handleGuest = () => {
@@ -147,7 +206,7 @@ export default function AuthPanel({ onClose }: AuthPanelProps) {
               {(["admin", "registrado", "invitado"] as Role[]).map(role => (
                 <button
                   key={role}
-                  onClick={() => { setSelectedRole(role); setError(null); }}
+                  onClick={() => { setSelectedRole(role); setError(null); setPasswordInfo(null); }}
                   className={`flex flex-col items-center gap-1 px-2 py-2.5 rounded-xl border text-[10px] font-medium transition-all ${
                     selectedRole === role
                       ? ROLE_BADGES[role] + " ring-1 ring-current"
@@ -185,17 +244,59 @@ export default function AuthPanel({ onClose }: AuthPanelProps) {
               <input
                 type="password"
                 value={password}
-                onChange={e => { setPassword(e.target.value); setError(null); }}
+                onChange={e => { setPassword(e.target.value); setError(null); setPasswordInfo(null); }}
                 placeholder="Contraseña de administrador"
                 className="w-full px-3 py-2 text-xs rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary/50"
                 onKeyDown={e => e.key === "Enter" && handleLogin()}
               />
+
+              <div className="mt-2 rounded-lg border border-border/40 bg-card/30 p-2.5 space-y-2">
+                <div className="text-[10px] text-muted-foreground">
+                  Gestión de contraseña admin ({hasAdminPasswordOverride() ? "personalizada en este navegador" : "base de entorno/predeterminada"})
+                </div>
+                <input
+                  type="password"
+                  value={newPassword}
+                  onChange={e => { setNewPassword(e.target.value); setError(null); setPasswordInfo(null); }}
+                  placeholder="Nueva contraseña"
+                  className="w-full px-3 py-2 text-xs rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary/50"
+                />
+                <input
+                  type="password"
+                  value={confirmPassword}
+                  onChange={e => { setConfirmPassword(e.target.value); setError(null); setPasswordInfo(null); }}
+                  placeholder="Confirmar nueva contraseña"
+                  className="w-full px-3 py-2 text-xs rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary/50"
+                />
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={handleChangeAdminPassword}
+                    className="flex-1 px-2 py-1.5 text-[11px] rounded-lg border border-sky-500/30 bg-sky-500/10 text-sky-300 hover:bg-sky-500/20 transition-colors"
+                  >
+                    Cambiar contraseña
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleResetAdminPassword}
+                    className="flex-1 px-2 py-1.5 text-[11px] rounded-lg border border-amber-500/30 bg-amber-500/10 text-amber-300 hover:bg-amber-500/20 transition-colors"
+                  >
+                    Restablecer
+                  </button>
+                </div>
+              </div>
             </div>
           )}
 
           {error && (
             <div className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2">
               {error}
+            </div>
+          )}
+
+          {passwordInfo && (
+            <div className="text-xs text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-3 py-2">
+              {passwordInfo}
             </div>
           )}
 

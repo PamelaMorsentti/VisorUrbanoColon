@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comparación Catastro vs Dirección</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    html, body, #map { height: 100%; margin: 0; }
+    .panel {
+      position: absolute; top: 12px; right: 12px; z-index: 1000; width: 320px;
+      background: rgba(19, 26, 33, 0.92); color: #e5eef6; padding: 14px; border-radius: 12px;
+      font: 12px/1.45 Georgia, "Times New Roman", serif; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      max-height: calc(100% - 24px); overflow: auto;
+    }
+    .swatch { display:inline-block; width:10px; height:10px; border-radius:999px; margin-right:6px; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div class="panel">
+    <div style="font-size:16px;font-weight:700;margin-bottom:8px">Chequeo Visual</div>
+    <div style="margin-bottom:10px">Azul: punto catastral. Naranja: geocodificación IGN. Línea: distancia entre ambos.</div>
+    <div id="rows"></div>
+  </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const rows = [{"row":"3","legajo":"2","address":"Bvard. Gaillard N° 1139","cadastralLat":-32.22609294,"cadastralLon":-58.15770947,"addressLat":-32.22659514,"addressLon":-58.15769663,"verification":"verified_close","distanceMeters":"55.86","ncp":"0100011010480379--002--"},{"row":"5","legajo":"4","address":"Piamonte N° 381","cadastralLat":-32.2259412,"cadastralLon":-58.15808523,"addressLat":-32.2257462,"addressLon":-58.15887944,"verification":"verified_nearby","distanceMeters":"77.79","ncp":"0100011010480379--001--"},{"row":"7","legajo":"6","address":"Bvard. Ferrari Nº 769","cadastralLat":-32.23143297,"cadastralLon":-58.14192078,"addressLat":-32.23163143,"addressLon":-58.14168079,"verification":"verified_close","distanceMeters":"31.57","ncp":"0100010000000028--018--"},{"row":"8","legajo":"7","address":"Andrade N° 261","cadastralLat":-32.2257819,"cadastralLon":-58.13651888,"addressLat":-32.22560741,"addressLon":-58.13631482,"verification":"verified_close","distanceMeters":"27.29","ncp":"0100010000000135--026--"},{"row":"10","legajo":"9","address":"Avda Paysandú N° 1024","cadastralLat":-32.22406627,"cadastralLon":-58.15682625,"addressLat":-32.22367808,"addressLon":-58.15718103,"verification":"verified_close","distanceMeters":"54.56","ncp":"0100011010620435--001--"},{"row":"11","legajo":"10","address":"San Martín Nª 702 esq. Salta N° 46","cadastralLat":-32.22568307,"cadastralLon":-58.14583729,"addressLat":-32.22550739,"addressLon":-58.14585246,"verification":"verified_close","distanceMeters":"19.59","ncp":"0100010000000036--020--"},{"row":"13","legajo":"12","address":"A. Peyret Nº 210","cadastralLat":-32.21569897,"cadastralLon":-58.13778014,"addressLat":-32.21562138,"addressLon":-58.13751429,"verification":"verified_close","distanceMeters":"26.46","ncp":"0100010000000209--003--"},{"row":"15","legajo":"14","address":"San Martìn Nª 491, 493","cadastralLat":-32.22312988,"cadastralLon":-58.14287124,"addressLat":-32.22329723,"addressLon":-58.14272765,"verification":"verified_close","distanceMeters":"22.99","ncp":"0100010000000100--010--"}];
+    const map = L.map('map');
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const bounds = [];
+    const rowsEl = document.getElementById('rows');
+    rows.forEach((row) => {
+      if (!Number.isFinite(row.cadastralLat) || !Number.isFinite(row.cadastralLon) || !Number.isFinite(row.addressLat) || !Number.isFinite(row.addressLon)) {
+        return;
+      }
+
+      const cadastral = [row.cadastralLat, row.cadastralLon];
+      const address = [row.addressLat, row.addressLon];
+      bounds.push(cadastral, address);
+
+      L.circleMarker(cadastral, { radius: 7, color: '#2563eb', fillColor: '#60a5fa', fillOpacity: 0.95, weight: 2 })
+        .addTo(map)
+        .bindPopup('<b>Catastro</b><br>Fila ' + row.row + '<br>NCP: ' + (row.ncp || '-') + '<br>' + row.address);
+
+      L.circleMarker(address, { radius: 7, color: '#c2410c', fillColor: '#fb923c', fillOpacity: 0.95, weight: 2 })
+        .addTo(map)
+        .bindPopup('<b>Dirección IGN</b><br>Fila ' + row.row + '<br>' + row.address);
+
+      L.polyline([cadastral, address], { color: '#facc15', weight: 3, dashArray: '8 6' }).addTo(map);
+
+      const block = document.createElement('div');
+      block.style.marginBottom = '10px';
+      block.innerHTML = '<div><b>Fila ' + row.row + '</b> · legajo ' + row.legajo + '</div>' +
+        '<div>' + row.address + '</div>' +
+        '<div><span class="swatch" style="background:#2563eb"></span>catastro · <span class="swatch" style="background:#fb923c"></span>dirección</div>' +
+        '<div>estado: <b>' + row.verification + '</b></div>' +
+        '<div>distancia: <b>' + row.distanceMeters + ' m</b></div>';
+      rowsEl.appendChild(block);
+    });
+
+    if (bounds.length > 0) {
+      map.fitBounds(bounds, { padding: [40, 40] });
+    } else {
+      map.setView([-32.2236, -58.1436], 13);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comparación Catastro vs Dirección</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    html, body, #map { height: 100%; margin: 0; }
+    .panel {
+      position: absolute; top: 12px; right: 12px; z-index: 1000; width: 320px;
+      background: rgba(19, 26, 33, 0.92); color: #e5eef6; padding: 14px; border-radius: 12px;
+      font: 12px/1.45 Georgia, "Times New Roman", serif; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      max-height: calc(100% - 24px); overflow: auto;
+    }
+    .swatch { display:inline-block; width:10px; height:10px; border-radius:999px; margin-right:6px; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div class="panel">
+    <div style="font-size:16px;font-weight:700;margin-bottom:8px">Chequeo Visual</div>
+    <div style="margin-bottom:10px">Azul: punto catastral. Naranja: geocodificación IGN. Línea: distancia entre ambos.</div>
+    <div id="rows"></div>
+  </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const rows = [{"row":"2","legajo":"1","address":"Avda. Urquiza Nº 321","cadastralLat":-32.22227148,"cadastralLon":-58.13887103,"addressLat":-32.22242533,"addressLon":-58.13864305,"verification":"verified_close","distanceMeters":"27.43","ncp":"0100010000000143--009--"},{"row":"3","legajo":"2","address":"Mitre N° 972","cadastralLat":-32.2336659,"cadastralLon":-58.14569865,"addressLat":-32.23346382,"addressLon":-58.14589437,"verification":"verified_close","distanceMeters":"29.05","ncp":"0100010000000447--020--"},{"row":"6","legajo":"5","address":"Alberdi N° 231","cadastralLat":-32.21695631,"cadastralLon":-58.14139856,"addressLat":-32.21722724,"addressLon":-58.14120173,"verification":"verified_close","distanceMeters":"35.36","ncp":"0100010000000177--008--"},{"row":"7","legajo":"8","address":"Sourigues Nº 38","cadastralLat":-32.22304631,"cadastralLon":-58.14203836,"addressLat":-32.22296721,"addressLon":-58.14188421,"verification":"verified_close","distanceMeters":"16.96","ncp":"0100010000000101--003--"},{"row":"10","legajo":"9","address":"Esteva Berga Nº 526","cadastralLat":-32.22873569,"cadastralLon":-58.13138086,"addressLat":-32.22891342,"addressLon":-58.13156654,"verification":"verified_close","distanceMeters":"26.37","ncp":"0100010000000726--015--"},{"row":"13","legajo":"47","address":"Araujo Penòn N° 220","cadastralLat":-32.229367,"cadastralLon":-58.15709089,"addressLat":-32.22923899,"addressLon":-58.15684636,"verification":"verified_close","distanceMeters":"27.05","ncp":"0100010000000322--015--"},{"row":"15","legajo":"12","address":"J. G. Artigas N° 128","cadastralLat":-32.22474725,"cadastralLon":-58.13968914,"addressLat":-32.22494944,"addressLon":-58.13992854,"verification":"verified_close","distanceMeters":"31.82","ncp":"0100010000000113--009--"},{"row":"16","legajo":"11","address":"San Martín Esq Sourigues N° 64","cadastralLat":-32.22271636,"cadastralLon":-58.1423761,"addressLat":-32.21809279,"addressLon":-58.13547867,"verification":"review_large_gap","distanceMeters":"827.84","ncp":"0100010000000100--006--"}];
+    const map = L.map('map');
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const bounds = [];
+    const rowsEl = document.getElementById('rows');
+    rows.forEach((row) => {
+      if (!Number.isFinite(row.cadastralLat) || !Number.isFinite(row.cadastralLon) || !Number.isFinite(row.addressLat) || !Number.isFinite(row.addressLon)) {
+        return;
+      }
+
+      const cadastral = [row.cadastralLat, row.cadastralLon];
+      const address = [row.addressLat, row.addressLon];
+      bounds.push(cadastral, address);
+
+      L.circleMarker(cadastral, { radius: 7, color: '#2563eb', fillColor: '#60a5fa', fillOpacity: 0.95, weight: 2 })
+        .addTo(map)
+        .bindPopup('<b>Catastro</b><br>Fila ' + row.row + '<br>NCP: ' + (row.ncp || '-') + '<br>' + row.address);
+
+      L.circleMarker(address, { radius: 7, color: '#c2410c', fillColor: '#fb923c', fillOpacity: 0.95, weight: 2 })
+        .addTo(map)
+        .bindPopup('<b>Dirección IGN</b><br>Fila ' + row.row + '<br>' + row.address);
+
+      L.polyline([cadastral, address], { color: '#facc15', weight: 3, dashArray: '8 6' }).addTo(map);
+
+      const block = document.createElement('div');
+      block.style.marginBottom = '10px';
+      block.innerHTML = '<div><b>Fila ' + row.row + '</b> · legajo ' + row.legajo + '</div>' +
+        '<div>' + row.address + '</div>' +
+        '<div><span class="swatch" style="background:#2563eb"></span>catastro · <span class="swatch" style="background:#fb923c"></span>dirección</div>' +
+        '<div>estado: <b>' + row.verification + '</b></div>' +
+        '<div>distancia: <b>' + row.distanceMeters + ' m</b></div>';
+      rowsEl.appendChild(block);
+    });
+
+    if (bounds.length > 0) {
+      map.fitBounds(bounds, { padding: [40, 40] });
+    } else {
+      map.setView([-32.2236, -58.1436], 13);
+    }
+  </script>
+</body>
+</html>

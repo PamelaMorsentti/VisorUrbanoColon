@@ -7,6 +7,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import Header from "@/components/Header";
 import LayersPanel from "@/components/LayersPanel";
+import FloodSimulationPanel from "@/components/FloodSimulationPanel";
 import FeatureInfo from "@/components/FeatureInfo";
 import ZonaPanel from "@/components/ZonaPanel";
 import ZonaLegend from "@/components/ZonaLegend";
@@ -26,14 +27,46 @@ import { hasPermission } from "@/lib/auth";
 import { LAYERS, COLON_CENTER, COLON_ZOOM, ZONA_COLORS } from "@/lib/layers";
 import { useLayerCatalog } from "@/hooks/useLayerCatalog";
 import { ZONA_NORMAS } from "@/lib/zonaData";
+import { area, bbox, booleanIntersects, buffer, featureCollection, intersect, union } from "@turf/turf";
 
 const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");
 const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "";
 const DATA_CACHE_BUST = String(Date.now());
 
+function getHydrologyApiCandidates(): string[] {
+  const urls: string[] = [];
+  if (API_BASE) urls.push(`${API_BASE}/api/hydrology/colon`);
+  urls.push("/api/hydrology/colon");
+
+  if (typeof window !== "undefined") {
+    const host = window.location.hostname;
+    if (host === "localhost" || host === "127.0.0.1") {
+      urls.push("http://localhost:5180/api/hydrology/colon");
+      urls.push("http://localhost:3000/api/hydrology/colon");
+    }
+  }
+
+  return Array.from(new Set(urls));
+}
+
+async function fetchJsonWithTimeout(url: string, timeoutMs = 10000): Promise<Response> {
+  const ctrl = new AbortController();
+  const timer = window.setTimeout(() => ctrl.abort(), timeoutMs);
+  try {
+    return await fetch(url, { signal: ctrl.signal });
+  } finally {
+    window.clearTimeout(timer);
+  }
+}
+
 type LeafletLayer = L.GeoJSON | L.LayerGroup;
 type DensidadData = Record<string, { count: number; area: number }>;
 type ZonaTransform = { rotateDeg: number; offsetLng: number; offsetLat: number };
+type FloodSimulationStats = { affected: number; total: number; parcial: number; cota: number };
+type HydrologyResponse = {
+  level: number | string;
+  updatedAt?: string;
+};
 
 function getLayerDataUrl(file: string): string {
   return `${BASE_PATH}/data/${file}?v=${DATA_CACHE_BUST}`;
@@ -353,6 +386,236 @@ function distanceMeters(a: [number, number], b: [number, number]): number {
   return R * 2 * Math.atan2(Math.sqrt(s), Math.sqrt(1 - s));
 }
 
+function ringsFromGeometry(geometry: Geometry): number[][][] {
+  if (!geometry) return [];
+  if (geometry.type === "LineString") return [geometry.coordinates];
+  if (geometry.type === "MultiLineString") return geometry.coordinates;
+  return [];
+}
+
+function isClosedRing(coords: number[][]): boolean {
+  if (!Array.isArray(coords) || coords.length < 4) return false;
+  const first = coords[0];
+  const last = coords[coords.length - 1];
+  return Math.abs(first[0] - last[0]) < 1e-10 && Math.abs(first[1] - last[1]) < 1e-10;
+}
+
+function bboxOverlap(a: number[], b: number[]): boolean {
+  return a[0] <= b[2] && a[2] >= b[0] && a[1] <= b[3] && a[3] >= b[1];
+}
+
+function unionMany(features: FeatureCollection[]): FeatureCollection | null {
+  if (!features.length) return null;
+  let merged = features[0];
+  for (let i = 1; i < features.length; i += 1) {
+    try {
+      const u = union(featureCollection([merged, features[i]]));
+      if (u) merged = u;
+    } catch {
+      // Keep previous merged geometry if a topological merge fails.
+    }
+  }
+  return merged;
+}
+
+function parseFloodCotaInput(value: string): number | null {
+  const normalized = value.replace(",", ".").trim();
+  const n = Number(normalized);
+  if (!Number.isFinite(n)) return null;
+  if (n < 0 || n > 40) return null;
+  return n;
+}
+
+function formatFloodCotaInput(value: number): string {
+  return value.toFixed(2).replace(".", ",");
+}
+
+function formatRealtimeUpdatedAt(raw: string | undefined): string | null {
+  if (!raw) return null;
+  const d = new Date(raw);
+  if (Number.isNaN(d.getTime())) return null;
+  return d.toLocaleString("es-AR", {
+    day: "2-digit",
+    month: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
+async function fetchCurrentRiverLevelMeters(): Promise<{ level: number; updatedAt: string | null } | null> {
+  const candidates = getHydrologyApiCandidates();
+  for (const url of candidates) {
+    try {
+      const res = await fetchJsonWithTimeout(url, 10000);
+      if (!res.ok) continue;
+      const data = await res.json() as HydrologyResponse;
+      const level = Number(data.level);
+      if (!Number.isFinite(level)) continue;
+      return { level, updatedAt: formatRealtimeUpdatedAt(data.updatedAt) };
+    } catch {
+      // Try next candidate.
+    }
+  }
+  return null;
+}
+
+function buildFloodSimulationGeoJSON(parcela: FeatureCollection, cNivel: FeatureCollection, cotaRef: number): { geojson: FeatureCollection; stats: FloodSimulationStats } {
+  const lowContourLines = (cNivel.features || []).filter((f: FeatureCollection) => {
+    const z = Number(f?.properties?.Z ?? f?.properties?.COTA);
+    const t = f?.geometry?.type;
+    return Number.isFinite(z) && z <= cotaRef && (t === "LineString" || t === "MultiLineString");
+  });
+
+  if (!lowContourLines.length) {
+    return {
+      geojson: { type: "FeatureCollection", features: [] },
+      stats: { affected: 0, total: 0, parcial: 0, cota: cotaRef },
+    };
+  }
+
+  const lowClosedPolygons: FeatureCollection[] = [];
+  for (const f of lowContourLines) {
+    const rings = ringsFromGeometry(f.geometry);
+    for (const ring of rings) {
+      if (!isClosedRing(ring)) continue;
+      lowClosedPolygons.push({
+        type: "Feature",
+        properties: { z: Number(f?.properties?.Z ?? f?.properties?.COTA ?? null) },
+        geometry: { type: "Polygon", coordinates: [ring] },
+      });
+    }
+  }
+
+  const floodCandidates = lowClosedPolygons.filter((f) => {
+    try {
+      return area(f) > 1;
+    } catch {
+      return false;
+    }
+  });
+
+  const lowPolyWithBbox = floodCandidates.map((feature) => ({ feature, bbox: bbox(feature) }));
+  const lowPolyExtent = floodCandidates.length ? bbox(featureCollection(floodCandidates)) : null;
+  const lowLineWithBbox = lowContourLines.map((feature: FeatureCollection) => ({ feature, bbox: bbox(feature) }));
+
+  const OPEN_CONTOUR_BUFFER_M = 3;
+  let lowLineMask: FeatureCollection | null = null;
+  let lowLineExtent: number[] | null = null;
+  try {
+    lowLineMask = buffer(featureCollection(lowContourLines), OPEN_CONTOUR_BUFFER_M, { units: "meters" });
+    lowLineExtent = bbox(lowLineMask);
+  } catch {
+    lowLineMask = null;
+    lowLineExtent = null;
+  }
+
+  const affected: FeatureCollection[] = [];
+  let total = 0;
+  let parcial = 0;
+
+  for (const parcel of parcela.features || []) {
+    const gType = parcel?.geometry?.type;
+    if (gType !== "Polygon" && gType !== "MultiPolygon") continue;
+
+    const parcelArea = area(parcel);
+    if (!Number.isFinite(parcelArea) || parcelArea <= 0) continue;
+
+    const pBbox = bbox(parcel);
+    const hitsPolyExtent = lowPolyExtent ? bboxOverlap(pBbox, lowPolyExtent) : false;
+    const hitsLineExtent = lowLineExtent ? bboxOverlap(pBbox, lowLineExtent) : false;
+    if (!hitsPolyExtent && !hitsLineExtent) continue;
+
+    const parcelIntersections: FeatureCollection[] = [];
+    let touchesLowContourLine = false;
+
+    if (hitsPolyExtent) {
+      for (const poly of lowPolyWithBbox) {
+        if (!bboxOverlap(pBbox, poly.bbox)) continue;
+        let inter = null;
+        try {
+          inter = intersect(featureCollection([parcel, poly.feature]));
+        } catch {
+          inter = null;
+        }
+        if (inter) parcelIntersections.push(inter);
+      }
+    }
+
+    if (hitsLineExtent && lowLineMask) {
+      let interLine = null;
+      try {
+        interLine = intersect(featureCollection([parcel, lowLineMask]));
+      } catch {
+        interLine = null;
+      }
+      if (interLine) parcelIntersections.push(interLine);
+
+      for (const line of lowLineWithBbox) {
+        if (!bboxOverlap(pBbox, line.bbox)) continue;
+        try {
+          if (booleanIntersects(parcel, line.feature)) {
+            touchesLowContourLine = true;
+            break;
+          }
+        } catch {
+          // Keep evaluating remaining line candidates.
+        }
+      }
+    }
+
+    if (!parcelIntersections.length && !touchesLowContourLine) continue;
+
+    let floodedArea = 0;
+    if (parcelIntersections.length === 1) {
+      floodedArea = area(parcelIntersections[0]);
+    } else if (parcelIntersections.length > 1) {
+      const mergedIntersections = unionMany(parcelIntersections);
+      if (mergedIntersections) {
+        floodedArea = area(mergedIntersections);
+      } else {
+        floodedArea = Math.min(
+          parcelArea,
+          parcelIntersections.reduce((acc, f) => acc + Math.max(0, area(f)), 0),
+        );
+      }
+    }
+
+    if (floodedArea <= 0 && touchesLowContourLine) floodedArea = 1;
+    if (floodedArea <= 0) continue;
+
+    const ratio = Math.min(1, floodedArea / parcelArea);
+    const afectacion = ratio >= 0.98 ? "total" : "parcial";
+    if (afectacion === "total") total += 1;
+    else parcial += 1;
+
+    affected.push({
+      type: "Feature",
+      properties: {
+        ...(parcel.properties || {}),
+        inund_cota_ref_m: Number(cotaRef.toFixed(2)),
+        inund_fuente: `simulacion interactiva: curvas con Z <= ${cotaRef.toFixed(2)} m (inclusive)`,
+        inund_afectacion: afectacion,
+        inund_area_m2: Number(floodedArea.toFixed(2)),
+        inund_ratio: Number(ratio.toFixed(4)),
+      },
+      geometry: parcel.geometry,
+    });
+  }
+
+  return {
+    geojson: {
+      type: "FeatureCollection",
+      features: affected,
+    },
+    stats: {
+      affected: affected.length,
+      total,
+      parcial,
+      cota: Number(cotaRef.toFixed(2)),
+    },
+  };
+}
+
 // ─── Label text ──────────────────────────────────────────────────────────────
 
 function getLabelText(layerId: string, props: Record<string, unknown>, index: number): string {
@@ -591,13 +854,39 @@ function isReasonablePoint(lat: number, lon: number): boolean {
     && lon < -57;
 }
 
-function extractVisadoYear(value: unknown): number | null {
+function extractVisadoYearFromValue(value: unknown): number | null {
+  if (typeof value === "number" && Number.isFinite(value)) {
+    const n = Math.trunc(value);
+    return n >= 1900 && n <= 2999 ? n : null;
+  }
   const text = String(value ?? "").trim();
   if (!text) return null;
   const match = text.match(/(19|20)\d{2}/);
   if (!match) return null;
   const year = Number(match[0]);
   return Number.isFinite(year) ? year : null;
+}
+
+function extractVisadoYear(props: Record<string, unknown> | undefined): number | null {
+  if (!props) return null;
+  const directCandidates: unknown[] = [
+    props.fecha_de_visado,
+    props.fecha_visado_iso,
+    props.visado,
+    props.raw__visado,
+    props.visado_year,
+    props.visadoYear,
+    props.ano,
+    props.anio,
+    props.year,
+  ];
+
+  for (const candidate of directCandidates) {
+    const year = extractVisadoYearFromValue(candidate);
+    if (year) return year;
+  }
+
+  return null;
 }
 
 function isTruthyFlag(value: unknown): boolean {
@@ -773,6 +1062,7 @@ export default function MapViewer() {
   const layerCacheRef = useRef<Record<string, FeatureCollection>>({}); // all loaded GeoJSON, keyed by layer id
   const worksLayerRef = useRef<L.GeoJSON | null>(null);
   const obrasHeatLayerRef = useRef<L.GeoJSON | null>(null);
+  const floodSimulationLayerRef = useRef<L.GeoJSON | null>(null);
 
   const [layersPanelOpen, setLayersPanelOpen] = useState(false);
   const [searchPanelOpen, setSearchPanelOpen] = useState(false);
@@ -784,6 +1074,7 @@ export default function MapViewer() {
   const [analysisPanelOpen, setAnalysisPanelOpen] = useState(false);
   const [adminDataPanelOpen, setAdminDataPanelOpen] = useState(false);
   const [regionalInfoOpen, setRegionalInfoOpen] = useState(false);
+  const [floodSimulationPanelOpen, setFloodSimulationPanelOpen] = useState(false);
   const [planosActive, setPlanosActive] = useState(false);
   const [worksMeta, setWorksMeta] = useState<{ level: PublicationLevel; count: number } | null>(null);
   const [obrasYearOptions, setObrasYearOptions] = useState<number[]>([]);
@@ -835,6 +1126,14 @@ export default function MapViewer() {
   });
   const [parcelOwnerFilter, setParcelOwnerFilter] = useState<ParcelOwnerFilter>("all");
   const [manzanaVisualMode, setManzanaVisualMode] = useState<ManzanaVisualMode>("suaves");
+  const [floodSimulationEnabled, setFloodSimulationEnabled] = useState(false);
+  const [floodSimulationCotaInput, setFloodSimulationCotaInput] = useState("10,00");
+  const [floodSimulationLoading, setFloodSimulationLoading] = useState(false);
+  const [floodSimulationStats, setFloodSimulationStats] = useState<FloodSimulationStats | null>(null);
+  const [floodRealtimeSync, setFloodRealtimeSync] = useState(false);
+  const [floodRealtimeHeight, setFloodRealtimeHeight] = useState<number | null>(null);
+  const [floodRealtimeLoading, setFloodRealtimeLoading] = useState(false);
+  const [floodRealtimeUpdatedAt, setFloodRealtimeUpdatedAt] = useState<string | null>(null);
 
   const [visibleLayers, setVisibleLayers] = useState<Record<string, boolean>>(
     Object.fromEntries(LAYERS.map(l => [l.id, l.defaultVisible && (!l.adminOnly || isAdmin)]))
@@ -1612,7 +1911,7 @@ export default function MapViewer() {
           const res = await fetch(worksApiUrl);
           if (res.ok) {
             const body = await res.json() as { data?: FeatureCollection };
-            if (body?.data && Array.isArray(body.data.features)) {
+            if (body?.data && Array.isArray(body.data.features) && body.data.features.length > 0) {
               return body.data;
             }
           }
@@ -1640,7 +1939,7 @@ export default function MapViewer() {
 
         const yearSet = new Set<number>();
         allValidFeatures.forEach((f: { properties?: Record<string, unknown> }) => {
-          const y = extractVisadoYear(f.properties?.fecha_de_visado);
+          const y = extractVisadoYear(f.properties);
           if (y) yearSet.add(y);
         });
         const yearsDesc = Array.from(yearSet).sort((a, b) => b - a);
@@ -1662,7 +1961,7 @@ export default function MapViewer() {
         const selectedSet = new Set(ensuredSelection);
         const includeNoYear = ensuredSelection.length === yearsDesc.length;
         const filteredFeatures = allValidFeatures.filter((f: { properties?: Record<string, unknown> }) => {
-          const y = extractVisadoYear(f.properties?.fecha_de_visado);
+          const y = extractVisadoYear(f.properties);
           if (!y) return includeNoYear;
           return selectedSet.has(y);
         });
@@ -2066,6 +2365,141 @@ export default function MapViewer() {
     });
   }, []);
 
+  const handleApplyFloodSimulation = useCallback(async (overrideCota?: number) => {
+    const map = leafletMapRef.current;
+    if (!map || !mapReady || floodSimulationLoading) return;
+
+    const parsedCota = overrideCota ?? parseFloodCotaInput(floodSimulationCotaInput);
+    if (parsedCota == null) return;
+
+    setFloodSimulationLoading(true);
+    try {
+      const [parcelaData, cNivelData] = await Promise.all([
+        fetchAndCacheLayer("parcela"),
+        fetchAndCacheLayer("cota10"),
+      ]);
+
+      if (!parcelaData || !cNivelData) return;
+
+      const { geojson, stats } = buildFloodSimulationGeoJSON(parcelaData, cNivelData, parsedCota);
+
+      if (floodSimulationLayerRef.current && map.hasLayer(floodSimulationLayerRef.current)) {
+        map.removeLayer(floodSimulationLayerRef.current);
+      }
+
+      const simLayer = L.geoJSON(geojson, {
+        style: (feature) => {
+          const afectacion = String(feature?.properties?.inund_afectacion ?? "").toLowerCase();
+          if (afectacion === "total") {
+            return { fillColor: "#dc2626", fillOpacity: 0.44, color: "#991b1b", weight: 1, opacity: 0.9 };
+          }
+          return { fillColor: "#fb7185", fillOpacity: 0.32, color: "#be123c", weight: 0.8, opacity: 0.85 };
+        },
+        onEachFeature: (feature, featureLayer) => {
+          const rawProps = (feature?.properties || {}) as Record<string, unknown>;
+
+          featureLayer.on("click", (e: L.LeafletMouseEvent) => {
+            L.DomEvent.stopPropagation(e);
+            const centroid = computeCentroid(feature.geometry);
+            const centroidLngLat: [number, number] | null = centroid ? [centroid[1], centroid[0]] : null;
+
+            const simFields = {
+              inund_afectacion: rawProps.inund_afectacion,
+              inund_cota_ref_m: rawProps.inund_cota_ref_m,
+              inund_area_m2: rawProps.inund_area_m2,
+              inund_ratio: rawProps.inund_ratio,
+              inund_fuente: rawProps.inund_fuente,
+            };
+
+            const visibleProps = publicationLevel === "public"
+              ? { ...sanitizeParcelPropsForPublic(rawProps), ...simFields }
+              : rawProps;
+
+            setSelectedFeature({
+              props: visibleProps,
+              layerLabel: `Simulación de crecida (+${parsedCota.toFixed(2)} m)`,
+              centroid: centroidLngLat,
+              geometry: feature.geometry,
+            });
+            setSelectedZona(null);
+          });
+
+          if (featureLayer instanceof L.Path) {
+            featureLayer.on("mouseover", () => {
+              const afectacion = String(rawProps.inund_afectacion ?? "").toLowerCase();
+              if (afectacion === "total") {
+                featureLayer.setStyle({ fillColor: "#b91c1c", fillOpacity: 0.52, color: "#7f1d1d", weight: 1.2, opacity: 0.95 });
+              } else {
+                featureLayer.setStyle({ fillColor: "#f43f5e", fillOpacity: 0.44, color: "#9f1239", weight: 1, opacity: 0.9 });
+              }
+            });
+            featureLayer.on("mouseout", () => {
+              const afectacion = String(rawProps.inund_afectacion ?? "").toLowerCase();
+              if (afectacion === "total") {
+                featureLayer.setStyle({ fillColor: "#dc2626", fillOpacity: 0.44, color: "#991b1b", weight: 1, opacity: 0.9 });
+              } else {
+                featureLayer.setStyle({ fillColor: "#fb7185", fillOpacity: 0.32, color: "#be123c", weight: 0.8, opacity: 0.85 });
+              }
+            });
+          }
+        },
+      });
+
+      floodSimulationLayerRef.current = simLayer;
+      setFloodSimulationStats(stats);
+      setFloodSimulationEnabled(true);
+      setFloodSimulationCotaInput(formatFloodCotaInput(parsedCota));
+      simLayer.addTo(map);
+      simLayer.bringToFront();
+    } finally {
+      setFloodSimulationLoading(false);
+    }
+  }, [mapReady, floodSimulationLoading, floodSimulationCotaInput, fetchAndCacheLayer, publicationLevel]);
+
+  useEffect(() => {
+    if (!floodRealtimeSync || !mapReady) return;
+
+    let cancelled = false;
+
+    const applyRealtimeHeight = async () => {
+      if (floodSimulationLoading) return;
+      setFloodRealtimeLoading(true);
+      try {
+        const data = await fetchCurrentRiverLevelMeters();
+        if (!data || cancelled) return;
+        setFloodRealtimeHeight(data.level);
+        setFloodRealtimeUpdatedAt(data.updatedAt);
+        setFloodSimulationCotaInput(formatFloodCotaInput(data.level));
+        await handleApplyFloodSimulation(data.level);
+      } finally {
+        if (!cancelled) setFloodRealtimeLoading(false);
+      }
+    };
+
+    void applyRealtimeHeight();
+    const id = window.setInterval(() => {
+      void applyRealtimeHeight();
+    }, 60 * 1000);
+
+    return () => {
+      cancelled = true;
+      window.clearInterval(id);
+    };
+  }, [floodRealtimeSync, mapReady, floodSimulationLoading, handleApplyFloodSimulation]);
+
+  useEffect(() => {
+    const map = leafletMapRef.current;
+    const layer = floodSimulationLayerRef.current;
+    if (!map || !mapReady || !layer) return;
+
+    if (floodSimulationEnabled) {
+      if (!map.hasLayer(layer)) layer.addTo(map);
+      layer.bringToFront();
+    } else if (map.hasLayer(layer)) {
+      map.removeLayer(layer);
+    }
+  }, [floodSimulationEnabled, mapReady]);
+
   return (
     <div className="relative w-full h-screen overflow-hidden bg-background">
       <Header
@@ -2103,6 +2537,8 @@ export default function MapViewer() {
         onOpenAuthPanel={() => setAuthPanelOpen(true)}
         onToggleRegionalInfo={handleToggleRegionalInfoPanel}
         regionalInfoOpen={regionalInfoOpen}
+        onToggleFloodSimulationPanel={() => setFloodSimulationPanelOpen((v) => !v)}
+        floodSimulationPanelOpen={floodSimulationPanelOpen}
         dashboardUrl={dashboardUrl}
         adminEditorUrl={adminEditorUrl}
       />
@@ -2238,6 +2674,25 @@ export default function MapViewer() {
         className="absolute top-14 right-3 z-[1001] flex flex-col gap-2 pointer-events-none"
         style={{ maxHeight: "calc(100vh - 80px)", overflowY: "auto" }}
       >
+        {floodSimulationPanelOpen && (
+          <div className="pointer-events-auto">
+            <FloodSimulationPanel
+              enabled={floodSimulationEnabled}
+              mode={floodRealtimeSync ? "auto" : "manual"}
+              cotaInput={floodSimulationCotaInput}
+              loading={floodSimulationLoading}
+              stats={floodSimulationStats}
+              realtimeHeight={floodRealtimeHeight}
+              realtimeLoading={floodRealtimeLoading}
+              realtimeUpdatedAt={floodRealtimeUpdatedAt}
+              onToggleEnabled={() => setFloodSimulationEnabled((v) => !v)}
+              onSetMode={(mode) => setFloodRealtimeSync(mode === "auto")}
+              onChangeCotaInput={setFloodSimulationCotaInput}
+              onApply={() => { void handleApplyFloodSimulation(); }}
+            />
+          </div>
+        )}
+
         {isAdmin && (
           <div className="pointer-events-auto">
             <button

@@ -1,0 +1,207 @@
+source_row_number,legajo_canonico,row_kind,raw_ubicacion,ncp,ncp_formatted,sec,gru,nmanz,nparc,lon,lat,geolocation_source,location_verification_status,zonificacion,fecha_de_visado,tipo,destino_uso,relevamiento_o_existente,a_contruir_obra_nueva,ampliacion_de_obra_existente,proyectado_no_iniciado,m_existentes_relevados_vivienda,m_existentes_relevados_local,m_a_construir_vivienda,m_a_construir_local
+2,1,detail,Ruta N° 135,0100010000000324--009--,0100010000000324--009--,0,0,324,9,-58.15862883,-32.22812700,automatic,missing_address_point,9,,,sin destino,,,,,,,,
+3,1,detail_continuation,PeriUrbana,,,,,,,,,automatic,missing_both_points,PeriUrbana,,,sin destino,,,,,,95.845,,
+4,2,detail,Sarmiento Nº 88,,,,,,,,,automatic,missing_cadastral_point,Centro,,,sin destino,,10,,,,78.73,,
+5,3,detail,"Maipú Nª 525, 529 (antes 535)",,,,,,,,,automatic,missing_cadastral_point,Nuceo Urbano Ampliado,,,sin destino,,2,,,,153.11,,
+6,4,detail,Camino Bernardino Horne s/N°,,,,,,,,,automatic,missing_both_points,Zona Periurbana,,,sin destino,,2,,,,88.5,,
+7,5,detail,9 de Julio N° 68,0100010190010000--117--,0100010190010000--117--,19,1,0,117,-58.24108433,-32.29630421,automatic,review_large_gap,Centro,,,sin destino,,1,,,,,132.595,
+8,6,detail,Celia Pellenc N°,,,,,,,,,automatic,missing_both_points,Urbana,,,sin destino,no identificado,,1,,,,,83.4
+9,7,detail,Calle Chaiñar esq Madres y Abuelas de P. de Mayo,0100011010360355--006--,0100011010360355--006--,101,36,355,6,-58.16124962,-32.22376611,automatic,missing_address_point,Zona Periurbana,,,sin destino,,,,,,,,
+10,7,detail_continuation,,,,,,,,,,automatic,missing_both_points,4,,,sin destino,,,,,,106,,
+11,8,detail,San Martín N° 567 - 571,,,,,,,,,automatic,missing_cadastral_point,Centro,,,sin destino,LARROSA Rodolfo,1,,,71.2,,,
+12,9,detail,Calle Pública s/N°,,,,,,,,,automatic,missing_both_points,URBANA,,,sin destino,"GARRE PEROCHENA, Gustavo Ramón",1,,,,103.03,,
+13,10,detail,Laprida N° 227,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,,5,,,,230.555,,
+14,11,detail,Gouchón N° 253 esq Sarmiento,,,,,,,,,automatic,missing_cadastral_point,Residencial Norte,,,sin destino,MARIN Jorge Fabricio,,1,,,,,127.13
+15,12,detail,Urbana 2,,,,,,,,,automatic,missing_both_points,Urbana 2,,,sin destino,GONZALEZ Juan Maria,,1,,,,,137.12
+16,13,detail,"Vieytes Nº 41 esq Gra Urquiza Nº 653, 657, 659",,,,,,,,,automatic,missing_cadastral_point,Centro,,,sin destino,,,,,,151.5,12.64,
+17,14,detail,Laprida N° 122,,,,,,,,,automatic,missing_cadastral_point,Centro,,,sin destino,,16,,,,44.705,,
+18,15,detail,Chacabico Nº 627,,,,,,,,,automatic,missing_both_points,Residencial Norte,,,sin destino,DRAY Daniel Alberto,,1,,,-19.335,,
+19,16,detail,Peyret N° 210,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,,1,,,120.27,,176.505,
+20,17,detail,Juan Manuel de Rosas N°,,,,,,,,,automatic,missing_both_points,Ampliación Turística Norte,,,sin destino,no identificado,,1,,,,,164.72
+21,18,detail,Maipú N° 470,,,,,,,,,automatic,missing_cadastral_point,Residencial Sur,,,sin destino,TORRENT Fernando,,3,,,,,288.76
+22,19,detail,Urbana 2,,,,,,,,,automatic,missing_both_points,Urbana 2,,,sin destino,RUIZ DIAZ Marcelo Javier,,1,,,,,78.57
+23,20,detail,Domingo Antonini N° 89,,,,,,,,,automatic,missing_both_points,Urbana,,,sin destino,MARIN Jorge Fabricio,,1,,,,,
+24,21,detail,Rocamora N° 416,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,,2,,,,157.615,,
+25,22,detail,Gouchon N° 418,,,,,,,,,automatic,missing_cadastral_point,18 y 20,,,sin destino,VIOLLAZ Abel Alberto,1,1,,,,,49.1
+26,23,detail,Calle Pública s/N° - Los Bretes,0100010113100003--002--,0100010113100003--002--,11,310,3,2,-58.16822669,-32.23082946,automatic,missing_address_point,Ampliación Turística Sur,,,sin destino,VERON David,,1,,,,,167.21
+27,24,detail,Araujo Pen{on N° 285,,,,,,,,,automatic,missing_both_points,Urbana,,,sin destino,,1,,,,60.95,,
+28,25,detail,"Ruta N° 14, km",0100010000000001--003--,0100010000000001--003--,0,0,1,3,-58.14284891,-32.23178677,automatic,missing_address_point,3,,,sin destino,RUIZ DIAZ Marcelo Javier,,,,,,,
+29,26,detail,Madre Isabel Fernandez Nª 312 esq Mitre,,,,,,,,,automatic,missing_both_points,Urbano,,,sin destino,LOPEZ Jorge Daniel,,1,,,,,
+30,27,detail,Hernandez N° 282,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,,3,,,,242.81,,
+31,28,detail,Bvard. Ferrari N° 1190,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,no identificado,,1,,,,,65.925
+32,29,detail,Calle Pública s/N°,,,,,,,,,automatic,missing_both_points,Periurbana,,,sin destino,,3,,,,22.03,,
+33,30,detail,Brovatti N°,0100011020160291--007--,0100011020160291--007--,102,16,291,7,-58.15176598,-32.23699231,automatic,missing_address_point,PeriUrbana,,,sin destino,,4,,,,95.84,,
+34,30,detail_continuation,Residencial Norte,,,,,,,,,automatic,missing_both_points,Residencial Norte,,,sin destino,AMERICAN BUILDING S.A.U.,,,21,,,,1501.435
+35,31,detail,"Lavalle N° 122, 122",0100010190020000--004--,0100010190020000--004--,19,2,0,4,-58.21701233,-32.30183571,automatic,review_large_gap,4,,,sin destino,AMERICAN BUILDING S.A.U.,,7,,,,,691.34
+36,32,detail,Noailles N° 239 esq L. N. Alema,,,,,,,,,automatic,missing_cadastral_point,Centro,,,sin destino,no identificado,,1,,,,,79.55
+37,33,detail,9 de Julio Nº 363,,,,,,,,,automatic,missing_cadastral_point,Residencial Norte,,,sin destino,no identificado,,1,,,,,214.51
+38,34,detail,Raibel N° 780 esq Leguizamón,0100010190020000--026--,0100010190020000--026--,19,2,0,26,-58.22561927,-32.30053969,automatic,missing_address_point,URBANA,,,sin destino,AGUARA CONSTRUCTORA SA,,,1,,,,91.67
+39,35,detail,Urbana 1,,,,,,,,,automatic,missing_both_points,Urbana 1,,,sin destino,,2,,,,228.635,,
+40,36,detail,25 de Mayo N° 464,,,,,,,,,automatic,missing_cadastral_point,Residencial Sur,,,sin destino,,2,,,,68.595,21.13,
+41,37,detail,Combatientes de Malvinas N°,,,,,,,,,automatic,missing_both_points,Núcleo Urbano Ampliado,,,sin destino,AGUARA CONSTRUCTORA SA,,3,,,,,233.65
+42,38,detail,Mitre N° 776,0100010170040000--028--,0100010170040000--028--,17,4,0,28,-58.16310306,-32.28127247,automatic,review_large_gap,Urbana,,,sin destino,C - 513,,1,,,,,122.13
+43,39,detail,Calle Pública s/N°,0100010000000223--006--,0100010000000223--006--,0,0,223,6,-58.13285586,-32.22013455,automatic,missing_address_point,Núcleo Urbano Ampliado,,,sin destino,no identificado,2,,,,180.335,,
+44,40,detail,Avda Paysandù Nº 274,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,ACOSTA Oscar R - INDUSTRIAL NORTE,,1,,,,,
+45,41,detail,3 de Febrero N°,,,,,,,,,automatic,missing_both_points,CENTRO,,,sin destino,,1,,,,,48.06,
+46,42,detail,Primeros Colonos esq Agua-I,,,,,,,,,automatic,missing_both_points,PeriUrbana,,,sin destino,no identificado,,1,,,,,
+47,43,detail,Primeros Colonos esq. Calle Pública,0100011010340326--004--,0100011010340326--004--,101,34,326,4,-58.16072455,-32.22647344,automatic,missing_address_point,PeriUrbana,,,sin destino,RENDO José,,1,,,,,61.8
+48,44,detail,Calle Jacarandaes s/Nº - Los Bretes,0100010000000003--004--,0100010000000003--004--,0,0,3,4,-58.14425994,-32.23033175,automatic,missing_address_point,Urbana,,,sin destino,no identificado,,1,,,,,186
+49,45,detail,Piamonte s/N°,,,,,,,,,automatic,missing_both_points,Urbano,,,sin destino,,1,,,,141.525,,
+50,46,detail,Tucumán Nº 1422,,,,,,,,,automatic,missing_cadastral_point,URBANA,,,sin destino,,1,,,,,378.72,
+51,47,detail,Azurduy esq Espinillo,,,,,,,,,automatic,missing_both_points,Ampliación Actividad Turística Norte,,,sin destino,OLIVAREZ Luis Enrique,,6,,,,,266.25
+52,48,detail,Calle Brovatti S/N°,,,,,,,,,automatic,missing_both_points,Periurbana,,,sin destino,,,1,,,,,97.935
+53,49,detail,Calle Pública s/N°,,,,,,,,,automatic,missing_both_points,Ampliación Actividad Turística Norte,,,sin destino,,4,,,,0,,
+54,50,detail,Avda Paysandú Nº 1170,,,,,,,,,automatic,missing_cadastral_point,URBANA,,1,1,BRUTOMEZA,,,,,,,21.56
+55,51,detail,Combatientes de Malvinas N° 980,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,,1,,,,56,,
+56,52,detail,Hornero s/Nº,,,,,,,,,automatic,missing_both_points,Periurbana,,,sin destino,LOPEZ Jorge Daniel,,1,,,,,4.24
+57,53,detail,M. M. Lima N° 1081,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,no identificado,1,1,,,92.79,,139.45
+58,54,detail,12 de Abril Nº 167 (171),,,,,,,,,automatic,missing_cadastral_point,CENTRO,,,sin destino,,1,,,,374.6,,
+59,55,detail,Alvear N° 321,0100010170020000--071--,0100010170020000--071--,17,2,0,71,-58.15090294,-32.25690669,automatic,review_large_gap,Urbana,,,sin destino,LESCANO Carlos,,1,,,,,
+60,56,detail,Ñandubay N°,,,,,,,,,automatic,missing_both_points,Periurbana,,,sin destino,,1,,,,124.015,,
+61,57,detail,Alberdi esq Sourigues N° 244 y 246,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,C-904,,,,184.4,,,
+62,58,detail,Bolìvar Nº 435,0100010190010000--118--,0100010190010000--118--,19,1,0,118,-58.22686254,-32.29174921,automatic,review_large_gap,URBANA,,1,1,Joaquin Daniel Rene,,,,,31.84,,24
+63,59,detail,Las Piedras N° 12,,,,,,,,,automatic,missing_cadastral_point,URBANA,,,sin destino,,1,,,,32.445,,
+64,60,detail,Reibel N° 636,0100010170030000--059--,0100010170030000--059--,17,3,0,59,-58.15160657,-32.26714790,automatic,review_large_gap,URBANA,,,sin destino,no identificado,,,1,,11.065,,87.09
+65,61,detail,San Martín N° 220,,,,,,,,,automatic,missing_cadastral_point,CENTRO,,,sin destino,no identificado,,,1,202.85,2.9,,457.53
+66,62,detail,Bvard Ferrari N°,,,,,,,,,automatic,missing_both_points,URBANA,,,sin destino,,2,,,,104.39,,
+67,63,detail,Bolívar N°,,,,,,,,,automatic,missing_both_points,Urbana,,,sin destino,no identificado,,1,,,,,171.85
+68,64,detail,Alejo Peyret N° 140,,,,,,,,,automatic,missing_cadastral_point,Centro,,,sin destino,,1,,,,147.61,,
+69,65,detail,"Ruta Nº 130, ex 26 esq Calle Sauce",0100011010360355--014--,0100011010360355--014--,101,36,355,14,-58.16207997,-32.22363519,automatic,missing_address_point,Periurbana,,,sin destino,Joaquin Daniel Rene,,1,,,,,116.555
+70,66,detail,Jacarandaes esq Coronillos ( Los Bretes),,,,,,,,,automatic,missing_both_points,URBANA,,,sin destino,PEREZ Patricio Olmedo,,1,,,,,140.9
+71,67,detail,Avda Quiròs Nº 280 esq Mitre,,,,,,,,,automatic,missing_both_points,URBANA,,,sin destino,,,,1,932.65,,-249.43,
+72,68,detail,Calle Ibirapitá N° entre Algarrobo y Timbó,0100010000000088--004--,0100010000000088--004--,0,0,88,4,-58.14271370,-32.22409496,automatic,missing_address_point,PeriUrbana,,,sin destino,no identificado,,1,,,,,166.12
+73,69,detail,Sourigues N° 610 e/ C de Malvinas y Cepeda,,,,,,,,,automatic,missing_both_points,URBANA,,,sin destino,no identificado,7,2,,,339.82,,55.46
+74,70,detail,Pasaje Alarcón N° 521,,,,,,,,,automatic,missing_cadastral_point,URBANA,,,sin destino,DEL RIO Javier,6,,,,11.44,,
+75,71,detail,12 de Abril N° 741,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,no identificado,,1,,,,,
+76,72,detail,Balcarce N° 66,,,,,,,,,automatic,missing_cadastral_point,CENTRO,,,sin destino,DUFFET Hugo,,,1,,,204.68,
+77,73,detail,Espinillo N°,0100011020420367--002--,0100011020420367--002--,102,42,367,2,-58.15000269,-32.23394705,automatic,missing_address_point,URBANA,,,sin destino,,1,,,,78.455,,
+78,74,detail,Alfredo Bravo s/N°,,,,,,,,,automatic,missing_both_points,PERIURBANA,,,sin destino,no identificado,,3,,,,,161.205
+79,76,detail,Salsipuedes N°,,,,,,,,,automatic,missing_both_points,PERIURBANA,,,sin destino,,1,,,,101.15,,
+80,75,detail,Calle Privada s/N° (Los Bretes),,,,,,,,,automatic,missing_both_points,URBANA,,,sin destino,,1,,,,22.585,,
+81,77,detail,"Esteva Berga N° 152, esq Noailles",,,,,,,,,automatic,missing_cadastral_point,Centro,,,sin destino,,1,,,,,201.925,
+82,78,detail,Gómez Miranda N° 148 esq Noailles,,,,,,,,,automatic,missing_both_points,URBANA,,,sin destino,,1,,,,7.14,,
+83,79,detail,Calle Artalaz s/N°,,,,,,,,,automatic,missing_both_points,Periurbana,,,sin destino,no identificado,,1,,,,,121.67
+84,80,detail,Avda. Pte. Perón N° 296,0100010170030000--072--,0100010170030000--072--,17,3,0,72,-58.14953305,-32.26745218,automatic,review_large_gap,Centro,,,sin destino,BOGADO BENITEZ Eric Wilfredo,,2,,,,,248.77
+85,81,detail,J. A. Fernandez s/N°,0100010000000111--002--,0100010000000111--002--,0,0,111,2,-58.13799851,-32.22565453,automatic,missing_address_point,Periurbana,,,sin destino,YEGROS Ulises,1,,,,36.76,,
+86,83,detail,Bolívar N°,,,,,,,,,automatic,missing_both_points,Urbana,,1,1,no identificado,,1,,708.655,,,
+87,82,detail,Ruta Nac. N° 14,0100010000000075--010--,0100010000000075--010--,0,0,75,10,-58.14492045,-32.22326065,automatic,missing_address_point,Industrial,,,sin destino,,1,,,,,897.84,
+88,84,detail,12 de Abril N° 850,0100010000000007--007--,0100010000000007--007--,0,0,7,7,-58.14697036,-32.22806822,automatic,verified_close,Centro,,,sin destino,RODRIGUEZ José Luís,,2,,,,,
+89,88,detail,Noailles N°,,,,,,,,,automatic,missing_both_points,Urbana,,,sin destino,,1,,,,,43.286,19.404
+90,87,detail,Paso de los Andes N°  2033,0100011010350327--001--,0100011010350327--001--,101,35,327,1,-58.16080229,-32.22523149,automatic,missing_address_point,Urbana,,,sin destino,BERON Pablo,,4,,,,,278.21
+91,85,detail,Calle Privada Jacarandaes s/N° ( Los Bretes),0100010113100003--006--,0100010113100003--006--,11,310,3,6,-58.16780756,-32.23271961,automatic,missing_address_point,URBANA,,,sin destino,RODRIGUEZ Francisco,,1,,,,,125
+92,86,detail,San Martín N° 625,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,ACOSTA Oscar R - INDUSTRIAL NORTE,,1,,,,,
+93,89,detail,Laprida N.º 521,,,,,,,,,automatic,missing_cadastral_point,Prioridad Turística,,,sin destino,ORELLANA Hugo,,12,,,,,950.905
+94,90,detail,Combatientes de Malvinas N° 188,,,,,,,,,automatic,missing_cadastral_point,Urbano,,,sin destino,,,,3,,,35.15,
+95,91,detail,Urbana 2,,,,,,,,,automatic,missing_both_points,Urbana 2,,,sin destino,no identificado,1,,,,332.605,,
+96,92,detail,Alberdi N° 2131,0100011010350327--004--,0100011010350327--004--,101,35,327,4,-58.16053035,-32.22564015,automatic,missing_address_point,Urbana,,,sin destino,VOMMARO Alexis G,,1,1,27,,11.17,36.8
+97,93,detail,Viollaz N° 232,,,,,,,,,automatic,missing_both_points,Urbana,,,sin destino,,2,,,,80.81,,
+98,94,detail,PeriUrbana,0100011020260310--004--,0100011020260310--004--,102,26,310,4,-58.14927314,-32.23769402,automatic,missing_address_point,PeriUrbana,,,sin destino,,1,,,,136.92,,
+99,95,detail,Calle Pública s/N°,,,,,,,,,automatic,missing_both_points,PERIURBANA,,,sin destino,,,1,,,,,124.374
+100,96,detail,Ruta Nac N° 135,0100010113100003--034--,0100010113100003--034--,11,310,3,34,-58.16657852,-32.23155550,automatic,missing_address_point,CHACRAS,,,sin destino,,1,,,,554.515,,
+101,97,detail,Cabo Pereyra N° 645,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,,1,,,,176.58,,
+102,98,detail,25 de Mayo N° 450,,,,,,,,,automatic,missing_cadastral_point,URBANA,,,sin destino,,1,,,,232.94,,
+103,99,detail,Araujo Penón N° 413,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,no identificado,,1,,,,,158.96
+104,100,detail,Mitre N° 776,0100010170040000--028--,0100010170040000--028--,17,4,0,28,-58.16310306,-32.28127247,automatic,review_large_gap,Urbana,,,sin destino,no identificado,,6,,,,,442.97
+105,104,detail,"12 de Abril N°  esq. Lavalle N° 2, 8, 10, 12, 14, 16, 18",,,,,,,,,automatic,missing_cadastral_point,Centro,,3,3,RODRIGUEZ Lisandro,,3,,,151.98,,
+106,105,detail,Cabo Pereyra N°,,,,,,,,,automatic,missing_both_points,Urbana,,,sin destino,no identificado,,1,,,,,164.285
+107,102,detail,Paje Villalba N° 672,,,,,,,,,automatic,missing_both_points,URBANA,,,sin destino,VIVIENDAS 2002 SRL,,1,,,,,55.15
+108,103,detail,Los Charrúas s/N°,,,,,,,,,automatic,missing_both_points,PERIURBANA,,,sin destino,no identificado,,1,,,,,103.63
+109,101,detail,Calle Ceibo s/Nº,0100011010360355--015--,0100011010360355--015--,101,36,355,15,-58.16181976,-32.22351822,automatic,missing_address_point,PERIURBANA,,,sin destino,no identificado,,4,,,,,214.2
+110,106,detail,Bvard Ferrari s/Nº 960,,,,,,,,,automatic,missing_cadastral_point,URBANA,,,sin destino,SOTELO Victor Ramòn,,1,,,,,
+111,108,detail,Bolívar Nº 237,,,,,,,,,automatic,missing_cadastral_point,CENTRO,,,sin destino,,,,14,,205.955,,
+112,107,detail,Bvard. Fresnos s/N°,0100011020070247--003--,0100011020070247--003--,102,7,247,3,-58.15299280,-32.24032003,automatic,missing_address_point,Periurbana,,,sin destino,SOTELO Victor Ramòn,,1,,,,,162.915
+113,109,detail,12 de Abril N° 686,,,,,,,,,automatic,missing_cadastral_point,Centro,,,sin destino,VIOLLAZ Jose Ricardo,2,,1,,93.985,,95.33
+114,110,detail,Camino Horne s/N°,,,,,,,,,automatic,missing_both_points,Urbano,,,sin destino,,1,,,,62.56,,
+115,111,detail,Sarmiento N°  366,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,no identificado,,1,,,,,226.89
+116,112,detail,Bvard. Ferrari N.º 1389,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,RUIZ DIAZ Javier Marcelo,,1,,,,,
+117,113,detail,Artigas N° 173,,,,,,,,,automatic,missing_cadastral_point,URBANA,,,sin destino,,,,1,,142.88,,
+118,114,detail,Reibel N° 248,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,,1,1,,,,,62.91
+119,115,detail,Bolívar N° 790,0100010190010000--020--,0100010190010000--020--,19,1,0,20,-58.23205838,-32.29092020,automatic,review_large_gap,Centro,,,sin destino,,1,,,,119.6,,
+120,117,detail,Aguaribay N° 157,0100011010340326--004--,0100011010340326--004--,101,34,326,4,-58.16072455,-32.22647344,automatic,missing_address_point,Urbano,,,sin destino,,2,,,,198.785,,
+121,116,detail,Calle Pública s/N°,,,,,,,,,automatic,missing_both_points,Ampliación Actividad Turística Norte,,,sin destino,,4,4,,,,,189.535
+122,119,detail,Lavalle N° 486,,,,,,,,,automatic,missing_cadastral_point,Urbano,,,sin destino,no identificado,,2,1,,57.6,,136.9
+123,118,detail,Balcarce N° 174,,,,,,,,,automatic,missing_cadastral_point,Urbano,,,sin destino,,,,,,110.15,,
+124,120,detail,Avda Urquiza N° 1174 y 1180,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,,1,,,689.18,,233.64,
+125,121,detail,Calle Primeros Colonos s/N°,,,,,,,,,automatic,missing_both_points,PERIURBANA,,,sin destino,no identificado,,4,1,,,,379.34
+126,123,detail,Lima N° 191 esq Lavalle N°,,,,,,,,,automatic,missing_cadastral_point,Urbano,,,sin destino,no identificado,4,1,,,67.71,,72.55
+127,122,detail,"Ruta Nac N° 135, km",,,,,,,,,automatic,missing_both_points,Periurbana,,,sin destino,,1,,,,77.94,,
+128,124,detail,"Gral Paz Nº 162, 164",,,,,,,,,automatic,missing_both_points,Centro,,,sin destino,ORELLANA Hugo,,1,,,,,
+129,126,detail,Avda.Pte. Perón N° 296,0100010170030000--072--,0100010170030000--072--,17,3,0,72,-58.14953305,-32.26745218,automatic,review_large_gap,Urbana,,,sin destino,BOGADO BENITEZ Eric Wilfredo,,1,,,,,
+130,125,detail,"12 de Abril Nº 848, 840, al 846",,,,,,,,,automatic,missing_cadastral_point,Centro,,,sin destino,,,2,,230.2,,,
+131,128,detail,M. Moreno N° 431,0100010190010000--114--,0100010190010000--114--,19,1,0,114,-58.24247309,-32.29922979,automatic,review_large_gap,Centro,,,sin destino,MARQUEZ Omar Fabián,1,3,,,138.3,,265.625
+132,127,detail,Balcarce N° 482 - 486,,,,,,,,,automatic,missing_cadastral_point,Urbano,,,sin destino,BURGOS Alfredo,,2,,,167.5,,110.2
+133,129,detail,Calle Madres y Abuelas de Plaza de Mayo s/N°,0100010000000127--006--,0100010000000127--006--,0,0,127,6,-58.14134317,-32.22082961,automatic,missing_address_point,Periurbana,,,sin destino,SACULA Gustavo,,1,,,,,272.61
+134,130,detail,San Martín N° 859 - 861,,,,,,,,,automatic,missing_cadastral_point,Urbano,,,sin destino,,2,,,91.645,,116.21,
+135,131,detail,3 de Febrero N° 70,,,,,,,,,automatic,missing_cadastral_point,4 y 5,,,sin destino,RAMOS Omar Ricardo,,1,,,,,
+136,132,detail,Florentina Gomez Miranda N° 120,,,,,,,,,automatic,missing_both_points,Urbano,,,sin destino,,2,,,,,245.055,
+137,133,detail,Las Piedras N°  336,,,,,,,,,automatic,missing_cadastral_point,Urbano,,,sin destino,,1,,,,,,150
+138,137,detail,San Martín N° 472,,,,,,,,,automatic,missing_cadastral_point,Centro,,,sin destino,AMERICAN BUILDING S.A.,,23,,,,,2043.615
+139,134,detail,Avda Paysandú esq 3 de Febrero N°,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,,,,,,64.17,,
+140,135,detail,"Bvard. Gaillard Nº 2028 , 2030",0100011010350327--001--,0100011010350327--001--,101,35,327,1,-58.16080229,-32.22523149,automatic,missing_address_point,Urbana,,,sin destino,BERON Pablo,,2,,,,,135.95
+141,136,detail,Monteagudo N° 114,,,,,,,,,automatic,missing_cadastral_point,Urbano,,,sin destino,,1,,,,81.89,,
+142,138,detail,Calle provada s/N° - Los Bretes,,,,,,,,,automatic,missing_both_points,Periurbana,,,sin destino,no identificado,,1,,,,,335.025
+143,140,detail,Urbana 2,,,,,,,,,automatic,missing_both_points,Urbana 2,,,sin destino,,2,,,,351.85,,
+144,139,detail,Calle Progreso s/Nº,0100011020260310--002--,0100011020260310--002--,102,26,310,2,-58.14977253,-32.23768638,automatic,missing_address_point,Núcleo Urbano Ampliado,,,sin destino,AGUARA Constructora S.A.,,3,,,,,214.84
+145,141,detail,Hernández N° 363,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,BUFFET Hugo,,,1,,,,16.77
+146,142,detail,M. M. Lima N° 226,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,,4,,,,265.09,,
+147,144,detail,Combatientes de Malvinas N°  182 (ANTES 178),,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,,,1,,,,,46.84
+148,143,detail,Durand N° 457 es Pasaje s/nombre,,,,,,,,,automatic,missing_both_points,Urbana,,,sin destino,,2,,,,178.64,,
+149,145,detail,"Avda Urquiza N° 662, 664",,,,,,,,,automatic,missing_cadastral_point,Centro,,,sin destino,no identificado,,1,,,,,390.14
+150,147,detail,Avda Urquiza N° 313,,,,,,,,,automatic,missing_cadastral_point,Centro,,,sin destino,,1,,,,64.455,49.04,
+151,146,detail,Ceibo s/N°,0100011010360355--015--,0100011010360355--015--,101,36,355,15,-58.16181976,-32.22351822,automatic,missing_address_point,Periburbano,,,sin destino,no identificado,,1,,,,,166.195
+152,148,detail,Calle Privada s/N° - Los Bretes,,,,,,,,,automatic,missing_both_points,Periurbana,,,sin destino,,1,,,,368.66,,
+153,149,detail,Mitre s/Nº 325,,,,,,,,,automatic,missing_cadastral_point,Urana,,,sin destino,DUARTE MEDINA Luis Osmar,,9,,,,,605.57
+154,150,detail,Calle Pública s/N°,0100011020260310--003--,0100011020260310--003--,102,26,310,3,-58.14913919,-32.23738811,automatic,missing_address_point,Periurbana,,,sin destino,LOKER Luis,,,1,,39.795,,
+155,151,detail,"San Martín N° 1212, 1220",,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,no identificado,,1,,,,,
+156,152,detail,Bolívar esq Sourigues N° 443,,,,,,,,,automatic,missing_cadastral_point,12,,,sin destino,ORELLANA Hugo,,1,,,,,
+157,153,detail,M. Moreno N° 164,,,,,,,,,automatic,missing_cadastral_point,Centro,,,sin destino,,,,1,,,,50.18
+158,154,detail,"Reibel N° 223, 225",,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,,,,2,,,,49.1
+159,155,detail,Las Piedras N° 341,,,,,,,,,automatic,missing_cadastral_point,Urbano,,,sin destino,,1,,,,111.6788,26.6462,
+160,156,detail,Salsipuedes s/N°,,,,,,,,,automatic,missing_both_points,Periurbana,,,sin destino,"GARRE PEROCHENA, Gustavo Ramón",,2,,,,,120.5
+161,157,detail,Florentina Gomez Miranda N° 117,,,,,,,,,automatic,missing_both_points,Urbano,,,sin destino,,2,,,,,125.39,
+162,158,detail,Calle Chañar s/N° esq Saavedra Lamas - Barrio Cicle,0100011010360355--009--,0100011010360355--009--,101,36,355,9,-58.16168491,-32.22401942,automatic,missing_address_point,Periurbana,,,sin destino,,1,,,,86.44,,
+163,159,detail,Calle Sauce N° esq Juana Azurduy,0100011020240331--001--,0100011020240331--001--,102,24,331,1,-58.14490201,-32.24073578,automatic,missing_address_point,Periurbana,,,sin destino,,1,,,,111.66,,
+164,160,detail,Avda. Paysandú N° 1156,,,,,,,,,automatic,missing_cadastral_point,Urbano,,,sin destino,,2,,,,115.32,,
+165,161,detail,Avda Paysandú N° 274,,,,,,,,,automatic,missing_cadastral_point,URBANA,,,sin destino,INDUSTRIAL NORTE (Rafael y Oscar Acosta),,1,,,,124.44,
+166,162,detail,Calle Paraiso ( Loteo Aires de 1872),,,,,,,,,automatic,missing_both_points,Periurbana,,,sin destino,,1,,,,124.425,,
+167,163,detail,Bernard N° 671,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,,1,,,,,593.22,
+168,164,detail,Calle Privada s/N° - Los Bretes,0100010000000003--004--,0100010000000003--004--,0,0,3,4,-58.14425994,-32.23033175,automatic,missing_address_point,Urbana,,,sin destino,no identificado,,1,,,,,207.05
+169,165,detail,Avda. Urquiza N° 769,,,,,,,,,automatic,missing_cadastral_point,Centro,,,sin destino,,,,,,,,
+170,166,detail,Primera Junta N° 93 esq Bolivar,0100010190010000--065--,0100010190010000--065--,19,1,0,65,-58.23972399,-32.27034390,automatic,review_large_gap,Centro,,,sin destino,ACOSTA Oscar R - INDUSTRIAL NORTE,1,,,285.63,,,
+171,167,detail,Piamonte N° 650,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,,2,,,,94.61,,
+172,168,detail,12 de Abril  N° 1186,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,,7,,,,206.815,,
+173,169,detail,Maipú N° 74,0100010190010000--128--,0100010190010000--128--,19,1,0,128,-58.23834111,-32.27599155,automatic,review_large_gap,Centro,,,sin destino,CHINELLATO Pablo A,,1,,,,,197.595
+174,170,detail,Bvard Gaillard N° 252 esq Sarmiento,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,,1,,,,138.0674,,
+175,170,detail_continuation,Sarmiento N°,0100010030060000--002--,0100010030060000--002--,3,6,0,2,-58.24730007,-32.24576552,automatic,missing_address_point,2,,,sin destino,,1,,,,37.9626,,
+176,171,detail,9 de Mayo N°   323,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,REYES Carlos Adolfo,,1,,,,,92.9
+177,172,detail,Calle Privada s/Nº - Los Bretes,0100010162230003--003--,0100010162230003--003--,16,223,3,3,-58.18338800,-32.25673391,automatic,missing_address_point,Urbana,,,sin destino,GONZALEZ Juan Marìa,,,1,,,,40
+178,173,detail,General Paz N° 136,,,,,,,,,automatic,missing_both_points,Centro,,,sin destino,MESITI Orlando Carmelo,,3,,,,,204.765
+179,174,detail,Calle Privada s/N° - Los Bretes,0100010113100003--006--,0100010113100003--006--,11,310,3,6,-58.16780756,-32.23271961,automatic,missing_address_point,Urbana,,,sin destino,BRITEZ BENITEZ Daniel,,,1,,,,
+180,175,detail,"Reibel N° 161, 163, 165",,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,no identificado,,3,,,,,313.63
+181,176,detail,María Isabel Fernandez s/N°,,,,,,,,,automatic,missing_both_points,Urbana,,,sin destino,,,,1,437.4,,224.53,
+182,177,detail,Calle Pública s/N°,0100010000000160--007--,0100010000000160--007--,0,0,160,7,-58.13654997,-32.22275023,automatic,missing_address_point,Quintas,,,sin destino,,2,,,,68.36,,
+183,178,detail,Calle Pública s/N°,0100010000000225--007--,0100010000000225--007--,0,0,225,7,-58.13389604,-32.21868512,automatic,missing_address_point,Periurbana,,,sin destino,,3,,,,88.9,,
+184,179,detail,San Martín N° 773 y 775,0100010000000020--020--,0100010000000020--020--,0,0,20,20,-58.14757394,-32.22572796,automatic,verified_nearby,Centro,,,sin destino,,11,,,,,,
+186,180,detail,Avda. Paysandú Nº 657,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,VOMMARO Alexis Gabriel,,1,,,,,49
+187,180,detail_continuation,Primera Junta Nº 458,0100010000000530--020--,0100010000000530--020--,0,0,530,20,-58.15398073,-32.22059381,automatic,review_medium_gap,20,,,sin destino,,,1,,,,,49
+188,181,detail,"Batalla de Cepeda Nº204, 206, esq Lavalle",,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,DIAZ ROJAS Hugo C,,8,,,,,215.19
+189,182,detail,Bolívar Nº 87,,,,,,,,,automatic,missing_cadastral_point,Centro,,,sin destino,,,,2,,,,33
+190,183,detail,Paso de los Andes Nº,,,,,,,,,automatic,missing_both_points,Urbana,,,sin destino,,1,,,,81.265,,
+191,184,detail,Calle Las Moras s/Nº,0100011010340352--005--,0100011010340352--005--,101,34,352,5,-58.15970434,-32.22605310,automatic,missing_address_point,Periurbana,,,sin destino,,1,,,,94.13,,
+192,184,detail_continuation,Bvard. Güemes N° 252,,,,,,,,,automatic,missing_cadastral_point,Residencial Sur,,,sin destino,MARCHAND Uriel,,1,,,,,105.755
+193,185,detail,"Bvard. Güemes N° 252, esq. Tucumán",,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,MARCHAND Uriel,,1,,,,,105.205
+194,186,detail,Tucumán y Leguizamón Nº 244,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,,2,,,,,,105.39
+195,187,detail,Calle Privada s/Nº - Los Bretes,0100010113100003--006--,0100010113100003--006--,11,310,3,6,-58.16780756,-32.23271961,automatic,missing_address_point,Urbana,,,sin destino,,,,1,,,,
+196,188,detail,L. N. Alem Nº 17 esq.12 de Abril,,,,,,,,,automatic,missing_cadastral_point,Centro,,,sin destino,,1,,,,,83.03,
+197,188,detail_unassigned,Calle Privada s/N° - Los Bretes,0100010000000175--017--,0100010000000175--017--,0,0,175,17,-58.13999761,-32.21770130,automatic,missing_address_point,Urbana,,,sin destino,no identificado,,1,,,,,162.81
+198,189,detail,Castelli N°,,,,,,,,,automatic,missing_both_points,Urbana,,,sin destino,,2,,,,108.06,,
+199,190,detail,Paso de los Andes N°2170,0100011010340352--005--,0100011010340352--005--,101,34,352,5,-58.15970434,-32.22605310,automatic,missing_address_point,Urbana,,,sin destino,,2,,,,43.405,,
+200,192,detail,Belgrano N° 582,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,SOTELO Victor,,1,,,,,184.285
+201,191,detail,Avda Paysandú N° 262 - 268,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,,,,,233.22,232.5,25.5,
+202,191,detail_continuation,,,,,,,,,,automatic,missing_both_points,25,,,sin destino,,,,,109.67,174.78,64.5,
+203,193,detail,Los Cardos s/Nº,0100010000000072--008--,0100010000000072--008--,0,0,72,8,-58.14672163,-32.22098985,automatic,missing_address_point,Quintas,,,sin destino,MARTINEZ Jose L,,4,,,,,211.91
+204,194,detail,Domingo Matheu s/N°,0100010000000225--002--,0100010000000225--002--,0,0,225,2,-58.13360457,-32.21837544,automatic,missing_address_point,Periurbana,,,sin destino,,2,,,,172.69,,
+205,196,detail,3 de Febrero Nº 606,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,,2,,,,78.36,,
+206,195,detail,Bvard Ferrari Nº 1183,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,,2,,,,128.46,,
+207,197,detail,Chacabuco Nº 292,,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,CASULA Gustavo,,1,,,,,88.9
+208,198,detail,"9 de Julio Nº 302, 304, 306, 308, 310, 312 y 314 y Paso de los Andes",,,,,,,,,automatic,missing_cadastral_point,Urbana,,,sin destino,,7,,,,7.0952,,

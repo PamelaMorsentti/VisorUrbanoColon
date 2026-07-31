@@ -167,6 +167,9 @@ importers:
 
   artifacts/colon-3d:
     dependencies:
+      '@turf/turf':
+        specifier: ^7.3.5
+        version: 7.3.5
       leaflet:
         specifier: ^1.9.4
         version: 1.9.4

@@ -3,6 +3,18 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { area, bbox, booleanIntersects, buffer, featureCollection, intersect, union } from "@turf/turf";
 
+function parseCotaArg() {
+  const arg = process.argv.find((a) => a.startsWith("--cota="));
+  if (!arg) return 10;
+  const raw = arg.split("=")[1]?.replace(",", ".");
+  const value = Number(raw);
+  return Number.isFinite(value) ? value : 10;
+}
+
+function formatCota(value) {
+  return value.toFixed(2).replace(".", ",");
+}
+
 function ringsFromGeometry(geometry) {
   if (!geometry) return [];
   if (geometry.type === "LineString") return [geometry.coordinates];
@@ -39,14 +51,18 @@ function unionMany(features) {
 }
 
 async function main() {
+  const cotaRef = parseCotaArg();
+  const cotaRefLabel = formatCota(cotaRef);
+  const cotaRefSlug = String(Math.round(cotaRef));
+
   const scriptDir = path.dirname(fileURLToPath(import.meta.url));
   const root = path.resolve(scriptDir, "..", "..");
 
   const dataDir = path.join(root, "artifacts", "colon-3d", "public", "data");
   const parcelaPath = path.join(dataDir, "Parcela.geojson");
   const cNivelPath = path.join(dataDir, "c_nivel.geojson");
-  const outPath = path.join(dataDir, "parcela_inundacion_cota10.geojson");
-  const outSummaryPath = path.join(root, "docs", "parcela_inundacion_cota10_resumen.json");
+  const outPath = path.join(dataDir, `parcela_inundacion_cota${cotaRefSlug}.geojson`);
+  const outSummaryPath = path.join(root, "docs", `parcela_inundacion_cota${cotaRefSlug}_resumen.json`);
 
   const [parcelaRaw, cNivelRaw] = await Promise.all([
     fs.readFile(parcelaPath, "utf8"),
@@ -59,7 +75,7 @@ async function main() {
   const lowContourLines = (cNivel.features || []).filter((f) => {
     const z = Number(f?.properties?.Z ?? f?.properties?.COTA);
     const t = f?.geometry?.type;
-    return Number.isFinite(z) && z <= 10 && (t === "LineString" || t === "MultiLineString");
+    return Number.isFinite(z) && z <= cotaRef && (t === "LineString" || t === "MultiLineString");
   });
 
   const lowClosedPolygons = [];
@@ -86,7 +102,7 @@ async function main() {
   }
 
   if (!lowContourLines.length) {
-    throw new Error("No se encontraron curvas de nivel con Z <= 10 en c_nivel.geojson");
+    throw new Error(`No se encontraron curvas de nivel con Z <= ${cotaRef} en c_nivel.geojson`);
   }
 
   const networkPolygons = [];
@@ -103,7 +119,7 @@ async function main() {
   const lowLineWithBbox = lowContourLines.map((feature) => ({ feature, bbox: bbox(feature) }));
 
   // Support open contour segments by a narrow buffer so parcels touched by
-  // cotas <= 10 are also classified as afectadas (at least parcial).
+  // cotas <= referencia are also classified as afectadas (at least parcial).
   const OPEN_CONTOUR_BUFFER_M = 3;
   const lowLineMask = buffer(featureCollection(lowContourLines), OPEN_CONTOUR_BUFFER_M, { units: "meters" });
   const lowLineExtent = bbox(lowLineMask);
@@ -148,7 +164,8 @@ async function main() {
       }
       if (interLine) parcelIntersections.push(interLine);
 
-      // If a parcel touches any Z<=10 contour line, classify at least as parcial
+      // If a parcel touches any contour line below the reference cota,
+      // classify at least as parcial
       // even when area-based polygon inference is not possible.
       for (const line of lowLineWithBbox) {
         if (!bboxOverlap(pBbox, line.bbox)) continue;
@@ -195,8 +212,8 @@ async function main() {
       type: "Feature",
       properties: {
         ...(parcel.properties || {}),
-        inund_cota_ref_m: 10,
-        inund_fuente: "c_nivel: curvas con Z <= 10,00 m (inclusive)",
+        inund_cota_ref_m: cotaRef,
+        inund_fuente: `c_nivel: curvas con Z <= ${cotaRefLabel} m (inclusive)`,
         inund_afectacion: afectacion,
         inund_area_m2: Number(floodedArea.toFixed(2)),
         inund_ratio: Number(ratio.toFixed(4)),
@@ -216,8 +233,8 @@ async function main() {
     generatedAt: new Date().toISOString(),
     input: {
       parcelas: (parcela.features || []).length,
-      cNivelLinesZLe10: lowContourLines.length,
-      cNivelClosedRingsZLe10: lowClosedPolygons.length,
+      cNivelLinesZLeRef: lowContourLines.length,
+      cNivelClosedRingsZLeRef: lowClosedPolygons.length,
       floodPolygonsFromNetwork: networkPolygons.length,
       floodPolygonsUsed: floodCandidates.length,
       openContourBufferMeters: OPEN_CONTOUR_BUFFER_M,
@@ -226,8 +243,8 @@ async function main() {
       parcelasAfectadas: affected.length,
       total,
       parcial,
-      criterio: "interseccion de area de parcela con mascara de curvas Z<=10 (anillos cerrados + buffer de lineas abiertas)",
-      cotaReferencia: "+10.00 m",
+      criterio: `interseccion de area de parcela con mascara de curvas Z<=${cotaRef} (anillos cerrados + buffer de lineas abiertas)`,
+      cotaReferencia: `+${cotaRef.toFixed(2)} m`,
     },
   };
 

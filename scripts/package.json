@@ -20,9 +20,11 @@
     "queue:catastro": "tsx ./src/build-cadastral-review-queue.ts",
     "geolocate:refresh": "pnpm geolocate:catastro && pnpm queue:catastro",
     "import:obras:years": "tsx ./src/import-obras-years-to-db.ts",
+    "merge:obras:years": "tsx ./src/merge-obras-years.ts",
     "backfill:obras:geom": "tsx ./src/backfill-obras-geom.ts",
     "audit:obras:source-counts": "tsx ./src/audit-obras-source-counts.ts",
     "convert:obras:xlsx-csv": "tsx ./src/convert-obras-years-xlsx-to-csv.ts",
+    "fix:2023:normalized": "tsx ./src/fix-2023-normalized.ts",
     "export:obras:planos-from-db": "tsx ./src/export-obras-db-to-planos.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },

@@ -73,6 +73,7 @@
     "zod": "^3.22.4"
   },
   "dependencies": {
+    "@turf/turf": "^7.3.5",
     "leaflet": "^1.9.4",
     "maplibre-gl": "^5.23.0",
     "shpjs": "^6.2.0"

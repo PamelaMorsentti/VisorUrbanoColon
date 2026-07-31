@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import {
   Layers, Search, Navigation, MapPin, X, Loader2,
-  BarChart2, Map, Upload, Ruler, Square, ChevronDown, Cloud, MoreHorizontal,
+  BarChart2, Map, Upload, Ruler, Square, ChevronDown, Cloud, MoreHorizontal, Droplets,
 } from "lucide-react";
 import L from "leaflet";
 import { COLON_CENTER, COLON_ZOOM } from "@/lib/layers";
@@ -77,6 +77,8 @@ interface HeaderProps {
   onOpenAuthPanel: () => void;
   onToggleRegionalInfo: () => void;
   regionalInfoOpen: boolean;
+  onToggleFloodSimulationPanel: () => void;
+  floodSimulationPanelOpen: boolean;
   dashboardUrl?: string;
   adminEditorUrl?: string;
 }
@@ -105,6 +107,8 @@ export default function Header({
   onOpenAuthPanel,
   onToggleRegionalInfo,
   regionalInfoOpen,
+  onToggleFloodSimulationPanel,
+  floodSimulationPanelOpen,
   dashboardUrl,
   adminEditorUrl,
 }: HeaderProps) {
@@ -266,6 +270,13 @@ export default function Header({
                 <Upload size={12} />
               </button>
               <button
+                onClick={() => { onToggleFloodSimulationPanel(); setMobileMenuOpen(false); }}
+                className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60"
+              >
+                <span>{floodSimulationPanelOpen ? "Ocultar simulación crecida" : "Mostrar simulación crecida"}</span>
+                <Droplets size={12} />
+              </button>
+              <button
                 onClick={() => { onTogglePlanosVisibility(); setMobileMenuOpen(false); }}
                 className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60"
               >
@@ -341,6 +352,13 @@ export default function Header({
           >
             <MapPin size={13} />
             <span className="hidden lg:inline text-xs">Obras</span>
+            {selectedObrasYears.length > 0 && (
+              <span className="hidden 2xl:inline text-[10px] opacity-80">
+                {selectedObrasYears.length === 1
+                  ? selectedObrasYears[0]
+                  : `${selectedObrasYears.length} años`}
+              </span>
+            )}
             <ChevronDown size={12} className={`${obrasMenuOpen ? "rotate-180" : ""} transition-transform`} />
           </button>
 
@@ -350,6 +368,11 @@ export default function Header({
                 <div>
                   <div className="text-xs font-semibold text-foreground">Obras por ano de visado</div>
                   <div className="text-[10px] text-muted-foreground">Seleccion individual o multianual</div>
+                  <div className="text-[10px] text-emerald-300/90 mt-0.5">
+                    Años activos: {selectedObrasYears.length > 0
+                      ? (selectedObrasYears.length <= 4 ? selectedObrasYears.join(", ") : `${selectedObrasYears.length} años seleccionados`)
+                      : "sin selección"}
+                  </div>
                 </div>
                 <button
                   type="button"
@@ -537,6 +560,17 @@ export default function Header({
         >
           <Layers size={13} />
           <span className="hidden sm:inline text-xs">Capas</span>
+        </button>
+
+        {/* Flood simulation panel */}
+        <button
+          onClick={onToggleFloodSimulationPanel}
+          className={`${BTN_BASE} ${floodSimulationPanelOpen ? BTN_ACTIVE("cyan") : ""}`}
+          title="Simulación de crecida"
+          data-testid="button-toggle-flood-simulation"
+        >
+          <Droplets size={13} />
+          <span className="hidden sm:inline text-xs">Crecida</span>
         </button>
 
         {/* Regional services */}

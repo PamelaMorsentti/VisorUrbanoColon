@@ -1,0 +1,207 @@
+source_row_number,legajo_canonico,row_kind,raw_ubicacion,ncp,ncp_formatted,sec,gru,nmanz,nparc,lon,lat,geolocation_source,location_verification_status,zonificacion,fecha_de_visado,tipo,destino_uso,relevamiento_o_existente,a_contruir_obra_nueva,ampliacion_de_obra_existente,proyectado_no_iniciado,m_existentes_relevados_vivienda,m_existentes_relevados_local,m_a_construir_vivienda,m_a_construir_local
+2,1,detail,,,,,,,,,,automatic,missing_both_points,9,,,sin destino,,,,,,,,
+3,1,detail_continuation,PeriUrbana,,,,,,,,,automatic,missing_both_points,33,,,sin destino,,,,,,95.845,,
+4,2,detail,Centro,,,,,,,,,automatic,missing_both_points,2,,,sin destino,,10,,,,78.73,,
+5,3,detail,Nuceo Urbano Ampliado,,,,,,,,,automatic,missing_both_points,13,,,sin destino,,2,,,,153.11,,
+6,4,detail,Zona Periurbana,,,,,,,,,automatic,missing_both_points,2,,,sin destino,,2,,,,88.5,,
+7,5,detail,Centro,0100010190010000--117--,0100010190010000--117--,19,1,0,117,-58.24108433,-32.29630421,automatic,missing_address_point,5,,,sin destino,,1,,,,,132.595,
+8,6,detail,Urbana,,,,,,,,,automatic,missing_both_points,19,,,sin destino,no identificado,,1,,,,,83.4
+9,7,detail,Zona Periurbana,,,,,,,,,automatic,missing_both_points,5,,,sin destino,,,,,,,,
+10,7,detail_continuation,,,,,,,,,,automatic,missing_both_points,4,,,sin destino,,,,,,106,,
+11,8,detail,Centro,,,,,,,,,automatic,missing_both_points,7,,,sin destino,LARROSA Rodolfo,1,,,71.2,,,
+12,9,detail,URBANA,,,,,,,,,automatic,missing_both_points,7,,,sin destino,"GARRE PEROCHENA, Gustavo Ramón",1,,,,103.03,,
+13,10,detail,Urbana,,,,,,,,,automatic,missing_both_points,,,,sin destino,,5,,,,230.555,,
+14,11,detail,Residencial Norte,,,,,,,,,automatic,missing_both_points,19,,,sin destino,MARIN Jorge Fabricio,,1,,,,,127.13
+15,12,detail,Urbana 2,,,,,,,,,automatic,missing_both_points,5,,,sin destino,GONZALEZ Juan Maria,,1,,,,,137.12
+16,13,detail,Centro,,,,,,,,,automatic,missing_both_points,4,,,sin destino,,,,,,151.5,12.64,
+17,14,detail,Centro,,,,,,,,,automatic,missing_both_points,13,,,sin destino,,16,,,,44.705,,
+18,15,detail,Residencial Norte,,,,,,,,,automatic,missing_both_points,11,,,sin destino,DRAY Daniel Alberto,,1,,,-19.335,,
+19,16,detail,Urbana,,,,,,,,,automatic,missing_both_points,3,,,sin destino,,1,,,120.27,,176.505,
+20,17,detail,Ampliación Turística Norte,,,,,,,,,automatic,missing_both_points,9,,,sin destino,no identificado,,1,,,,,164.72
+21,18,detail,Residencial Sur,,,,,,,,,automatic,missing_both_points,5,,,sin destino,TORRENT Fernando,,3,,,,,288.76
+22,19,detail,Urbana 2,,,,,,,,,automatic,missing_both_points,35,,,sin destino,RUIZ DIAZ Marcelo Javier,,1,,,,,78.57
+23,20,detail,Urbana,,,,,,,,,automatic,missing_both_points,11,,,sin destino,MARIN Jorge Fabricio,,1,,,,,
+24,21,detail,Urbana,,,,,,,,,automatic,missing_both_points,21,,,sin destino,,2,,,,157.615,,
+25,22,detail,Urbana,,,,,,,,,automatic,missing_both_points,18 y 20,,,sin destino,VIOLLAZ Abel Alberto,1,1,,,,,49.1
+26,23,detail,Ampliación Turística Sur,0100011010340352--002--,0100011010340352--002--,101,34,352,2,-58.15934671,-32.22562367,automatic,missing_address_point,30,,,sin destino,VERON David,,1,,,,,167.21
+27,24,detail,Urbana,,,,,,,,,automatic,missing_both_points,11,,,sin destino,,1,,,,60.95,,
+28,25,detail,,,,,,,,,,automatic,missing_both_points,3,,,sin destino,RUIZ DIAZ Marcelo Javier,,,,,,,
+29,26,detail,Urbano,,,,,,,,,automatic,missing_both_points,3,,,sin destino,LOPEZ Jorge Daniel,,1,,,,,
+30,27,detail,Urbana,,,,,,,,,automatic,missing_both_points,14,,,sin destino,,3,,,,242.81,,
+31,28,detail,Urbana,,,,,,,,,automatic,missing_both_points,6,,,sin destino,no identificado,,1,,,,,65.925
+32,29,detail,Periurbana,,,,,,,,,automatic,missing_both_points,90,,,sin destino,,3,,,,22.03,,
+33,30,detail,PeriUrbana,,,,,,,,,automatic,missing_both_points,7,,,sin destino,,4,,,,95.84,,
+34,30,detail_continuation,Residencial Norte,,,,,,,,,automatic,missing_both_points,5,,,sin destino,AMERICAN BUILDING S.A.U.,,,21,,,,1501.435
+35,31,detail,,,,,,,,,,automatic,missing_both_points,4,,,sin destino,AMERICAN BUILDING S.A.U.,,7,,,,,691.34
+36,32,detail,Centro,,,,,,,,,automatic,missing_both_points,20,,,sin destino,no identificado,,1,,,,,79.55
+37,33,detail,Residencial Norte,,,,,,,,,automatic,missing_both_points,11,,,sin destino,no identificado,,1,,,,,214.51
+38,34,detail,URBANA,0100010190020000--026--,0100010190020000--026--,19,2,0,26,-58.22561927,-32.30053969,automatic,missing_address_point,19,,,sin destino,AGUARA CONSTRUCTORA SA,,,1,,,,91.67
+39,35,detail,Urbana 1,,,,,,,,,automatic,missing_both_points,19,,,sin destino,,2,,,,228.635,,
+40,36,detail,Residencial Sur,,,,,,,,,automatic,missing_both_points,21,,,sin destino,,2,,,,68.595,21.13,
+41,37,detail,Núcleo Urbano Ampliado,,,,,,,,,automatic,missing_both_points,1,,,sin destino,AGUARA CONSTRUCTORA SA,,3,,,,,233.65
+42,38,detail,Urbana,0100010170040000--028--,0100010170040000--028--,17,4,0,28,-58.16310306,-32.28127247,automatic,missing_address_point,14,,,sin destino,C - 513,,1,,,,,122.13
+43,39,detail,Núcleo Urbano Ampliado,,,,,,,,,automatic,missing_both_points,7,,,sin destino,no identificado,2,,,,180.335,,
+44,40,detail,Urbana,,,,,,,,,automatic,missing_both_points,20,,,sin destino,ACOSTA Oscar R - INDUSTRIAL NORTE,,1,,,,,
+45,41,detail,CENTRO,,,,,,,,,automatic,missing_both_points,6,,,sin destino,,1,,,,,48.06,
+46,42,detail,PeriUrbana,,,,,,,,,automatic,missing_both_points,,,,sin destino,no identificado,,1,,,,,
+47,43,detail,PeriUrbana,,,,,,,,,automatic,missing_both_points,4,,,sin destino,RENDO José,,1,,,,,61.8
+48,44,detail,Urbana,,,,,,,,,automatic,missing_both_points,4,,,sin destino,no identificado,,1,,,,,186
+49,45,detail,Urbano,,,,,,,,,automatic,missing_both_points,19,,,sin destino,,1,,,,141.525,,
+50,46,detail,URBANA,,,,,,,,,automatic,missing_both_points,12,,,sin destino,,1,,,,,378.72,
+51,47,detail,Ampliación Actividad Turística Norte,,,,,,,,,automatic,missing_both_points,5,,,sin destino,OLIVAREZ Luis Enrique,,6,,,,,266.25
+52,48,detail,Periurbana,,,,,,,,,automatic,missing_both_points,,,,sin destino,,,1,,,,,97.935
+53,49,detail,Ampliación Actividad Turística Norte,,,,,,,,,automatic,missing_both_points,75,,,sin destino,,4,,,,0,,
+54,50,detail,URBANA,,,,,,,,,automatic,missing_both_points,10,,1,1,BRUTOMEZA,,,,,,,21.56
+55,51,detail,Urbana,,,,,,,,,automatic,missing_both_points,7,,,sin destino,,1,,,,56,,
+56,52,detail,Periurbana,,,,,,,,,automatic,missing_both_points,11,,,sin destino,LOPEZ Jorge Daniel,,1,,,,,4.24
+57,53,detail,Urbana,,,,,,,,,automatic,missing_both_points,12,,,sin destino,no identificado,1,1,,,92.79,,139.45
+58,54,detail,CENTRO,,,,,,,,,automatic,missing_both_points,4,,,sin destino,,1,,,,374.6,,
+59,55,detail,Urbana,0100010170020000--071--,0100010170020000--071--,17,2,0,71,-58.15090294,-32.25690669,automatic,missing_address_point,12,,,sin destino,LESCANO Carlos,,1,,,,,
+60,56,detail,Periurbana,,,,,,,,,automatic,missing_both_points,3,,,sin destino,,1,,,,124.015,,
+61,57,detail,Urbana,,,,,,,,,automatic,missing_both_points,14,,,sin destino,C-904,,,,184.4,,,
+62,58,detail,URBANA,0100010190010000--118--,0100010190010000--118--,19,1,0,118,-58.22686254,-32.29174921,automatic,missing_address_point,11,,1,1,Joaquin Daniel Rene,,,,,31.84,,24
+63,59,detail,URBANA,,,,,,,,,automatic,missing_both_points,10,,,sin destino,,1,,,,32.445,,
+64,60,detail,URBANA,0100010170030000--059--,0100010170030000--059--,17,3,0,59,-58.15160657,-32.26714790,automatic,missing_address_point,17,,,sin destino,no identificado,,,1,,11.065,,87.09
+65,61,detail,CENTRO,,,,,,,,,automatic,missing_both_points,18,,,sin destino,no identificado,,,1,202.85,2.9,,457.53
+66,62,detail,URBANA,,,,,,,,,automatic,missing_both_points,10,,,sin destino,,2,,,,104.39,,
+67,63,detail,Urbana,,,,,,,,,automatic,missing_both_points,13,,,sin destino,no identificado,,1,,,,,171.85
+68,64,detail,Centro,,,,,,,,,automatic,missing_both_points,3,,,sin destino,,1,,,,147.61,,
+69,65,detail,Periurbana,,,,,,,,,automatic,missing_both_points,7,,,sin destino,Joaquin Daniel Rene,,1,,,,,116.555
+70,66,detail,URBANA,,,,,,,,,automatic,missing_both_points,1,,,sin destino,PEREZ Patricio Olmedo,,1,,,,,140.9
+71,67,detail,URBANA,,,,,,,,,automatic,missing_both_points,5,,,sin destino,,,,1,932.65,,-249.43,
+72,68,detail,PeriUrbana,0100011010340326--004--,0100011010340326--004--,101,34,326,4,-58.16072455,-32.22647344,automatic,missing_address_point,3,,,sin destino,no identificado,,1,,,,,166.12
+73,69,detail,URBANA,,,,,,,,,automatic,missing_both_points,2,,,sin destino,no identificado,7,2,,,339.82,,55.46
+74,70,detail,URBANA,,,,,,,,,automatic,missing_both_points,9,,,sin destino,DEL RIO Javier,6,,,,11.44,,
+75,71,detail,Urbana,,,,,,,,,automatic,missing_both_points,10,,,sin destino,no identificado,,1,,,,,
+76,72,detail,CENTRO,,,,,,,,,automatic,missing_both_points,4,,,sin destino,DUFFET Hugo,,,1,,,204.68,
+77,73,detail,URBANA,,,,,,,,,automatic,missing_both_points,4,,,sin destino,,1,,,,78.455,,
+78,74,detail,PERIURBANA,,,,,,,,,automatic,missing_both_points,15,,,sin destino,no identificado,,3,,,,,161.205
+79,76,detail,PERIURBANA,,,,,,,,,automatic,missing_both_points,7,,,sin destino,,1,,,,101.15,,
+80,75,detail,URBANA,,,,,,,,,automatic,missing_both_points,8,,,sin destino,,1,,,,22.585,,
+81,77,detail,Centro,,,,,,,,,automatic,missing_both_points,21,,,sin destino,,1,,,,,201.925,
+82,78,detail,URBANA,,,,,,,,,automatic,missing_both_points,2,,,sin destino,,1,,,,7.14,,
+83,79,detail,Periurbana,,,,,,,,,automatic,missing_both_points,6,,,sin destino,no identificado,,1,,,,,121.67
+84,80,detail,Centro,0100010170030000--072--,0100010170030000--072--,17,3,0,72,-58.14953305,-32.26745218,automatic,missing_address_point,1,,,sin destino,BOGADO BENITEZ Eric Wilfredo,,2,,,,,248.77
+85,81,detail,Periurbana,,,,,,,,,automatic,missing_both_points,4,,,sin destino,YEGROS Ulises,1,,,,36.76,,
+86,83,detail,Urbana,,,,,,,,,automatic,missing_both_points,7,,1,1,no identificado,,1,,708.655,,,
+87,82,detail,Industrial,,,,,,,,,automatic,missing_both_points,10,,,sin destino,,1,,,,,897.84,
+88,84,detail,Centro,,,,,,,,,automatic,missing_both_points,12,,,sin destino,RODRIGUEZ José Luís,,2,,,,,
+89,88,detail,Urbana,,,,,,,,,automatic,missing_both_points,1,,,sin destino,,1,,,,,43.286,19.404
+90,87,detail,Urbana,,,,,,,,,automatic,missing_both_points,8,,,sin destino,BERON Pablo,,4,,,,,278.21
+91,85,detail,URBANA,,,,,,,,,automatic,missing_both_points,4,,,sin destino,RODRIGUEZ Francisco,,1,,,,,125
+92,86,detail,Urbana,,,,,,,,,automatic,missing_both_points,22,,,sin destino,ACOSTA Oscar R - INDUSTRIAL NORTE,,1,,,,,
+93,89,detail,Prioridad Turística,,,,,,,,,automatic,missing_both_points,3,,,sin destino,ORELLANA Hugo,,12,,,,,950.905
+94,90,detail,Urbano,,,,,,,,,automatic,missing_both_points,12,,,sin destino,,,,3,,,35.15,
+95,91,detail,Urbana 2,,,,,,,,,automatic,missing_both_points,7,,,sin destino,no identificado,1,,,,332.605,,
+96,92,detail,Urbana,0100011010340326--004--,0100011010340326--004--,101,34,326,4,-58.16072455,-32.22647344,automatic,missing_address_point,8,,,sin destino,VOMMARO Alexis G,,1,1,27,,11.17,36.8
+97,93,detail,Urbana,,,,,,,,,automatic,missing_both_points,18,,,sin destino,,2,,,,80.81,,
+98,94,detail,PeriUrbana,,,,,,,,,automatic,missing_both_points,1,,,sin destino,,1,,,,136.92,,
+99,95,detail,PERIURBANA,,,,,,,,,automatic,missing_both_points,20,,,sin destino,,,1,,,,,124.374
+100,96,detail,CHACRAS,,,,,,,,,automatic,missing_both_points,34,,,sin destino,,1,,,,554.515,,
+101,97,detail,Urbana,,,,,,,,,automatic,missing_both_points,12,,,sin destino,,1,,,,176.58,,
+102,98,detail,URBANA,,,,,,,,,automatic,missing_both_points,13,,,sin destino,,1,,,,232.94,,
+103,99,detail,Urbana,,,,,,,,,automatic,missing_both_points,11,,,sin destino,no identificado,,1,,,,,158.96
+104,100,detail,Urbana,0100010170040000--028--,0100010170040000--028--,17,4,0,28,-58.16310306,-32.28127247,automatic,missing_address_point,14,,,sin destino,no identificado,,6,,,,,442.97
+105,104,detail,Centro,,,,,,,,,automatic,missing_both_points,5,,3,3,RODRIGUEZ Lisandro,,3,,,151.98,,
+106,105,detail,Urbana,,,,,,,,,automatic,missing_both_points,4,,,sin destino,no identificado,,1,,,,,164.285
+107,102,detail,URBANA,,,,,,,,,automatic,missing_both_points,30,,,sin destino,VIVIENDAS 2002 SRL,,1,,,,,55.15
+108,103,detail,PERIURBANA,,,,,,,,,automatic,missing_both_points,,,,sin destino,no identificado,,1,,,,,103.63
+109,101,detail,PERIURBANA,,,,,,,,,automatic,missing_both_points,1,,,sin destino,no identificado,,4,,,,,214.2
+110,106,detail,URBANA,,,,,,,,,automatic,missing_both_points,18,,,sin destino,SOTELO Victor Ramòn,,1,,,,,
+111,108,detail,CENTRO,,,,,,,,,automatic,missing_both_points,11,,,sin destino,,,,14,,205.955,,
+112,107,detail,Periurbana,,,,,,,,,automatic,missing_both_points,2,,,sin destino,SOTELO Victor Ramòn,,1,,,,,162.915
+113,109,detail,Centro,,,,,,,,,automatic,missing_both_points,13,,,sin destino,VIOLLAZ Jose Ricardo,2,,1,,93.985,,95.33
+114,110,detail,Urbano,,,,,,,,,automatic,missing_both_points,1,,,sin destino,,1,,,,62.56,,
+115,111,detail,Urbana,,,,,,,,,automatic,missing_both_points,4,,,sin destino,no identificado,,1,,,,,226.89
+116,112,detail,Urbana,,,,,,,,,automatic,missing_both_points,13,,,sin destino,RUIZ DIAZ Javier Marcelo,,1,,,,,
+117,113,detail,URBANA,,,,,,,,,automatic,missing_both_points,2,,,sin destino,,,,1,,142.88,,
+118,114,detail,Urbana,,,,,,,,,automatic,missing_both_points,11,,,sin destino,,1,1,,,,,62.91
+119,115,detail,Centro,0100010190010000--020--,0100010190010000--020--,19,1,0,20,-58.23205838,-32.29092020,automatic,missing_address_point,16,,,sin destino,,1,,,,119.6,,
+120,117,detail,Urbano,,,,,,,,,automatic,missing_both_points,14,,,sin destino,,2,,,,198.785,,
+121,116,detail,Ampliación Actividad Turística Norte,,,,,,,,,automatic,missing_both_points,78,,,sin destino,,4,4,,,,,189.535
+122,119,detail,Urbano,,,,,,,,,automatic,missing_both_points,1,,,sin destino,no identificado,,2,1,,57.6,,136.9
+123,118,detail,Urbano,,,,,,,,,automatic,missing_both_points,4,,,sin destino,,,,,,110.15,,
+124,120,detail,Urbana,,,,,,,,,automatic,missing_both_points,5,,,sin destino,,1,,,689.18,,233.64,
+125,121,detail,PERIURBANA,,,,,,,,,automatic,missing_both_points,,,,sin destino,no identificado,,4,1,,,,379.34
+126,123,detail,Urbano,,,,,,,,,automatic,missing_both_points,8,,,sin destino,no identificado,4,1,,,67.71,,72.55
+127,122,detail,Periurbana,,,,,,,,,automatic,missing_both_points,39,,,sin destino,,1,,,,77.94,,
+128,124,detail,Centro,,,,,,,,,automatic,missing_both_points,5,,,sin destino,ORELLANA Hugo,,1,,,,,
+129,126,detail,Urbana,0100010170030000--072--,0100010170030000--072--,17,3,0,72,-58.14953305,-32.26745218,automatic,missing_address_point,1,,,sin destino,BOGADO BENITEZ Eric Wilfredo,,1,,,,,
+130,125,detail,Centro,,,,,,,,,automatic,missing_both_points,13,,,sin destino,,,2,,230.2,,,
+131,128,detail,Centro,0100010190010000--114--,0100010190010000--114--,19,1,0,114,-58.24247309,-32.29922979,automatic,missing_address_point,7,,,sin destino,MARQUEZ Omar Fabián,1,3,,,138.3,,265.625
+132,127,detail,Urbano,,,,,,,,,automatic,missing_both_points,2,,,sin destino,BURGOS Alfredo,,2,,,167.5,,110.2
+133,129,detail,Periurbana,0100011010340352--006--,0100011010340352--006--,101,34,352,6,-58.15999107,-32.22590445,automatic,missing_address_point,2,,,sin destino,SACULA Gustavo,,1,,,,,272.61
+134,130,detail,Urbano,,,,,,,,,automatic,missing_both_points,17,,,sin destino,,2,,,91.645,,116.21,
+135,131,detail,Centro,,,,,,,,,automatic,missing_both_points,4 y 5,,,sin destino,RAMOS Omar Ricardo,,1,,,,,
+136,132,detail,Urbano,,,,,,,,,automatic,missing_both_points,7,,,sin destino,,2,,,,,245.055,
+137,133,detail,Urbano,,,,,,,,,automatic,missing_both_points,1,,,sin destino,,1,,,,,,150
+138,137,detail,Centro,,,,,,,,,automatic,missing_both_points,21,,,sin destino,AMERICAN BUILDING S.A.,,23,,,,,2043.615
+139,134,detail,Urbana,,,,,,,,,automatic,missing_both_points,1,,,sin destino,,,,,,64.17,,
+140,135,detail,Urbana,,,,,,,,,automatic,missing_both_points,8,,,sin destino,BERON Pablo,,2,,,,,135.95
+141,136,detail,Urbano,,,,,,,,,automatic,missing_both_points,25,,,sin destino,,1,,,,81.89,,
+142,138,detail,Periurbana,,,,,,,,,automatic,missing_both_points,,,,sin destino,no identificado,,1,,,,,335.025
+143,140,detail,Urbana 2,,,,,,,,,automatic,missing_both_points,13,,,sin destino,,2,,,,351.85,,
+144,139,detail,Núcleo Urbano Ampliado,,,,,,,,,automatic,missing_both_points,19,,,sin destino,AGUARA Constructora S.A.,,3,,,,,214.84
+145,141,detail,Urbana,,,,,,,,,automatic,missing_both_points,2,,,sin destino,BUFFET Hugo,,,1,,,,16.77
+146,142,detail,Urbana,,,,,,,,,automatic,missing_both_points,13,,,sin destino,,4,,,,265.09,,
+147,144,detail,Urbana,,,,,,,,,automatic,missing_both_points,13,,,sin destino,,,1,,,,,46.84
+148,143,detail,Urbana,,,,,,,,,automatic,missing_both_points,18,,,sin destino,,2,,,,178.64,,
+149,145,detail,Centro,,,,,,,,,automatic,missing_both_points,16,,,sin destino,no identificado,,1,,,,,390.14
+150,147,detail,Centro,,,,,,,,,automatic,missing_both_points,7,,,sin destino,,1,,,,64.455,49.04,
+151,146,detail,Periburbano,,,,,,,,,automatic,missing_both_points,9,,,sin destino,no identificado,,1,,,,,166.195
+152,148,detail,Periurbana,,,,,,,,,automatic,missing_both_points,24,,,sin destino,,1,,,,368.66,,
+153,149,detail,Urana,,,,,,,,,automatic,missing_both_points,7,,,sin destino,DUARTE MEDINA Luis Osmar,,9,,,,,605.57
+154,150,detail,Periurbana,,,,,,,,,automatic,missing_both_points,1,,,sin destino,LOKER Luis,,,1,,39.795,,
+155,151,detail,Urbana,,,,,,,,,automatic,missing_both_points,7,,,sin destino,no identificado,,1,,,,,
+156,152,detail,,,,,,,,,,automatic,missing_both_points,12,,,sin destino,ORELLANA Hugo,,1,,,,,
+157,153,detail,Centro,,,,,,,,,automatic,missing_both_points,18,,,sin destino,,,,1,,,,50.18
+158,154,detail,Urbana,,,,,,,,,automatic,missing_both_points,10,,,sin destino,,,,2,,,,49.1
+159,155,detail,Urbano,,,,,,,,,automatic,missing_both_points,4,,,sin destino,,1,,,,111.6788,26.6462,
+160,156,detail,Periurbana,,,,,,,,,automatic,missing_both_points,1,,,sin destino,"GARRE PEROCHENA, Gustavo Ramón",,2,,,,,120.5
+161,157,detail,Urbano,,,,,,,,,automatic,missing_both_points,15,,,sin destino,,2,,,,,125.39,
+162,158,detail,Periurbana,,,,,,,,,automatic,missing_both_points,1,,,sin destino,,1,,,,86.44,,
+163,159,detail,Periurbana,,,,,,,,,automatic,missing_both_points,2,,,sin destino,,1,,,,111.66,,
+164,160,detail,Urbano,,,,,,,,,automatic,missing_both_points,7,,,sin destino,,2,,,,115.32,,
+165,161,detail,URBANA,,,,,,,,,automatic,missing_both_points,20,,,sin destino,INDUSTRIAL NORTE (Rafael y Oscar Acosta),,1,,,,124.44,
+166,162,detail,Periurbana,,,,,,,,,automatic,missing_both_points,11,,,sin destino,,1,,,,124.425,,
+167,163,detail,Urbana,,,,,,,,,automatic,missing_both_points,5,,,sin destino,,1,,,,,593.22,
+168,164,detail,Urbana,,,,,,,,,automatic,missing_both_points,24,,,sin destino,no identificado,,1,,,,,207.05
+169,165,detail,Centro,,,,,,,,,automatic,missing_both_points,3,,,sin destino,,,,,,,,
+170,166,detail,Centro,0100010190010000--065--,0100010190010000--065--,19,1,0,65,-58.23972399,-32.27034390,automatic,missing_address_point,16,,,sin destino,ACOSTA Oscar R - INDUSTRIAL NORTE,1,,,285.63,,,
+171,167,detail,Urbana,,,,,,,,,automatic,missing_both_points,2,,,sin destino,,2,,,,94.61,,
+172,168,detail,Urbana,,,,,,,,,automatic,missing_both_points,9,,,sin destino,,7,,,,206.815,,
+173,169,detail,Centro,0100010190010000--128--,0100010190010000--128--,19,1,0,128,-58.23834111,-32.27599155,automatic,missing_address_point,4,,,sin destino,CHINELLATO Pablo A,,1,,,,,197.595
+174,170,detail,Urbana,,,,,,,,,automatic,missing_both_points,1,,,sin destino,,1,,,,138.0674,,
+175,170,detail_continuation,,,,,,,,,,automatic,missing_both_points,2,,,sin destino,,1,,,,37.9626,,
+176,171,detail,Urbana,,,,,,,,,automatic,missing_both_points,12,,,sin destino,REYES Carlos Adolfo,,1,,,,,92.9
+177,172,detail,Urbana,,,,,,,,,automatic,missing_both_points,23,,,sin destino,GONZALEZ Juan Marìa,,,1,,,,40
+178,173,detail,Centro,,,,,,,,,automatic,missing_both_points,2,,,sin destino,MESITI Orlando Carmelo,,3,,,,,204.765
+179,174,detail,Urbana,,,,,,,,,automatic,missing_both_points,7,,,sin destino,BRITEZ BENITEZ Daniel,,,1,,,,
+180,175,detail,Urbana,,,,,,,,,automatic,missing_both_points,19,,,sin destino,no identificado,,3,,,,,313.63
+181,176,detail,Urbana,,,,,,,,,automatic,missing_both_points,7,,,sin destino,,,,1,437.4,,224.53,
+182,177,detail,Quintas,,,,,,,,,automatic,missing_both_points,7,,,sin destino,,2,,,,68.36,,
+183,178,detail,Periurbana,,,,,,,,,automatic,missing_both_points,2,,,sin destino,,3,,,,88.9,,
+184,179,detail,Centro,,,,,,,,,automatic,missing_both_points,8,,,sin destino,,11,,,,,,
+186,180,detail,Urbana,,,,,,,,,automatic,missing_both_points,19,,,sin destino,VOMMARO Alexis Gabriel,,1,,,,,49
+187,180,detail_continuation,,,,,,,,,,automatic,missing_both_points,20,,,sin destino,,,1,,,,,49
+188,181,detail,Urbana,,,,,,,,,automatic,missing_both_points,1,,,sin destino,DIAZ ROJAS Hugo C,,8,,,,,215.19
+189,182,detail,Centro,,,,,,,,,automatic,missing_both_points,8,,,sin destino,,,,2,,,,33
+190,183,detail,Urbana,,,,,,,,,automatic,missing_both_points,15,,,sin destino,,1,,,,81.265,,
+191,184,detail,Periurbana,0100011010340352--005--,0100011010340352--005--,101,34,352,5,-58.15970434,-32.22605310,automatic,missing_address_point,6,,,sin destino,,1,,,,94.13,,
+192,184,detail_continuation,Residencial Sur,,,,,,,,,automatic,missing_both_points,13,,,sin destino,MARCHAND Uriel,,1,,,,,105.755
+193,185,detail,Urbana,,,,,,,,,automatic,missing_both_points,13,,,sin destino,MARCHAND Uriel,,1,,,,,105.205
+194,186,detail,Urbana,,,,,,,,,automatic,missing_both_points,10,,,sin destino,,2,,,,,,105.39
+195,187,detail,Urbana,,,,,,,,,automatic,missing_both_points,10,,,sin destino,,,,1,,,,
+196,188,detail,Centro,,,,,,,,,automatic,missing_both_points,1,,,sin destino,,1,,,,,83.03,
+197,188,detail_unassigned,Urbana,,,,,,,,,automatic,missing_both_points,17,,,sin destino,no identificado,,1,,,,,162.81
+198,189,detail,Urbana,,,,,,,,,automatic,missing_both_points,3,,,sin destino,,2,,,,108.06,,
+199,190,detail,Urbana,0100011010340352--005--,0100011010340352--005--,101,34,352,5,-58.15970434,-32.22605310,automatic,missing_address_point,17,,,sin destino,,2,,,,43.405,,
+200,192,detail,Urbana,,,,,,,,,automatic,missing_both_points,13,,,sin destino,SOTELO Victor,,1,,,,,184.285
+201,191,detail,Urbana,,,,,,,,,automatic,missing_both_points,21,,,sin destino,,,,,233.22,232.5,25.5,
+202,191,detail_continuation,,,,,,,,,,automatic,missing_both_points,25,,,sin destino,,,,,109.67,174.78,64.5,
+203,193,detail,Quintas,,,,,,,,,automatic,missing_both_points,8,,,sin destino,MARTINEZ Jose L,,4,,,,,211.91
+204,194,detail,Periurbana,,,,,,,,,automatic,missing_both_points,1,,,sin destino,,2,,,,172.69,,
+205,196,detail,Urbana,,,,,,,,,automatic,missing_both_points,7,,,sin destino,,2,,,,78.36,,
+206,195,detail,Urbana,,,,,,,,,automatic,missing_both_points,10,,,sin destino,,2,,,,128.46,,
+207,197,detail,Urbana,,,,,,,,,automatic,missing_both_points,12,,,sin destino,CASULA Gustavo,,1,,,,,88.9
+208,198,detail,Urbana,,,,,,,,,automatic,missing_both_points,5,,,sin destino,,7,,,,7.0952,,

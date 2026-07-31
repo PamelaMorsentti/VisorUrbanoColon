@@ -49,6 +49,7 @@ export default function LayersPanel({ visibleLayers, onToggleLayer, isOpen, onCl
       </div>
 
       <div className="overflow-y-auto">
+
         {LAYER_GROUPS.map(group => {
           const groupLayers = LAYERS.filter(l => l.group === group && (!l.adminOnly || isAdmin));
           if (groupLayers.length === 0) return null;

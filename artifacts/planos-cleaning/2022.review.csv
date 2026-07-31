@@ -1,0 +1,14 @@
+﻿source_row_number,severity,issue_type,column_name,column_index,value,message
+20,warning,invalid_ar_date,INGRESO,3,AMPLIACION,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).
+36,warning,invalid_ar_date,INGRESO,3,RELEVAMIENTO,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).
+36,warning,unassigned_legajo,LEGAJO,1,mail,Fila con datos que no pudo asignarse a un legajo canonico.
+88,warning,invalid_ar_date,INGRESO,3,RELEVAMIENTO y AMPLIACION,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).
+126,warning,invalid_ar_date,FINAL OBRA,45,53160.12,Fecha de final de obra invalida para formato AR (dd/mm/aaaa).
+211,warning,invalid_ar_date,INGRESO,3,A CONSTRUIR,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).
+212,warning,invalid_ar_date,INGRESO,3,A CONSTRUIR,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).
+213,warning,invalid_ar_date,INGRESO,3,A CONSTRUIR,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).
+214,warning,invalid_ar_date,INGRESO,3,A CONSTRUIR,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).
+262,warning,invalid_ar_date,VISADO,44,109/10/22,Fecha de visado invalida para formato AR (dd/mm/aaaa).
+297,warning,invalid_ar_date,INGRESO,3,A CONSTRUIR,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).
+302,warning,invalid_ar_date,INGRESO,3,A CONSTRUIR,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).
+302,warning,unassigned_legajo,LEGAJO,1,"544391, 545426",Fila con datos que no pudo asignarse a un legajo canonico.

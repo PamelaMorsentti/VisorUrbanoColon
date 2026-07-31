@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Editor Admin · Publicacion de Obras</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    :root {
+      --bg: #0b1220;
+      --bg-2: #101a2d;
+      --panel: #0f172a;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: #334155;
+      --chip: #1e293b;
+      --accent: #22d3ee;
+      --danger: #dc2626;
+      --ok: #16a34a;
+      --warn: #d97706;
+    }
+    html, body { margin: 0; height: 100%; font: 12px/1.45 "Segoe UI", Tahoma, Arial, sans-serif; background: var(--bg); }
+    .layout { display: grid; grid-template-columns: 420px 1fr; height: 100%; }
+    .panel { background: linear-gradient(180deg, var(--panel), var(--bg-2)); color: var(--text); overflow: auto; border-right: 1px solid var(--border); }
+    .panel h1 { margin: 0; font-size: 15px; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+    .block { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .panel input, .panel select, .panel textarea {
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 4px;
+      margin-bottom: 8px;
+      padding: 6px;
+      border-radius: 6px;
+      border: 1px solid #475569;
+      background: #0b1220;
+      color: var(--text);
+    }
+    .panel button {
+      margin-right: 6px;
+      margin-bottom: 6px;
+      padding: 6px 8px;
+      border-radius: 6px;
+      border: 1px solid #475569;
+      background: var(--chip);
+      color: var(--text);
+      cursor: pointer;
+    }
+    .panel button:hover { background: #334155; }
+    .btn-danger { border-color: #7f1d1d; background: #450a0a; }
+    .btn-success { border-color: #14532d; background: #052e16; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+    .chip { display: inline-block; border-radius: 999px; padding: 2px 8px; border: 1px solid #475569; background: #0b1220; }
+    .rows { padding: 8px; }
+    .row { border: 1px solid var(--border); border-radius: 8px; padding: 8px; margin-bottom: 8px; cursor: pointer; background: rgba(2, 6, 23, 0.45); }
+    .row.active { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
+    .badge { display: inline-block; border-radius: 999px; padding: 1px 8px; border: 1px solid #475569; margin-right: 4px; }
+    .row.deleted { opacity: 0.45; }
+    #map { height: 100%; }
+    .hint { color: var(--muted); font-size: 11px; }
+    .tiny { font-size: 10px; }
+    .divider { border-color: var(--border); border-style: solid; border-width: 1px 0 0 0; margin: 8px 0; }
+    .form-mode { display: inline-flex; gap: 6px; margin-bottom: 8px; }
+    .form-extra { display: none; }
+    .form-extra.visible { display: block; }
+    @media (max-width: 1100px) {
+      .layout { grid-template-columns: 1fr; grid-template-rows: 58% 42%; }
+      .panel { border-right: none; border-bottom: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="panel">
+      <h1>Panel Admin de Publicacion</h1>
+      <div class="block">
+        <label>Clave administrador</label>
+        <input id="admin-pass" type="password" placeholder="Ingresar clave" />
+        <button id="unlock-btn">Desbloquear edición</button>
+        <div id="lock-state" class="hint">Modo solo lectura.</div>
+      </div>
+
+      <div class="block">
+        <div><b>Resumen de resultados</b></div>
+        <div id="summary-chips" class="chips"></div>
+        <div class="hint tiny">Esta vista permite consultar, corregir ubicacion, modificar datos, agregar obra y borrar logico.</div>
+      </div>
+
+      <div class="block">
+        <div><b>Consulta y filtros</b></div>
+        <label>Buscar por fila / legajo / texto</label>
+        <input id="search" type="text" placeholder="Ej: 134, legajo 125, castelli" />
+        <label>Estado</label>
+        <select id="status-filter">
+          <option value="all">Todos</option>
+          <option value="missing_address_point">missing_address_point</option>
+          <option value="missing_cadastral_point">missing_cadastral_point</option>
+          <option value="no_comparison_points">no_comparison_points</option>
+          <option value="verified_nearby">verified_nearby</option>
+          <option value="verified_close">verified_close</option>
+        </select>
+        <label>Origen</label>
+        <select id="source-filter">
+          <option value="all">Todos</option>
+          <option value="automatic">automatic</option>
+          <option value="admin_override">admin_override</option>
+          <option value="admin_new">admin_new</option>
+        </select>
+      </div>
+
+      <div class="block">
+        <div><b>Formulario de obra (ejemplos)</b></div>
+        <div class="form-mode">
+          <button id="form-simple-btn" type="button">Formulario simple</button>
+          <button id="form-full-btn" type="button">Formulario completo</button>
+        </div>
+
+        <div class="grid2">
+          <div>
+            <label>Fila</label>
+            <input id="row-input" type="text" placeholder="Ej: 245" />
+          </div>
+          <div>
+            <label>Legajo</label>
+            <input id="legajo-input" type="text" placeholder="Ej: 220" />
+          </div>
+        </div>
+
+        <label>Direccion / ubicacion</label>
+        <textarea id="ubicacion-input" rows="2" placeholder="Ej: Alberdi 123 esq Mitre"></textarea>
+
+        <div class="grid2">
+          <div>
+            <label>Lat final</label>
+            <input id="lat-input" type="number" step="0.00000001" />
+          </div>
+          <div>
+            <label>Lon final</label>
+            <input id="lon-input" type="number" step="0.00000001" />
+          </div>
+        </div>
+
+        <label>Motivo / observacion admin</label>
+        <textarea id="reason-input" rows="2" placeholder="Por que se corrige o agrega"></textarea>
+
+        <div id="extra-form-fields" class="form-extra">
+          <div class="grid2">
+            <div>
+              <label>Estado</label>
+              <select id="status-input">
+                <option value="missing_address_point">missing_address_point</option>
+                <option value="missing_cadastral_point">missing_cadastral_point</option>
+                <option value="no_comparison_points">no_comparison_points</option>
+                <option value="verified_nearby">verified_nearby</option>
+                <option value="verified_close">verified_close</option>
+              </select>
+            </div>
+            <div>
+              <label>NCP formateado</label>
+              <input id="ncp-input" type="text" placeholder="Ej: 010001..." />
+            </div>
+          </div>
+
+          <div class="grid2">
+            <div>
+              <label>Metodo match</label>
+              <input id="method-input" type="text" placeholder="manz_parc" />
+            </div>
+            <div>
+              <label>Confidence</label>
+              <input id="confidence-input" type="text" placeholder="high/medium/low" />
+            </div>
+          </div>
+
+          <label>Address query</label>
+          <input id="query-input" type="text" placeholder="Query usada o sugerida" />
+        </div>
+
+        <button id="new-btn" type="button">Nueva obra</button>
+        <button id="save-record-btn" class="btn-success" type="button">Guardar alta/modificacion</button>
+        <button id="delete-btn" class="btn-danger" type="button">Borrar (logico)</button>
+        <button id="undelete-btn" type="button">Restaurar borrado</button>
+        <button id="save-btn" type="button">Guardar override punto</button>
+        <button id="reset-btn" type="button">Revertir a automatico</button>
+
+        <div class="divider"></div>
+        <button id="export-btn" type="button">Exportar JSON overrides</button>
+        <button id="export-admin-btn" type="button">Exportar JSON admin cambios</button>
+        <button id="import-admin-btn" type="button">Importar JSON admin cambios</button>
+        <input id="import-admin-file" type="file" accept="application/json" style="display:none" />
+
+        <div class="hint">Guardar el archivo descargado en:</div>
+        <div class="hint">C:\\Users\\HP\\Downloads\\Colon-Entre-Rios\\artifacts\\planos-cleaning\\2020.cadastral-overrides.json</div>
+        <div class="hint">Archivo sugerido para cambios CRUD: <b>cadastral-admin-changes.json</b></div>
+        <div class="hint">Tip: tambien podes clickear el mapa para fijar lat/lon del punto final.</div>
+        <div class="hint" id="selected-meta"></div>
+      </div>
+
+      <div id="rows" class="rows"></div>
+    </aside>
+    <div id="map"></div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const ADMIN_PASSWORD = "colon2024";
+    const baseRows = [{"source_row_number":"3","legajo_canonico":"2","row_kind":"detail","raw_ubicacion":"Bvrad. Fresno s/Nº e/Crespín y calle pública","ncp_formatted":"0100010112470003--007--","match_method":"gru_manz_parc","confidence":"high","address_query":"Bvrad. Fresno º esq Crespín y calle pública, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.24509364,"auto_lon":-58.18290728,"address_lat":null,"address_lon":null,"final_lat":-32.24509364,"final_lon":-58.18290728,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"4","legajo_canonico":"3","row_kind":"detail","raw_ubicacion":"Las Piedras N.º 390","ncp_formatted":"0100011020400364--020--","match_method":"gru_manz_parc","confidence":"high","address_query":"Piedras 390, Colón","address_match_name":"LAS PIEDRAS SUR 390, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.23684559,"auto_lon":-58.14762187,"address_lat":-32.23699288,"address_lon":-58.14765682,"final_lat":-32.23684559,"final_lon":-58.14762187,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"16.70","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"5","legajo_canonico":"4","row_kind":"detail","raw_ubicacion":"Alberdi N.º","ncp_formatted":"0100010123270004--003--","match_method":"gru_manz_parc","confidence":"high","address_query":"Alberdi N.º, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.23088725,"auto_lon":-58.16254939,"address_lat":null,"address_lon":null,"final_lat":-32.23088725,"final_lon":-58.16254939,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"6","legajo_canonico":"5","row_kind":"detail","raw_ubicacion":"Juan Manuel de Rosas s/N° (Loteo Blanc)","ncp_formatted":"0100010063550008--004--","match_method":"gru_manz_parc","confidence":"high","address_query":"Juan Manuel de Rosas ° Loteo Blanc, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.21019172,"auto_lon":-58.16082882,"address_lat":null,"address_lon":null,"final_lat":-32.21019172,"final_lon":-58.16082882,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"7","legajo_canonico":"7","row_kind":"detail","raw_ubicacion":"M. Rebord N.º 132 e/M. Moreno y Noailles","ncp_formatted":"0100010000000397--010--","match_method":"manz_parc","confidence":"medium","address_query":"Rebord 132, Colón","address_match_name":"M REBORD 132, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.2323963,"auto_lon":-58.15035197,"address_lat":-32.23267056,"address_lon":-58.15049779,"final_lat":-32.2323963,"final_lon":-58.15035197,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"33.44","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"8","legajo_canonico":"6","row_kind":"detail","raw_ubicacion":"Ruta Nac. Nª 14, km","ncp_formatted":"0100010190010000--002--","match_method":"gru_parc","confidence":"low","address_query":"Ruta Nac. 14, km, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.27327744,"auto_lon":-58.24421972,"address_lat":null,"address_lon":null,"final_lat":-32.27327744,"final_lon":-58.24421972,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"10","legajo_canonico":"9","row_kind":"detail","raw_ubicacion":"Esteva Berga N.º 137","ncp_formatted":"0100010000000141--005--","match_method":"manz_parc","confidence":"medium","address_query":"Berga 137, Colón","address_match_name":"DR E BERGA 137, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22331982,"auto_lon":-58.13748002,"address_lat":-32.22325665,"address_lon":-58.13726543,"final_lat":-32.22331982,"final_lon":-58.13748002,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"21.37","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"11","legajo_canonico":"10","row_kind":"detail","raw_ubicacion":"Primera Junta N.º 508, 510","ncp_formatted":"0100010000000580--019--","match_method":"manz_parc","confidence":"medium","address_query":"Junta 508, Colón","address_match_name":"PRIMERA JUNTA 508, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.21828728,"auto_lon":-58.1518496,"address_lat":-32.21788747,"address_lon":-58.15192144,"final_lat":-32.21828728,"final_lon":-58.1518496,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"44.97","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"12","legajo_canonico":"11","row_kind":"detail","raw_ubicacion":"Alberdi N.º 230 y 236","ncp_formatted":"0100010000000176--015--","match_method":"manz_parc","confidence":"medium","address_query":"Alberdi 230, Colón","address_match_name":"ALBERDI 230, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.21730425,"auto_lon":-58.1410164,"address_lat":-32.21721449,"address_lon":-58.1411842,"final_lat":-32.21730425,"final_lon":-58.1410164,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"18.68","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"13","legajo_canonico":"12","row_kind":"detail","raw_ubicacion":"Martín Reibel N.º 621","ncp_formatted":"0100010000000060--007--","match_method":"manz_parc","confidence":"medium","address_query":"Reibel 621, Colón","address_match_name":"MARTIN REIBEL 621, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22752755,"auto_lon":-58.14150732,"address_lat":-32.22772588,"address_lon":-58.1412967,"final_lat":-32.22752755,"final_lon":-58.14150732,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"29.65","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"15","legajo_canonico":"14","row_kind":"detail","raw_ubicacion":"Craviotto N.º 1111 e/ Las Piedras y M. Rebord","ncp_formatted":"0100011020400364--005--","match_method":"gru_manz_parc","confidence":"high","address_query":"Craviotto N.º 1111 e/ Las Piedras y M. Rebord, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.23653515,"auto_lon":-58.14708228,"address_lat":null,"address_lon":null,"final_lat":-32.23653515,"final_lon":-58.14708228,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"16","legajo_canonico":"15","row_kind":"detail","raw_ubicacion":"Calle Colibrí s/N° e/ Ruta N° 135 y Calle Pública (Loteo BESSON)","ncp_formatted":"0100010112680001--013--","match_method":"gru_manz_parc","confidence":"high","address_query":"Calle Colibrí ° e/ Ruta 135 y Calle Pública Loteo BESSON, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.2413968,"auto_lon":-58.1735677,"address_lat":null,"address_lon":null,"final_lat":-32.2413968,"final_lon":-58.1735677,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"18","legajo_canonico":"17","row_kind":"detail","raw_ubicacion":"Araujo Penón N° 367 e/ Bvard Gaillard y Rocamora","ncp_formatted":"0100011010340351--006--","match_method":"gru_manz_parc","confidence":"high","address_query":"Rocamora 367, Colón","address_match_name":"TOMAS DE ROCAMORA 367, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22689654,"auto_lon":-58.15890223,"address_lat":-32.21668449,"address_lon":-58.14572028,"final_lat":-32.22689654,"final_lon":-58.15890223,"location_verification_status":"review_large_gap","geolocation_source":"automatic","address_vs_cadastral_distance_m":"1681.39","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"19","legajo_canonico":"18","row_kind":"detail","raw_ubicacion":"Santa Cruz N.º 375 e/ Rocamora y Bvard. Gaillard","ncp_formatted":"0100011010620434--002--","match_method":"gru_manz_parc","confidence":"high","address_query":"Gaillard 375, Colón","address_match_name":"AMILCAR GAILLARD 375, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22475117,"auto_lon":-58.15619841,"address_lat":-32.21749452,"address_lon":-58.14516473,"final_lat":-32.22475117,"final_lon":-58.15619841,"location_verification_status":"review_large_gap","geolocation_source":"automatic","address_vs_cadastral_distance_m":"1314.69","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"20","legajo_canonico":"19","row_kind":"detail","raw_ubicacion":"Combatiente de Malvinas N° 130","ncp_formatted":"0100010000000801--010--","match_method":"manz_parc","confidence":"medium","address_query":"Combatiente de Malvinas 130, Colón","address_match_name":"COMBATIENTES DE MALVINAS 130, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.21164941,"auto_lon":-58.1436788,"address_lat":-32.21158572,"address_lon":-58.14386941,"final_lat":-32.21164941,"final_lon":-58.1436788,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"19.28","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"21","legajo_canonico":"20","row_kind":"detail","raw_ubicacion":"Calle Pública s/Nº","ncp_formatted":"0100010123270003--018--","match_method":"gru_manz_parc","confidence":"high","address_query":"Calle Pública º, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.23040484,"auto_lon":-58.1611771,"address_lat":null,"address_lon":null,"final_lat":-32.23040484,"final_lon":-58.1611771,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"22","legajo_canonico":"21","row_kind":"detail","raw_ubicacion":"Ramírez N° 145, esq. Gouchón","ncp_formatted":"0100010000000019--015--","match_method":"manz_parc","confidence":"medium","address_query":"Ramírez 145, Colón","address_match_name":"RAMIREZ 145, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22526261,"auto_lon":-58.14874732,"address_lat":-32.22534737,"address_lon":-58.14893399,"final_lat":-32.22526261,"final_lon":-58.14874732,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"19.93","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"24","legajo_canonico":"23","row_kind":"detail","raw_ubicacion":"Calle Pública s/N° (Loteo Papurello)","ncp_formatted":"0100010162230003--004--","match_method":"gru_manz_parc","confidence":"high","address_query":"Calle Pública ° Loteo Papurello, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.25621902,"auto_lon":-58.18338511,"address_lat":null,"address_lon":null,"final_lat":-32.25621902,"final_lon":-58.18338511,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"26","legajo_canonico":"25","row_kind":"detail","raw_ubicacion":"Avda Paysandú N.º 1198 esq. Araujo Penón","ncp_formatted":"0100011010340352--006--","match_method":"manz_parc","confidence":"medium","address_query":"Paysandú 1198, Colón","address_match_name":"AV PAYSANDU 1198, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22590445,"auto_lon":-58.15999107,"address_lat":-32.22582776,"address_lon":-58.16021363,"final_lat":-32.22590445,"final_lon":-58.15999107,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"22.61","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"27","legajo_canonico":"26","row_kind":"detail","raw_ubicacion":"Rocamora N.º 803 y Ramírez N.º 406, 410","ncp_formatted":"0100010000000529--006--","match_method":"manz_parc","confidence":"medium","address_query":"Rocamora N.º 803 y Ramírez N.º 406, 410, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.2215579,"auto_lon":-58.1529186,"address_lat":null,"address_lon":null,"final_lat":-32.2215579,"final_lon":-58.1529186,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"28","legajo_canonico":"27","row_kind":"detail","raw_ubicacion":"Bolívar N° 180","ncp_formatted":"0100010000000184--020--","match_method":"manz_parc","confidence":"medium","address_query":"Bolívar 180, Colón","address_match_name":"BOLIVAR 180, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.21894392,"auto_lon":-58.13808731,"address_lat":-32.21877319,"address_lon":-58.1381786,"final_lat":-32.21894392,"final_lon":-58.13808731,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"20.84","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"29","legajo_canonico":"28","row_kind":"detail","raw_ubicacion":"Calle Pública s/N° (Loteo San Juan)","ncp_formatted":"0100010151110006--001--","match_method":"gru_manz_parc","confidence":"high","address_query":"Calle Pública ° Loteo San Juan, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.2690953,"auto_lon":-58.20860831,"address_lat":null,"address_lon":null,"final_lat":-32.2690953,"final_lon":-58.20860831,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"31","legajo_canonico":"30","row_kind":"detail","raw_ubicacion":"Chacabuco N° 155 esquina 3 de Febrero","ncp_formatted":"0100010000000181--006--","match_method":"manz_parc","confidence":"medium","address_query":"Febrero 155, Colón","address_match_name":"3 DE FEBRERO 155, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.21691821,"auto_lon":-58.13940524,"address_lat":-32.21757882,"address_lon":-58.13850631,"final_lat":-32.21691821,"final_lon":-58.13940524,"location_verification_status":"verified_nearby","geolocation_source":"automatic","address_vs_cadastral_distance_m":"112.02","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"32","legajo_canonico":"31","row_kind":"detail","raw_ubicacion":"Calle Pública s/N°","ncp_formatted":"0100010151810002--004--","match_method":"gru_manz_parc","confidence":"high","address_query":"Calle Pública °, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.25592699,"auto_lon":-58.19509494,"address_lat":null,"address_lon":null,"final_lat":-32.25592699,"final_lon":-58.19509494,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"33","legajo_canonico":"519657","row_kind":"detail","raw_ubicacion":"Luís Federico Leloir N.º e/J. M. de Rosas y Artalaz (Loteo Heis de Bogado)","ncp_formatted":"0100010063540000--089--","match_method":"gru_parc","confidence":"medium","address_query":"Luís Federico Leloir N.º esq J. M. de Rosas y Artalaz Loteo Heis de Bogado, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.21089409,"auto_lon":-58.16012735,"address_lat":null,"address_lon":null,"final_lat":-32.21089409,"final_lon":-58.16012735,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"34","legajo_canonico":"32","row_kind":"detail","raw_ubicacion":"Tratado del Pilar N.º 226","ncp_formatted":"0100010000000755--017--","match_method":"manz_parc","confidence":"medium","address_query":"Pilar 226, Colón","address_match_name":"TRATADO DEL PILAR 226, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.21220718,"auto_lon":-58.14602857,"address_lat":-32.21202775,"address_lon":-58.14623537,"final_lat":-32.21220718,"final_lon":-58.14602857,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"27.87","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"35","legajo_canonico":"33","row_kind":"detail","raw_ubicacion":"Cabo Pereyra N° 226","ncp_formatted":"0100010123260016--006--","match_method":"gru_manz_parc","confidence":"high","address_query":"Cabo Pereyra 226, Colón","address_match_name":"CABO 1RO C PEREYRA 226, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.23066985,"auto_lon":-58.1594922,"address_lat":-32.23067696,"address_lon":-58.15929672,"final_lat":-32.23066985,"final_lon":-58.1594922,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"18.40","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"36","legajo_canonico":"34","row_kind":"detail","raw_ubicacion":"San Martín N° 1211","ncp_formatted":"0100010000000319--005--","match_method":"manz_parc","confidence":"medium","address_query":"San Martín 1211, Colón","address_match_name":"AV SAN MARTIN 1211, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.23169353,"auto_lon":-58.15486189,"address_lat":-32.23183751,"address_lon":-58.15461268,"final_lat":-32.23169353,"final_lon":-58.15486189,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"28.39","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"37","legajo_canonico":"35","row_kind":"detail","raw_ubicacion":"Los Bretes","ncp_formatted":"0100010170030008--011--","match_method":"gru_manz_parc","confidence":"high","address_query":"Los Bretes, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.24404524,"auto_lon":-58.1293988,"address_lat":null,"address_lon":null,"final_lat":-32.24404524,"final_lon":-58.1293988,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"38","legajo_canonico":"36","row_kind":"detail","raw_ubicacion":"Rocamora N° 819","ncp_formatted":"0100010000000529--008--","match_method":"manz_parc","confidence":"medium","address_query":"Rocamora 819, Colón","address_match_name":"TOMAS DE ROCAMORA 819, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.221656,"auto_lon":-58.15313547,"address_lat":-32.22185997,"address_lon":-58.15290328,"final_lat":-32.221656,"final_lon":-58.15313547,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"31.49","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"39","legajo_canonico":"37","row_kind":"detail","raw_ubicacion":"Bolívar N.º 724","ncp_formatted":"0100010000000037--016--","match_method":"manz_parc","confidence":"medium","address_query":"Bolívar 724, Colón","address_match_name":"BOLIVAR 724, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22521275,"auto_lon":-58.14683239,"address_lat":-32.22506808,"address_lon":-58.14696809,"final_lat":-32.22521275,"final_lon":-58.14683239,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"20.54","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"40","legajo_canonico":"38","row_kind":"detail","raw_ubicacion":"Agustín Craviotto N° 1208","ncp_formatted":"0100011020260309--003--","match_method":"gru_manz_parc","confidence":"high","address_query":"Agustín Craviotto 1208, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.23810366,"auto_lon":-58.14856822,"address_lat":null,"address_lon":null,"final_lat":-32.23810366,"final_lon":-58.14856822,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"41","legajo_canonico":"39","row_kind":"detail","raw_ubicacion":"Artigas N.º 211, esq. Reibel","ncp_formatted":"0100010000000105--001--","match_method":"manz_parc","confidence":"medium","address_query":"Artigas 211, Colón","address_match_name":"JOSE G ARTIGAS 211, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22541158,"auto_lon":-58.1396284,"address_lat":-32.22613291,"address_lon":-58.13873319,"final_lat":-32.22541158,"final_lon":-58.1396284,"location_verification_status":"verified_nearby","geolocation_source":"automatic","address_vs_cadastral_distance_m":"116.30","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"42","legajo_canonico":"40","row_kind":"detail","raw_ubicacion":"Bvard. Ferrari N° 1101, 1103","ncp_formatted":"0100011020410365--002--","match_method":"gru_manz_parc","confidence":"high","address_query":"Boulevard Ferrari 1101, Colón","address_match_name":"BV FERRARI 1101, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.2357075,"auto_lon":-58.14771012,"address_lat":-32.2358134,"address_lon":-58.14738077,"final_lat":-32.2357075,"final_lon":-58.14771012,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"33.14","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"43","legajo_canonico":"41","row_kind":"detail","raw_ubicacion":"Gouchón N° 667, 669","ncp_formatted":"0100010000000046--008--","match_method":"manz_parc","confidence":"medium","address_query":"Gouchón 667, Colón","address_match_name":"EMILIO GOUCHON 667, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22352874,"auto_lon":-58.14685743,"address_lat":-32.22364095,"address_lon":-58.14669267,"final_lat":-32.22352874,"final_lon":-58.14685743,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"19.90","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"44","legajo_canonico":"42","row_kind":"detail","raw_ubicacion":"Calle Paraiso s/N° (Loteo Ayres de 1872)","ncp_formatted":"0100010112470004--003--","match_method":"gru_manz_parc","confidence":"high","address_query":"Calle Paraiso ° Loteo Ayres de 1872, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.2444545,"auto_lon":-58.18170225,"address_lat":null,"address_lon":null,"final_lat":-32.2444545,"final_lon":-58.18170225,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"46","legajo_canonico":"44","row_kind":"detail","raw_ubicacion":"Chacabuco N.º 875","ncp_formatted":"0100010000000511--004--","match_method":"manz_parc","confidence":"medium","address_query":"Chacabuco 875, Colón","address_match_name":"CHACABUCO 875, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22535629,"auto_lon":-58.15117496,"address_lat":-32.22551142,"address_lon":-58.15097859,"final_lat":-32.22535629,"final_lon":-58.15117496,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"25.27","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"47","legajo_canonico":"45","row_kind":"detail","raw_ubicacion":"Emilio Gouchón N.º 479","ncp_formatted":"0100010000000098--009--","match_method":"manz_parc","confidence":"medium","address_query":"Emilio Gouchón N.º 479, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.22154071,"auto_lon":-58.14416002,"address_lat":null,"address_lon":null,"final_lat":-32.22154071,"final_lon":-58.14416002,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"48","legajo_canonico":"46","row_kind":"detail","raw_ubicacion":"María Isabel Fernández N° 141","ncp_formatted":"0100010000000276--012--","match_method":"manz_parc","confidence":"medium","address_query":"María Isabel Fernández 141, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.2352932,"auto_lon":-58.15405272,"address_lat":null,"address_lon":null,"final_lat":-32.2352932,"final_lon":-58.15405272,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"49","legajo_canonico":"47","row_kind":"detail","raw_ubicacion":"Calle Salsipuedes s/N°","ncp_formatted":"0100010123270008--005--","match_method":"gru_manz_parc","confidence":"high","address_query":"Calle Salsipuedes °, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.23004117,"auto_lon":-58.16434456,"address_lat":null,"address_lon":null,"final_lat":-32.23004117,"final_lon":-58.16434456,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"50","legajo_canonico":"48","row_kind":"detail","raw_ubicacion":"Reibel N° e/ Leguizamón y Monteagudo","ncp_formatted":"0100010000000026--019--","match_method":"manz_parc","confidence":"medium","address_query":"Reibel e/ Leguizamón y Monteagudo, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.22979108,"auto_lon":-58.14383243,"address_lat":null,"address_lon":null,"final_lat":-32.22979108,"final_lon":-58.14383243,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"51","legajo_canonico":"49","row_kind":"detail","raw_ubicacion":"Calle Pública s/N°","ncp_formatted":"0100010123270006--002--","match_method":"gru_manz_parc","confidence":"high","address_query":"Calle Pública °, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.23146535,"auto_lon":-58.16489724,"address_lat":null,"address_lon":null,"final_lat":-32.23146535,"final_lon":-58.16489724,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"52","legajo_canonico":"50","row_kind":"detail","raw_ubicacion":"Calle Pública s/N°","ncp_formatted":"0100010113100002--033--","match_method":"gru_manz_parc","confidence":"high","address_query":"Calle Pública °, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.22912135,"auto_lon":-58.16699284,"address_lat":null,"address_lon":null,"final_lat":-32.22912135,"final_lon":-58.16699284,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"54","legajo_canonico":"52","row_kind":"detail","raw_ubicacion":"3 de Febrero N° 319 e/ Paso de los Andes y Bvard Gaillard","ncp_formatted":"0100010000000206--007--","match_method":"manz_parc","confidence":"medium","address_query":"Gaillard 319, Colón","address_match_name":"AMILCAR GAILLARD 319, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.2150612,"auto_lon":-58.14070662,"address_lat":-32.21680754,"address_lon":-58.144199,"final_lat":-32.2150612,"final_lon":-58.14070662,"location_verification_status":"review_medium_gap","geolocation_source":"automatic","address_vs_cadastral_distance_m":"381.64","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"55","legajo_canonico":"53","row_kind":"detail","raw_ubicacion":"Celia Pellenc N° 124","ncp_formatted":"0100010000000482--003--","match_method":"manz_parc","confidence":"medium","address_query":"Celia Pellenc 124, Colón","address_match_name":"CELIA PELLENC 124, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22697521,"auto_lon":-58.15045164,"address_lat":-32.2268899,"address_lon":-58.15031792,"final_lat":-32.22697521,"final_lon":-58.15045164,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"15.75","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"56","legajo_canonico":"54","row_kind":"detail","raw_ubicacion":"Padre Duce N° 104","ncp_formatted":"0100010000000299--004--","match_method":"manz_parc","confidence":"medium","address_query":"Padre Duce 104, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.23157257,"auto_lon":-58.15633641,"address_lat":null,"address_lon":null,"final_lat":-32.23157257,"final_lon":-58.15633641,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"57","legajo_canonico":"55","row_kind":"detail","raw_ubicacion":"Cabo Pereyra N° ..","ncp_formatted":"0100010123270011--003--","match_method":"gru_manz_parc","confidence":"high","address_query":"Cabo Pereyra ., Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.22768396,"auto_lon":-58.1609863,"address_lat":null,"address_lon":null,"final_lat":-32.22768396,"final_lon":-58.1609863,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"58","legajo_canonico":"56","row_kind":"detail","raw_ubicacion":"Bolívar N° 177","ncp_formatted":"0100010000000183--006--","match_method":"manz_parc","confidence":"medium","address_query":"Bolívar 177, Colón","address_match_name":"BOLIVAR 177, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.21861006,"auto_lon":-58.13827931,"address_lat":-32.21873608,"address_lon":-58.13812699,"final_lat":-32.21861006,"final_lon":-58.13827931,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"20.04","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"59","legajo_canonico":"57","row_kind":"detail","raw_ubicacion":"12 de Abril N° 385","ncp_formatted":"0100010000000129--022--","match_method":"manz_parc","confidence":"medium","address_query":"12 de Abril 385, Colón","address_match_name":"12 DE ABRIL 385, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22252276,"auto_lon":-58.14035746,"address_lat":-32.2227052,"address_lon":-58.14022472,"final_lat":-32.22252276,"final_lon":-58.14035746,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"23.82","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"60","legajo_canonico":"58","row_kind":"detail","raw_ubicacion":"Ramírez N° 145, esq. Gouchón","ncp_formatted":"0100010000000019--015--","match_method":"manz_parc","confidence":"medium","address_query":"Ramírez 145, Colón","address_match_name":"RAMIREZ 145, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22526261,"auto_lon":-58.14874732,"address_lat":-32.22534737,"address_lon":-58.14893399,"final_lat":-32.22526261,"final_lon":-58.14874732,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"19.93","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"61","legajo_canonico":"59","row_kind":"detail","raw_ubicacion":"M. Moreno N° 831, 833","ncp_formatted":"0100010000000006--003--","match_method":"manz_parc","confidence":"low","address_query":"Mariano Moreno 831, Colón","address_match_name":"MARIANO MORENO 831, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22866947,"auto_lon":-58.14638422,"address_lat":-32.22882565,"address_lon":-58.14627231,"final_lat":-32.22866947,"final_lon":-58.14638422,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"20.31","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"62","legajo_canonico":"60","row_kind":"detail","raw_ubicacion":"Calle Privada (Ibirá Pita) s/N°","ncp_formatted":"0100010170030002--018--","match_method":"gru_manz_parc","confidence":"high","address_query":"Calle Privada Ibirá Pita °, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.24360901,"auto_lon":-58.13411946,"address_lat":null,"address_lon":null,"final_lat":-32.24360901,"final_lon":-58.13411946,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"63","legajo_canonico":"61","row_kind":"detail","raw_ubicacion":"Monteagudo N° e/ Avda Urquiza y Moreno","ncp_formatted":"0100010000000023--010--","match_method":"manz_parc","confidence":"medium","address_query":"Monteagudo e/ Avenida Urquiza y Moreno, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.22806752,"auto_lon":-58.14599186,"address_lat":null,"address_lon":null,"final_lat":-32.22806752,"final_lon":-58.14599186,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"64","legajo_canonico":"62","row_kind":"detail","raw_ubicacion":"12 de Abril N° 383","ncp_formatted":"0100010000000129--007--","match_method":"manz_parc","confidence":"medium","address_query":"12 de Abril 383, Colón","address_match_name":"12 DE ABRIL 383, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22248311,"auto_lon":-58.14030114,"address_lat":-32.22267986,"address_lon":-58.14018768,"final_lat":-32.22248311,"final_lon":-58.14030114,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"24.34","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"65","legajo_canonico":"63","row_kind":"detail","raw_ubicacion":"Calle Artalaz s/N°","ncp_formatted":"0100010063410002--008--","match_method":"gru_manz_parc","confidence":"high","address_query":"Calle Artalaz °, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.21568974,"auto_lon":-58.16156182,"address_lat":null,"address_lon":null,"final_lat":-32.21568974,"final_lon":-58.16156182,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"66","legajo_canonico":"64","row_kind":"detail","raw_ubicacion":"Bvard Gaillard esq. Salta N° 346","ncp_formatted":"0100010000000042--017--","match_method":"manz_parc","confidence":"medium","address_query":"Salta 346, Colón","address_match_name":"SALTA 346, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22136567,"auto_lon":-58.15014338,"address_lat":-32.22125088,"address_lon":-58.15003642,"final_lat":-32.22136567,"final_lon":-58.15014338,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"16.25","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"67","legajo_canonico":"65","row_kind":"detail","raw_ubicacion":"Bolívar N° 1017 e/ Santa Cruz y Vergniaud","ncp_formatted":"0100010000000429--010--","match_method":"manz_parc","confidence":"medium","address_query":"Bolívar 1017 e/ Santa Cruz y Vergniaud, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.22848783,"auto_lon":-58.15218357,"address_lat":null,"address_lon":null,"final_lat":-32.22848783,"final_lon":-58.15218357,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"68","legajo_canonico":"66","row_kind":"detail","raw_ubicacion":"M. L. Fernández N° 277","ncp_formatted":"0100011020160273--015--","match_method":"gru_manz_parc","confidence":"high","address_query":"M. L. Fernández 277, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.23729488,"auto_lon":-58.1521838,"address_lat":null,"address_lon":null,"final_lat":-32.23729488,"final_lon":-58.1521838,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"69","legajo_canonico":"67","row_kind":"detail","raw_ubicacion":"Chacabuco N° 353","ncp_formatted":"0100010000000125--005--","match_method":"manz_parc","confidence":"medium","address_query":"Chacabuco 353, Colón","address_match_name":"CHACABUCO 353, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.21931433,"auto_lon":-58.1428213,"address_lat":-32.21943432,"address_lon":-58.14253577,"final_lat":-32.21931433,"final_lon":-58.1428213,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"29.99","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"70","legajo_canonico":"68","row_kind":"detail","raw_ubicacion":"Paso de los Andes N° 170 (antes 162)","ncp_formatted":"0100010000000180--018--","match_method":"manz_parc","confidence":"medium","address_query":"Paso de los Andes 170, Colón","address_match_name":"PASO DE LOS ANDES 170, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.21583936,"auto_lon":-58.1408578,"address_lat":-32.2157375,"address_lon":-58.14089754,"final_lat":-32.21583936,"final_lon":-58.1408578,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"11.93","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"72","legajo_canonico":"70","row_kind":"detail","raw_ubicacion":"Salsipuedes s/N°","ncp_formatted":"","match_method":"none","confidence":"low","address_query":"Salsipuedes °, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":null,"auto_lon":null,"address_lat":null,"address_lon":null,"final_lat":null,"final_lon":null,"location_verification_status":"missing_both_points","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"73","legajo_canonico":"71","row_kind":"detail","raw_ubicacion":"9 de Mayo N° 253 y Tucumán s/N°","ncp_formatted":"0100011020080249--008--","match_method":"gru_manz_parc","confidence":"high","address_query":"Tucumán 253, Colón","address_match_name":"TUCUMAN 253, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.23822385,"auto_lon":-58.15407206,"address_lat":-32.22429713,"address_lon":-58.13482664,"final_lat":-32.23822385,"final_lon":-58.15407206,"location_verification_status":"review_large_gap","geolocation_source":"automatic","address_vs_cadastral_distance_m":"2382.23","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"74","legajo_canonico":"72","row_kind":"detail","raw_ubicacion":"Bvard. Ferrari N° 1173","ncp_formatted":"0100010000000377--008--","match_method":"manz_parc","confidence":"medium","address_query":"Boulevard Ferrari 1173, Colón","address_match_name":"BV FERRARI 1173, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22757985,"auto_lon":-58.15600374,"address_lat":-32.23670829,"address_lon":-58.14861608,"final_lat":-32.22757985,"final_lon":-58.15600374,"location_verification_status":"review_large_gap","geolocation_source":"automatic","address_vs_cadastral_distance_m":"1230.10","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"75","legajo_canonico":"73","row_kind":"detail","raw_ubicacion":"Calle Pública s/N°","ncp_formatted":"0100010063300006--015--","match_method":"gru_manz_parc","confidence":"high","address_query":"Calle Pública °, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.21409335,"auto_lon":-58.168107,"address_lat":null,"address_lon":null,"final_lat":-32.21409335,"final_lon":-58.168107,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"76","legajo_canonico":"74","row_kind":"detail","raw_ubicacion":"Calle Pública s/N°","ncp_formatted":"0100010113100003--007--","match_method":"gru_manz_parc","confidence":"high","address_query":"Calle Pública °, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.23210176,"auto_lon":-58.16781815,"address_lat":null,"address_lon":null,"final_lat":-32.23210176,"final_lon":-58.16781815,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"77","legajo_canonico":"75","row_kind":"detail","raw_ubicacion":"Vieytes N° 397 AyB, Craviotto N° 661","ncp_formatted":"0100010000000576--007--","match_method":"manz_parc","confidence":"medium","address_query":"Vieytes 397, Colón","address_match_name":"HIPOLITO VIEYTES 397, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.2310135,"auto_lon":-58.13921171,"address_lat":-32.23097509,"address_lon":-58.13889478,"final_lat":-32.2310135,"final_lon":-58.13921171,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"30.12","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"78","legajo_canonico":"76","row_kind":"detail","raw_ubicacion":"Avda. Paysandú N° 1104, Conte Grand Nª 440","ncp_formatted":"0100011010480380--008--","match_method":"gru_manz_parc","confidence":"high","address_query":"Avenida Paysandú 1104, Colón","address_match_name":"AV PAYSANDU 1104, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22488721,"auto_lon":-58.15846439,"address_lat":-32.22462898,"address_lon":-58.15852132,"final_lat":-32.22488721,"final_lon":-58.15846439,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"29.21","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"79","legajo_canonico":"77","row_kind":"detail","raw_ubicacion":"Bvard. Ferrari N° 1235 e/ Gomez Miranda y Lantelme","ncp_formatted":"0100011020270311--016--","match_method":"gru_manz_parc","confidence":"high","address_query":"Boulevard Ferrari 1235 e/ Gomez Miranda y Lantelme, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.23725058,"auto_lon":-58.14993803,"address_lat":null,"address_lon":null,"final_lat":-32.23725058,"final_lon":-58.14993803,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"80","legajo_canonico":"78","row_kind":"detail","raw_ubicacion":"Prioridad Turística","ncp_formatted":"","match_method":"none","confidence":"low","address_query":"Prioridad Turística, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":null,"auto_lon":null,"address_lat":null,"address_lon":null,"final_lat":null,"final_lon":null,"location_verification_status":"missing_both_points","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"81","legajo_canonico":"79","row_kind":"detail","raw_ubicacion":"12 de Abril N.º 262","ncp_formatted":"0100010000000158--018--","match_method":"manz_parc","confidence":"medium","address_query":"Abril 262, Colón","address_match_name":"12 DE ABRIL 262, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22132401,"auto_lon":-58.13807527,"address_lat":-32.22123806,"address_lon":-58.13813276,"final_lat":-32.22132401,"final_lon":-58.13807527,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"10.98","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"82","legajo_canonico":"80","row_kind":"detail","raw_ubicacion":"Calle Privada \"Ibirá Pitá\"s/N°, Los Bretes","ncp_formatted":"0100010170030002--021--","match_method":"gru_manz_parc","confidence":"high","address_query":"Calle Privada \"Ibirá Pitá\"s/N°, Los Bretes, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.24460348,"auto_lon":-58.13515686,"address_lat":null,"address_lon":null,"final_lat":-32.24460348,"final_lon":-58.13515686,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"83","legajo_canonico":"81","row_kind":"detail","raw_ubicacion":"Karay Yamandú s/N° , y Calle Pública","ncp_formatted":"0100010113100001--017--","match_method":"gru_manz_parc","confidence":"high","address_query":"Karay Yamandú °, y Calle Pública, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.22955821,"auto_lon":-58.17196767,"address_lat":null,"address_lon":null,"final_lat":-32.22955821,"final_lon":-58.17196767,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"84","legajo_canonico":"82","row_kind":"detail","raw_ubicacion":"Alberdi N° 934 / 936 e/ Pellenc y Pte. Illía","ncp_formatted":"0100010000000484--028--","match_method":"manz_parc","confidence":"medium","address_query":"Alberdi 934 / 936 e/ Pellenc y Presidente Illía, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.22561137,"auto_lon":-58.15261035,"address_lat":null,"address_lon":null,"final_lat":-32.22561137,"final_lon":-58.15261035,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"85","legajo_canonico":"83","row_kind":"detail","raw_ubicacion":"Avda. Paysandú N° 539","ncp_formatted":"0100010000000633--010--","match_method":"manz_parc","confidence":"medium","address_query":"Avenida Paysandú 539, Colón","address_match_name":"AV PAYSANDU 539, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.21764814,"auto_lon":-58.14917538,"address_lat":-32.21787304,"address_lon":-58.14912571,"final_lat":-32.21764814,"final_lon":-58.14917538,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"25.44","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"86","legajo_canonico":"84","row_kind":"detail","raw_ubicacion":"Calle Pública s/N°","ncp_formatted":"0100010063310002--001--","match_method":"gru_manz_parc","confidence":"high","address_query":"Calle Pública °, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.21015791,"auto_lon":-58.16987214,"address_lat":null,"address_lon":null,"final_lat":-32.21015791,"final_lon":-58.16987214,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"87","legajo_canonico":"85","row_kind":"detail","raw_ubicacion":"Calle Pública s/N°","ncp_formatted":"0100010113100002--013--","match_method":"gru_manz_parc","confidence":"high","address_query":"Calle Pública °, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.22838164,"auto_lon":-58.16811954,"address_lat":null,"address_lon":null,"final_lat":-32.22838164,"final_lon":-58.16811954,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"88","legajo_canonico":"86","row_kind":"detail","raw_ubicacion":"Rocamora N° 943","ncp_formatted":"0100010000000488--013--","match_method":"manz_parc","confidence":"medium","address_query":"Rocamora 943, Colón","address_match_name":"TOMAS DE ROCAMORA 943, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22317991,"auto_lon":-58.15517906,"address_lat":-32.22338778,"address_lon":-58.15507581,"final_lat":-32.22317991,"final_lon":-58.15517906,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"25.07","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"89","legajo_canonico":"87","row_kind":"detail","raw_ubicacion":"Rocamora 1182 N° e/ Piamonte y                           Penón","ncp_formatted":"0100011010340351--005--","match_method":"gru_manz_parc","confidence":"high","address_query":"Rocamora 1182 e/ Piamonte y Penón, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.22648938,"auto_lon":-58.1590482,"address_lat":null,"address_lon":null,"final_lat":-32.22648938,"final_lon":-58.1590482,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"90","legajo_canonico":"88","row_kind":"detail","raw_ubicacion":"Santa Cruz N.º 375 e/ Rocamora y Bvard. Gaillard","ncp_formatted":"0100011010620434--002--","match_method":"gru_manz_parc","confidence":"high","address_query":"Gaillard 375, Colón","address_match_name":"AMILCAR GAILLARD 375, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22475117,"auto_lon":-58.15619841,"address_lat":-32.21749452,"address_lon":-58.14516473,"final_lat":-32.22475117,"final_lon":-58.15619841,"location_verification_status":"review_large_gap","geolocation_source":"automatic","address_vs_cadastral_distance_m":"1314.69","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"91","legajo_canonico":"89","row_kind":"detail","raw_ubicacion":"12 de Abril Nº 264, 266","ncp_formatted":"0100010000000158--017--","match_method":"manz_parc","confidence":"medium","address_query":"12 de Abril 264, Colón","address_match_name":"12 DE ABRIL 264, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22139569,"auto_lon":-58.13807318,"address_lat":-32.22126222,"address_lon":-58.1381663,"final_lat":-32.22139569,"final_lon":-58.13807318,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"17.23","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"92","legajo_canonico":"90","row_kind":"detail","raw_ubicacion":"Calle Pública s/N°","ncp_formatted":"0100010190020000--008--","match_method":"manz_parc","confidence":"low","address_query":"Calle Pública °, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.31459199,"auto_lon":-58.2218222,"address_lat":null,"address_lon":null,"final_lat":-32.31459199,"final_lon":-58.2218222,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"93","legajo_canonico":"91","row_kind":"detail","raw_ubicacion":"Avda Urquiza N° 1042","ncp_formatted":"0100010000000425--009--","match_method":"manz_parc","confidence":"medium","address_query":"Urquiza 1042, Colón","address_match_name":"GRL URQUIZA 1042, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.231007,"auto_lon":-58.1503269,"address_lat":-32.23098231,"address_lon":-58.1505015,"final_lat":-32.231007,"final_lon":-58.1503269,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"16.65","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"94","legajo_canonico":"92","row_kind":"detail","raw_ubicacion":"Andrade N° 355","ncp_formatted":"0100010000000687--002--","match_method":"manz_parc","confidence":"medium","address_query":"Andrade 355, Colón","address_match_name":"OLEGARIO V ANDRADE 355, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22728873,"auto_lon":-58.13493208,"address_lat":-32.22710012,"address_lon":-58.1349804,"final_lat":-32.22728873,"final_lon":-58.13493208,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"21.46","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"95","legajo_canonico":"93","row_kind":"detail","raw_ubicacion":"Paso de los Andes N° 871","ncp_formatted":"0100010000000513--006--","match_method":"manz_parc","confidence":"medium","address_query":"Paso de los Andes 871, Colón","address_match_name":"PASO DE LOS ANDES 871, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22379955,"auto_lon":-58.15259894,"address_lat":-32.22402989,"address_lon":-58.15234498,"final_lat":-32.22379955,"final_lon":-58.15259894,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"35.02","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"96","legajo_canonico":"94","row_kind":"detail","raw_ubicacion":"Arturo Illía N° 78 e/ Bolívar y San Martín","ncp_formatted":"0100010000000455--008--","match_method":"manz_parc","confidence":"medium","address_query":"Martín 78, Colón","address_match_name":"MARTINIANO LEGUIZAMON 78, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22833547,"auto_lon":-58.15079781,"address_lat":-32.22763469,"address_lon":-58.14515727,"final_lat":-32.22833547,"final_lon":-58.15079781,"location_verification_status":"review_large_gap","geolocation_source":"automatic","address_vs_cadastral_distance_m":"536.26","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"97","legajo_canonico":"94","row_kind":"detail_unassigned","raw_ubicacion":"12 de Abril N° 264, 266","ncp_formatted":"0100010000000158--017--","match_method":"manz_parc","confidence":"medium","address_query":"12 de Abril 264, Colón","address_match_name":"12 DE ABRIL 264, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22139569,"auto_lon":-58.13807318,"address_lat":-32.22126222,"address_lon":-58.1381663,"final_lat":-32.22139569,"final_lon":-58.13807318,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"17.23","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"98","legajo_canonico":"95","row_kind":"detail","raw_ubicacion":"San Martín N° 1302","ncp_formatted":"0100010000000279--020--","match_method":"manz_parc","confidence":"medium","address_query":"San Martín 1302, Colón","address_match_name":"AV SAN MARTIN 1302, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.23322514,"auto_lon":-58.15616624,"address_lat":-32.23295229,"address_lon":-58.15617671,"final_lat":-32.23322514,"final_lon":-58.15616624,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"30.36","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"99","legajo_canonico":"523391","row_kind":"detail","raw_ubicacion":"Bvard. Gaillard N°","ncp_formatted":"0100011010480379--002--","match_method":"gru_manz_parc","confidence":"high","address_query":"Boulevard Gaillard, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.22609294,"auto_lon":-58.15770947,"address_lat":null,"address_lon":null,"final_lat":-32.22609294,"final_lon":-58.15770947,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"100","legajo_canonico":"96","row_kind":"detail","raw_ubicacion":"Bolívar N° 623","ncp_formatted":"0100010000000066--008--","match_method":"manz_parc","confidence":"medium","address_query":"Bolívar 623, Colón","address_match_name":"BOLIVAR 623, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22358179,"auto_lon":-58.14542966,"address_lat":-32.22383169,"address_lon":-58.14523929,"final_lat":-32.22358179,"final_lon":-58.14542966,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"33.06","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"101","legajo_canonico":"97","row_kind":"detail","raw_ubicacion":"Mitre N° 972","ncp_formatted":"0100010000000447--020--","match_method":"manz_parc","confidence":"medium","address_query":"Mitre 972, Colón","address_match_name":"GRL MITRE 972, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.2336659,"auto_lon":-58.14569865,"address_lat":-32.23346382,"address_lon":-58.14589437,"final_lat":-32.2336659,"final_lon":-58.14569865,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"29.05","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"103","legajo_canonico":"99","row_kind":"detail","raw_ubicacion":"Avda Urquiza N° 379","ncp_formatted":"0100010000000130--008--","match_method":"manz_parc","confidence":"medium","address_query":"Urquiza 379, Colón","address_match_name":"GRL URQUIZA 379, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22292872,"auto_lon":-58.13979669,"address_lat":-32.22313673,"address_lon":-58.13963083,"final_lat":-32.22292872,"final_lon":-58.13979669,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"27.90","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"104","legajo_canonico":"100","row_kind":"detail","raw_ubicacion":"Rocamora y Primera Junta s/N°","ncp_formatted":"0100010000000577--001--","match_method":"manz_parc","confidence":"medium","address_query":"Rocamora y Primera Junta °, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.22000148,"auto_lon":-58.15006344,"address_lat":null,"address_lon":null,"final_lat":-32.22000148,"final_lon":-58.15006344,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"105","legajo_canonico":"101","row_kind":"detail","raw_ubicacion":"Reibel N° 172","ncp_formatted":"","match_method":"none","confidence":"low","address_query":"Reibel 172, Colón","address_match_name":"MARTIN REIBEL 172, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":null,"auto_lon":null,"address_lat":-32.22259234,"address_lon":-58.13415517,"final_lat":null,"final_lon":null,"location_verification_status":"missing_cadastral_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"106","legajo_canonico":"102","row_kind":"detail","raw_ubicacion":"Bvard Ferrari N° 768 - 772","ncp_formatted":"0100010000000542--003--","match_method":"manz_parc","confidence":"medium","address_query":"Boulevard Ferrari 768, Colón","address_match_name":"BV FERRARI 768, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.23185254,"auto_lon":-58.14155552,"address_lat":-32.23161867,"address_lon":-58.14166271,"final_lat":-32.23185254,"final_lon":-58.14155552,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"27.89","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"107","legajo_canonico":"103","row_kind":"detail","raw_ubicacion":"Calle Pública s/N°","ncp_formatted":"0100010162240000--001--","match_method":"gru_parc","confidence":"low","address_query":"Calle Pública °, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.25140021,"auto_lon":-58.18480389,"address_lat":null,"address_lon":null,"final_lat":-32.25140021,"final_lon":-58.18480389,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"108","legajo_canonico":"104","row_kind":"detail","raw_ubicacion":"Cantón de Valais N° 37 esq Avda Urquiza N° 951","ncp_formatted":"0100010000000453--016--","match_method":"manz_parc","confidence":"medium","address_query":"Valais 37, Colón","address_match_name":"DE VALAIS 37, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22971385,"auto_lon":-58.1492228,"address_lat":-32.22971939,"address_lon":-58.14904245,"final_lat":-32.22971385,"final_lon":-58.1492228,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"16.97","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"109","legajo_canonico":"105","row_kind":"detail","raw_ubicacion":"Ibirá Pitá s/N° - Los Bretes","ncp_formatted":"0100010170030007--015--","match_method":"gru_manz_parc","confidence":"high","address_query":"Ibirá Pitá °, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.2445651,"auto_lon":-58.12985298,"address_lat":null,"address_lon":null,"final_lat":-32.2445651,"final_lon":-58.12985298,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"110","legajo_canonico":"114","row_kind":"detail","raw_ubicacion":"Calle Favaloro N° 410","ncp_formatted":"0100010000000662--014--","match_method":"manz_parc","confidence":"medium","address_query":"Calle Favaloro 410, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.23152127,"auto_lon":-58.13230353,"address_lat":null,"address_lon":null,"final_lat":-32.23152127,"final_lon":-58.13230353,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"111","legajo_canonico":"107","row_kind":"detail","raw_ubicacion":"Rufino Mir N° 265","ncp_formatted":"0100011020410394--006--","match_method":"gru_manz_parc","confidence":"high","address_query":"Rufino Mir 265, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.2341676,"auto_lon":-58.14802119,"address_lat":null,"address_lon":null,"final_lat":-32.2341676,"final_lon":-58.14802119,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"112","legajo_canonico":"106","row_kind":"detail","raw_ubicacion":"Avda. Los Lapachos s/Nº - Los Bretes","ncp_formatted":"0100010000000004--015--","match_method":"manz_parc","confidence":"low","address_query":"Avenida Los Lapachos º, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.22995196,"auto_lon":-58.14531937,"address_lat":null,"address_lon":null,"final_lat":-32.22995196,"final_lon":-58.14531937,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"113","legajo_canonico":"111","row_kind":"detail","raw_ubicacion":"Laprida N° 335","ncp_formatted":"0100010000000165--012--","match_method":"manz_parc","confidence":"medium","address_query":"Laprida 335, Colón","address_match_name":"LAPRIDA 335, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22513071,"auto_lon":-58.13348691,"address_lat":-32.22489918,"address_lon":-58.13269418,"final_lat":-32.22513071,"final_lon":-58.13348691,"location_verification_status":"verified_nearby","geolocation_source":"automatic","address_vs_cadastral_distance_m":"78.89","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"114","legajo_canonico":"112","row_kind":"detail","raw_ubicacion":"Brovatti José s/N°","ncp_formatted":"0100010112910000--018--","match_method":"gru_parc","confidence":"medium","address_query":"Brovatti José °, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.23067607,"auto_lon":-58.17199451,"address_lat":null,"address_lon":null,"final_lat":-32.23067607,"final_lon":-58.17199451,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"115","legajo_canonico":"113","row_kind":"detail","raw_ubicacion":"Bvard. Gaillard N° 653 esq Primera Junta","ncp_formatted":"0100010000000577--003--","match_method":"manz_parc","confidence":"medium","address_query":"Gaillard 653, Colón","address_match_name":"AMILCAR GAILLARD 653, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22035369,"auto_lon":-58.14971268,"address_lat":-32.22050479,"address_lon":-58.14936094,"final_lat":-32.22035369,"final_lon":-58.14971268,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"37.11","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"116","legajo_canonico":"108","row_kind":"detail","raw_ubicacion":"Bvard. Sanguinetti N.º 420","ncp_formatted":"0100010000000515--006--","match_method":"manz_parc","confidence":"medium","address_query":"Sanguinetti 420, Colón","address_match_name":"INT SANGUINETTI 420, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22207792,"auto_lon":-58.15403316,"address_lat":-32.22192621,"address_lon":-58.1536954,"final_lat":-32.22207792,"final_lon":-58.15403316,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"35.97","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"117","legajo_canonico":"110","row_kind":"detail","raw_ubicacion":"Calle Pùblica s/Nº","ncp_formatted":"0100010113100002--025--","match_method":"gru_manz_parc","confidence":"high","address_query":"Calle Pùblica º, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.22800699,"auto_lon":-58.1672348,"address_lat":null,"address_lon":null,"final_lat":-32.22800699,"final_lon":-58.1672348,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"118","legajo_canonico":"109","row_kind":"detail","raw_ubicacion":"Ruta Nac N° 135, km 11","ncp_formatted":"0100010180030000--026--","match_method":"gru_parc","confidence":"low","address_query":"Ruta Nac 135, km 11, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.29648349,"auto_lon":-58.20768889,"address_lat":null,"address_lon":null,"final_lat":-32.29648349,"final_lon":-58.20768889,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"119","legajo_canonico":"115","row_kind":"detail","raw_ubicacion":"Paso de los Andes Nº esq. Piamonte","ncp_formatted":"","match_method":"none","confidence":"low","address_query":"Paso de los Andes esq. Piamonte, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":null,"auto_lon":null,"address_lat":null,"address_lon":null,"final_lat":null,"final_lon":null,"location_verification_status":"missing_both_points","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"120","legajo_canonico":"116","row_kind":"detail","raw_ubicacion":"Avda. Urquiza N° 668","ncp_formatted":"0100010000000051--015--","match_method":"manz_parc","confidence":"medium","address_query":"Urquiza 668, Colón","address_match_name":"GRL URQUIZA 668, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22647086,"auto_lon":-58.14392851,"address_lat":-32.22632084,"address_lon":-58.14404532,"final_lat":-32.22647086,"final_lon":-58.14392851,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"19.98","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"122","legajo_canonico":"118","row_kind":"detail","raw_ubicacion":"José Brovatti s/N°","ncp_formatted":"","match_method":"none","confidence":"low","address_query":"José Brovatti °, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":null,"auto_lon":null,"address_lat":null,"address_lon":null,"final_lat":null,"final_lon":null,"location_verification_status":"missing_both_points","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"123","legajo_canonico":"119","row_kind":"detail","raw_ubicacion":"Combatientes de Malvinas N° 982","ncp_formatted":"0100011010630464--006--","match_method":"manz_parc","confidence":"medium","address_query":"Combatientes de Malvinas 982, Colón","address_match_name":"COMBATIENTES DE MALVINAS 982, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22189095,"auto_lon":-58.15798699,"address_lat":-32.22167283,"address_lon":-58.15786548,"final_lat":-32.22189095,"final_lon":-58.15798699,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"26.81","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"124","legajo_canonico":"120","row_kind":"detail","raw_ubicacion":"Juan Manuel de Rosas s/Nº","ncp_formatted":"0100010063430000--020--","match_method":"gru_parc","confidence":"medium","address_query":"Juan Manuel de Rosas º, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.21087538,"auto_lon":-58.16333484,"address_lat":null,"address_lon":null,"final_lat":-32.21087538,"final_lon":-58.16333484,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"125","legajo_canonico":"121","row_kind":"detail","raw_ubicacion":"Blacarce N° 576","ncp_formatted":"0100010000000713--003--","match_method":"manz_parc","confidence":"medium","address_query":"Blacarce 576, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.2133287,"auto_lon":-58.14742247,"address_lat":null,"address_lon":null,"final_lat":-32.2133287,"final_lon":-58.14742247,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"126","legajo_canonico":"122","row_kind":"detail","raw_ubicacion":"Calle Pública \"El Mojón\" s/N°, (Loteo San Juan 1)","ncp_formatted":"0100010151110014--001--","match_method":"gru_manz_parc","confidence":"high","address_query":"Calle Pública \"El Mojón\" °, Loteo San Juan 1, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.27163108,"auto_lon":-58.20688932,"address_lat":null,"address_lon":null,"final_lat":-32.27163108,"final_lon":-58.20688932,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"127","legajo_canonico":"123","row_kind":"detail","raw_ubicacion":"Calle Pública s/N°","ncp_formatted":"0100010063410002--007--","match_method":"gru_manz_parc","confidence":"high","address_query":"Calle Pública °, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.21607164,"auto_lon":-58.16116502,"address_lat":null,"address_lon":null,"final_lat":-32.21607164,"final_lon":-58.16116502,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"128","legajo_canonico":"125","row_kind":"detail","raw_ubicacion":"Gouchón Nº 652 esq. Primera Junta","ncp_formatted":"0100010000000047--001--","match_method":"manz_parc","confidence":"low","address_query":"Gouchón 652, Colón","address_match_name":"EMILIO GOUCHON 652, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22366236,"auto_lon":-58.1465072,"address_lat":-32.22345114,"address_lon":-58.14642971,"final_lat":-32.22366236,"final_lon":-58.1465072,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"24.59","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"129","legajo_canonico":"127","row_kind":"detail","raw_ubicacion":"Avda Paysandú N° 1123","ncp_formatted":"0100011010490381--007--","match_method":"gru_manz_parc","confidence":"high","address_query":"Avenida Paysandú 1123, Colón","address_match_name":"AV PAYSANDU 1123, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22474875,"auto_lon":-58.15909354,"address_lat":-32.22488585,"address_lon":-58.1588835,"final_lat":-32.22474875,"final_lon":-58.15909354,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"24.96","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"130","legajo_canonico":"128","row_kind":"detail","raw_ubicacion":"Juana Azurduy s/N°","ncp_formatted":"0100010063310002--007--","match_method":"gru_manz_parc","confidence":"high","address_query":"Juana Azurduy °, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.20971937,"auto_lon":-58.16915859,"address_lat":null,"address_lon":null,"final_lat":-32.20971937,"final_lon":-58.16915859,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"131","legajo_canonico":"126","row_kind":"detail","raw_ubicacion":"Calle Pública s/N°","ncp_formatted":"0100010101370004--005--","match_method":"gru_manz_parc","confidence":"high","address_query":"Calle Pública °, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.25387287,"auto_lon":-58.2101688,"address_lat":null,"address_lon":null,"final_lat":-32.25387287,"final_lon":-58.2101688,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"132","legajo_canonico":"124","row_kind":"detail","raw_ubicacion":"Gouchón N° e/ Salta y Primera Junta","ncp_formatted":"0100010000000046--009--","match_method":"manz_parc","confidence":"medium","address_query":"Gouchón e/ Salta y Primera Junta, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.22349315,"auto_lon":-58.14706458,"address_lat":null,"address_lon":null,"final_lat":-32.22349315,"final_lon":-58.14706458,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"133","legajo_canonico":"131","row_kind":"detail","raw_ubicacion":"Cementerio","ncp_formatted":"","match_method":"none","confidence":"low","address_query":"Cementerio, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":null,"auto_lon":null,"address_lat":null,"address_lon":null,"final_lat":null,"final_lon":null,"location_verification_status":"missing_both_points","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"134","legajo_canonico":"129","row_kind":"detail","raw_ubicacion":"Avda. Paysandú N° 1118 Y 1120","ncp_formatted":"0100011010480380--006--","match_method":"manz_parc","confidence":"medium","address_query":"Avenida Paysandú 1118, Colón","address_match_name":"AV PAYSANDU 1118, Colón, Entre Ríos","address_geocode_status":"matched_ign","auto_lat":-32.22503158,"auto_lon":-58.15866797,"address_lat":-32.22481825,"address_lon":-58.15878819,"final_lat":-32.22503158,"final_lon":-58.15866797,"location_verification_status":"verified_close","geolocation_source":"automatic","address_vs_cadastral_distance_m":"26.28","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"135","legajo_canonico":"130","row_kind":"detail","raw_ubicacion":"Calle Pública s/N°","ncp_formatted":"0100010123270011--009--","match_method":"gru_manz_parc","confidence":"high","address_query":"Calle Pública °, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.22739336,"auto_lon":-58.16179063,"address_lat":null,"address_lon":null,"final_lat":-32.22739336,"final_lon":-58.16179063,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""},{"source_row_number":"136","legajo_canonico":"132","row_kind":"detail","raw_ubicacion":"Eduardo Torrieri Nº (Ex 24),  Alberdi N° 1334","ncp_formatted":"0100010000000283--010--","match_method":"manz_parc","confidence":"medium","address_query":"Eduardo Torrieri Ex 24, Alberdi 1334, Colón","address_match_name":"","address_geocode_status":"no_ign_match","auto_lat":-32.2303405,"auto_lon":-58.1590624,"address_lat":null,"address_lon":null,"final_lat":-32.2303405,"final_lon":-58.1590624,"location_verification_status":"missing_address_point","geolocation_source":"automatic","address_vs_cadastral_distance_m":"","admin_override_reason":"","admin_override_updated_at":""}];
+    let adminUnlocked = false;
+    let selectedRow = null;
+
+    const rowsById = new Map(baseRows.map((r) => [String(r.source_row_number), { ...r }]));
+    const addedRows = new Map();
+    const editedRows = new Map();
+    const deletedRows = new Set();
+
+    const overrides = new Map(
+      baseRows
+        .filter(r => r.geolocation_source === 'admin_override' && Number.isFinite(r.final_lat) && Number.isFinite(r.final_lon))
+        .map(r => [String(r.source_row_number), {
+          source_row_number: String(r.source_row_number),
+          lat: r.final_lat,
+          lon: r.final_lon,
+          reason: r.admin_override_reason || '',
+          updated_at: r.admin_override_updated_at || ''
+        }])
+    );
+
+    const map = L.map('map').setView([-32.2292, -58.1417], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    let autoMarker = null;
+    let addressMarker = null;
+    let finalMarker = null;
+    let joinLine = null;
+
+    const rowsEl = document.getElementById('rows');
+    const summaryChipsEl = document.getElementById('summary-chips');
+    const searchEl = document.getElementById('search');
+    const statusFilterEl = document.getElementById('status-filter');
+    const sourceFilterEl = document.getElementById('source-filter');
+    const rowEl = document.getElementById('row-input');
+    const legajoEl = document.getElementById('legajo-input');
+    const ubicacionEl = document.getElementById('ubicacion-input');
+    const latEl = document.getElementById('lat-input');
+    const lonEl = document.getElementById('lon-input');
+    const reasonEl = document.getElementById('reason-input');
+    const statusEl = document.getElementById('status-input');
+    const ncpEl = document.getElementById('ncp-input');
+    const methodEl = document.getElementById('method-input');
+    const confidenceEl = document.getElementById('confidence-input');
+    const queryEl = document.getElementById('query-input');
+    const extraFormEl = document.getElementById('extra-form-fields');
+    const selectedMetaEl = document.getElementById('selected-meta');
+    const lockStateEl = document.getElementById('lock-state');
+
+    function getEffectiveRows() {
+      const merged = [];
+      for (const [id, row] of rowsById.entries()) {
+        if (deletedRows.has(id)) continue;
+        const edited = editedRows.get(id);
+        merged.push(edited ? { ...row, ...edited } : { ...row });
+      }
+      for (const row of addedRows.values()) {
+        if (!deletedRows.has(String(row.source_row_number))) {
+          merged.push({ ...row });
+        }
+      }
+      merged.sort((a, b) => Number(a.source_row_number) - Number(b.source_row_number));
+      return merged;
+    }
+
+    function updateSummary() {
+      const currentRows = getEffectiveRows();
+      const byStatus = new Map();
+      let withOverride = 0;
+      for (const row of currentRows) {
+        byStatus.set(row.location_verification_status, (byStatus.get(row.location_verification_status) || 0) + 1);
+        if (row.geolocation_source === 'admin_override' || overrides.has(String(row.source_row_number))) {
+          withOverride += 1;
+        }
+      }
+      const pieces = [];
+      pieces.push('<span class="chip">total: ' + currentRows.length + '</span>');
+      pieces.push('<span class="chip">override: ' + withOverride + '</span>');
+      pieces.push('<span class="chip">altas: ' + addedRows.size + '</span>');
+      pieces.push('<span class="chip">mods: ' + editedRows.size + '</span>');
+      pieces.push('<span class="chip">bajas: ' + deletedRows.size + '</span>');
+      for (const [k, v] of byStatus.entries()) {
+        pieces.push('<span class="chip">' + k + ': ' + v + '</span>');
+      }
+      summaryChipsEl.innerHTML = pieces.join('');
+    }
+
+    function statusColor(status) {
+      if (status === 'verified_close') return '#16a34a';
+      if (status === 'verified_nearby') return '#65a30d';
+      if (status === 'review_medium_gap') return '#d97706';
+      if (status === 'review_large_gap') return '#dc2626';
+      return '#64748b';
+    }
+
+    function clearMap() {
+      for (const layer of [autoMarker, addressMarker, finalMarker, joinLine]) {
+        if (layer) map.removeLayer(layer);
+      }
+      autoMarker = addressMarker = finalMarker = joinLine = null;
+    }
+
+    function renderRows() {
+      const q = (searchEl.value || '').toLowerCase().trim();
+      const statusFilter = statusFilterEl.value;
+      const sourceFilter = sourceFilterEl.value;
+      rowsEl.innerHTML = '';
+
+      getEffectiveRows()
+        .filter(r => {
+          if (!q) return true;
+          return String(r.source_row_number).includes(q)
+            || String(r.legajo_canonico).toLowerCase().includes(q)
+            || String(r.raw_ubicacion || '').toLowerCase().includes(q);
+        })
+        .filter(r => statusFilter === 'all' ? true : r.location_verification_status === statusFilter)
+        .filter(r => sourceFilter === 'all' ? true : r.geolocation_source === sourceFilter)
+        .forEach(r => {
+          const div = document.createElement('div');
+          const id = String(r.source_row_number);
+          div.className = 'row' + (selectedRow && selectedRow.source_row_number === r.source_row_number ? ' active' : '');
+          if (deletedRows.has(id)) {
+            div.className += ' deleted';
+          }
+          div.innerHTML =
+            '<div><b>Fila ' + r.source_row_number + '</b> · legajo ' + (r.legajo_canonico || '-') + '</div>' +
+            '<div>' + (r.raw_ubicacion || '-') + '</div>' +
+            '<div><span class="badge" style="border-color:' + statusColor(r.location_verification_status) + '">' + r.location_verification_status + '</span>' +
+            '<span class="badge">dist: ' + (r.address_vs_cadastral_distance_m || '-') + ' m</span>' +
+            '<span class="badge">' + r.geolocation_source + '</span>' +
+            '<span class="badge">ncp: ' + (r.ncp_formatted || '-') + '</span></div>';
+          div.onclick = () => selectRow(r);
+          rowsEl.appendChild(div);
+        });
+
+      updateSummary();
+    }
+
+    function selectRow(r) {
+      selectedRow = r;
+      renderRows();
+      clearMap();
+
+      const ovr = overrides.get(String(r.source_row_number));
+      const finalLat = ovr ? ovr.lat : r.final_lat;
+      const finalLon = ovr ? ovr.lon : r.final_lon;
+
+      rowEl.value = String(r.source_row_number || '');
+      legajoEl.value = String(r.legajo_canonico || '');
+      ubicacionEl.value = String(r.raw_ubicacion || '');
+      statusEl.value = String(r.location_verification_status || 'missing_address_point');
+      ncpEl.value = String(r.ncp_formatted || '');
+      methodEl.value = String(r.match_method || '');
+      confidenceEl.value = String(r.confidence || '');
+      queryEl.value = String(r.address_query || '');
+
+      if (Number.isFinite(r.auto_lat) && Number.isFinite(r.auto_lon)) {
+        autoMarker = L.circleMarker([r.auto_lat, r.auto_lon], { radius: 7, color: '#2563eb', fillColor: '#60a5fa', fillOpacity: 0.95, weight: 2 })
+          .bindPopup('Automático (catastro)')
+          .addTo(map);
+      }
+
+      if (Number.isFinite(r.address_lat) && Number.isFinite(r.address_lon)) {
+        addressMarker = L.circleMarker([r.address_lat, r.address_lon], { radius: 7, color: '#c2410c', fillColor: '#fb923c', fillOpacity: 0.95, weight: 2 })
+          .bindPopup('Dirección IGN')
+          .addTo(map);
+      }
+
+      if (Number.isFinite(finalLat) && Number.isFinite(finalLon)) {
+        finalMarker = L.marker([finalLat, finalLon], { draggable: adminUnlocked }).addTo(map).bindPopup('Punto final editable');
+        finalMarker.on('dragend', () => {
+          const p = finalMarker.getLatLng();
+          latEl.value = String(p.lat.toFixed(8));
+          lonEl.value = String(p.lng.toFixed(8));
+        });
+      }
+
+      if (Number.isFinite(finalLat) && Number.isFinite(finalLon) && Number.isFinite(r.address_lat) && Number.isFinite(r.address_lon)) {
+        joinLine = L.polyline([[finalLat, finalLon], [r.address_lat, r.address_lon]], { color: '#facc15', weight: 3, dashArray: '8 6' }).addTo(map);
+      }
+
+      latEl.value = Number.isFinite(finalLat) ? String(finalLat) : '';
+      lonEl.value = Number.isFinite(finalLon) ? String(finalLon) : '';
+      reasonEl.value = ovr?.reason || r.admin_override_reason || '';
+      selectedMetaEl.textContent = 'Fila ' + r.source_row_number + ' · estado: ' + r.location_verification_status + ' · origen: ' + r.geolocation_source;
+
+      const pts = [];
+      if (Number.isFinite(r.auto_lat) && Number.isFinite(r.auto_lon)) pts.push([r.auto_lat, r.auto_lon]);
+      if (Number.isFinite(r.address_lat) && Number.isFinite(r.address_lon)) pts.push([r.address_lat, r.address_lon]);
+      if (Number.isFinite(finalLat) && Number.isFinite(finalLon)) pts.push([finalLat, finalLon]);
+      if (pts.length > 0) map.fitBounds(pts, { padding: [40, 40] });
+    }
+
+    function createCurrentFormRecord() {
+      const id = String(rowEl.value || '').trim();
+      const lat = latEl.value === '' ? null : Number(latEl.value);
+      const lon = lonEl.value === '' ? null : Number(lonEl.value);
+      if (!id) {
+        throw new Error('Fila requerida');
+      }
+      if ((latEl.value !== '' && !Number.isFinite(lat)) || (lonEl.value !== '' && !Number.isFinite(lon))) {
+        throw new Error('Lat/Lon invalidas');
+      }
+
+      const geolocationSource = overrides.has(id) ? 'admin_override' : (rowsById.has(id) ? 'automatic' : 'admin_new');
+      return {
+        source_row_number: id,
+        legajo_canonico: String(legajoEl.value || '').trim(),
+        row_kind: 'detail',
+        raw_ubicacion: String(ubicacionEl.value || '').trim(),
+        ncp_formatted: String(ncpEl.value || '').trim(),
+        match_method: String(methodEl.value || '').trim(),
+        confidence: String(confidenceEl.value || '').trim(),
+        address_query: String(queryEl.value || '').trim(),
+        address_match_name: selectedRow?.address_match_name || '',
+        address_geocode_status: selectedRow?.address_geocode_status || '',
+        auto_lat: selectedRow?.auto_lat ?? null,
+        auto_lon: selectedRow?.auto_lon ?? null,
+        address_lat: selectedRow?.address_lat ?? null,
+        address_lon: selectedRow?.address_lon ?? null,
+        final_lat: lat,
+        final_lon: lon,
+        location_verification_status: String(statusEl.value || 'missing_address_point'),
+        geolocation_source: geolocationSource,
+        address_vs_cadastral_distance_m: selectedRow?.address_vs_cadastral_distance_m || '',
+        admin_override_reason: String(reasonEl.value || '').trim(),
+        admin_override_updated_at: selectedRow?.admin_override_updated_at || '',
+      };
+    }
+
+    document.getElementById('unlock-btn').onclick = () => {
+      const pass = document.getElementById('admin-pass').value;
+      adminUnlocked = pass === ADMIN_PASSWORD;
+      lockStateEl.textContent = adminUnlocked ? 'Modo administrador activo. Arrastrar marcador final habilitado.' : 'Clave incorrecta. Modo solo lectura.';
+      if (finalMarker) {
+        if (adminUnlocked) {
+          finalMarker.dragging.enable();
+        } else {
+          finalMarker.dragging.disable();
+        }
+      }
+    };
+
+    document.getElementById('form-simple-btn').onclick = () => {
+      extraFormEl.classList.remove('visible');
+    };
+    document.getElementById('form-full-btn').onclick = () => {
+      extraFormEl.classList.add('visible');
+    };
+
+    document.getElementById('new-btn').onclick = () => {
+      if (!adminUnlocked) return;
+      selectedRow = null;
+      rowEl.value = '';
+      legajoEl.value = '';
+      ubicacionEl.value = '';
+      latEl.value = '';
+      lonEl.value = '';
+      reasonEl.value = '';
+      statusEl.value = 'missing_address_point';
+      ncpEl.value = '';
+      methodEl.value = '';
+      confidenceEl.value = '';
+      queryEl.value = '';
+      selectedMetaEl.textContent = 'Alta nueva: completar formulario y guardar.';
+      clearMap();
+    };
+
+    document.getElementById('save-record-btn').onclick = () => {
+      if (!adminUnlocked) return;
+      try {
+        const rec = createCurrentFormRecord();
+        const id = String(rec.source_row_number);
+        if (rowsById.has(id)) {
+          editedRows.set(id, rec);
+        } else {
+          addedRows.set(id, rec);
+        }
+        deletedRows.delete(id);
+        selectedRow = rec;
+        selectedMetaEl.textContent = 'Registro guardado en borrador admin: fila ' + id;
+        renderRows();
+        selectRow(rec);
+      } catch (err) {
+        selectedMetaEl.textContent = 'Error al guardar: ' + (err && err.message ? err.message : 'dato invalido');
+      }
+    };
+
+    document.getElementById('delete-btn').onclick = () => {
+      if (!adminUnlocked) return;
+      const id = String(rowEl.value || '').trim();
+      if (!id) return;
+      deletedRows.add(id);
+      overrides.delete(id);
+      addedRows.delete(id);
+      selectedMetaEl.textContent = 'Fila ' + id + ' marcada para baja logica.';
+      selectedRow = null;
+      renderRows();
+      clearMap();
+    };
+
+    document.getElementById('undelete-btn').onclick = () => {
+      if (!adminUnlocked) return;
+      const id = String(rowEl.value || '').trim();
+      if (!id) return;
+      deletedRows.delete(id);
+      selectedMetaEl.textContent = 'Fila ' + id + ' restaurada.';
+      renderRows();
+    };
+
+    document.getElementById('save-btn').onclick = () => {
+      if (!adminUnlocked) return;
+      const id = String(rowEl.value || '').trim();
+      if (!id) return;
+      const lat = Number(latEl.value);
+      const lon = Number(lonEl.value);
+      if (!Number.isFinite(lat) || !Number.isFinite(lon)) return;
+      overrides.set(id, {
+        source_row_number: id,
+        lat,
+        lon,
+        reason: reasonEl.value || '',
+        updated_at: new Date().toISOString(),
+      });
+      if (selectedRow) {
+        selectedRow.final_lat = lat;
+        selectedRow.final_lon = lon;
+        selectedRow.geolocation_source = 'admin_override';
+      }
+      renderRows();
+      if (selectedRow) {
+        selectRow(selectedRow);
+      }
+    };
+
+    document.getElementById('reset-btn').onclick = () => {
+      if (!adminUnlocked) return;
+      const id = String(rowEl.value || '').trim();
+      if (!id) return;
+      overrides.delete(id);
+      if (selectedRow) {
+        selectedRow.geolocation_source = rowsById.has(id) ? 'automatic' : 'admin_new';
+        selectRow(selectedRow);
+      }
+      renderRows();
+    };
+
+    document.getElementById('export-btn').onclick = () => {
+      const payload = {
+        updatedAt: new Date().toISOString(),
+        overrides: Array.from(overrides.values()).sort((a, b) => Number(a.source_row_number) - Number(b.source_row_number)),
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'cadastral-overrides.json';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    };
+
+    function exportAdminChanges() {
+      const payload = {
+        schemaVersion: 1,
+        updatedAt: new Date().toISOString(),
+        notes: 'Cambios admin para alta, baja, modificacion y correccion de ubicacion.',
+        overrides: Array.from(overrides.values()).sort((a, b) => Number(a.source_row_number) - Number(b.source_row_number)),
+        addedRows: Array.from(addedRows.values()).sort((a, b) => Number(a.source_row_number) - Number(b.source_row_number)),
+        editedRows: Array.from(editedRows.values()).sort((a, b) => Number(a.source_row_number) - Number(b.source_row_number)),
+        deletedRows: Array.from(deletedRows.values()).sort((a, b) => Number(a) - Number(b)),
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'cadastral-admin-changes.json';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    document.getElementById('export-admin-btn').onclick = () => exportAdminChanges();
+    document.getElementById('import-admin-btn').onclick = () => document.getElementById('import-admin-file').click();
+
+    document.getElementById('import-admin-file').onchange = async (ev) => {
+      const f = ev.target && ev.target.files ? ev.target.files[0] : null;
+      if (!f) return;
+      const txt = await f.text();
+      const parsed = JSON.parse(txt);
+      if (Array.isArray(parsed.overrides)) {
+        for (const o of parsed.overrides) {
+          if (!o || !o.source_row_number) continue;
+          overrides.set(String(o.source_row_number), {
+            source_row_number: String(o.source_row_number),
+            lat: Number(o.lat),
+            lon: Number(o.lon),
+            reason: String(o.reason || ''),
+            updated_at: String(o.updated_at || new Date().toISOString()),
+          });
+        }
+      }
+      if (Array.isArray(parsed.addedRows)) {
+        for (const r of parsed.addedRows) {
+          if (!r || !r.source_row_number) continue;
+          addedRows.set(String(r.source_row_number), r);
+        }
+      }
+      if (Array.isArray(parsed.editedRows)) {
+        for (const r of parsed.editedRows) {
+          if (!r || !r.source_row_number) continue;
+          editedRows.set(String(r.source_row_number), r);
+        }
+      }
+      if (Array.isArray(parsed.deletedRows)) {
+        for (const id of parsed.deletedRows) {
+          deletedRows.add(String(id));
+        }
+      }
+
+      renderRows();
+      selectedMetaEl.textContent = 'Cambios admin importados: ' + f.name;
+      ev.target.value = '';
+    };
+
+    map.on('click', (ev) => {
+      if (!adminUnlocked) return;
+      latEl.value = String(ev.latlng.lat.toFixed(8));
+      lonEl.value = String(ev.latlng.lng.toFixed(8));
+      if (selectedRow) {
+        selectedRow.final_lat = Number(latEl.value);
+        selectedRow.final_lon = Number(lonEl.value);
+        if (finalMarker) {
+          finalMarker.setLatLng([selectedRow.final_lat, selectedRow.final_lon]);
+        }
+      }
+    });
+
+    searchEl.oninput = () => renderRows();
+    statusFilterEl.onchange = () => renderRows();
+    sourceFilterEl.onchange = () => renderRows();
+
+    renderRows();
+    const initialRows = getEffectiveRows();
+    if (initialRows.length > 0) selectRow(initialRows[0]);
+  </script>
+</body>
+</html>

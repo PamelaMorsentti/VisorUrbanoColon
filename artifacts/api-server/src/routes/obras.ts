@@ -104,6 +104,10 @@ function parseFilters(query: Record<string, unknown>): ParsedFilters {
 
 function getVisadoYear(value: unknown): number | null {
   if (value instanceof Date && !Number.isNaN(value.getTime())) return value.getUTCFullYear();
+  if (typeof value === "number" && Number.isFinite(value)) {
+    const n = Math.trunc(value);
+    return n >= 1900 && n <= 2999 ? n : null;
+  }
   if (typeof value !== "string") return null;
   const trimmed = value.trim();
   if (!trimmed) return null;
@@ -112,6 +116,25 @@ function getVisadoYear(value: unknown): number | null {
   const maybeDate = new Date(trimmed);
   if (Number.isNaN(maybeDate.getTime())) return null;
   return maybeDate.getUTCFullYear();
+}
+
+function getFeatureVisadoYear(props: Record<string, unknown>): number | null {
+  const candidates: unknown[] = [
+    props.fecha_de_visado,
+    props.fecha_visado_iso,
+    props.visado,
+    props.raw__visado,
+    props.visado_year,
+    props.visadoYear,
+    props.ano,
+    props.anio,
+    props.year,
+  ];
+  for (const candidate of candidates) {
+    const year = getVisadoYear(candidate);
+    if (year) return year;
+  }
+  return null;
 }
 
 function isTruthyFlag(value: unknown): boolean {
@@ -144,7 +167,7 @@ function applyFeatureFilters(features: GeoPointFeature[], filters: ParsedFilters
   const filtered = features.filter((feature) => {
     const props = feature.properties ?? {};
 
-    const year = getVisadoYear(props.fecha_de_visado);
+    const year = getFeatureVisadoYear(props);
     if (yearsSet.size > 0 && (!year || !yearsSet.has(year))) return false;
     if (filters.yearFrom && (!year || year < filters.yearFrom)) return false;
     if (filters.yearTo && (!year || year > filters.yearTo)) return false;
@@ -438,7 +461,7 @@ router.post("/obras/import-from-file", async (req, res) => {
         destinoUso: String(props.destino_uso ?? props.destino ?? "") || null,
         tipo: String(props.tipo ?? props.tipo_obra ?? "") || null,
         visadoDate,
-        visadoYear: getVisadoYear(props.fecha_de_visado),
+        visadoYear: getFeatureVisadoYear(props),
         isRelevamiento: isTruthyFlag(props.relevamiento_o_existente),
         isNueva: isTruthyFlag(props.a_contruir_obra_nueva),
         isAmpliacion: isTruthyFlag(props.ampliacion_de_obra_existente),

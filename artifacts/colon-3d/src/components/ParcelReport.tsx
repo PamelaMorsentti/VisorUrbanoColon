@@ -136,23 +136,34 @@ function getTextValue(value: unknown): string {
   return String(value ?? "").trim().toLowerCase();
 }
 
+function getCotaReference(parcelProps: Record<string, unknown>): number {
+  const cotaRef = Number(parcelProps.inund_cota_ref_m);
+  return Number.isFinite(cotaRef) ? cotaRef : 10;
+}
+
+function formatCotaLabel(value: number): string {
+  return value.toFixed(2).replace(".", ",");
+}
+
 function buildRiskAlerts(data: ReportData): string[] {
   const alerts: string[] = [];
   const afectacion = getTextValue(data.parcelProps.inund_afectacion);
+  const cotaRef = getCotaReference(data.parcelProps);
+  const cotaRefLabel = formatCotaLabel(cotaRef);
 
   if (afectacion === "total" || afectacion === "parcial") {
     const detalle = afectacion === "total"
       ? "afectacion total"
       : "afectacion parcial";
     alerts.push(
-      `ALERTA ALTIMETRICA: esta parcela fue clasificada con ${detalle} bajo el criterio de cota <= +10,00 m (inclusive).`
+      `ALERTA ALTIMETRICA: esta parcela fue clasificada con ${detalle} bajo el criterio de cota <= +${cotaRefLabel} m (inclusive).`
     );
   }
 
   const hasHydro = data.intersections.some(i => i.id === "hidro" && i.features.length > 0);
   const hasStormDrain = data.intersections.some(i => i.id === "bocas" && i.features.length > 0);
   const hasHistoricWater = data.intersections.some(i => i.id === "ext_jrc_surface_water" && i.features.length > 0);
-  const hasLowContourNearby = data.cotas.some(c => Number(c.COTA) <= 10 || Number(c.Z) <= 10);
+  const hasLowContourNearby = data.cotas.some(c => Number(c.COTA) <= cotaRef || Number(c.Z) <= cotaRef);
 
   if (hasHydro || hasStormDrain || hasHistoricWater || hasLowContourNearby) {
     const fuentes: string[] = [];
