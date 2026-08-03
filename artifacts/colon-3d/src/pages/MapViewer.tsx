@@ -2655,7 +2655,7 @@ export default function MapViewer() {
 
       simLayer.bringToFront();
       if (floodVisualOverlayEnabled) {
-        overlayLayer.bringToBack();
+        overlayLayer.bringToFront();
       }
     } finally {
       setFloodSimulationLoading(false);
@@ -2713,7 +2713,7 @@ export default function MapViewer() {
 
     if (floodSimulationEnabled && floodVisualOverlayEnabled) {
       if (!map.hasLayer(overlay)) overlay.addTo(map);
-      overlay.bringToBack();
+      overlay.bringToFront();
     } else if (map.hasLayer(overlay)) {
       map.removeLayer(overlay);
     }
