@@ -565,6 +565,58 @@ function buildFloodSimulationGeoJSON(parcela: FeatureCollection, cNivel: Feature
   };
 }
 
+function buildFloodVisualOverlayGeoJSON(cNivel: FeatureCollection, cotaRef: number): FeatureCollection {
+  const lowContourLines = (cNivel.features || []).filter((f: FeatureCollection) => {
+    const z = Number(f?.properties?.Z ?? f?.properties?.COTA);
+    const t = f?.geometry?.type;
+    return Number.isFinite(z) && z <= cotaRef && (t === "LineString" || t === "MultiLineString");
+  });
+
+  if (!lowContourLines.length) {
+    return { type: "FeatureCollection", features: [] };
+  }
+
+  const lowClosedPolygons: FeatureCollection[] = [];
+  for (const f of lowContourLines) {
+    const rings = ringsFromGeometry(f.geometry);
+    for (const ring of rings) {
+      if (!isClosedRing(ring)) continue;
+      lowClosedPolygons.push({
+        type: "Feature",
+        properties: {
+          kind: "zone_estimada",
+          z: Number(f?.properties?.Z ?? f?.properties?.COTA ?? null),
+          inund_cota_ref_m: Number(cotaRef.toFixed(2)),
+        },
+        geometry: { type: "Polygon", coordinates: [ring] },
+      });
+    }
+  }
+
+  const validZonePolygons = lowClosedPolygons.filter((f) => {
+    try {
+      return area(f) > 1;
+    } catch {
+      return false;
+    }
+  });
+
+  const contourLineFeatures = lowContourLines.map((feature: FeatureCollection) => ({
+    type: "Feature" as const,
+    properties: {
+      ...(feature.properties ?? {}),
+      kind: "curva_cota",
+      inund_cota_ref_m: Number(cotaRef.toFixed(2)),
+    },
+    geometry: feature.geometry,
+  }));
+
+  return {
+    type: "FeatureCollection",
+    features: [...validZonePolygons, ...contourLineFeatures],
+  };
+}
+
 // ─── Label text ──────────────────────────────────────────────────────────────
 
 function getLabelText(layerId: string, props: Record<string, unknown>, index: number): string {
@@ -1104,6 +1156,7 @@ export default function MapViewer() {
   const worksLayerRef = useRef<L.GeoJSON | null>(null);
   const obrasHeatLayerRef = useRef<L.GeoJSON | null>(null);
   const floodSimulationLayerRef = useRef<L.GeoJSON | null>(null);
+  const floodVisualOverlayLayerRef = useRef<L.GeoJSON | null>(null);
 
   const [layersPanelOpen, setLayersPanelOpen] = useState(false);
   const [searchPanelOpen, setSearchPanelOpen] = useState(false);
@@ -1172,6 +1225,7 @@ export default function MapViewer() {
   const [floodSimulationCotaInput, setFloodSimulationCotaInput] = useState("10,00");
   const [floodSimulationLoading, setFloodSimulationLoading] = useState(false);
   const [floodSimulationStats, setFloodSimulationStats] = useState<FloodSimulationStats | null>(null);
+  const [floodVisualOverlayEnabled, setFloodVisualOverlayEnabled] = useState(true);
   const [floodRealtimeSync, setFloodRealtimeSync] = useState(false);
   const [floodRealtimeHeight, setFloodRealtimeHeight] = useState<number | null>(null);
   const [floodRealtimeLoading, setFloodRealtimeLoading] = useState(false);
@@ -2453,6 +2507,9 @@ export default function MapViewer() {
       if (floodSimulationLayerRef.current && map.hasLayer(floodSimulationLayerRef.current)) {
         map.removeLayer(floodSimulationLayerRef.current);
       }
+      if (floodVisualOverlayLayerRef.current && map.hasLayer(floodVisualOverlayLayerRef.current)) {
+        map.removeLayer(floodVisualOverlayLayerRef.current);
+      }
 
       const simLayer = L.geoJSON(geojson, {
         style: (feature) => {
@@ -2517,11 +2574,51 @@ export default function MapViewer() {
       setFloodSimulationEnabled(true);
       setFloodSimulationCotaInput(formatFloodCotaInput(parsedCota));
       simLayer.addTo(map);
+
+      const overlayGeojson = buildFloodVisualOverlayGeoJSON(cNivelData, parsedCota);
+      const overlayLayer = L.geoJSON(overlayGeojson, {
+        style: (feature) => {
+          const kind = String(feature?.properties?.kind ?? "").toLowerCase();
+          if (kind === "curva_cota") {
+            return {
+              color: "#22d3ee",
+              weight: 1.8,
+              opacity: 0.95,
+              dashArray: "6 4",
+            } as L.PathOptions;
+          }
+          return {
+            fillColor: "#38bdf8",
+            fillOpacity: 0.18,
+            color: "#0284c7",
+            weight: 1,
+            opacity: 0.65,
+          } as L.PathOptions;
+        },
+        onEachFeature: (feature, featureLayer) => {
+          const kind = String(feature?.properties?.kind ?? "").toLowerCase();
+          const cota = Number(feature?.properties?.inund_cota_ref_m ?? parsedCota);
+          if (kind === "curva_cota") {
+            featureLayer.bindPopup(`<div><b>Curva de cota</b><br/>Nivel de referencia: ${cota.toFixed(2)} m</div>`);
+          } else {
+            featureLayer.bindPopup(`<div><b>Zona estimada de crecida</b><br/>Nivel de referencia: ${cota.toFixed(2)} m</div>`);
+          }
+        },
+      });
+
+      floodVisualOverlayLayerRef.current = overlayLayer;
+      if (floodVisualOverlayEnabled) {
+        overlayLayer.addTo(map);
+      }
+
       simLayer.bringToFront();
+      if (floodVisualOverlayEnabled) {
+        overlayLayer.bringToBack();
+      }
     } finally {
       setFloodSimulationLoading(false);
     }
-  }, [mapReady, floodSimulationLoading, floodSimulationCotaInput, fetchAndCacheLayer, publicationLevel]);
+  }, [mapReady, floodSimulationLoading, floodSimulationCotaInput, fetchAndCacheLayer, publicationLevel, floodVisualOverlayEnabled]);
 
   useEffect(() => {
     if (!floodRealtimeSync || !mapReady) return;
@@ -2566,6 +2663,19 @@ export default function MapViewer() {
       map.removeLayer(layer);
     }
   }, [floodSimulationEnabled, mapReady]);
+
+  useEffect(() => {
+    const map = leafletMapRef.current;
+    const overlay = floodVisualOverlayLayerRef.current;
+    if (!map || !mapReady || !overlay) return;
+
+    if (floodSimulationEnabled && floodVisualOverlayEnabled) {
+      if (!map.hasLayer(overlay)) overlay.addTo(map);
+      overlay.bringToBack();
+    } else if (map.hasLayer(overlay)) {
+      map.removeLayer(overlay);
+    }
+  }, [floodSimulationEnabled, floodVisualOverlayEnabled, mapReady]);
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-background">
@@ -2747,6 +2857,7 @@ export default function MapViewer() {
               enabled={floodSimulationEnabled}
               mode={floodRealtimeSync ? "auto" : "manual"}
               cotaInput={floodSimulationCotaInput}
+              showFloodOverlay={floodVisualOverlayEnabled}
               loading={floodSimulationLoading}
               stats={floodSimulationStats}
               realtimeHeight={floodRealtimeHeight}
@@ -2754,6 +2865,7 @@ export default function MapViewer() {
               realtimeUpdatedAt={floodRealtimeUpdatedAt}
               onToggleEnabled={() => setFloodSimulationEnabled((v) => !v)}
               onSetMode={(mode) => setFloodRealtimeSync(mode === "auto")}
+              onToggleFloodOverlay={() => setFloodVisualOverlayEnabled((v) => !v)}
               onChangeCotaInput={setFloodSimulationCotaInput}
               onApply={() => { void handleApplyFloodSimulation(); }}
             />

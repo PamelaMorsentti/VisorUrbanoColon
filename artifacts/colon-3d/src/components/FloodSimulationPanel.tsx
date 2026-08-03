@@ -2,6 +2,7 @@ interface FloodSimulationPanelProps {
   enabled: boolean;
   mode: "manual" | "auto";
   cotaInput: string;
+  showFloodOverlay: boolean;
   loading: boolean;
   stats: { affected: number; total: number; parcial: number; cota: number } | null;
   realtimeHeight: number | null;
@@ -9,6 +10,7 @@ interface FloodSimulationPanelProps {
   realtimeUpdatedAt: string | null;
   onToggleEnabled: () => void;
   onSetMode: (mode: "manual" | "auto") => void;
+  onToggleFloodOverlay: () => void;
   onChangeCotaInput: (value: string) => void;
   onApply: () => void;
 }
@@ -17,6 +19,7 @@ export default function FloodSimulationPanel({
   enabled,
   mode,
   cotaInput,
+  showFloodOverlay,
   loading,
   stats,
   realtimeHeight,
@@ -24,6 +27,7 @@ export default function FloodSimulationPanel({
   realtimeUpdatedAt,
   onToggleEnabled,
   onSetMode,
+  onToggleFloodOverlay,
   onChangeCotaInput,
   onApply,
 }: FloodSimulationPanelProps) {
@@ -125,6 +129,20 @@ export default function FloodSimulationPanel({
             Cota +{stats.cota.toFixed(2)} m: {stats.affected} parcelas (total {stats.total}, parcial {stats.parcial})
           </p>
         )}
+
+        <div className="border-t border-white/10 pt-2">
+          <label className="flex items-start gap-2 cursor-pointer select-none">
+            <input
+              type="checkbox"
+              checked={showFloodOverlay}
+              onChange={onToggleFloodOverlay}
+              className="mt-0.5 accent-sky-400"
+            />
+            <span className="text-[10px] text-white/75">
+              Mostrar curva de crecida y zona estimada (vista visual complementaria)
+            </span>
+          </label>
+        </div>
       </div>
     </div>
   );
