@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Cloud, AlertTriangle, Droplets, ChevronDown, ExternalLink, X, Car, Siren } from "lucide-react";
+import { fetchColonHydrology } from "@/lib/hydrology";
 
 interface WeatherData {
   temp: number;
@@ -31,35 +32,7 @@ type ServiceTab = "clima" | "rio" | "transito" | "emergencias";
 
 const COLON_RIVER_ALERT_LEVEL = 7.1;
 const COLON_RIVER_EVAC_LEVEL = 7.9;
-const CARU_ALTURAS_READABLE_URL = "https://r.jina.ai/http://190.0.152.194:8080/alturas/web/user/alturas";
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/$/, "") ?? "";
-
-function getHydrologyApiCandidates(): string[] {
-  const urls: string[] = [];
-  if (API_BASE_URL) urls.push(`${API_BASE_URL}/api/hydrology/colon`);
-  urls.push("/api/hydrology/colon");
-
-  if (typeof window !== "undefined") {
-    const host = window.location.hostname;
-    if (host === "localhost" || host === "127.0.0.1") {
-      urls.push("http://localhost:5180/api/hydrology/colon");
-      // Legacy local setups may still expose API on 3000.
-      urls.push("http://localhost:3000/api/hydrology/colon");
-    }
-  }
-
-  return Array.from(new Set(urls));
-}
-
-async function fetchJsonWithTimeout(url: string, timeoutMs = 10000): Promise<Response> {
-  const ctrl = new AbortController();
-  const timer = window.setTimeout(() => ctrl.abort(), timeoutMs);
-  try {
-    return await fetch(url, { signal: ctrl.signal });
-  } finally {
-    window.clearTimeout(timer);
-  }
-}
 
 export default function RegionalInfoPanel({
   latitude = -32.4667,
@@ -184,61 +157,22 @@ export default function RegionalInfoPanel({
       setRiverLoading(true);
       setRiverError(null);
       try {
-        const apiCandidates = getHydrologyApiCandidates();
-        for (const apiUrl of apiCandidates) {
-          try {
-            const apiRes = await fetchJsonWithTimeout(apiUrl, 10000);
-            if (!apiRes.ok) continue;
-
-            const data = await apiRes.json() as {
-              level: number;
-              delta: number;
-              trend: string;
-              updatedAt: string;
-              thresholds?: { alert?: number; evacuation?: number };
-            };
-
-            const level = Number(data.level);
-            const delta = Number(data.delta);
-            if (Number.isNaN(level) || Number.isNaN(delta)) continue;
-
-            if (!alive) return;
-
-            setRiver({
-              level,
-              trend: data.trend,
-              delta,
-              updatedAt: data.updatedAt,
-              source: "api",
-              alertLevel: data.thresholds?.alert ?? COLON_RIVER_ALERT_LEVEL,
-              evacuationLevel: data.thresholds?.evacuation ?? COLON_RIVER_EVAC_LEVEL,
-            });
-            return;
-          } catch {
-            // Try next API candidate.
-          }
-        }
-
-        // Fallback: readable CARU feed when API is unavailable.
-        const res = await fetchJsonWithTimeout(CARU_ALTURAS_READABLE_URL, 12000);
-        const text = await res.text();
-        const row = extractColonRiverRow(text);
-
+        const data = await fetchColonHydrology(API_BASE_URL);
         if (!alive) return;
 
-        if (!row) {
+        if (!data) {
           setRiverError("No se pudo leer la estación Colón");
           return;
         }
 
         setRiver({
-          level: row.level,
-          trend: row.trend,
-          delta: row.delta,
-          updatedAt: row.updatedAt,
-          source: "caru",
-          alertLevel: COLON_RIVER_ALERT_LEVEL,
-          evacuationLevel: COLON_RIVER_EVAC_LEVEL,
+          level: data.level,
+          trend: data.trend ?? "S/D",
+          delta: data.delta ?? 0,
+          updatedAt: data.updatedAt ?? "S/D",
+          source: data.source,
+          alertLevel: data.alertLevel ?? COLON_RIVER_ALERT_LEVEL,
+          evacuationLevel: data.evacuationLevel ?? COLON_RIVER_EVAC_LEVEL,
         });
       } catch {
         if (alive) setRiverError("No se pudo actualizar altura del río");
@@ -624,37 +558,3 @@ function getStatusTextClass(tone: "ok" | "warn" | "error" | "info"): string {
   return "text-sky-300";
 }
 
-function extractColonRiverRow(markdown: string): { updatedAt: string; level: number; delta: number; trend: string } | null {
-  const line = markdown
-    .split("\n")
-    .find(l => /\|\s*\[Col[oó]n\]\([^)]*\)\s*\|/i.test(l));
-
-  if (!line) return null;
-
-  const cols = line.split("|").map(c => c.trim()).filter(Boolean);
-  if (cols.length < 7) return null;
-
-  const updatedAt = stripMarkdown(cols[1]);
-  const level = parseSpanishNumber(stripMarkdown(cols[2]));
-  const delta = parseSpanishNumber(stripMarkdown(cols[3]));
-  const trend = stripMarkdown(cols[5]);
-
-  if (Number.isNaN(level) || Number.isNaN(delta)) return null;
-
-  return { updatedAt, level, delta, trend };
-}
-
-function stripMarkdown(value: string): string {
-  return value
-    .replace(/\*\*/g, "")
-    .replace(/\[(.*?)\]\([^)]*\)/g, "$1")
-    .trim();
-}
-
-function parseSpanishNumber(value: string): number {
-  const clean = value.replace(/[^0-9,.-]/g, "");
-  const normalized = clean.includes(",")
-    ? clean.replace(/\./g, "").replace(/,/g, ".")
-    : clean;
-  return Number(normalized);
-}

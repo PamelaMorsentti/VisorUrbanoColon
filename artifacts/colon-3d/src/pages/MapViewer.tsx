@@ -28,47 +28,17 @@ import { hasPermission } from "@/lib/auth";
 import { LAYERS, COLON_CENTER, COLON_ZOOM, ZONA_COLORS } from "@/lib/layers";
 import { useLayerCatalog } from "@/hooks/useLayerCatalog";
 import { ZONA_NORMAS } from "@/lib/zonaData";
+import { fetchColonHydrology } from "@/lib/hydrology";
 import { area, bbox, booleanIntersects, buffer, featureCollection, intersect, union } from "@turf/turf";
 
 const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");
 const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "";
 const DATA_CACHE_BUST = String(Date.now());
-const CARU_ALTURAS_READABLE_URL = "https://r.jina.ai/http://190.0.152.194:8080/alturas/web/user/alturas";
-
-function getHydrologyApiCandidates(): string[] {
-  const urls: string[] = [];
-  if (API_BASE) urls.push(`${API_BASE}/api/hydrology/colon`);
-  urls.push("/api/hydrology/colon");
-
-  if (typeof window !== "undefined") {
-    const host = window.location.hostname;
-    if (host === "localhost" || host === "127.0.0.1") {
-      urls.push("http://localhost:5180/api/hydrology/colon");
-      urls.push("http://localhost:3000/api/hydrology/colon");
-    }
-  }
-
-  return Array.from(new Set(urls));
-}
-
-async function fetchJsonWithTimeout(url: string, timeoutMs = 10000): Promise<Response> {
-  const ctrl = new AbortController();
-  const timer = window.setTimeout(() => ctrl.abort(), timeoutMs);
-  try {
-    return await fetch(url, { signal: ctrl.signal });
-  } finally {
-    window.clearTimeout(timer);
-  }
-}
 
 type LeafletLayer = L.GeoJSON | L.LayerGroup;
 type DensidadData = Record<string, { count: number; area: number }>;
 type ZonaTransform = { rotateDeg: number; offsetLng: number; offsetLat: number };
 type FloodSimulationStats = { affected: number; total: number; parcial: number; cota: number };
-type HydrologyResponse = {
-  level: number | string;
-  updatedAt?: string;
-};
 
 function getLayerDataUrl(file: string): string {
   return `${BASE_PATH}/data/${file}?v=${DATA_CACHE_BUST}`;
@@ -432,84 +402,10 @@ function formatFloodCotaInput(value: number): string {
   return value.toFixed(2).replace(".", ",");
 }
 
-function formatRealtimeUpdatedAt(raw: string | undefined): string | null {
-  if (!raw) return null;
-  const d = new Date(raw);
-  if (Number.isNaN(d.getTime())) return raw.trim() || null;
-  return d.toLocaleString("es-AR", {
-    day: "2-digit",
-    month: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-}
-
 async function fetchCurrentRiverLevelMeters(): Promise<{ level: number; updatedAt: string | null } | null> {
-  const candidates = getHydrologyApiCandidates();
-  for (const url of candidates) {
-    try {
-      const res = await fetchJsonWithTimeout(url, 10000);
-      if (!res.ok) continue;
-      const data = await res.json() as HydrologyResponse;
-      const level = Number(data.level);
-      if (!Number.isFinite(level)) continue;
-      return { level, updatedAt: formatRealtimeUpdatedAt(data.updatedAt) };
-    } catch {
-      // Try next candidate.
-    }
-  }
-
-  // Fallback when no API backend is available (e.g. static deploy):
-  // read CARU feed through readable mirror and extract Colon row.
-  try {
-    const res = await fetchJsonWithTimeout(CARU_ALTURAS_READABLE_URL, 12000);
-    if (res.ok) {
-      const text = await res.text();
-      const row = extractColonRiverRow(text);
-      if (row && Number.isFinite(row.level)) {
-        return {
-          level: row.level,
-          updatedAt: formatRealtimeUpdatedAt(row.updatedAt),
-        };
-      }
-    }
-  } catch {
-    // Last fallback failed.
-  }
-
-  return null;
-}
-
-function extractColonRiverRow(markdown: string): { updatedAt: string; level: number } | null {
-  const line = markdown
-    .split("\n")
-    .find(l => /\|\s*\[Col[oó]n\]\([^)]*\)\s*\|/i.test(l));
-
-  if (!line) return null;
-
-  const cols = line.split("|").map(c => c.trim()).filter(Boolean);
-  if (cols.length < 4) return null;
-
-  const updatedAt = stripMarkdown(cols[1]);
-  const level = parseSpanishNumber(stripMarkdown(cols[2]));
-
-  if (Number.isNaN(level)) return null;
-  return { updatedAt, level };
-}
-
-function stripMarkdown(value: string): string {
-  return value
-    .replace(/\*\*/g, "")
-    .replace(/\[(.*?)\]\([^)]*\)/g, "$1")
-    .trim();
-}
-
-function parseSpanishNumber(value: string): number {
-  const clean = value.replace(/[^0-9,.-]/g, "");
-  const normalized = clean.includes(",")
-    ? clean.replace(/\./g, "").replace(/,/g, ".")
-    : clean;
-  return Number(normalized);
+  const data = await fetchColonHydrology(API_BASE);
+  if (!data) return null;
+  return { level: data.level, updatedAt: data.updatedAt };
 }
 
 function buildFloodSimulationGeoJSON(parcela: FeatureCollection, cNivel: FeatureCollection, cotaRef: number): { geojson: FeatureCollection; stats: FloodSimulationStats } {
