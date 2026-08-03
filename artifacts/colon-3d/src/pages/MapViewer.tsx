@@ -721,6 +721,12 @@ function roleToPublicationLevel(role: string | undefined): PublicationLevel {
   return "public";
 }
 
+function getPublicationFallbackLevels(level: PublicationLevel): PublicationLevel[] {
+  if (level === "admin") return ["admin", "professional", "public"];
+  if (level === "professional") return ["professional", "public"];
+  return ["public"];
+}
+
 function colorByDestiny(destino: unknown): string {
   const value = String(destino ?? "").toLowerCase();
   if (value.includes("mixto")) return "#8b5cf6";
@@ -1074,6 +1080,7 @@ export default function MapViewer() {
   const [uploadPanelOpen, setUploadPanelOpen] = useState(false);
   const [analysisPanelOpen, setAnalysisPanelOpen] = useState(false);
   const [adminDataPanelOpen, setAdminDataPanelOpen] = useState(false);
+  const [authMenuOpen, setAuthMenuOpen] = useState(false);
   const [regionalInfoOpen, setRegionalInfoOpen] = useState(false);
   const [floodSimulationPanelOpen, setFloodSimulationPanelOpen] = useState(false);
   const [planosActive, setPlanosActive] = useState(false);
@@ -1136,6 +1143,18 @@ export default function MapViewer() {
   const [floodRealtimeLoading, setFloodRealtimeLoading] = useState(false);
   const [floodRealtimeUpdatedAt, setFloodRealtimeUpdatedAt] = useState<string | null>(null);
 
+  useEffect(() => {
+    const onAuthMenuToggle = (event: Event) => {
+      const custom = event as CustomEvent<boolean>;
+      setAuthMenuOpen(Boolean(custom.detail));
+    };
+
+    window.addEventListener("colon3d:auth-menu-open", onAuthMenuToggle as EventListener);
+    return () => {
+      window.removeEventListener("colon3d:auth-menu-open", onAuthMenuToggle as EventListener);
+    };
+  }, []);
+
   const [visibleLayers, setVisibleLayers] = useState<Record<string, boolean>>(
     Object.fromEntries(LAYERS.map(l => [l.id, l.defaultVisible && (!l.adminOnly || isAdmin)]))
   );
@@ -1169,15 +1188,10 @@ export default function MapViewer() {
     }
   }, [visibleLayers.zonas, zonaLegendOpen]);
 
-  const worksDatasetUrl = `${BASE_PATH}/data/planos/obras-${publicationLevel}.geojson`;
-  const worksApiUrl = useMemo(() => {
-    if (!API_BASE) return "";
-    const params = new URLSearchParams({ level: publicationLevel });
-    if (selectedObrasYears.length > 0) {
-      params.set("years", selectedObrasYears.join(","));
-    }
-    return `${API_BASE}/api/obras/points?${params.toString()}`;
-  }, [publicationLevel, selectedObrasYears]);
+  const worksLevels = useMemo(
+    () => getPublicationFallbackLevels(publicationLevel),
+    [publicationLevel],
+  );
 
   // Keep ref in sync with state for use in closures
   useEffect(() => { densidadActiveRef.current = densidadActive; }, [densidadActive]);
@@ -1907,23 +1921,41 @@ export default function MapViewer() {
 
     let cancelled = false;
     const loadWorksDataset = async (): Promise<FeatureCollection> => {
-      if (worksApiUrl) {
-        try {
-          const res = await fetch(worksApiUrl);
-          if (res.ok) {
+      if (API_BASE) {
+        for (const level of worksLevels) {
+          try {
+            const params = new URLSearchParams({ level });
+            if (selectedObrasYears.length > 0) {
+              params.set("years", selectedObrasYears.join(","));
+            }
+            const url = `${API_BASE}/api/obras/points?${params.toString()}`;
+            const res = await fetch(url);
+            if (!res.ok) continue;
             const body = await res.json() as { data?: FeatureCollection };
             if (body?.data && Array.isArray(body.data.features) && body.data.features.length > 0) {
               return body.data;
             }
+          } catch {
+            // try next fallback level/source
           }
-        } catch {
-          // fallback to static GeoJSON below
         }
       }
 
-      const fallbackRes = await fetch(worksDatasetUrl);
-      if (!fallbackRes.ok) throw new Error("No se pudo cargar capa de obras");
-      return fallbackRes.json() as Promise<FeatureCollection>;
+      for (const level of worksLevels) {
+        try {
+          const fallbackUrl = `${BASE_PATH}/data/planos/obras-${level}.geojson`;
+          const fallbackRes = await fetch(fallbackUrl);
+          if (!fallbackRes.ok) continue;
+          const fallbackData = await fallbackRes.json() as FeatureCollection;
+          if (Array.isArray(fallbackData.features) && fallbackData.features.length > 0) {
+            return fallbackData;
+          }
+        } catch {
+          // try next fallback level/source
+        }
+      }
+
+      throw new Error("No se pudo cargar capa de obras");
     };
 
     void loadWorksDataset()
@@ -2057,7 +2089,7 @@ export default function MapViewer() {
     return () => {
       cancelled = true;
     };
-  }, [mapReady, planosActive, publicationLevel, worksDatasetUrl, worksApiUrl, obrasYearOptions, selectedObrasYears, obrasYearPreset]);
+  }, [mapReady, planosActive, publicationLevel, worksLevels, obrasYearOptions, selectedObrasYears, obrasYearPreset]);
 
   // ── Obras temporal heatmap (barrios) ─────────────────────────────────────
 
@@ -2694,7 +2726,7 @@ export default function MapViewer() {
           </div>
         )}
 
-        {isAdmin && (
+        {isAdmin && !authMenuOpen && (
           <div className="pointer-events-auto">
             <button
               type="button"

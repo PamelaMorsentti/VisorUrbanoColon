@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Shield, User, Eye, Lock, X, LogOut, ChevronDown } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import {
@@ -24,6 +24,16 @@ export function AuthButton({
 }) {
   const { user, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // Keep other floating panels in sync with auth menu visibility.
+  // This prevents UI overlap in the top-right corner on compact layouts.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    window.dispatchEvent(new CustomEvent("colon3d:auth-menu-open", { detail: menuOpen }));
+    return () => {
+      window.dispatchEvent(new CustomEvent("colon3d:auth-menu-open", { detail: false }));
+    };
+  }, [menuOpen]);
 
   const openExternal = (url?: string) => {
     if (!url) return;
