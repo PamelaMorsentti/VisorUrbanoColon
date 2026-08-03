@@ -565,7 +565,61 @@ function buildFloodSimulationGeoJSON(parcela: FeatureCollection, cNivel: Feature
   };
 }
 
-function buildFloodVisualOverlayGeoJSON(cNivel: FeatureCollection, cotaRef: number): FeatureCollection {
+function buildFloodVisualOverlayGeoJSON(
+  cNivel: FeatureCollection,
+  cotaRef: number,
+  floodedParcelsGeojson?: FeatureCollection,
+): FeatureCollection {
+  // Primary method: derive a single boundary from the simulated flooded footprint.
+  // This matches "hasta donde llega la crecida" in the current model output.
+  if (floodedParcelsGeojson?.features?.length) {
+    const polygons = (floodedParcelsGeojson.features || []).filter((f: FeatureCollection) => {
+      const t = f?.geometry?.type;
+      return t === "Polygon" || t === "MultiPolygon";
+    });
+
+    if (polygons.length > 0) {
+      const mergedFlooded = unionMany(polygons);
+      const boundaryFeatures: FeatureCollection[] = [];
+
+      const pushOuterRing = (ring: number[][]) => {
+        if (!Array.isArray(ring) || ring.length < 2) return;
+        boundaryFeatures.push({
+          type: "Feature",
+          properties: {
+            kind: "borde_agua",
+            borde_cota_m: Number(cotaRef.toFixed(2)),
+            inund_cota_ref_m: Number(cotaRef.toFixed(2)),
+            source: "flooded_parcel_footprint",
+          },
+          geometry: {
+            type: "LineString",
+            coordinates: ring,
+          },
+        });
+      };
+
+      const g = mergedFlooded?.geometry;
+      if (g?.type === "Polygon") {
+        const rings = g.coordinates as number[][][];
+        if (Array.isArray(rings) && rings.length > 0) pushOuterRing(rings[0]);
+      } else if (g?.type === "MultiPolygon") {
+        const polygonsCoords = g.coordinates as number[][][][];
+        for (const poly of polygonsCoords) {
+          if (Array.isArray(poly) && poly.length > 0) pushOuterRing(poly[0]);
+        }
+      }
+
+      if (boundaryFeatures.length > 0) {
+        return {
+          type: "FeatureCollection",
+          features: boundaryFeatures,
+        };
+      }
+    }
+  }
+
+  // Fallback method: derive an edge from cota contour lines.
   type ContourCandidate = {
     feature: FeatureCollection;
     z: number;
@@ -2618,7 +2672,7 @@ export default function MapViewer() {
       setFloodSimulationCotaInput(formatFloodCotaInput(parsedCota));
       simLayer.addTo(map);
 
-      const overlayGeojson = buildFloodVisualOverlayGeoJSON(cNivelData, parsedCota);
+      const overlayGeojson = buildFloodVisualOverlayGeoJSON(cNivelData, parsedCota, geojson);
       const overlayLayer = L.geoJSON(overlayGeojson, {
         style: (feature) => {
           const kind = String(feature?.properties?.kind ?? "").toLowerCase();
