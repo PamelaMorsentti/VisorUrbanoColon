@@ -925,6 +925,39 @@ function formatM2(value: number): string {
   return `${Math.round(Math.max(0, value)).toLocaleString("es-AR")} m²`;
 }
 
+function normalizeComparableName(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ");
+}
+
+function distinctNonEmpty(values: string[]): string[] {
+  const unique = new Map<string, string>();
+  for (const value of values) {
+    const raw = value.trim();
+    if (!raw) continue;
+    const key = normalizeComparableName(raw);
+    if (!unique.has(key)) unique.set(key, raw);
+  }
+  return Array.from(unique.values());
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function formatLongTextHtml(value: string): string {
+  return escapeHtml(value).replace(/\r?\n/g, "<br/>");
+}
+
 function popupForWorkFeature(props: Record<string, unknown>, level: PublicationLevel): string {
   const title = nonEmptyText(props.raw_ubicacion ?? props.ubicacion ?? props.direccion_de_obra, "Obra");
   const tipo = nonEmptyText(props.tipo ?? props.tipo_obra);
@@ -937,6 +970,20 @@ function popupForWorkFeature(props: Record<string, unknown>, level: PublicationL
   const legajo = nonEmptyText(props.legajo_canonico);
   const ncp = nonEmptyText(props.ncp_formatted ?? props.ncp);
   const fechaVisado = nonEmptyText(props.fecha_de_visado);
+  const propietario = nonEmptyText(props.propietario ?? props.raw__propietario);
+  const constructor = nonEmptyText(props.constructor ?? props.raw__constructor);
+  const estadoAvance = nonEmptyText(props.avance_de_obra ?? props.estado_avance ?? props.final_obra ?? props.condicion_del_tramite);
+  const profesionalProyecto = nonEmptyText(props.profesional_proyecto ?? props.proyecto ?? props.raw__proyecto);
+  const profesionalDireccion = nonEmptyText(props.direccion_de_obra ?? props.raw__direccion_de_obra);
+  const profesionalEstructura = nonEmptyText(props.estructura ?? props.raw__estructura);
+  const condicionesVisado = nonEmptyText(
+    props.observaciones
+    ?? props.raw__observaciones
+    ?? props.condiciones_visado
+    ?? props.raw__condiciones_visado
+    ?? props.visado_condiciones
+    ?? props.raw__visado,
+  );
   const declarationItems: string[] = [];
   if (declaration.relevamiento) declarationItems.push("Relevamiento");
   if (declaration.nueva) declarationItems.push("Obra nueva");
@@ -965,8 +1012,47 @@ function popupForWorkFeature(props: Record<string, unknown>, level: PublicationL
   }
 
   if (level !== "public") {
+    if (propietario !== "-") {
+      html += `<div><b>Propietario:</b> ${escapeHtml(propietario)}</div>`;
+    }
+
+    const professionals = distinctNonEmpty([
+      profesionalProyecto === "-" ? "" : profesionalProyecto,
+      profesionalDireccion === "-" ? "" : profesionalDireccion,
+      profesionalEstructura === "-" ? "" : profesionalEstructura,
+    ]);
+
+    if (professionals.length === 1) {
+      html += `<div><b>Profesional:</b> ${escapeHtml(professionals[0])}</div>`;
+    } else if (professionals.length > 1) {
+      if (profesionalProyecto !== "-") {
+        html += `<div><b>Profesional (Proyecto):</b> ${escapeHtml(profesionalProyecto)}</div>`;
+      }
+      if (profesionalDireccion !== "-") {
+        html += `<div><b>Profesional (Direccion):</b> ${escapeHtml(profesionalDireccion)}</div>`;
+      }
+      if (profesionalEstructura !== "-") {
+        html += `<div><b>Profesional (Estructura):</b> ${escapeHtml(profesionalEstructura)}</div>`;
+      }
+    }
+
+    if (constructor !== "-") {
+      html += `<div><b>Constructor:</b> ${escapeHtml(constructor)}</div>`;
+    }
+
+    if (estadoAvance !== "-") {
+      html += `<div><b>Estado de avance:</b> ${escapeHtml(estadoAvance)}</div>`;
+    }
+
+    if (condicionesVisado !== "-" && condicionesVisado.length > 14) {
+      html += `<details style="margin-top:4px"><summary style="cursor:pointer"><b>Condiciones de visado</b></summary>`
+        + `<div style="margin-top:4px;white-space:normal;line-height:1.3">${formatLongTextHtml(condicionesVisado)}</div></details>`;
+    }
+  }
+
+  if (level !== "public") {
     if (status !== "-") {
-      html += `<div><b>Estado verificación:</b> ${status}</div>`;
+      html += `<div><b>Estado de georeferenciacion:</b> ${status}</div>`;
     }
   }
   if (level === "admin") {
