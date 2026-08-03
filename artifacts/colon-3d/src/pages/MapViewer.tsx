@@ -566,54 +566,42 @@ function buildFloodSimulationGeoJSON(parcela: FeatureCollection, cNivel: Feature
 }
 
 function buildFloodVisualOverlayGeoJSON(cNivel: FeatureCollection, cotaRef: number): FeatureCollection {
-  const lowContourLines = (cNivel.features || []).filter((f: FeatureCollection) => {
-    const z = Number(f?.properties?.Z ?? f?.properties?.COTA);
-    const t = f?.geometry?.type;
-    return Number.isFinite(z) && z <= cotaRef && (t === "LineString" || t === "MultiLineString");
-  });
+  type ContourCandidate = {
+    feature: FeatureCollection;
+    z: number;
+    type: unknown;
+  };
+
+  const lowContourLines = (cNivel.features || [])
+    .map((f: FeatureCollection): ContourCandidate => ({
+      feature: f,
+      z: Number(f?.properties?.Z ?? f?.properties?.COTA),
+      type: f?.geometry?.type,
+    }))
+    .filter((item: ContourCandidate) => Number.isFinite(item.z) && item.z <= cotaRef && (item.type === "LineString" || item.type === "MultiLineString"));
 
   if (!lowContourLines.length) {
     return { type: "FeatureCollection", features: [] };
   }
 
-  const lowClosedPolygons: FeatureCollection[] = [];
-  for (const f of lowContourLines) {
-    const rings = ringsFromGeometry(f.geometry);
-    for (const ring of rings) {
-      if (!isClosedRing(ring)) continue;
-      lowClosedPolygons.push({
-        type: "Feature",
-        properties: {
-          kind: "zone_estimada",
-          z: Number(f?.properties?.Z ?? f?.properties?.COTA ?? null),
-          inund_cota_ref_m: Number(cotaRef.toFixed(2)),
-        },
-        geometry: { type: "Polygon", coordinates: [ring] },
-      });
-    }
-  }
+  const maxContourZ = lowContourLines.reduce((max: number, item: ContourCandidate) => Math.max(max, item.z), Number.NEGATIVE_INFINITY);
+  const Z_EPS = 1e-6;
+  const borderLines = lowContourLines.filter((item: ContourCandidate) => Math.abs(item.z - maxContourZ) <= Z_EPS);
 
-  const validZonePolygons = lowClosedPolygons.filter((f) => {
-    try {
-      return area(f) > 1;
-    } catch {
-      return false;
-    }
-  });
-
-  const contourLineFeatures = lowContourLines.map((feature: FeatureCollection) => ({
+  const contourLineFeatures = borderLines.map(({ feature, z }: ContourCandidate) => ({
     type: "Feature" as const,
     properties: {
-      ...(feature.properties ?? {}),
-      kind: "curva_cota",
+      ...(feature?.properties ?? {}),
+      kind: "borde_agua",
+      borde_cota_m: Number(z.toFixed(2)),
       inund_cota_ref_m: Number(cotaRef.toFixed(2)),
     },
-    geometry: feature.geometry,
+    geometry: feature?.geometry,
   }));
 
   return {
     type: "FeatureCollection",
-    features: [...validZonePolygons, ...contourLineFeatures],
+    features: contourLineFeatures,
   };
 }
 
@@ -2579,29 +2567,28 @@ export default function MapViewer() {
       const overlayLayer = L.geoJSON(overlayGeojson, {
         style: (feature) => {
           const kind = String(feature?.properties?.kind ?? "").toLowerCase();
-          if (kind === "curva_cota") {
+          if (kind === "borde_agua") {
             return {
               color: "#22d3ee",
-              weight: 1.8,
-              opacity: 0.95,
-              dashArray: "6 4",
+              weight: 2.8,
+              opacity: 0.98,
+              dashArray: "9 5",
             } as L.PathOptions;
           }
           return {
-            fillColor: "#38bdf8",
-            fillOpacity: 0.18,
-            color: "#0284c7",
-            weight: 1,
-            opacity: 0.65,
+            color: "#22d3ee",
+            weight: 2,
+            opacity: 0.9,
           } as L.PathOptions;
         },
         onEachFeature: (feature, featureLayer) => {
           const kind = String(feature?.properties?.kind ?? "").toLowerCase();
           const cota = Number(feature?.properties?.inund_cota_ref_m ?? parsedCota);
-          if (kind === "curva_cota") {
-            featureLayer.bindPopup(`<div><b>Curva de cota</b><br/>Nivel de referencia: ${cota.toFixed(2)} m</div>`);
+          const bordeCota = Number(feature?.properties?.borde_cota_m ?? cota);
+          if (kind === "borde_agua") {
+            featureLayer.bindPopup(`<div><b>Borde estimado del agua</b><br/>Nivel del rio: ${cota.toFixed(2)} m<br/>Curva usada: ${bordeCota.toFixed(2)} m</div>`);
           } else {
-            featureLayer.bindPopup(`<div><b>Zona estimada de crecida</b><br/>Nivel de referencia: ${cota.toFixed(2)} m</div>`);
+            featureLayer.bindPopup(`<div><b>Borde estimado del agua</b><br/>Nivel del rio: ${cota.toFixed(2)} m</div>`);
           }
         },
       });

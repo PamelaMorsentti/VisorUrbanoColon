@@ -139,7 +139,7 @@ export default function FloodSimulationPanel({
               className="mt-0.5 accent-sky-400"
             />
             <span className="text-[10px] text-white/75">
-              Mostrar curva de crecida y zona estimada (vista visual complementaria)
+              Mostrar borde estimado del agua (linea limite de crecida)
             </span>
           </label>
         </div>
