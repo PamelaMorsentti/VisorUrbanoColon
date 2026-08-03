@@ -1,0 +1,177 @@
+﻿prioridad,source_row_number,legajo_canonico,ubicacion,match_method,match_count,confidence,location_verification_status,address_geocode_status,reason
+critica,3,1,PeriUrbana,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,6,4,Camino Bernardino Horne s/N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,8,6,Celia Pellenc N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,10,7,,none,0,low,missing_both_points,missing_address,no_cadastral_match
+critica,12,9,Calle Pública s/N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,15,12,Urbana 2,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,18,15,Chacabico Nº 627,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,20,17,Juan Manuel de Rosas N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,22,19,Urbana 2,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,23,20,Domingo Antonini N° 89,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,27,24,Araujo Pen{on N° 285,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,29,26,Madre Isabel Fernandez Nª 312 esq Mitre,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,32,29,Calle Pública s/N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,34,30,Residencial Norte,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,39,35,Urbana 1,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,41,37,Combatientes de Malvinas N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,45,41,3 de Febrero N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,46,42,Primeros Colonos esq Agua-I,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,49,45,Piamonte s/N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,51,47,Azurduy esq Espinillo,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,52,48,Calle Brovatti S/N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,53,49,Calle Pública s/N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,56,52,Hornero s/Nº,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,60,56,Ñandubay N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,66,62,Bvard Ferrari N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,67,63,Bolívar N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,70,66,Jacarandaes esq Coronillos ( Los Bretes),none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,71,67,Avda Quiròs Nº 280 esq Mitre,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,73,69,Sourigues N° 610 e/ C de Malvinas y Cepeda,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,78,74,Alfredo Bravo s/N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,79,76,Salsipuedes N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,80,75,Calle Privada s/N° (Los Bretes),none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,82,78,Gómez Miranda N° 148 esq Noailles,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,83,79,Calle Artalaz s/N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,86,83,Bolívar N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,89,88,Noailles N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,95,91,Urbana 2,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,97,93,Viollaz N° 232,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,99,95,Calle Pública s/N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,106,105,Cabo Pereyra N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,107,102,Paje Villalba N° 672,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,108,103,Los Charrúas s/N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,114,110,Camino Horne s/N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,121,116,Calle Pública s/N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,125,121,Calle Primeros Colonos s/N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,127,122,"Ruta Nac N° 135, km",none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,128,124,"Gral Paz Nº 162, 164",none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,136,132,Florentina Gomez Miranda N° 120,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,142,138,Calle provada s/N° - Los Bretes,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,143,140,Urbana 2,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,148,143,Durand N° 457 es Pasaje s/nombre,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,152,148,Calle Privada s/N° - Los Bretes,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,160,156,Salsipuedes s/N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,161,157,Florentina Gomez Miranda N° 117,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,166,162,Calle Paraiso ( Loteo Aires de 1872),none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,178,173,General Paz N° 136,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,181,176,María Isabel Fernandez s/N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,190,183,Paso de los Andes Nº,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,198,189,Castelli N°,none,0,low,missing_both_points,no_ign_match,no_cadastral_match
+critica,202,191,,none,0,low,missing_both_points,missing_address,no_cadastral_match
+alta,4,2,Sarmiento Nº 88,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,5,3,"Maipú Nª 525, 529 (antes 535)",none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,11,8,San Martín N° 567 - 571,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,13,10,Laprida N° 227,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,14,11,Gouchón N° 253 esq Sarmiento,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,16,13,"Vieytes Nº 41 esq Gra Urquiza Nº 653, 657, 659",none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,17,14,Laprida N° 122,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,19,16,Peyret N° 210,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,21,18,Maipú N° 470,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,24,21,Rocamora N° 416,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,25,22,Gouchon N° 418,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,30,27,Hernandez N° 282,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,31,28,Bvard. Ferrari N° 1190,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,36,32,Noailles N° 239 esq L. N. Alema,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,37,33,9 de Julio Nº 363,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,40,36,25 de Mayo N° 464,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,44,40,Avda Paysandù Nº 274,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,50,46,Tucumán Nº 1422,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,54,50,Avda Paysandú Nº 1170,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,55,51,Combatientes de Malvinas N° 980,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,57,53,M. M. Lima N° 1081,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,58,54,12 de Abril Nº 167 (171),none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,61,57,Alberdi esq Sourigues N° 244 y 246,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,63,59,Las Piedras N° 12,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,65,61,San Martín N° 220,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,68,64,Alejo Peyret N° 140,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,74,70,Pasaje Alarcón N° 521,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,75,71,12 de Abril N° 741,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,76,72,Balcarce N° 66,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,81,77,"Esteva Berga N° 152, esq Noailles",none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,92,86,San Martín N° 625,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,93,89,Laprida N.º 521,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,94,90,Combatientes de Malvinas N° 188,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,101,97,Cabo Pereyra N° 645,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,102,98,25 de Mayo N° 450,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,103,99,Araujo Penón N° 413,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,105,104,"12 de Abril N°  esq. Lavalle N° 2, 8, 10, 12, 14, 16, 18",none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,110,106,Bvard Ferrari s/Nº 960,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,111,108,Bolívar Nº 237,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,113,109,12 de Abril N° 686,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,115,111,Sarmiento N°  366,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,116,112,Bvard. Ferrari N.º 1389,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,117,113,Artigas N° 173,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,118,114,Reibel N° 248,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,122,119,Lavalle N° 486,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,123,118,Balcarce N° 174,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,124,120,Avda Urquiza N° 1174 y 1180,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,126,123,Lima N° 191 esq Lavalle N°,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,130,125,"12 de Abril Nº 848, 840, al 846",none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,132,127,Balcarce N° 482 - 486,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,134,130,San Martín N° 859 - 861,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,135,131,3 de Febrero N° 70,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,137,133,Las Piedras N°  336,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,138,137,San Martín N° 472,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,139,134,Avda Paysandú esq 3 de Febrero N°,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,141,136,Monteagudo N° 114,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,145,141,Hernández N° 363,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,146,142,M. M. Lima N° 226,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,147,144,Combatientes de Malvinas N°  182 (ANTES 178),none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,149,145,"Avda Urquiza N° 662, 664",none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,150,147,Avda Urquiza N° 313,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,153,149,Mitre s/Nº 325,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,155,151,"San Martín N° 1212, 1220",none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,156,152,Bolívar esq Sourigues N° 443,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,157,153,M. Moreno N° 164,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,158,154,"Reibel N° 223, 225",none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,159,155,Las Piedras N° 341,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,164,160,Avda. Paysandú N° 1156,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,165,161,Avda Paysandú N° 274,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,167,163,Bernard N° 671,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,169,165,Avda. Urquiza N° 769,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,171,167,Piamonte N° 650,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,172,168,12 de Abril  N° 1186,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,174,170,Bvard Gaillard N° 252 esq Sarmiento,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,176,171,9 de Mayo N°   323,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,180,175,"Reibel N° 161, 163, 165",none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,186,180,Avda. Paysandú Nº 657,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,188,181,"Batalla de Cepeda Nº204, 206, esq Lavalle",none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,189,182,Bolívar Nº 87,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,192,184,Bvard. Güemes N° 252,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,193,185,"Bvard. Güemes N° 252, esq. Tucumán",none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,194,186,Tucumán y Leguizamón Nº 244,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,196,188,L. N. Alem Nº 17 esq.12 de Abril,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,200,192,Belgrano N° 582,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,201,191,Avda Paysandú N° 262 - 268,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,205,196,3 de Febrero Nº 606,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,206,195,Bvard Ferrari Nº 1183,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,207,197,Chacabuco Nº 292,none,0,low,verified_close,matched_ign,no_cadastral_match
+alta,208,198,"9 de Julio Nº 302, 304, 306, 308, 310, 312 y 314 y Paso de los Andes",none,0,low,verified_close,matched_ign,no_cadastral_match
+media,7,5,9 de Julio N° 68,gru_parc,1,medium,review_large_gap,matched_ign,unique_match_by_gru_parc
+media,26,23,Calle Pública s/N° - Los Bretes,manz_parc,23,low,missing_address_point,no_ign_match,ambiguous_match_by_manz_parc
+media,28,25,"Ruta N° 14, km",manz_parc,22,low,missing_address_point,no_ign_match,ambiguous_match_by_manz_parc
+media,35,31,"Lavalle N° 122, 122",gru_parc,11,low,review_large_gap,matched_ign,ambiguous_match_by_gru_parc
+media,38,34,Raibel N° 780 esq Leguizamón,gru_parc,3,low,missing_address_point,no_ign_match,ambiguous_match_by_gru_parc
+media,42,38,Mitre N° 776,gru_parc,1,medium,review_large_gap,matched_ign,unique_match_by_gru_parc
+media,47,43,Primeros Colonos esq. Calle Pública,gru_parc,2,low,missing_address_point,no_ign_match,ambiguous_match_by_gru_parc
+media,48,44,Calle Jacarandaes s/Nº - Los Bretes,manz_parc,20,low,missing_address_point,no_ign_match,ambiguous_match_by_manz_parc
+media,59,55,Alvear N° 321,gru_parc,1,medium,review_large_gap,matched_ign,unique_match_by_gru_parc
+media,62,58,Bolìvar Nº 435,gru_parc,1,medium,review_large_gap,matched_ign,unique_match_by_gru_parc
+media,64,60,Reibel N° 636,gru_parc,1,medium,review_large_gap,matched_ign,unique_match_by_gru_parc
+media,84,80,Avda. Pte. Perón N° 296,gru_parc,1,medium,review_large_gap,matched_ign,unique_match_by_gru_parc
+media,88,84,12 de Abril N° 850,manz_parc,4,low,verified_close,matched_ign,ambiguous_match_by_manz_parc
+media,91,85,Calle Privada Jacarandaes s/N° ( Los Bretes),manz_parc,17,low,missing_address_point,no_ign_match,ambiguous_match_by_manz_parc
+media,104,100,Mitre N° 776,gru_parc,1,medium,review_large_gap,matched_ign,unique_match_by_gru_parc
+media,119,115,Bolívar N° 790,gru_parc,3,low,review_large_gap,matched_ign,ambiguous_match_by_gru_parc
+media,129,126,Avda.Pte. Perón N° 296,gru_parc,1,medium,review_large_gap,matched_ign,unique_match_by_gru_parc
+media,131,128,M. Moreno N° 431,gru_parc,1,medium,review_large_gap,matched_ign,unique_match_by_gru_parc
+media,168,164,Calle Privada s/N° - Los Bretes,manz_parc,20,low,missing_address_point,no_ign_match,ambiguous_match_by_manz_parc
+media,170,166,Primera Junta N° 93 esq Bolivar,gru_parc,3,low,review_large_gap,matched_ign,ambiguous_match_by_gru_parc
+media,173,169,Maipú N° 74,gru_parc,1,medium,review_large_gap,matched_ign,unique_match_by_gru_parc
+media,177,172,Calle Privada s/Nº - Los Bretes,manz_parc,20,low,missing_address_point,no_ign_match,ambiguous_match_by_manz_parc
+media,179,174,Calle Privada s/N° - Los Bretes,manz_parc,17,low,missing_address_point,no_ign_match,ambiguous_match_by_manz_parc
+media,187,180,Primera Junta Nº 458,manz_parc,1,medium,review_medium_gap,matched_ign,unique_match_by_manz_parc
+media,191,184,Calle Las Moras s/Nº,gru_parc,3,low,missing_address_point,no_ign_match,ambiguous_match_by_gru_parc
+media,195,187,Calle Privada s/Nº - Los Bretes,manz_parc,17,low,missing_address_point,no_ign_match,ambiguous_match_by_manz_parc
+media,199,190,Paso de los Andes N°2170,gru_parc,3,low,missing_address_point,no_ign_match,ambiguous_match_by_gru_parc

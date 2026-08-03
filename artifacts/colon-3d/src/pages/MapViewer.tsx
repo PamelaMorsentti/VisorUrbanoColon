@@ -23,6 +23,7 @@ import AuthPanel from "@/components/AuthGate";
 import AdminDataPanel from "@/components/AdminDataPanel";
 import ExternalFeatureInfo, { type ExternalFeatureInfoState } from "@/components/ExternalFeatureInfo";
 import { useAuth } from "@/contexts/AuthContext";
+import { Link } from "wouter";
 import { hasPermission } from "@/lib/auth";
 import { LAYERS, COLON_CENTER, COLON_ZOOM, ZONA_COLORS } from "@/lib/layers";
 import { useLayerCatalog } from "@/hooks/useLayerCatalog";
@@ -2702,6 +2703,12 @@ export default function MapViewer() {
             >
               Panel admin de datos
             </button>
+            <Link
+              href="/admin/obras-manual"
+              className="mt-2 inline-flex w-full items-center justify-center px-3 py-2 rounded-lg border border-cyan-500/35 bg-cyan-500/10 text-cyan-300 text-xs font-semibold hover:bg-cyan-500/20 transition-colors"
+            >
+              Carga manual de obras
+            </Link>
           </div>
         )}
 

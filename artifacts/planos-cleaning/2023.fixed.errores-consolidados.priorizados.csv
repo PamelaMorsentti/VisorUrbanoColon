@@ -1,0 +1,379 @@
+﻿prioridad,tipo,source_row_number,legajo_canonico,expediente_raw,ubicacion,detalle,subtipo
+critica,geolocalizacion,3,1,,PeriUrbana,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,6,4,"MAIL, 549161",Camino Bernardino Horne s/N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,8,6,"mail, 549039",Celia Pellenc N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,10,7,,,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,12,9,"MAIL, 548907",Calle Pública s/N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,15,12,"mail, 549456",Urbana 2,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,18,15,549618,Chacabico Nº 627,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,20,17,"mail, 549520",Juan Manuel de Rosas N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,22,19,"mail, 549765",Urbana 2,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,23,20,544391,Domingo Antonini N° 89,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,27,24,550241,Araujo Pen{on N° 285,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,29,26,550237,Madre Isabel Fernandez Nª 312 esq Mitre,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,32,29,549904,Calle Pública s/N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,34,30,547818,Residencial Norte,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,39,35,"mail, 550855",Urbana 1,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,41,37,548344,Combatientes de Malvinas N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,45,41,550867,3 de Febrero N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,46,42,"mail, 547266",Primeros Colonos esq Agua-I,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,49,45,549963,Piamonte s/N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,51,47,547346,Azurduy esq Espinillo,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,52,48,549704,Calle Brovatti S/N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,53,49,543251,Calle Pública s/N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,56,52,551845,Hornero s/Nº,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,60,56,551826,Ñandubay N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,66,62,"mail, 551023, mail",Bvard Ferrari N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,67,63,"mail, 552122",Bolívar N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,70,66,"mail, 552543",Jacarandaes esq Coronillos ( Los Bretes),no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,71,67,549856,Avda Quiròs Nº 280 esq Mitre,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,73,69,"mail, 552806",Sourigues N° 610 e/ C de Malvinas y Cepeda,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,78,74,"mail, 552972",Alfredo Bravo s/N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,79,76,"MAIL, 553219",Salsipuedes N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,80,75,"mail, 553232",Calle Privada s/N° (Los Bretes),no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,82,78,"mail, 553301",Gómez Miranda N° 148 esq Noailles,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,83,79,552987,Calle Artalaz s/N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,86,83,"mail, 548972",Bolívar N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,89,88,551476,Noailles N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,95,91,"mail, 553971",Urbana 2,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,97,93,"mail, 554179",Viollaz N° 232,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,99,95,"mail, 554309",Calle Pública s/N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,106,105,549757,Cabo Pereyra N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,107,102,"mail, 552115",Paje Villalba N° 672,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,108,103,"mail, 557413",Los Charrúas s/N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,114,110,"mail, 554495",Camino Horne s/N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,121,116,"mail, 548478",Calle Pública s/N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,125,121,"mail,  553869",Calle Primeros Colonos s/N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,127,122,"mail, 554883","Ruta Nac N° 135, km",no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,128,124,546736,"Gral Paz Nº 162, 164",no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,136,132,"mail, 555346",Florentina Gomez Miranda N° 120,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,142,138,"mail, 555470",Calle provada s/N° - Los Bretes,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,143,140,"mail, 555612",Urbana 2,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,148,143,555715,Durand N° 457 es Pasaje s/nombre,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,152,148,556062,Calle Privada s/N° - Los Bretes,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,160,156,"mail, 557242",Salsipuedes s/N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,161,157,"mail, 557277",Florentina Gomez Miranda N° 117,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,166,162,554798,Calle Paraiso ( Loteo Aires de 1872),no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,178,173,555879,General Paz N° 136,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,181,176,"MAIL, 558956",María Isabel Fernandez s/N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,190,183,"MAIL, 557642",Paso de los Andes Nº,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,198,189,"mail, 557003",Castelli N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+critica,geolocalizacion,202,191,,,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,4,2,547704,Sarmiento Nº 88,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,5,3,549038,"Maipú Nª 525, 529 (antes 535)",no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,7,5,549912,9 de Julio N° 68,unique_match_by_gru_parc,distancia_para_revision
+alta,geolocalizacion,11,8,549056,San Martín N° 567 - 571,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,13,10,548969,Laprida N° 227,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,14,11,548366,Gouchón N° 253 esq Sarmiento,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,16,13,548986,"Vieytes Nº 41 esq Gra Urquiza Nº 653, 657, 659",no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,17,14,538380,Laprida N° 122,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,19,16,"MAIL, 549504",Peyret N° 210,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,21,18,"mail, 549763",Maipú N° 470,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,24,21,549964,Rocamora N° 416,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,25,22,"mail, 550057",Gouchon N° 418,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,30,27,"mail, 550170",Hernandez N° 282,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,31,28,"mail, 550474",Bvard. Ferrari N° 1190,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,35,31,,"Lavalle N° 122, 122",ambiguous_match_by_gru_parc,match_no_unico|baja_confianza|distancia_para_revision
+alta,geolocalizacion,36,32,550510,Noailles N° 239 esq L. N. Alema,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,37,33,550631,9 de Julio Nº 363,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,40,36,547148,25 de Mayo N° 464,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,42,38,"mail, 549962",Mitre N° 776,unique_match_by_gru_parc,distancia_para_revision
+alta,geolocalizacion,44,40,550967,Avda Paysandù Nº 274,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,50,46,"mail, 551495",Tucumán Nº 1422,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,54,50,541028,Avda Paysandú Nº 1170,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,55,51,"mail, 551638",Combatientes de Malvinas N° 980,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,57,53,"mail, 551756",M. M. Lima N° 1081,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,58,54,551064,12 de Abril Nº 167 (171),no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,59,55,551803,Alvear N° 321,unique_match_by_gru_parc,distancia_para_revision
+alta,geolocalizacion,61,57,"mail, 552086",Alberdi esq Sourigues N° 244 y 246,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,62,58,551441,Bolìvar Nº 435,unique_match_by_gru_parc,distancia_para_revision
+alta,geolocalizacion,63,59,552179,Las Piedras N° 12,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,64,60,"mail, 552180",Reibel N° 636,unique_match_by_gru_parc,distancia_para_revision
+alta,geolocalizacion,65,61,"549179, mail",San Martín N° 220,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,68,64,552544,Alejo Peyret N° 140,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,74,70,"mail, 552739",Pasaje Alarcón N° 521,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,75,71,"mail, 552748",12 de Abril N° 741,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,76,72,"mail, 552724",Balcarce N° 66,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,81,77,"mail, 553268","Esteva Berga N° 152, esq Noailles",no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,84,80,553342,Avda. Pte. Perón N° 296,unique_match_by_gru_parc,distancia_para_revision
+alta,geolocalizacion,92,86,553646,San Martín N° 625,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,93,89,518953,Laprida N.º 521,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,94,90,553555,Combatientes de Malvinas N° 188,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,101,97,"mail, 554532",Cabo Pereyra N° 645,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,102,98,"mail, 554282",25 de Mayo N° 450,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,103,99,553659,Araujo Penón N° 413,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,104,100,"MAIL, 553664",Mitre N° 776,unique_match_by_gru_parc,distancia_para_revision
+alta,geolocalizacion,105,104,"mail, 554248","12 de Abril N°  esq. Lavalle N° 2, 8, 10, 12, 14, 16, 18",no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,110,106,"mail, 553114",Bvard Ferrari s/Nº 960,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,111,108,550208,Bolívar Nº 237,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,113,109,553730,12 de Abril N° 686,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,115,111,"mail, 554513",Sarmiento N°  366,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,116,112,"mail, 554551",Bvard. Ferrari N.º 1389,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,117,113,"MAIL, 553480",Artigas N° 173,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,118,114,"MAIL, 533743",Reibel N° 248,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,119,115,554258,Bolívar N° 790,ambiguous_match_by_gru_parc,match_no_unico|baja_confianza|distancia_para_revision
+alta,geolocalizacion,122,119,554509,Lavalle N° 486,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,123,118,554762,Balcarce N° 174,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,124,120,"MAIL, 554853",Avda Urquiza N° 1174 y 1180,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,126,123,554612,Lima N° 191 esq Lavalle N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,129,126,"mail, 555094",Avda.Pte. Perón N° 296,unique_match_by_gru_parc,distancia_para_revision
+alta,geolocalizacion,130,125,"mail, 554999","12 de Abril Nº 848, 840, al 846",no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,131,128,"mail, 555051",M. Moreno N° 431,unique_match_by_gru_parc,distancia_para_revision
+alta,geolocalizacion,132,127,554614,Balcarce N° 482 - 486,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,134,130,555109,San Martín N° 859 - 861,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,135,131,"mail, 554794",3 de Febrero N° 70,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,137,133,554510,Las Piedras N°  336,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,138,137,"mail, 554006",San Martín N° 472,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,139,134,"mail, 555399",Avda Paysandú esq 3 de Febrero N°,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,141,136,"mail, 555421",Monteagudo N° 114,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,145,141,555438,Hernández N° 363,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,146,142,"mail, 555746",M. M. Lima N° 226,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,147,144,"mail, 555752",Combatientes de Malvinas N°  182 (ANTES 178),no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,149,145,"mail, 555957","Avda Urquiza N° 662, 664",no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,150,147,556092,Avda Urquiza N° 313,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,153,149,mail,Mitre s/Nº 325,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,155,151,555557,"San Martín N° 1212, 1220",no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,156,152,556463,Bolívar esq Sourigues N° 443,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,157,153,555745,M. Moreno N° 164,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,158,154,555570,"Reibel N° 223, 225",no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,159,155,554681,Las Piedras N° 341,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,164,160,557028,Avda. Paysandú N° 1156,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,165,161,552299,Avda Paysandú N° 274,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,167,163,552490,Bernard N° 671,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,169,165,557422,Avda. Urquiza N° 769,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,170,166,"mail, 557568",Primera Junta N° 93 esq Bolivar,ambiguous_match_by_gru_parc,match_no_unico|baja_confianza|distancia_para_revision
+alta,geolocalizacion,171,167,556746,Piamonte N° 650,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,172,168,557688,12 de Abril  N° 1186,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,173,169,556066,Maipú N° 74,unique_match_by_gru_parc,distancia_para_revision
+alta,geolocalizacion,174,170,"mail, 557632",Bvard Gaillard N° 252 esq Sarmiento,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,176,171,"mail, 557847",9 de Mayo N°   323,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,180,175,"mail, 558172","Reibel N° 161, 163, 165",no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,186,180,"MAIL, 557967",Avda. Paysandú Nº 657,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,188,181,"mail, 558287","Batalla de Cepeda Nº204, 206, esq Lavalle",no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,189,182,556068,Bolívar Nº 87,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,192,184,538247,Bvard. Güemes N° 252,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,193,185,"mail, 538247","Bvard. Güemes N° 252, esq. Tucumán",no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,194,186,557787,Tucumán y Leguizamón Nº 244,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,196,188,"mail, 555678",L. N. Alem Nº 17 esq.12 de Abril,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,200,192,556856,Belgrano N° 582,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,201,191,"mail, 558527",Avda Paysandú N° 262 - 268,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,205,196,558753,3 de Febrero Nº 606,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,206,195,558094,Bvard Ferrari Nº 1183,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,207,197,558709,Chacabuco Nº 292,no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+alta,geolocalizacion,208,198,"mail, 558656","9 de Julio Nº 302, 304, 306, 308, 310, 312 y 314 y Paso de los Andes",no_cadastral_match,sin_match_catastral|match_no_unico|baja_confianza|falta_punto
+media,deteccion,2,1,"mail, 548999",Ruta N° 135,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,4,2,547704,Sarmiento Nº 88,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,5,3,549038,"Maipú Nª 525, 529 (antes 535)",Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,6,4,"MAIL, 549161",Camino Bernardino Horne s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,7,5,549912,9 de Julio N° 68,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,8,6,"mail, 549039",Celia Pellenc N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,9,7,"mail, 548921",Calle Chaiñar esq Madres y Abuelas de P. de Mayo,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,11,8,549056,San Martín N° 567 - 571,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,12,9,"MAIL, 548907",Calle Pública s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,13,10,548969,Laprida N° 227,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,14,11,548366,Gouchón N° 253 esq Sarmiento,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,15,12,"mail, 549456",Urbana 2,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,16,13,548986,"Vieytes Nº 41 esq Gra Urquiza Nº 653, 657, 659",Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,17,14,538380,Laprida N° 122,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,18,15,549618,Chacabico Nº 627,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,18,15,549618,Chacabico Nº 627,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,19,16,"MAIL, 549504",Peyret N° 210,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,20,17,"mail, 549520",Juan Manuel de Rosas N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,21,18,"mail, 549763",Maipú N° 470,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,22,19,"mail, 549765",Urbana 2,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,23,20,544391,Domingo Antonini N° 89,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,24,21,549964,Rocamora N° 416,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,25,22,"mail, 550057",Gouchon N° 418,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,26,23,548424,Calle Pública s/N° - Los Bretes,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,geolocalizacion,26,23,548424,Calle Pública s/N° - Los Bretes,ambiguous_match_by_manz_parc,match_no_unico|baja_confianza
+media,deteccion,27,24,550241,Araujo Pen{on N° 285,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,28,25,550243,"Ruta N° 14, km",Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,geolocalizacion,28,25,550243,"Ruta N° 14, km",ambiguous_match_by_manz_parc,match_no_unico|baja_confianza
+media,deteccion,29,26,550237,Madre Isabel Fernandez Nª 312 esq Mitre,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,30,27,"mail, 550170",Hernandez N° 282,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,31,28,"mail, 550474",Bvard. Ferrari N° 1190,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,32,29,549904,Calle Pública s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,33,30,"mail, 550194",Brovatti N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,35,31,,"Lavalle N° 122, 122",Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,36,32,550510,Noailles N° 239 esq L. N. Alema,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,37,33,550631,9 de Julio Nº 363,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,38,34,550835,Raibel N° 780 esq Leguizamón,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,geolocalizacion,38,34,550835,Raibel N° 780 esq Leguizamón,ambiguous_match_by_gru_parc,match_no_unico|baja_confianza
+media,deteccion,39,35,"mail, 550855",Urbana 1,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,40,36,547148,25 de Mayo N° 464,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,41,37,548344,Combatientes de Malvinas N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,42,38,"mail, 549962",Mitre N° 776,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,43,39,"mail, 550833",Calle Pública s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,44,40,550967,Avda Paysandù Nº 274,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,45,41,550867,3 de Febrero N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,46,42,"mail, 547266",Primeros Colonos esq Agua-I,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,47,43,"mail, 551150",Primeros Colonos esq. Calle Pública,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,geolocalizacion,47,43,"mail, 551150",Primeros Colonos esq. Calle Pública,ambiguous_match_by_gru_parc,match_no_unico|baja_confianza
+media,deteccion,48,44,546001,Calle Jacarandaes s/Nº - Los Bretes,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,geolocalizacion,48,44,546001,Calle Jacarandaes s/Nº - Los Bretes,ambiguous_match_by_manz_parc,match_no_unico|baja_confianza
+media,deteccion,49,45,549963,Piamonte s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,50,46,"mail, 551495",Tucumán Nº 1422,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,51,47,547346,Azurduy esq Espinillo,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,52,48,549704,Calle Brovatti S/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,53,49,543251,Calle Pública s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,54,50,541028,Avda Paysandú Nº 1170,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,55,51,"mail, 551638",Combatientes de Malvinas N° 980,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,56,52,551845,Hornero s/Nº,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,57,53,"mail, 551756",M. M. Lima N° 1081,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,58,54,551064,12 de Abril Nº 167 (171),Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,59,55,551803,Alvear N° 321,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,60,56,551826,Ñandubay N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,61,57,"mail, 552086",Alberdi esq Sourigues N° 244 y 246,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,62,58,551441,Bolìvar Nº 435,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,63,59,552179,Las Piedras N° 12,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,64,60,"mail, 552180",Reibel N° 636,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,65,61,"549179, mail",San Martín N° 220,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,66,62,"mail, 551023, mail",Bvard Ferrari N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,67,63,"mail, 552122",Bolívar N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,68,64,552544,Alejo Peyret N° 140,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,69,65,551186,"Ruta Nº 130, ex 26 esq Calle Sauce",Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,70,66,"mail, 552543",Jacarandaes esq Coronillos ( Los Bretes),Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,71,67,549856,Avda Quiròs Nº 280 esq Mitre,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,72,68,551865,Calle Ibirapitá N° entre Algarrobo y Timbó,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,73,69,"mail, 552806",Sourigues N° 610 e/ C de Malvinas y Cepeda,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,74,70,"mail, 552739",Pasaje Alarcón N° 521,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,75,71,"mail, 552748",12 de Abril N° 741,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,76,72,"mail, 552724",Balcarce N° 66,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,77,73,"mail, 552195",Espinillo N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,78,74,"mail, 552972",Alfredo Bravo s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,79,76,"MAIL, 553219",Salsipuedes N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,80,75,"mail, 553232",Calle Privada s/N° (Los Bretes),Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,81,77,"mail, 553268","Esteva Berga N° 152, esq Noailles",Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,82,78,"mail, 553301",Gómez Miranda N° 148 esq Noailles,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,83,79,552987,Calle Artalaz s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,84,80,553342,Avda. Pte. Perón N° 296,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,85,81,552999,J. A. Fernandez s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,86,83,"mail, 548972",Bolívar N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,87,82,552542,Ruta Nac. N° 14,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,88,84,550789,12 de Abril N° 850,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,geolocalizacion,88,84,550789,12 de Abril N° 850,ambiguous_match_by_manz_parc,match_no_unico|baja_confianza
+media,deteccion,89,88,551476,Noailles N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,90,87,"mail, 553820",Paso de los Andes N°  2033,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,91,85,"mail, 553465",Calle Privada Jacarandaes s/N° ( Los Bretes),Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,geolocalizacion,91,85,"mail, 553465",Calle Privada Jacarandaes s/N° ( Los Bretes),ambiguous_match_by_manz_parc,match_no_unico|baja_confianza
+media,deteccion,92,86,553646,San Martín N° 625,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,93,89,518953,Laprida N.º 521,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,94,90,553555,Combatientes de Malvinas N° 188,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,95,91,"mail, 553971",Urbana 2,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,96,92,"MAIL, 554076",Alberdi N° 2131,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,97,93,"mail, 554179",Viollaz N° 232,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,98,94,"mail, 553927",PeriUrbana,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,99,95,"mail, 554309",Calle Pública s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,100,96,"MAIL, 553664",Ruta Nac N° 135,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,101,97,"mail, 554532",Cabo Pereyra N° 645,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,102,98,"mail, 554282",25 de Mayo N° 450,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,103,99,553659,Araujo Penón N° 413,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,104,100,"MAIL, 553664",Mitre N° 776,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,105,104,"mail, 554248","12 de Abril N°  esq. Lavalle N° 2, 8, 10, 12, 14, 16, 18",Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,106,105,549757,Cabo Pereyra N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,107,102,"mail, 552115",Paje Villalba N° 672,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,108,103,"mail, 557413",Los Charrúas s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,109,101,"mail, 554285",Calle Ceibo s/Nº,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,110,106,"mail, 553114",Bvard Ferrari s/Nº 960,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,111,108,550208,Bolívar Nº 237,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,112,107,553041,Bvard. Fresnos s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,113,109,553730,12 de Abril N° 686,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,114,110,"mail, 554495",Camino Horne s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,115,111,"mail, 554513",Sarmiento N°  366,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,116,112,"mail, 554551",Bvard. Ferrari N.º 1389,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,117,113,"MAIL, 553480",Artigas N° 173,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,118,114,"MAIL, 533743",Reibel N° 248,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,119,115,554258,Bolívar N° 790,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,120,117,553983,Aguaribay N° 157,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,121,116,"mail, 548478",Calle Pública s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,122,119,554509,Lavalle N° 486,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,123,118,554762,Balcarce N° 174,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,124,120,"MAIL, 554853",Avda Urquiza N° 1174 y 1180,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,125,121,"mail,  553869",Calle Primeros Colonos s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,126,123,554612,Lima N° 191 esq Lavalle N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,127,122,"mail, 554883","Ruta Nac N° 135, km",Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,128,124,546736,"Gral Paz Nº 162, 164",Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,129,126,"mail, 555094",Avda.Pte. Perón N° 296,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,130,125,"mail, 554999","12 de Abril Nº 848, 840, al 846",Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,131,128,"mail, 555051",M. Moreno N° 431,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,132,127,554614,Balcarce N° 482 - 486,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,133,129,"mail, 554994",Calle Madres y Abuelas de Plaza de Mayo s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,134,130,555109,San Martín N° 859 - 861,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,135,131,"mail, 554794",3 de Febrero N° 70,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,136,132,"mail, 555346",Florentina Gomez Miranda N° 120,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,137,133,554510,Las Piedras N°  336,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,138,137,"mail, 554006",San Martín N° 472,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,139,134,"mail, 555399",Avda Paysandú esq 3 de Febrero N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,140,135,"mail, 555521","Bvard. Gaillard Nº 2028 , 2030",Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,141,136,"mail, 555421",Monteagudo N° 114,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,142,138,"mail, 555470",Calle provada s/N° - Los Bretes,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,143,140,"mail, 555612",Urbana 2,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,144,139,555151,Calle Progreso s/Nº,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,145,141,555438,Hernández N° 363,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,146,142,"mail, 555746",M. M. Lima N° 226,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,147,144,"mail, 555752",Combatientes de Malvinas N°  182 (ANTES 178),Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,148,143,555715,Durand N° 457 es Pasaje s/nombre,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,149,145,"mail, 555957","Avda Urquiza N° 662, 664",Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,150,147,556092,Avda Urquiza N° 313,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,151,146,554448,Ceibo s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,152,148,556062,Calle Privada s/N° - Los Bretes,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,153,149,mail,Mitre s/Nº 325,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,154,150,555783,Calle Pública s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,155,151,555557,"San Martín N° 1212, 1220",Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,156,152,556463,Bolívar esq Sourigues N° 443,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,157,153,555745,M. Moreno N° 164,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,158,154,555570,"Reibel N° 223, 225",Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,159,155,554681,Las Piedras N° 341,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,160,156,"mail, 557242",Salsipuedes s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,161,157,"mail, 557277",Florentina Gomez Miranda N° 117,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,162,158,557327,Calle Chañar s/N° esq Saavedra Lamas - Barrio Cicle,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,163,159,557328,Calle Sauce N° esq Juana Azurduy,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,164,160,557028,Avda. Paysandú N° 1156,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,165,161,552299,Avda Paysandú N° 274,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,166,162,554798,Calle Paraiso ( Loteo Aires de 1872),Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,167,163,552490,Bernard N° 671,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,168,164,556108,Calle Privada s/N° - Los Bretes,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,geolocalizacion,168,164,556108,Calle Privada s/N° - Los Bretes,ambiguous_match_by_manz_parc,match_no_unico|baja_confianza
+media,deteccion,169,165,557422,Avda. Urquiza N° 769,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,170,166,"mail, 557568",Primera Junta N° 93 esq Bolivar,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,171,167,556746,Piamonte N° 650,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,172,168,557688,12 de Abril  N° 1186,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,173,169,556066,Maipú N° 74,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,174,170,"mail, 557632",Bvard Gaillard N° 252 esq Sarmiento,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,176,171,"mail, 557847",9 de Mayo N°   323,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,177,172,"mail, 558149",Calle Privada s/Nº - Los Bretes,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,geolocalizacion,177,172,"mail, 558149",Calle Privada s/Nº - Los Bretes,ambiguous_match_by_manz_parc,match_no_unico|baja_confianza
+media,deteccion,178,173,555879,General Paz N° 136,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,179,174,557603,Calle Privada s/N° - Los Bretes,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,geolocalizacion,179,174,557603,Calle Privada s/N° - Los Bretes,ambiguous_match_by_manz_parc,match_no_unico|baja_confianza
+media,deteccion,180,175,"mail, 558172","Reibel N° 161, 163, 165",Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,181,176,"MAIL, 558956",María Isabel Fernandez s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,182,177,"mail, 558179",Calle Pública s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,183,178,mail,Calle Pública s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,184,179,"mail, 558114",San Martín N° 773 y 775,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,186,180,"MAIL, 557967",Avda. Paysandú Nº 657,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,187,180,,Primera Junta Nº 458,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,geolocalizacion,187,180,,Primera Junta Nº 458,unique_match_by_manz_parc,distancia_para_revision
+media,deteccion,188,181,"mail, 558287","Batalla de Cepeda Nº204, 206, esq Lavalle",Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,189,182,556068,Bolívar Nº 87,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,190,183,"MAIL, 557642",Paso de los Andes Nº,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,191,184,"MAIL, 558332",Calle Las Moras s/Nº,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,geolocalizacion,191,184,"MAIL, 558332",Calle Las Moras s/Nº,ambiguous_match_by_gru_parc,match_no_unico|baja_confianza
+media,deteccion,193,185,"mail, 538247","Bvard. Güemes N° 252, esq. Tucumán",Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,194,186,557787,Tucumán y Leguizamón Nº 244,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,195,187,"mail, 558288",Calle Privada s/Nº - Los Bretes,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,geolocalizacion,195,187,"mail, 558288",Calle Privada s/Nº - Los Bretes,ambiguous_match_by_manz_parc,match_no_unico|baja_confianza
+media,deteccion,196,188,"mail, 555678",L. N. Alem Nº 17 esq.12 de Abril,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,197,188,555866,Calle Privada s/N° - Los Bretes,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,197,188,555866,Calle Privada s/N° - Los Bretes,Fila con datos que no pudo asignarse a un legajo canonico.,unassigned_legajo
+media,deteccion,198,189,"mail, 557003",Castelli N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,199,190,"mail, 557641",Paso de los Andes N°2170,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,geolocalizacion,199,190,"mail, 557641",Paso de los Andes N°2170,ambiguous_match_by_gru_parc,match_no_unico|baja_confianza
+media,deteccion,200,192,556856,Belgrano N° 582,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,201,191,"mail, 558527",Avda Paysandú N° 262 - 268,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,203,193,"MAIL, 558440",Los Cardos s/Nº,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,204,194,"mail, 558378",Domingo Matheu s/N°,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,205,196,558753,3 de Febrero Nº 606,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,206,195,558094,Bvard Ferrari Nº 1183,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,207,197,558709,Chacabuco Nº 292,Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date
+media,deteccion,208,198,"mail, 558656","9 de Julio Nº 302, 304, 306, 308, 310, 312 y 314 y Paso de los Andes",Fecha de visado invalida para formato AR (dd/mm/aaaa).,invalid_ar_date

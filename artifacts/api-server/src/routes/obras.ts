@@ -1,7 +1,7 @@
 import { promises as fs } from "node:fs";
 import crypto from "node:crypto";
 import path from "node:path";
-import { Router, type IRouter } from "express";
+import { Router, type IRouter, type Request } from "express";
 import { and, asc, eq, gte, inArray, lte, or } from "drizzle-orm";
 import { db } from "@workspace/db";
 import { obrasPrivadasTable } from "@workspace/db/schema";
@@ -45,6 +45,8 @@ type CachedDataset = {
 const fileDatasetCache = new Map<PublicationLevel, CachedDataset>();
 
 const declarationTypes: DeclarationType[] = ["relevamiento", "nueva", "ampliacion", "proyectada"];
+const manualRequiredColumns = ["ingreso", "ubicacion", "propietario", "visado"] as const;
+const MANUAL_ADMIN_TOKEN = process.env.OBRAS_MANUAL_ADMIN_TOKEN || "colon-admin-manual";
 
 function normalizeText(value: unknown): string {
   return String(value ?? "").trim().toLowerCase();
@@ -220,6 +222,147 @@ function buildResponseEtag(sourceTag: string, level: PublicationLevel, filters: 
 function parseLevel(value: unknown): PublicationLevel {
   if (value === "professional" || value === "admin") return value;
   return "public";
+}
+
+function resolveManualEntriesPath(): string {
+  const cwd = process.cwd();
+  return path.resolve(cwd, "artifacts", "planos-cleaning", "manual-obras-entries.jsonl");
+}
+
+function hasManualAdminAccess(req: Request): boolean {
+  const header = req.headers["x-admin-token"];
+  if (Array.isArray(header)) return header.some((value) => value.trim() === MANUAL_ADMIN_TOKEN);
+  if (typeof header !== "string") return false;
+  return header.trim() === MANUAL_ADMIN_TOKEN;
+}
+
+type ManualEntryBody = {
+  sourceYear?: unknown;
+  createdBy?: unknown;
+  data?: unknown;
+};
+
+function parseDateForDb(value: unknown): string | null {
+  const raw = String(value ?? "").trim();
+  if (!raw) return null;
+
+  const iso = raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (iso) return `${iso[1]}-${iso[2]}-${iso[3]}`;
+
+  const dmy = raw.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{2,4})$/);
+  if (!dmy) return null;
+
+  const dd = Number(dmy[1]);
+  const mm = Number(dmy[2]);
+  let yy = Number(dmy[3]);
+  if (yy < 100) yy += yy >= 70 ? 1900 : 2000;
+  if (!Number.isFinite(dd) || !Number.isFinite(mm) || !Number.isFinite(yy)) return null;
+  if (dd < 1 || dd > 31 || mm < 1 || mm > 12 || yy < 1900 || yy > 2100) return null;
+
+  const date = new Date(Date.UTC(yy, mm - 1, dd));
+  if (date.getUTCFullYear() !== yy || date.getUTCMonth() !== mm - 1 || date.getUTCDate() !== dd) return null;
+  return `${String(yy).padStart(4, "0")}-${String(mm).padStart(2, "0")}-${String(dd).padStart(2, "0")}`;
+}
+
+function parseNumericCoord(value: unknown): number | null {
+  const raw = String(value ?? "").trim();
+  if (!raw) return null;
+  const n = Number(raw.replace(",", "."));
+  return Number.isFinite(n) ? n : null;
+}
+
+function normalizeLegajo(value: unknown): string | null {
+  const digits = String(value ?? "").replace(/\D+/g, "");
+  if (!digits || digits.length > 3) return null;
+  return String(Number(digits));
+}
+
+function buildNcp(data: Record<string, string>): string | null {
+  const concesion = String(data.concesion ?? "").replace(/\D+/g, "");
+  const manzana = String(data.manzana ?? "").replace(/\D+/g, "");
+  const parcela = String(data.parcela ?? "").replace(/\D+/g, "");
+  if (!manzana || !parcela) return null;
+  const sec = concesion ? concesion.slice(-3).padStart(3, "0") : "000";
+  const manz = manzana.slice(-4).padStart(4, "0");
+  const parc = parcela.slice(-3).padStart(3, "0");
+  return `010001${sec}000${manz}--${parc}--`;
+}
+
+function flag(value: unknown): boolean {
+  const normalized = normalizeText(value);
+  if (!normalized) return false;
+  if (normalized === "0" || normalized === "false" || normalized === "no") return false;
+  return true;
+}
+
+function buildManualRawFeature(
+  sourceRowNumber: string,
+  sourceYear: number,
+  createdBy: string,
+  data: Record<string, string>,
+): Record<string, unknown> {
+  const lat = parseNumericCoord(data.coordenada_lat ?? data.latitud ?? "");
+  const lon = parseNumericCoord(data.coordenada_lon ?? data.longitud ?? "");
+  const visadoDate = parseDateForDb(data.visado);
+  const visadoYear = visadoDate ? Number(visadoDate.slice(0, 4)) : sourceYear;
+
+  return {
+    type: "Feature",
+    geometry: lat !== null && lon !== null
+      ? { type: "Point", coordinates: [lon, lat] }
+      : null,
+    properties: {
+      source_file: "manual-obras-entries.jsonl",
+      source_row_number: sourceRowNumber,
+      source_year: sourceYear,
+      created_by: createdBy,
+      fecha_de_visado: visadoDate ?? String(data.visado ?? ""),
+      visado_year: visadoYear,
+      legajo_canonico: normalizeLegajo(data.legajo) ?? "",
+      ncp: buildNcp(data) ?? "",
+      zonificacion: String(data.zonificacion ?? ""),
+      destino_uso: String(data.uso ?? ""),
+      tipo: String(data.condicion_del_tramite ?? "") || "Manual",
+      relevamiento_o_existente: String(data.relevamiento_o_existente ?? ""),
+      a_contruir_obra_nueva: String(data.a_construir_obra_nueva ?? ""),
+      ampliacion_de_obra_existente: String(data.ampliacion_obra_existente ?? ""),
+      proyectado_no_iniciado: String(data.proyectado_no_iniciado ?? ""),
+      raw_manual_payload: data,
+    },
+  };
+}
+
+function validateManualBody(body: ManualEntryBody): {
+  sourceYear: number;
+  createdBy: string;
+  data: Record<string, string>;
+} {
+  const sourceYearNum = Number(body.sourceYear);
+  if (!Number.isFinite(sourceYearNum) || sourceYearNum < 2000 || sourceYearNum > 2100) {
+    throw new Error("sourceYear inválido");
+  }
+
+  const createdBy = String(body.createdBy ?? "admin").trim();
+  if (!createdBy) throw new Error("createdBy inválido");
+
+  if (!body.data || typeof body.data !== "object" || Array.isArray(body.data)) {
+    throw new Error("data inválido");
+  }
+
+  const data = Object.fromEntries(
+    Object.entries(body.data as Record<string, unknown>).map(([key, value]) => [key, String(value ?? "").trim()]),
+  );
+
+  const missing = manualRequiredColumns.filter((key) => !data[key]);
+  if (missing.length > 0) {
+    throw new Error(`Faltan columnas obligatorias: ${missing.join(", ")}`);
+  }
+
+  return {
+    sourceYear: Math.trunc(sourceYearNum),
+    createdBy,
+    data,
+  };
 }
 
 function candidatePlanosDirs(): string[] {
@@ -531,6 +674,76 @@ router.post("/obras/import-from-file", async (req, res) => {
     }
     return res.status(500).json({
       error: "No se pudo importar dataset de Obras Privadas",
+      details: error instanceof Error ? error.message : "Unknown error",
+    });
+  }
+});
+
+router.post("/obras/manual-entries", async (req, res) => {
+  try {
+    if (!hasManualAdminAccess(req)) {
+      return res.status(403).json({
+        error: "Acceso denegado",
+        details: "Falta o es invalido el header x-admin-token",
+      });
+    }
+
+    const payload = validateManualBody(req.body as ManualEntryBody);
+    const outputPath = resolveManualEntriesPath();
+    await fs.mkdir(path.dirname(outputPath), { recursive: true });
+
+    const entry = {
+      createdAt: new Date().toISOString(),
+      source: "admin-manual-form",
+      ...payload,
+    };
+
+    await fs.appendFile(outputPath, `${JSON.stringify(entry)}\n`, "utf8");
+
+    const sourceRowNumber = `${Date.now()}-${crypto.randomUUID().slice(0, 8)}`;
+    const feature = buildManualRawFeature(sourceRowNumber, payload.sourceYear, payload.createdBy, payload.data);
+    const visadoDate = parseDateForDb(payload.data.visado);
+    const visadoYear = visadoDate ? Number(visadoDate.slice(0, 4)) : payload.sourceYear;
+
+    let persistedToDb = false;
+    let dbDetails: string | null = null;
+    try {
+      await db.insert(obrasPrivadasTable).values({
+        publicationLevel: "admin",
+        sourceFile: "manual-obras-entries.jsonl",
+        sourceRowNumber,
+        legajoCanonico: normalizeLegajo(payload.data.legajo),
+        ncp: buildNcp(payload.data),
+        zonificacion: String(payload.data.zonificacion ?? "") || null,
+        destinoUso: String(payload.data.uso ?? "") || null,
+        tipo: String(payload.data.condicion_del_tramite ?? "") || "Manual",
+        visadoDate,
+        visadoYear,
+        isRelevamiento: flag(payload.data.relevamiento_o_existente),
+        isNueva: flag(payload.data.a_construir_obra_nueva),
+        isAmpliacion: flag(payload.data.ampliacion_obra_existente),
+        isProyectada: flag(payload.data.proyectado_no_iniciado),
+        rawFeature: feature,
+      });
+      persistedToDb = true;
+    } catch (dbError) {
+      dbDetails = dbError instanceof Error ? dbError.message : "unknown db error";
+    }
+
+    return res.status(201).json({
+      message: persistedToDb
+        ? "Obra manual registrada y subida a DB"
+        : "Obra manual registrada en archivo (pendiente de subir a DB)",
+      output: outputPath,
+      sourceYear: payload.sourceYear,
+      createdBy: payload.createdBy,
+      sourceRowNumber,
+      persistedToDb,
+      dbDetails,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      error: "No se pudo registrar la obra manual",
       details: error instanceof Error ? error.message : "Unknown error",
     });
   }

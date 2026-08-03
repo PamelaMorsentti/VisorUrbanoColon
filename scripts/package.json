@@ -21,6 +21,7 @@
     "geolocate:refresh": "pnpm geolocate:catastro && pnpm queue:catastro",
     "import:obras:years": "tsx ./src/import-obras-years-to-db.ts",
     "merge:obras:years": "tsx ./src/merge-obras-years.ts",
+    "sync:manual:obras:db": "tsx ./src/sync-manual-obras-to-db.ts",
     "backfill:obras:geom": "tsx ./src/backfill-obras-geom.ts",
     "audit:obras:source-counts": "tsx ./src/audit-obras-source-counts.ts",
     "convert:obras:xlsx-csv": "tsx ./src/convert-obras-years-xlsx-to-csv.ts",
