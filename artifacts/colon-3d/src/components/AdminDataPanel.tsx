@@ -100,6 +100,16 @@ function safeReadOverrides(): Record<string, Partial<FeatureProps>> {
   }
 }
 
+function mergeFeatureProps(base: FeatureProps, patch: Partial<FeatureProps>): FeatureProps {
+  const merged: FeatureProps = { ...base };
+  for (const [key, value] of Object.entries(patch)) {
+    if (typeof value === "string") {
+      merged[key] = value;
+    }
+  }
+  return merged;
+}
+
 function applyOverrides(
   features: GeoFeature[],
   overrides: Record<string, Partial<FeatureProps>>,
@@ -110,10 +120,7 @@ function applyOverrides(
     if (!patch) return feature;
     return {
       ...feature,
-      properties: {
-        ...feature.properties,
-        ...patch,
-      },
+      properties: mergeFeatureProps(feature.properties, patch),
     };
   });
 }

@@ -584,24 +584,79 @@ function buildFloodVisualOverlayGeoJSON(cNivel: FeatureCollection, cotaRef: numb
     return { type: "FeatureCollection", features: [] };
   }
 
-  const maxContourZ = lowContourLines.reduce((max: number, item: ContourCandidate) => Math.max(max, item.z), Number.NEGATIVE_INFINITY);
-  const Z_EPS = 1e-6;
-  const borderLines = lowContourLines.filter((item: ContourCandidate) => Math.abs(item.z - maxContourZ) <= Z_EPS);
+  const lowClosedPolygons: Array<FeatureCollection & { properties: { z: number } }> = [];
+  for (const item of lowContourLines) {
+    const rings = ringsFromGeometry(item.feature.geometry);
+    for (const ring of rings) {
+      if (!isClosedRing(ring)) continue;
+      lowClosedPolygons.push({
+        type: "Feature",
+        properties: { z: item.z },
+        geometry: { type: "Polygon", coordinates: [ring] },
+      });
+    }
+  }
 
-  const contourLineFeatures = borderLines.map(({ feature, z }: ContourCandidate) => ({
-    type: "Feature" as const,
-    properties: {
-      ...(feature?.properties ?? {}),
-      kind: "borde_agua",
-      borde_cota_m: Number(z.toFixed(2)),
-      inund_cota_ref_m: Number(cotaRef.toFixed(2)),
-    },
-    geometry: feature?.geometry,
-  }));
+  const validPolygons = lowClosedPolygons.filter((f) => {
+    try {
+      return area(f) > 1;
+    } catch {
+      return false;
+    }
+  });
+
+  if (validPolygons.length > 0) {
+    const merged = unionMany(validPolygons);
+    const borderFeatures: FeatureCollection[] = [];
+
+    const pushRingAsBorder = (ring: number[][]) => {
+      if (!Array.isArray(ring) || ring.length < 2) return;
+      borderFeatures.push({
+        type: "Feature",
+        properties: {
+          kind: "borde_agua",
+          borde_cota_m: Number(cotaRef.toFixed(2)),
+          inund_cota_ref_m: Number(cotaRef.toFixed(2)),
+          source: "merged_closed_contours",
+        },
+        geometry: { type: "LineString", coordinates: ring },
+      });
+    };
+
+    const g = merged?.geometry;
+    if (g?.type === "Polygon") {
+      const rings = g.coordinates as number[][][];
+      if (Array.isArray(rings) && rings.length > 0) pushRingAsBorder(rings[0]);
+    } else if (g?.type === "MultiPolygon") {
+      const polygons = g.coordinates as number[][][][];
+      for (const poly of polygons) {
+        if (Array.isArray(poly) && poly.length > 0) pushRingAsBorder(poly[0]);
+      }
+    }
+
+    if (borderFeatures.length > 0) {
+      return { type: "FeatureCollection", features: borderFeatures };
+    }
+  }
+
+  // Fallback when contours cannot be closed/merged: draw highest available contour band.
+  const maxContourZ = lowContourLines.reduce((max: number, item: ContourCandidate) => Math.max(max, item.z), Number.NEGATIVE_INFINITY);
+  const Z_BAND = 0.35;
+  const borderLines = lowContourLines.filter((item: ContourCandidate) => item.z >= maxContourZ - Z_BAND);
 
   return {
     type: "FeatureCollection",
-    features: contourLineFeatures,
+    features: borderLines.map(({ feature, z }: ContourCandidate) => ({
+      type: "Feature",
+      properties: {
+        ...(feature?.properties ?? {}),
+        kind: "borde_agua",
+        borde_cota_m: Number(z.toFixed(2)),
+        inund_cota_ref_m: Number(cotaRef.toFixed(2)),
+        source: "upper_contour_band",
+      },
+      geometry: feature?.geometry,
+    })),
   };
 }
 
