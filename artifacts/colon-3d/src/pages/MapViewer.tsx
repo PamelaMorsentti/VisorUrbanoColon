@@ -33,6 +33,7 @@ import { area, bbox, booleanIntersects, buffer, featureCollection, intersect, un
 const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");
 const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "";
 const DATA_CACHE_BUST = String(Date.now());
+const CARU_ALTURAS_READABLE_URL = "https://r.jina.ai/http://190.0.152.194:8080/alturas/web/user/alturas";
 
 function getHydrologyApiCandidates(): string[] {
   const urls: string[] = [];
@@ -434,7 +435,7 @@ function formatFloodCotaInput(value: number): string {
 function formatRealtimeUpdatedAt(raw: string | undefined): string | null {
   if (!raw) return null;
   const d = new Date(raw);
-  if (Number.isNaN(d.getTime())) return null;
+  if (Number.isNaN(d.getTime())) return raw.trim() || null;
   return d.toLocaleString("es-AR", {
     day: "2-digit",
     month: "2-digit",
@@ -457,7 +458,58 @@ async function fetchCurrentRiverLevelMeters(): Promise<{ level: number; updatedA
       // Try next candidate.
     }
   }
+
+  // Fallback when no API backend is available (e.g. static deploy):
+  // read CARU feed through readable mirror and extract Colon row.
+  try {
+    const res = await fetchJsonWithTimeout(CARU_ALTURAS_READABLE_URL, 12000);
+    if (res.ok) {
+      const text = await res.text();
+      const row = extractColonRiverRow(text);
+      if (row && Number.isFinite(row.level)) {
+        return {
+          level: row.level,
+          updatedAt: formatRealtimeUpdatedAt(row.updatedAt),
+        };
+      }
+    }
+  } catch {
+    // Last fallback failed.
+  }
+
   return null;
+}
+
+function extractColonRiverRow(markdown: string): { updatedAt: string; level: number } | null {
+  const line = markdown
+    .split("\n")
+    .find(l => /\|\s*\[Col[oó]n\]\([^)]*\)\s*\|/i.test(l));
+
+  if (!line) return null;
+
+  const cols = line.split("|").map(c => c.trim()).filter(Boolean);
+  if (cols.length < 4) return null;
+
+  const updatedAt = stripMarkdown(cols[1]);
+  const level = parseSpanishNumber(stripMarkdown(cols[2]));
+
+  if (Number.isNaN(level)) return null;
+  return { updatedAt, level };
+}
+
+function stripMarkdown(value: string): string {
+  return value
+    .replace(/\*\*/g, "")
+    .replace(/\[(.*?)\]\([^)]*\)/g, "$1")
+    .trim();
+}
+
+function parseSpanishNumber(value: string): number {
+  const clean = value.replace(/[^0-9,.-]/g, "");
+  const normalized = clean.includes(",")
+    ? clean.replace(/\./g, "").replace(/,/g, ".")
+    : clean;
+  return Number(normalized);
 }
 
 function buildFloodSimulationGeoJSON(parcela: FeatureCollection, cNivel: FeatureCollection, cotaRef: number): { geojson: FeatureCollection; stats: FloodSimulationStats } {
