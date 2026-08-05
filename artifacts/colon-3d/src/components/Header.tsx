@@ -17,18 +17,130 @@ interface IGNResult {
   lon?: number;
 }
 
-async function searchIGN(query: string, signal: AbortSignal): Promise<{ lat: number; lng: number; name: string } | null> {
-  const url = `https://apis.datos.gob.ar/georef/api/direcciones?direccion=${encodeURIComponent(query)}&provincia=entre%20rios&localidad=colon&max=5`;
-  const res = await fetch(url, { signal });
-  if (!res.ok) throw new Error("IGN API error");
-  const data = await res.json() as { direcciones?: IGNResult[] };
-  const direcciones = data.direcciones ?? [];
-  if (!direcciones.length) return null;
-  const best = direcciones[0];
-  const lat = best.ubicacion?.lat ?? best.lat;
-  const lon = best.ubicacion?.lon ?? best.lon;
-  if (!lat || !lon) return null;
-  return { lat, lng: lon, name: best.nomenclatura ?? query };
+function normalizeWhitespace(value: string): string {
+  return value.replace(/\s+/g, " ").trim();
+}
+
+function normalizeAddressForQuery(value: string): string {
+  return normalizeWhitespace(
+    value
+      .replace(/[“”„'`´]/g, "")
+      .replace(/[|·…]/g, " ")
+      .replace(/û/g, "ü")
+      .replace(/\b(Bv|Bvd|Bvard|Bvrd)\.?(?=[\s,]|$)/gi, "Boulevard")
+      .replace(/\b(Av|Avda|Avenida)\.?(?=[\s,]|$)/gi, "Avenida")
+      .replace(/\bPte\.?\s*/gi, "Presidente ")
+      .replace(/\bGral\.?(?=[\s,]|$)/gi, "General")
+      .replace(/\bL\.?\s*N\.?\s*Alem\b/gi, "Leandro N. Alem")
+      .replace(/\bM\.?\s*Moreno\b/gi, "Mariano Moreno")
+      .replace(/\bJ\.?\s*J\.?\s*Paso\b/gi, "Juan José Paso")
+      .replace(/(?:^|\s)s\/?n[°ºªo]?\b/gi, " ")
+      .replace(/(?:^|\s)N(?:RO\.?|[°ºª])\s*/gi, " ")
+      .replace(/(?:^|\s)e\/(\S)/gi, " esq $1")
+      .replace(/[()]/g, " ")
+      .replace(/\bantes\b.*$/i, "")
+      .replace(/\s+,/g, ",")
+      .replace(/,{2,}/g, ",")
+      .replace(/\.{2,}/g, "."),
+  );
+}
+
+function uniqueQueries(values: string[]): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const value of values) {
+    const normalized = normalizeWhitespace(value);
+    if (!normalized || seen.has(normalized)) continue;
+    seen.add(normalized);
+    out.push(normalized);
+  }
+  return out;
+}
+
+function buildAddressQueries(rawAddress: string): string[] {
+  const cleaned = normalizeAddressForQuery(rawAddress)
+    .replace(/\s+-\s+.*$/g, "")
+    .replace(/\s{2,}/g, " ");
+
+  const numbers = cleaned.match(/\d{1,5}/g) ?? [];
+  const mainPart = normalizeWhitespace(cleaned.split(",")[0] ?? cleaned);
+  const cornerMatch = mainPart.match(/^(.*?)(?:\besq\.?\b)(.*)$/i);
+  const streetWithoutNumbers = normalizeWhitespace(
+    mainPart.replace(/\d+/g, " ").replace(/\by\b/gi, " ").replace(/[-,]/g, " "),
+  );
+  const firstNumber = numbers[0] ?? "";
+
+  const queryCandidates: string[] = [];
+  queryCandidates.push(`${cleaned}, Colón`);
+
+  if (cornerMatch) {
+    const primary = normalizeWhitespace(cornerMatch[1].replace(/\d+/g, " ").replace(/\by\b/gi, " ").replace(/[-,]/g, " "));
+    const crossing = normalizeWhitespace(cornerMatch[2].replace(/\d+/g, " ").replace(/[-,]/g, " "));
+    if (primary && crossing) queryCandidates.push(`${primary} y ${crossing}, Colón`);
+    if (primary && firstNumber) queryCandidates.push(`${primary} ${firstNumber}, Colón`);
+    if (primary) queryCandidates.push(`${primary}, Colón`);
+  } else {
+    if (streetWithoutNumbers && firstNumber) queryCandidates.push(`${streetWithoutNumbers} ${firstNumber}, Colón`);
+    if (streetWithoutNumbers) queryCandidates.push(`${streetWithoutNumbers}, Colón`);
+  }
+
+  return uniqueQueries(queryCandidates);
+}
+
+function stripAccents(s: string): string {
+  return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function matchedStreetIsPlausible(query: string, matchName: string): boolean {
+  const STOP = new Set(["de", "del", "la", "el", "los", "las", "y", "e", "en", "av", "grl", "bvd", "bv", "san", "juan"]);
+  const stripCity = (s: string) => stripAccents(s).replace(/,?\s*(col[oó]n|entre\s+r[ií]os|provincia[^,]*).*$/gi, "");
+  const toWords = (s: string) => stripCity(s)
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter((w) => w.length >= 4 && !STOP.has(w));
+
+  const queryWords = toWords(query);
+  const matchWords = new Set(toWords(matchName));
+
+  for (const word of queryWords) {
+    if (matchWords.has(word)) return true;
+    for (const matchWord of matchWords) {
+      if (matchWord.startsWith(word) || word.startsWith(matchWord)) return true;
+    }
+  }
+
+  return false;
+}
+
+async function searchIGN(rawQuery: string, signal: AbortSignal): Promise<{ lat: number; lng: number; name: string } | null> {
+  const queries = buildAddressQueries(rawQuery);
+  let fallback: { lat: number; lng: number; name: string } | null = null;
+
+  for (const query of queries) {
+    const url = `https://apis.datos.gob.ar/georef/api/direcciones?direccion=${encodeURIComponent(query)}&provincia=entre%20rios&localidad=colon&max=5`;
+    const res = await fetch(url, { signal });
+    if (!res.ok) continue;
+
+    const data = await res.json() as { direcciones?: IGNResult[] };
+    const direcciones = data.direcciones ?? [];
+
+    for (const match of direcciones) {
+      const lat = match.ubicacion?.lat ?? match.lat;
+      const lon = match.ubicacion?.lon ?? match.lon;
+      if (typeof lat !== "number" || typeof lon !== "number") continue;
+
+      const name = match.nomenclatura ?? query;
+      const candidate = { lat, lng: lon, name };
+      if (!fallback) fallback = candidate;
+
+      if (matchedStreetIsPlausible(query, name)) {
+        return candidate;
+      }
+    }
+  }
+
+  return fallback;
 }
 
 // ─── Props ────────────────────────────────────────────────────────────────────
