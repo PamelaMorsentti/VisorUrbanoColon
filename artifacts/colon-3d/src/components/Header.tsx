@@ -17,6 +17,12 @@ interface IGNResult {
   lon?: number;
 }
 
+type AddressCandidate = {
+  lat: number;
+  lng: number;
+  name: string;
+};
+
 function normalizeWhitespace(value: string): string {
   return value.replace(/\s+/g, " ").trim();
 }
@@ -143,6 +149,42 @@ async function searchIGN(rawQuery: string, signal: AbortSignal): Promise<{ lat: 
   return fallback;
 }
 
+async function fetchIGNSuggestions(rawQuery: string, signal: AbortSignal): Promise<AddressCandidate[]> {
+  const queries = buildAddressQueries(rawQuery);
+  type RankedCandidate = AddressCandidate & { rank: number };
+  const ranked: RankedCandidate[] = [];
+  const seen = new Set<string>();
+
+  for (const query of queries) {
+    const url = `https://apis.datos.gob.ar/georef/api/direcciones?direccion=${encodeURIComponent(query)}&provincia=entre%20rios&localidad=colon&max=6`;
+    const res = await fetch(url, { signal });
+    if (!res.ok) continue;
+
+    const data = await res.json() as { direcciones?: IGNResult[] };
+    const direcciones = data.direcciones ?? [];
+
+    direcciones.forEach((match, idx) => {
+      const lat = match.ubicacion?.lat ?? match.lat;
+      const lon = match.ubicacion?.lon ?? match.lon;
+      if (typeof lat !== "number" || typeof lon !== "number") return;
+
+      const name = (match.nomenclatura ?? query).trim();
+      const key = `${lat.toFixed(6)}:${lon.toFixed(6)}:${name.toLowerCase()}`;
+      if (seen.has(key)) return;
+      seen.add(key);
+
+      const plausible = matchedStreetIsPlausible(query, name);
+      const rank = (plausible ? 0 : 100) + idx;
+      ranked.push({ lat, lng: lon, name, rank });
+    });
+  }
+
+  return ranked
+    .sort((a, b) => a.rank - b.rank)
+    .slice(0, 6)
+    .map(({ lat, lng, name }) => ({ lat, lng, name }));
+}
+
 // ─── Props ────────────────────────────────────────────────────────────────────
 
 interface HeaderProps {
@@ -227,21 +269,76 @@ export default function Header({
   const [searchQuery, setSearchQuery] = useState("");
   const [searching, setSearching] = useState(false);
   const [searchError, setSearchError] = useState<string | null>(null);
+  const [searchSuggestions, setSearchSuggestions] = useState<AddressCandidate[]>([]);
+  const [suggestionsOpen, setSuggestionsOpen] = useState(false);
+  const [suggestionsLoading, setSuggestionsLoading] = useState(false);
+  const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
   const [obrasMenuOpen, setObrasMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
+  const suggestAbortRef = useRef<AbortController | null>(null);
   const obrasMenuRef = useRef<HTMLDivElement | null>(null);
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
+  const searchBoxRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const onPointerDown = (event: MouseEvent) => {
       const target = event.target as Node;
       if (obrasMenuRef.current && !obrasMenuRef.current.contains(target)) setObrasMenuOpen(false);
       if (mobileMenuRef.current && !mobileMenuRef.current.contains(target)) setMobileMenuOpen(false);
+      if (searchBoxRef.current && !searchBoxRef.current.contains(target)) {
+        setSuggestionsOpen(false);
+        setActiveSuggestionIndex(-1);
+      }
     };
     document.addEventListener("mousedown", onPointerDown);
     return () => document.removeEventListener("mousedown", onPointerDown);
   }, []);
+
+  useEffect(() => {
+    const q = searchQuery.trim();
+    if (q.length < 3) {
+      setSearchSuggestions([]);
+      setSuggestionsOpen(false);
+      setActiveSuggestionIndex(-1);
+      suggestAbortRef.current?.abort();
+      return;
+    }
+
+    const timer = window.setTimeout(async () => {
+      suggestAbortRef.current?.abort();
+      const ctrl = new AbortController();
+      suggestAbortRef.current = ctrl;
+      setSuggestionsLoading(true);
+      try {
+        const next = await fetchIGNSuggestions(q, ctrl.signal);
+        setSearchSuggestions(next);
+        setSuggestionsOpen(next.length > 0);
+        setActiveSuggestionIndex(-1);
+      } catch (err) {
+        if ((err as Error).name !== "AbortError") {
+          setSearchSuggestions([]);
+          setSuggestionsOpen(false);
+          setActiveSuggestionIndex(-1);
+        }
+      } finally {
+        setSuggestionsLoading(false);
+      }
+    }, 220);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [searchQuery]);
+
+  const applyAddressCandidate = (candidate: AddressCandidate) => {
+    mapRef.current?.flyTo([candidate.lat, candidate.lng], 17, { duration: 1.2 });
+    onAddressFound(candidate.lat, candidate.lng, candidate.name);
+    setSearchQuery(candidate.name);
+    setSearchError(null);
+    setSuggestionsOpen(false);
+    setActiveSuggestionIndex(-1);
+  };
 
   const handleReset = () => {
     mapRef.current?.flyTo([COLON_CENTER[1], COLON_CENTER[0]], COLON_ZOOM, { duration: 1.2 });
@@ -259,8 +356,7 @@ export default function Header({
     try {
       const result = await searchIGN(q, ctrl.signal);
       if (result) {
-        mapRef.current?.flyTo([result.lat, result.lng], 17, { duration: 1.2 });
-        onAddressFound(result.lat, result.lng, result.name);
+        applyAddressCandidate(result);
         setSearchQuery("");
       } else {
         setSearchError("No encontrado. Probá: 'Urquiza 250' o solo el nombre de la calle.");
@@ -276,7 +372,40 @@ export default function Header({
   const clearSearch = () => {
     setSearchQuery("");
     setSearchError(null);
+    setSearchSuggestions([]);
+    setSuggestionsOpen(false);
+    setActiveSuggestionIndex(-1);
     abortRef.current?.abort();
+    suggestAbortRef.current?.abort();
+  };
+
+  const handleSearchInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!suggestionsOpen || searchSuggestions.length === 0) return;
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActiveSuggestionIndex((prev) => Math.min(prev + 1, searchSuggestions.length - 1));
+      return;
+    }
+
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActiveSuggestionIndex((prev) => Math.max(prev - 1, 0));
+      return;
+    }
+
+    if (e.key === "Enter" && activeSuggestionIndex >= 0) {
+      e.preventDefault();
+      const selected = searchSuggestions[activeSuggestionIndex];
+      if (selected) applyAddressCandidate(selected);
+      return;
+    }
+
+    if (e.key === "Escape") {
+      e.preventDefault();
+      setSuggestionsOpen(false);
+      setActiveSuggestionIndex(-1);
+    }
   };
 
   const toggleMeasure = (m: MeasureMode) => onChangeMeasureMode(measureMode === m ? "none" : m);
@@ -304,12 +433,19 @@ export default function Header({
 
       {/* Address search – IGN Argentina */}
       <form onSubmit={handleSearch} className="hidden md:block flex-1 max-w-xs relative">
-        <div className="relative">
+        <div className="relative" ref={searchBoxRef}>
           <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
           <input
             type="search"
             value={searchQuery}
-            onChange={e => { setSearchQuery(e.target.value); setSearchError(null); }}
+            onChange={e => {
+              setSearchQuery(e.target.value);
+              setSearchError(null);
+            }}
+            onFocus={() => {
+              if (searchSuggestions.length > 0) setSuggestionsOpen(true);
+            }}
+            onKeyDown={handleSearchInputKeyDown}
             placeholder="Buscar dirección en Colón…"
             disabled={searching}
             className={`w-full pl-8 pr-7 py-1.5 text-xs rounded-lg border bg-card text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 transition-all disabled:opacity-60 ${
@@ -317,11 +453,26 @@ export default function Header({
             }`}
             data-testid="input-search"
           />
-          {searching && <Loader2 size={12} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-muted-foreground animate-spin" />}
+          {(searching || suggestionsLoading) && <Loader2 size={12} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-muted-foreground animate-spin" />}
           {!searching && (searchQuery || searchError) && (
             <button type="button" onClick={clearSearch} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
               <X size={11} />
             </button>
+          )}
+
+          {suggestionsOpen && searchSuggestions.length > 0 && (
+            <div className="absolute top-full left-0 right-0 mt-1 z-20 rounded-lg border border-border bg-card shadow-xl overflow-hidden">
+              {searchSuggestions.map((candidate, idx) => (
+                <button
+                  key={`${candidate.lat}-${candidate.lng}-${idx}`}
+                  type="button"
+                  onClick={() => applyAddressCandidate(candidate)}
+                  className={`w-full text-left px-3 py-2 text-[11px] border-b border-border/40 last:border-b-0 transition-colors ${activeSuggestionIndex === idx ? "bg-primary/15 text-foreground" : "text-muted-foreground hover:bg-accent hover:text-foreground"}`}
+                >
+                  {candidate.name}
+                </button>
+              ))}
+            </div>
           )}
         </div>
         {searchError && (
