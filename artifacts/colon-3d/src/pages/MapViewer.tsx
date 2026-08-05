@@ -87,6 +87,10 @@ const PUBLIC_PARCEL_ALLOWED_KEYS = new Set([
   "OBJETO", "AREA", "SUPERFICIE", "LARGO", "FRENTE", "PERIMETRO", "ZONA", "BARRIO", "COTA", "Z",
 ]);
 
+const PROFESSIONAL_EXTRA_PARCEL_KEYS = new Set([
+  "NOMBRE", "PROPIETARIO", "TITULAR",
+]);
+
 const DEFAULT_ZONA_TRANSFORM: ZonaTransform = {
   rotateDeg: 0,
   offsetLng: -0.00012,
@@ -836,9 +840,21 @@ function sanitizeFeaturePropsByRole(
   layerId: string,
   level: PublicationLevel,
 ): Record<string, unknown> {
-  if (level !== "public") return props;
+  if (level === "admin") return props;
   if (layerId === "parcela" || layerId === "parcela_titularidad") {
-    return sanitizeParcelPropsForPublic(props);
+    if (level === "public") {
+      return sanitizeParcelPropsForPublic(props);
+    }
+
+    // Professional role: public parcel fields + owner identity.
+    const publicProps = sanitizeParcelPropsForPublic(props);
+    const extended: Record<string, unknown> = { ...publicProps };
+    Object.entries(props).forEach(([key, value]) => {
+      if (PROFESSIONAL_EXTRA_PARCEL_KEYS.has(key.toUpperCase())) {
+        extended[key] = value;
+      }
+    });
+    return extended;
   }
   return props;
 }
@@ -1452,9 +1468,11 @@ export default function MapViewer() {
       }
     }
 
-    const reportParcelProps = publicationLevel === "public"
-      ? sanitizeParcelPropsForPublic(props)
-      : props;
+    const reportParcelProps = sanitizeFeaturePropsByRole(
+      props,
+      "parcela",
+      publicationLevel,
+    );
 
     setReportData({
       parcelProps: reportParcelProps,
@@ -2320,7 +2338,7 @@ export default function MapViewer() {
     }
     const centroid = computeCentroid(feature.geometry);
     const centroidLngLat: [number, number] | null = centroid ? [centroid[1], centroid[0]] : null;
-    const visibleProps = publicationLevel === "public" ? sanitizeParcelPropsForPublic(props) : props;
+    const visibleProps = sanitizeFeaturePropsByRole(props, "parcela", publicationLevel);
     setSelectedFeature({ props: visibleProps, layerLabel: "Parcela catastral", centroid: centroidLngLat, geometry: feature.geometry });
     setSelectedZona(null);
     setSearchPanelOpen(false);
@@ -2829,6 +2847,7 @@ export default function MapViewer() {
             <CadastralSearch
               basePath={BASE_PATH}
               isAdmin={isAdmin}
+              canViewOwner={publicationLevel !== "public"}
               onFeatureFound={handleFeatureFound}
               onClose={() => setSearchPanelOpen(false)}
             />

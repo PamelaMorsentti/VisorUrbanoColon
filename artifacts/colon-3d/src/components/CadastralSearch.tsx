@@ -17,6 +17,7 @@ interface SearchParams {
 interface CadastralSearchProps {
   basePath: string;
   isAdmin: boolean;
+  canViewOwner: boolean;
   onFeatureFound: (feature: GeoFeature) => void;
   onClose: () => void;
 }
@@ -27,7 +28,7 @@ const EMPTY_PARAMS: SearchParams = {
   ncp: "", sec: "", gru: "", manz: "", nparc: "", objeto: "", nombre: ""
 };
 
-export default function CadastralSearch({ basePath, isAdmin, onFeatureFound, onClose }: CadastralSearchProps) {
+export default function CadastralSearch({ basePath, isAdmin, canViewOwner, onFeatureFound, onClose }: CadastralSearchProps) {
   const [params, setParams] = useState<SearchParams>(EMPTY_PARAMS);
   const [searchMode, setSearchMode] = useState<SearchMode>("ncp");
   const [loading, setLoading] = useState(false);
@@ -123,7 +124,7 @@ export default function CadastralSearch({ basePath, isAdmin, onFeatureFound, onC
     const pr = f.properties || {};
     const parts: string[] = [];
     if (pr.NCP) parts.push(pr.NCP);
-    if (pr.NOMBRE) parts.push(pr.NOMBRE);
+    if (canViewOwner && pr.NOMBRE) parts.push(pr.NOMBRE);
     if (pr.OBJETO) parts.push(`Partida: ${pr.OBJETO}`);
     return parts.join(" — ") || "Parcela sin datos";
   };
