@@ -59,6 +59,10 @@
     .legend-item { margin-bottom: 6px; color: var(--muted); }
     .pill { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,0.75); margin: 0 6px 6px 0; }
     .small-note { color: var(--muted); font-size: 12px; }
+    .mini-table-note { color: var(--muted); font-size: 11px; margin-top: 8px; }
+    .kv-list { display: grid; gap: 8px; }
+    .kv-item { display: flex; justify-content: space-between; gap: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+    .muted-chip { color: var(--muted); font-size: 11px; }
     @media (max-width: 1200px) {
       .shell, .layout-main { grid-template-columns: 1fr; }
       #map { height: 56vh; min-height: 420px; }
@@ -122,6 +126,25 @@
           <span class="pill"><input type="checkbox" id="toggle-bubbles" checked /> burbujas por m2</span>
           <span class="pill"><input type="checkbox" id="toggle-heat" checked /> mapa de calor</span>
           <span class="pill"><input type="checkbox" id="toggle-choropleth" checked /> coropleta barrios</span>
+        </div>
+      </section>
+
+      <section class="card table-card">
+        <div class="card-title">Estado de georeferenciacion</div>
+        <table class="table">
+          <thead><tr><th>Estado</th><th>Obras</th></tr></thead>
+          <tbody id="georef-table"></tbody>
+        </table>
+        <div class="mini-table-note">Se toma del mismo origen de datos que alimenta el visor y el panel de capas de obras.</div>
+      </section>
+
+      <section class="card table-card">
+        <div class="card-title">Integraciones nuevas del visor</div>
+        <div class="kv-list" id="integration-list">
+          <div class="kv-item"><span>Hidrologia sincronizada</span><span class="muted-chip">servicios + crecida</span></div>
+          <div class="kv-item"><span>Linea/curva de crecida</span><span class="muted-chip">referencia por cota</span></div>
+          <div class="kv-item"><span>Busqueda por domicilio</span><span class="muted-chip">autocompletado activo</span></div>
+          <div class="kv-item"><span>Datos por rol</span><span class="muted-chip">publico/profesional/admin</span></div>
         </div>
       </section>
 
@@ -337,6 +360,17 @@
             <div class="card-title">Resumen de uso</div>
             <div id="usage-pills"></div>
           </section>
+          <section class="card table-card">
+            <div class="card-title">Modalidad de declaracion</div>
+            <table class="table">
+              <thead><tr><th>Modalidad</th><th>Obras</th></tr></thead>
+              <tbody id="declaration-table"></tbody>
+            </table>
+          </section>
+          <section class="card table-card">
+            <div class="card-title">Cobertura de datos por rol</div>
+            <div id="role-coverage" class="kv-list"></div>
+          </section>
         </section>
       </div>
     </main>
@@ -374,6 +408,9 @@
     const zonesTableEl = document.getElementById('zones-table');
     const timelineTableEl = document.getElementById('timeline-table');
     const usagePillsEl = document.getElementById('usage-pills');
+    const georefTableEl = document.getElementById('georef-table');
+    const declarationTableEl = document.getElementById('declaration-table');
+    const roleCoverageEl = document.getElementById('role-coverage');
 
     const markerLayer = L.layerGroup().addTo(map);
     const bubbleLayer = L.layerGroup().addTo(map);
@@ -518,6 +555,70 @@
         .sort((a, b) => b[1].count - a[1].count)
         .map(([label, item]) => '<span class="pill"><span class="dot" style="background:' + colorByDestiny(label) + '"></span>' + escapeHtml(label) + ' · ' + item.count + '</span>')
         .join('');
+
+      const statusCounts = rows.reduce((acc, row) => {
+        const key = String(row.status || 'sin_estado');
+        acc[key] = (acc[key] || 0) + 1;
+        return acc;
+      }, {});
+
+      georefTableEl.innerHTML = Object.entries(statusCounts)
+        .sort((a, b) => b[1] - a[1])
+        .map(([status, count]) => '<tr><td>' + escapeHtml(status) + '</td><td>' + count + '</td></tr>')
+        .join('');
+
+      const featureProps = (prep.pointsGeoJson && prep.pointsGeoJson.features ? prep.pointsGeoJson.features : [])
+        .map((feature) => feature && feature.properties ? feature.properties : {});
+
+      function isDeclared(value) {
+        const text = String(value == null ? '' : value).trim().toLowerCase();
+        if (!text) return false;
+        return text !== '0' && text !== 'false' && text !== 'no';
+      }
+
+      const declarationSummary = [
+        {
+          label: 'Relevamiento/existente',
+          count: featureProps.filter((p) => isDeclared(p.relevamiento_o_existente)).length,
+        },
+        {
+          label: 'Obra nueva',
+          count: featureProps.filter((p) => isDeclared(p.a_contruir_obra_nueva) || isDeclared(p.a_construir_obra_nueva)).length,
+        },
+        {
+          label: 'Ampliacion',
+          count: featureProps.filter((p) => isDeclared(p.ampliacion_de_obra_existente) || isDeclared(p.ampliacion_obra_existente)).length,
+        },
+        {
+          label: 'Proyectado no iniciado',
+          count: featureProps.filter((p) => isDeclared(p.proyectado_no_iniciado)).length,
+        },
+      ];
+
+      declarationTableEl.innerHTML = declarationSummary
+        .map((item) => '<tr><td>' + escapeHtml(item.label) + '</td><td>' + item.count + '</td></tr>')
+        .join('');
+
+      const totalFeatures = featureProps.length;
+      const roleCoverageRows = [
+        {
+          label: 'Nivel publico',
+          detail: 'Tipo, destino, estado de georef., m2 y fecha de visado',
+        },
+        {
+          label: 'Nivel profesional',
+          detail: 'Suma propietario, profesional y constructor en el visor autenticado',
+        },
+        {
+          label: 'Nivel admin',
+          detail: 'Incluye avance de obra y condicion de visado para gestion interna',
+        },
+      ];
+
+      roleCoverageEl.innerHTML = roleCoverageRows
+        .map((item) => '<div class="kv-item"><span>' + escapeHtml(item.label) + '</span><span class="muted-chip">' + escapeHtml(item.detail) + '</span></div>')
+        .join('') +
+        '<div class="mini-table-note">Registros geolocalizados en este dashboard: ' + totalFeatures + '</div>';
     }
 
     [zoneFilterEl, destinyFilterEl, typeFilterEl, statusFilterEl, togglePointsEl, toggleBubblesEl, toggleHeatEl, toggleChoroplethEl].forEach((el) => {
