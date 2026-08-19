@@ -91,6 +91,15 @@ const PROFESSIONAL_EXTRA_PARCEL_KEYS = new Set([
   "NOMBRE", "PROPIETARIO", "TITULAR",
 ]);
 
+// Some provincial WMS datasets are sparse. These extents help center the map
+// where data exists when the user enables the layer from Colón city view.
+const EXTERNAL_LAYER_FIT_BOUNDS: Record<string, [[number, number], [number, number]]> = {
+  ext_ideer_corufa_registro: [[-33.828322, -60.650833], [-30.706158, -57.904274]],
+  ext_ideer_perforistas_registro: [[-34.803528, -60.638162], [-30.760356, -57.983202]],
+  ext_ideer_laboratorios_registro: [[-33.028052, -60.542854], [-31.381405, -58.012363]],
+  ext_ideer_perforaciones_cfi: [[-33.371228, -60.570228], [-30.227321, -57.896521]],
+};
+
 const DEFAULT_ZONA_TRANSFORM: ZonaTransform = {
   rotateDeg: 0,
   offsetLng: -0.00012,
@@ -1971,7 +1980,23 @@ export default function MapViewer() {
   }, [visibleExternalLayers, mapReady]);
 
   const handleToggleExternalLayer = useCallback((layerId: string) => {
-    setVisibleExternalLayers(prev => ({ ...prev, [layerId]: !prev[layerId] }));
+    const map = leafletMapRef.current;
+    const fitBounds = EXTERNAL_LAYER_FIT_BOUNDS[layerId];
+
+    setVisibleExternalLayers(prev => {
+      const nextVisible = !prev[layerId];
+
+      if (nextVisible && map && fitBounds) {
+        // If current viewport does not overlap the known data extent,
+        // move to that extent so users can immediately see rendered data.
+        const target = L.latLngBounds(fitBounds);
+        if (!map.getBounds().intersects(target)) {
+          map.fitBounds(target, { padding: [28, 28], maxZoom: 10 });
+        }
+      }
+
+      return { ...prev, [layerId]: nextVisible };
+    });
   }, []);
 
   // ── Zoom label sync ──────────────────────────────────────────────────────
