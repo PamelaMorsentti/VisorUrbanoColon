@@ -1957,7 +1957,6 @@ export default function MapViewer() {
             attribution: extDef.attribution,
             opacity: extDef.opacity ?? 0.8,
             maxZoom: extDef.maxZoom ?? 19,
-            crossOrigin: "anonymous",
           } as L.WMSOptions);
         } else {
           // {date} in URL is replaced by Leaflet using the options object
@@ -1966,7 +1965,6 @@ export default function MapViewer() {
             opacity: extDef.opacity ?? 0.85,
             maxZoom: extDef.maxZoom ?? 19,
             subdomains: extDef.subdomains ?? "abc",
-            crossOrigin: "anonymous",
             date: dynamicDate,
           } as L.TileLayerOptions & { date: string });
         }
