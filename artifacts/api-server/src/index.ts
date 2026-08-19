@@ -1,7 +1,6 @@
 import "dotenv/config";
 import app from "./app.ts";
 import { logger } from "./lib/logger.ts";
-import { startHealthCheckScheduler } from "./lib/layerHealthChecker.ts";
 
 const rawPort = process.env["PORT"] ?? "5180";
 
@@ -18,5 +17,16 @@ app.listen(port, (err) => {
   }
 
   logger.info({ port }, "Server listening");
-  startHealthCheckScheduler();
+
+  if (process.env["DATABASE_URL"]) {
+    void import("./lib/layerHealthChecker.ts")
+      .then(({ startHealthCheckScheduler }) => {
+        startHealthCheckScheduler();
+      })
+      .catch((importErr) => {
+        logger.error({ err: importErr }, "Failed to start health check scheduler");
+      });
+  } else {
+    logger.warn("DATABASE_URL not set: starting API in external-layer proxy mode (no DB)");
+  }
 });

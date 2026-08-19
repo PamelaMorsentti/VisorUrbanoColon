@@ -1,18 +1,25 @@
 import { Router, type IRouter } from "express";
 import healthRouter from "./health.ts";
-import hydrologyRouter from "./hydrology.ts";
-import layerCatalogRouter from "./layerCatalog.ts";
-import obrasRouter from "./obras.ts";
-import qaRouter from "./qa.ts";
-import tramitesRouter from "./tramites/matriculas.ts";
 
 const router: IRouter = Router();
 
 router.use(healthRouter);
-router.use(hydrologyRouter);
-router.use(layerCatalogRouter);
-router.use(obrasRouter);
-router.use(qaRouter);
-router.use(tramitesRouter);
+
+if (process.env["DATABASE_URL"]) {
+	const { default: hydrologyRouter } = await import("./hydrology.ts");
+	const { default: layerCatalogRouter } = await import("./layerCatalog.ts");
+	const { default: obrasRouter } = await import("./obras.ts");
+	const { default: qaRouter } = await import("./qa.ts");
+	const { default: tramitesRouter } = await import("./tramites/matriculas.ts");
+
+	router.use(hydrologyRouter);
+	router.use(layerCatalogRouter);
+	router.use(obrasRouter);
+	router.use(qaRouter);
+	router.use(tramitesRouter);
+} else {
+	const { default: layerCatalogFeatureInfoLiteRouter } = await import("./layerCatalogFeatureInfoLite.ts");
+	router.use(layerCatalogFeatureInfoLiteRouter);
+}
 
 export default router;

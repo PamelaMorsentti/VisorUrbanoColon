@@ -32,7 +32,7 @@ import { fetchColonHydrology } from "@/lib/hydrology";
 import { area, bbox, booleanIntersects, buffer, featureCollection, intersect, union } from "@turf/turf";
 
 const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");
-const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "";
+const API_BASE = import.meta.env.VITE_API_BASE_URL ?? (import.meta.env.DEV ? "http://localhost:5180" : "");
 const DATA_CACHE_BUST = String(Date.now());
 
 type LeafletLayer = L.GeoJSON | L.LayerGroup;
@@ -1831,41 +1831,98 @@ export default function MapViewer() {
       const bounds = map.getBounds();
       const size = map.getSize();
       const pt = map.latLngToContainerPoint(e.latlng);
-      const bbox = [
-        bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()
-      ].join(",");
+      const crs = map.options.crs ?? L.CRS.EPSG3857;
+      const crsCodeRaw = ((crs as { code?: string }).code ?? "EPSG:3857").toUpperCase();
+      const srs = crsCodeRaw.includes("3857") ? "EPSG:3857" : "EPSG:4326";
+      const bbox = srs === "EPSG:3857"
+        ? (() => {
+          const sw = crs.project(bounds.getSouthWest());
+          const ne = crs.project(bounds.getNorthEast());
+          return [sw.x, sw.y, ne.x, ne.y].join(",");
+        })()
+        : [bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()].join(",");
 
       void (async () => {
+        let hadQueryError = false;
         for (const extDef of activeWmsLayers) {
           try {
-            const params = new URLSearchParams({
-              SERVICE: "WMS", VERSION: "1.1.1", REQUEST: "GetFeatureInfo",
-              LAYERS: extDef.wmsLayers ?? "",
-              QUERY_LAYERS: extDef.wmsLayers ?? "",
-              INFO_FORMAT: "application/json",
-              FEATURE_COUNT: "1",
-              X: String(Math.round(pt.x)),
-              Y: String(Math.round(pt.y)),
-              WIDTH: String(size.x),
-              HEIGHT: String(size.y),
-              BBOX: bbox,
-              SRS: "EPSG:4326",
-            });
-            const res = await fetch(`${extDef.url}?${params.toString()}`, {
-              signal: AbortSignal.timeout(6000),
-            });
+            const x = String(Math.round(pt.x));
+            const y = String(Math.round(pt.y));
+
+            const res = API_BASE
+              ? await fetch(
+                `${API_BASE}/api/layers/catalog/${encodeURIComponent(extDef.id)}/feature-info?`
+                + new URLSearchParams({
+                  bbox,
+                  width: String(size.x),
+                  height: String(size.y),
+                  x,
+                  y,
+                  srs,
+                  infoFormat: "application/json",
+                  featureCount: "5",
+                  buffer: "12",
+                }).toString(),
+                { signal: AbortSignal.timeout(7000) },
+              )
+              : await fetch(
+                `${extDef.url}?`
+                + new URLSearchParams({
+                  SERVICE: "WMS",
+                  VERSION: "1.1.1",
+                  REQUEST: "GetFeatureInfo",
+                  LAYERS: extDef.wmsLayers ?? "",
+                  QUERY_LAYERS: extDef.wmsLayers ?? "",
+                  INFO_FORMAT: "application/json",
+                  FEATURE_COUNT: "5",
+                  X: x,
+                  Y: y,
+                  WIDTH: String(size.x),
+                  HEIGHT: String(size.y),
+                  BBOX: bbox,
+                  SRS: srs,
+                  BUFFER: "12",
+                }).toString(),
+                { signal: AbortSignal.timeout(6000) },
+              );
+
             if (!res.ok) continue;
-            const json = await res.json() as { features?: Array<{ properties?: Record<string, unknown> }> };
-            const props = json.features?.[0]?.properties;
-            if (props && Object.keys(props).length > 0) {
+            const json = await res.json() as {
+              features?: Array<{
+                id?: string | number;
+                properties?: Record<string, unknown>;
+                geometry?: { type?: string };
+              }>;
+            };
+            const firstFeature = json.features?.[0];
+            if (firstFeature) {
+              const props = firstFeature.properties && Object.keys(firstFeature.properties).length > 0
+                ? firstFeature.properties
+                : {
+                  _feature_id: firstFeature.id ?? "sin_id",
+                  _geometry_type: firstFeature.geometry?.type ?? "unknown",
+                  _note: "Entidad encontrada sin atributos publicados",
+                };
+
               setExternalLayerInfo({ status: "result", layerLabel: extDef.label, props });
               return;
             }
           } catch {
+            hadQueryError = true;
             // network error or timeout — try next layer
           }
         }
-        // All layers queried, nothing useful returned
+        if (hadQueryError) {
+          setExternalLayerInfo({
+            status: "error",
+            message: API_BASE
+              ? "No se pudo consultar atributos de la capa externa en este momento."
+              : "No se pudo consultar atributos (posible restricción CORS del servicio externo).",
+          });
+          return;
+        }
+
+        // All layers queried, no features at clicked point
         setExternalLayerInfo({ status: "empty", layerLabel: activeWmsLayers[0].label });
       })();
     });
