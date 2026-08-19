@@ -2495,8 +2495,14 @@ export default function MapViewer() {
     setAnalysisPanelOpen(prev => {
       const next = !prev;
       if (next) {
+        setLayersPanelOpen(false);
+        setSearchPanelOpen(false);
+        setUploadPanelOpen(false);
         setRegionalInfoOpen(false);
+        setFloodSimulationPanelOpen(false);
         setZonaLegendOpen(false);
+        setAdminDataPanelOpen(false);
+        setAuthPanelOpen(false);
       }
       return next;
     });
@@ -2505,7 +2511,16 @@ export default function MapViewer() {
   const handleToggleRegionalInfoPanel = useCallback(() => {
     setRegionalInfoOpen(prev => {
       const next = !prev;
-      if (next) setAnalysisPanelOpen(false);
+      if (next) {
+        setLayersPanelOpen(false);
+        setSearchPanelOpen(false);
+        setAnalysisPanelOpen(false);
+        setUploadPanelOpen(false);
+        setFloodSimulationPanelOpen(false);
+        setZonaLegendOpen(false);
+        setAdminDataPanelOpen(false);
+        setAuthPanelOpen(false);
+      }
       return next;
     });
   }, []);
@@ -2513,9 +2528,123 @@ export default function MapViewer() {
   const handleToggleZonaLegendPanel = useCallback(() => {
     setZonaLegendOpen(prev => {
       const next = !prev;
-      if (next) setAnalysisPanelOpen(false);
+      if (next) {
+        setLayersPanelOpen(false);
+        setSearchPanelOpen(false);
+        setAnalysisPanelOpen(false);
+        setUploadPanelOpen(false);
+        setRegionalInfoOpen(false);
+        setFloodSimulationPanelOpen(false);
+        setAdminDataPanelOpen(false);
+        setAuthPanelOpen(false);
+      }
       return next;
     });
+  }, []);
+
+  const handleToggleLayersPanel = useCallback(() => {
+    setLayersPanelOpen((prev) => {
+      const next = !prev;
+      if (next) {
+        setSearchPanelOpen(false);
+        setAnalysisPanelOpen(false);
+        setUploadPanelOpen(false);
+        setRegionalInfoOpen(false);
+        setFloodSimulationPanelOpen(false);
+        setZonaLegendOpen(false);
+        setAdminDataPanelOpen(false);
+        setAuthPanelOpen(false);
+      }
+      return next;
+    });
+  }, []);
+
+  const handleToggleCadastralPanel = useCallback(() => {
+    setSearchPanelOpen((prev) => {
+      const next = !prev;
+      if (next) {
+        setLayersPanelOpen(false);
+        setAnalysisPanelOpen(false);
+        setUploadPanelOpen(false);
+        setRegionalInfoOpen(false);
+        setFloodSimulationPanelOpen(false);
+        setZonaLegendOpen(false);
+        setAdminDataPanelOpen(false);
+        setAuthPanelOpen(false);
+      }
+      return next;
+    });
+  }, []);
+
+  const handleToggleUploadPanel = useCallback(() => {
+    setUploadPanelOpen((prev) => {
+      const next = !prev;
+      if (next) {
+        setLayersPanelOpen(false);
+        setSearchPanelOpen(false);
+        setAnalysisPanelOpen(false);
+        setRegionalInfoOpen(false);
+        setFloodSimulationPanelOpen(false);
+        setZonaLegendOpen(false);
+        setAdminDataPanelOpen(false);
+        setAuthPanelOpen(false);
+      }
+      return next;
+    });
+  }, []);
+
+  const handleToggleFloodSimulationPanel = useCallback(() => {
+    setFloodSimulationPanelOpen((prev) => {
+      const next = !prev;
+      if (next) {
+        setLayersPanelOpen(false);
+        setSearchPanelOpen(false);
+        setAnalysisPanelOpen(false);
+        setUploadPanelOpen(false);
+        setRegionalInfoOpen(false);
+        setZonaLegendOpen(false);
+        setAdminDataPanelOpen(false);
+        setAuthPanelOpen(false);
+      }
+      return next;
+    });
+  }, []);
+
+  const handleOpenAuthPanel = useCallback(() => {
+    setLayersPanelOpen(false);
+    setSearchPanelOpen(false);
+    setAnalysisPanelOpen(false);
+    setUploadPanelOpen(false);
+    setRegionalInfoOpen(false);
+    setFloodSimulationPanelOpen(false);
+    setZonaLegendOpen(false);
+    setAdminDataPanelOpen(false);
+    setAuthPanelOpen(true);
+  }, []);
+
+  const handleOpenAdminDataPanel = useCallback(() => {
+    setLayersPanelOpen(false);
+    setSearchPanelOpen(false);
+    setAnalysisPanelOpen(false);
+    setUploadPanelOpen(false);
+    setRegionalInfoOpen(false);
+    setFloodSimulationPanelOpen(false);
+    setZonaLegendOpen(false);
+    setAuthPanelOpen(false);
+    setAdminDataPanelOpen(true);
+  }, []);
+
+  const handleToggleDensidadFromHeader = useCallback(() => {
+    setLayersPanelOpen(false);
+    setSearchPanelOpen(false);
+    setUploadPanelOpen(false);
+    setRegionalInfoOpen(false);
+    setFloodSimulationPanelOpen(false);
+    setZonaLegendOpen(false);
+    setAdminDataPanelOpen(false);
+    setAuthPanelOpen(false);
+    setAnalysisPanelOpen(true);
+    setDensidadActive((v) => !v);
   }, []);
 
   const handleApplyFloodSimulation = useCallback(async (overrideCota?: number) => {
@@ -2711,14 +2840,11 @@ export default function MapViewer() {
   return (
     <div className="relative w-full h-screen overflow-hidden bg-background">
       <Header
-        onToggleLayers={() => setLayersPanelOpen(o => !o)}
+        onToggleLayers={handleToggleLayersPanel}
         layersPanelOpen={layersPanelOpen}
-        onToggleCadastral={() => setSearchPanelOpen(o => !o)}
+        onToggleCadastral={handleToggleCadastralPanel}
         cadastralOpen={searchPanelOpen}
-        onToggleDensidad={() => {
-          setAnalysisPanelOpen(true);
-          setDensidadActive(v => !v);
-        }}
+        onToggleDensidad={handleToggleDensidadFromHeader}
         densidadActive={densidadActive}
         densidadPanelOpen={false}
         onToggleZonaLegend={handleToggleZonaLegendPanel}
@@ -2726,7 +2852,7 @@ export default function MapViewer() {
         showZonaLegendButton={Boolean(visibleLayers.zonas)}
         onToggleAnalysis={handleToggleAnalysisPanel}
         analysisPanelOpen={analysisPanelOpen}
-        onToggleUpload={() => setUploadPanelOpen(o => !o)}
+        onToggleUpload={handleToggleUploadPanel}
         uploadPanelOpen={uploadPanelOpen}
         planosActive={planosActive}
         onTogglePlanosVisibility={() => setPlanosActive(v => !v)}
@@ -2742,10 +2868,10 @@ export default function MapViewer() {
         onChangeMeasureMode={setMeasureMode}
         mapRef={mapRef as React.RefObject<L.Map | null>}
         onAddressFound={handleAddressFound}
-        onOpenAuthPanel={() => setAuthPanelOpen(true)}
+        onOpenAuthPanel={handleOpenAuthPanel}
         onToggleRegionalInfo={handleToggleRegionalInfoPanel}
         regionalInfoOpen={regionalInfoOpen}
-        onToggleFloodSimulationPanel={() => setFloodSimulationPanelOpen((v) => !v)}
+        onToggleFloodSimulationPanel={handleToggleFloodSimulationPanel}
         floodSimulationPanelOpen={floodSimulationPanelOpen}
         dashboardUrl={dashboardUrl}
         adminEditorUrl={adminEditorUrl}
@@ -2908,7 +3034,7 @@ export default function MapViewer() {
           <div className="pointer-events-auto">
             <button
               type="button"
-              onClick={() => setAdminDataPanelOpen(true)}
+              onClick={handleOpenAdminDataPanel}
               className="w-full px-3 py-2 rounded-lg border border-primary/35 bg-primary/10 text-primary text-xs font-semibold hover:bg-primary/20 transition-colors"
             >
               Panel admin de datos

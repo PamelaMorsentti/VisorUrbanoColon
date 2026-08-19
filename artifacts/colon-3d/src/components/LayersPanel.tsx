@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown, ChevronRight, Layers, Eye, EyeOff, Globe, Download } from "lucide-react";
 import { LAYERS, LAYER_GROUPS, type ExternalLayerDef } from "@/lib/layers";
 
@@ -19,8 +19,21 @@ interface LayersPanelProps {
 }
 
 export default function LayersPanel({ visibleLayers, onToggleLayer, isOpen, onClose, isAdmin, visibleExternalLayers, onToggleExternalLayer, externalLayers, externalLayerGroups, manzanaVisualMode, onChangeManzanaVisualMode }: LayersPanelProps) {
-  const [collapsedGroups, setCollapsedGroups] = useState<Record<string, boolean>>({});
+  const buildDefaultCollapsed = (): Record<string, boolean> => {
+    const base = Object.fromEntries(LAYER_GROUPS.map((group) => [group, true]));
+    const ext = Object.fromEntries(externalLayerGroups.map((group) => [`ext_${group}`, true]));
+    return { ...base, ...ext };
+  };
+
+  const [collapsedGroups, setCollapsedGroups] = useState<Record<string, boolean>>(buildDefaultCollapsed);
   const [manzanaOptionsOpen, setManzanaOptionsOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    // Re-open with all categories collapsed so the panel doesn't occupy full height.
+    setCollapsedGroups(buildDefaultCollapsed());
+    setManzanaOptionsOpen(false);
+  }, [isOpen, externalLayerGroups]);
 
   const toggleGroup = (group: string) => {
     setCollapsedGroups(prev => ({ ...prev, [group]: !prev[group] }));
