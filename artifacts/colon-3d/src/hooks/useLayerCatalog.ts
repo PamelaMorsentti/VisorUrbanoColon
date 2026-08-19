@@ -34,6 +34,10 @@ const DISPLAY_CONFIG: Record<
   ext_nasa_precip:      { color: "#38bdf8", opacity: 0.75, maxZoom: 7 },
   ext_esa_landcover:    { color: "#4ade80", opacity: 0.75, wmsFormat: "image/png", wmsTransparent: true },
   ext_jrc_surface_water: { color: "#0ea5e9", opacity: 0.8,  maxZoom: 13 },
+  ext_ideer_corufa_registro: { color: "#38bdf8", opacity: 0.75, wmsFormat: "image/png", wmsTransparent: true },
+  ext_ideer_perforistas_registro: { color: "#f97316", opacity: 0.75, wmsFormat: "image/png", wmsTransparent: true },
+  ext_ideer_laboratorios_registro: { color: "#ef4444", opacity: 0.75, wmsFormat: "image/png", wmsTransparent: true },
+  ext_ideer_perforaciones_cfi: { color: "#22c55e", opacity: 0.75, wmsFormat: "image/png", wmsTransparent: true },
 };
 
 /** Shape of a row returned by GET /api/layers/catalog */

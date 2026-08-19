@@ -281,4 +281,68 @@ export const externalLayerSeed: InsertLayerCatalog[] = [
       { color: "#002070", label: "Agua permanente 100%" },
     ],
   },
+  {
+    key: "ext_ideer_corufa_registro",
+    label: "IDEER/CORUFA — Registro de CORUFA",
+    description:
+      "Registros obrantes en la Dirección CORUFA (IDE Entre Ríos · mapa 343)",
+    group: "Registros IDE Entre Ríos",
+    layerType: "wms",
+    sourceUrl: "https://geoservicios.entrerios.gov.ar/geoserver/ows",
+    sourceLayerName: "geonode:registro_de_corufa",
+    attribution:
+      '&copy; <a href="https://geoservicios.entrerios.gov.ar" target="_blank">IDE Entre Ríos</a> · CORUFA',
+    isExternal: true,
+    isActive: true,
+    supportsGetFeatureInfo: true,
+    legend: [{ color: "#38bdf8", label: "Registro CORUFA" }],
+  },
+  {
+    key: "ext_ideer_perforistas_registro",
+    label: "IDEER/CORUFA — Registro de perforistas",
+    description:
+      "Registro de perforistas en Entre Ríos (IDE Entre Ríos · mapa 343)",
+    group: "Registros IDE Entre Ríos",
+    layerType: "wms",
+    sourceUrl: "https://geoservicios.entrerios.gov.ar/geoserver/ows",
+    sourceLayerName: "geonode:registro_de_perforistas",
+    attribution:
+      '&copy; <a href="https://geoservicios.entrerios.gov.ar" target="_blank">IDE Entre Ríos</a> · CORUFA',
+    isExternal: true,
+    isActive: true,
+    supportsGetFeatureInfo: true,
+    legend: [{ color: "#f97316", label: "Registro de perforistas" }],
+  },
+  {
+    key: "ext_ideer_laboratorios_registro",
+    label: "IDEER/CORUFA — Registro de laboratorios",
+    description:
+      "Registro de laboratorios vinculados al recurso hídrico (IDE Entre Ríos · mapa 343)",
+    group: "Registros IDE Entre Ríos",
+    layerType: "wms",
+    sourceUrl: "https://geoservicios.entrerios.gov.ar/geoserver/ows",
+    sourceLayerName: "geonode:registro_de_laboratorios",
+    attribution:
+      '&copy; <a href="https://geoservicios.entrerios.gov.ar" target="_blank">IDE Entre Ríos</a> · CORUFA',
+    isExternal: true,
+    isActive: true,
+    supportsGetFeatureInfo: true,
+    legend: [{ color: "#ef4444", label: "Registro de laboratorios" }],
+  },
+  {
+    key: "ext_ideer_perforaciones_cfi",
+    label: "IDEER/CFI — Perforaciones relevadas",
+    description:
+      "Perforaciones relevadas por consultoría CFI (IDE Entre Ríos · mapa 343)",
+    group: "Registros IDE Entre Ríos",
+    layerType: "wms",
+    sourceUrl: "https://geoservicios.entrerios.gov.ar/geoserver/ows",
+    sourceLayerName: "geonode:cfi___santi___bianchi",
+    attribution:
+      '&copy; <a href="https://geoservicios.entrerios.gov.ar" target="_blank">IDE Entre Ríos</a> · CFI',
+    isExternal: true,
+    isActive: true,
+    supportsGetFeatureInfo: true,
+    legend: [{ color: "#22c55e", label: "Perforaciones relevadas" }],
+  },
 ];
