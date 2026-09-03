@@ -1,4 +1,6 @@
 const CARU_ALTURAS_READABLE_URL = "https://r.jina.ai/http://190.0.152.194:8080/alturas/web/user/alturas";
+const HYDROLOGY_404_COOLDOWN_MS = 5 * 60 * 1000;
+const suppressedHydrologyApiUntil = new Map<string, number>();
 
 export type ColonHydrologySnapshot = {
   level: number;
@@ -95,12 +97,19 @@ export function formatHydrologyUpdatedAt(raw: string | undefined): string | null
 }
 
 export async function fetchColonHydrology(apiBaseUrl = ""): Promise<ColonHydrologySnapshot | null> {
-  const candidates = getHydrologyApiCandidates(apiBaseUrl);
+  const now = Date.now();
+  const candidates = getHydrologyApiCandidates(apiBaseUrl)
+    .filter((url) => (suppressedHydrologyApiUntil.get(url) ?? 0) <= now);
 
   for (const url of candidates) {
     try {
       const res = await fetchJsonWithTimeout(url, 10000);
-      if (!res.ok) continue;
+      if (!res.ok) {
+        if (res.status === 404) {
+          suppressedHydrologyApiUntil.set(url, Date.now() + HYDROLOGY_404_COOLDOWN_MS);
+        }
+        continue;
+      }
 
       const data = await res.json() as HydrologyApiResponse;
       const level = Number(data.level);
