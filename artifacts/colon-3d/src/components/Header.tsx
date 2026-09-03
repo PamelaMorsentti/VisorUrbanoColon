@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, type ReactNode } from "react";
 import {
   Layers, Search, Navigation, MapPin, X, Loader2,
   BarChart2, Map, Upload, Ruler, Square, ChevronDown, Cloud, MoreHorizontal, Droplets,
@@ -486,14 +486,19 @@ export default function Header({
       <div className="flex items-center gap-1 ml-auto">
         {/* Mobile overflow menu */}
         <div className="relative lg:hidden" ref={mobileMenuRef}>
-          <button
-            onClick={() => setMobileMenuOpen(v => !v)}
-            className={`${BTN_BASE} ${mobileMenuOpen ? BTN_ACTIVE("sky") : ""}`}
-            title="Más herramientas"
+          <MenuTutorialHint
+            title="Mas"
+            description="Atajos rapidos: centrar mapa, medir, analisis y carga de capas."
           >
-            <MoreHorizontal size={13} />
-            <span className="text-xs">Mas</span>
-          </button>
+            <button
+              onClick={() => setMobileMenuOpen(v => !v)}
+              className={`${BTN_BASE} ${mobileMenuOpen ? BTN_ACTIVE("sky") : ""}`}
+              title="Más herramientas"
+            >
+              <MoreHorizontal size={13} />
+              <span className="text-xs">Mas</span>
+            </button>
+          </MenuTutorialHint>
 
           {mobileMenuOpen && (
             <div className="absolute right-0 top-full mt-2 w-56 rounded-lg border border-border bg-card shadow-2xl p-2 z-[1200]">
@@ -804,59 +809,104 @@ export default function Header({
         )}
 
         {/* Cadastral search */}
-        <button
-          onClick={onToggleCadastral}
-          className={`${BTN_BASE} ${cadastralOpen ? BTN_ACTIVE("amber") : ""}`}
-          title="Búsqueda catastral"
-          data-testid="button-toggle-cadastral"
+        <MenuTutorialHint
+          title="Catastro"
+          description="Busca nomenclatura y parcelas. Al seleccionar, el mapa se enfoca automaticamente."
         >
-          <MapPin size={13} />
-          <span className="hidden sm:inline text-xs">Catastro</span>
-        </button>
+          <button
+            onClick={onToggleCadastral}
+            className={`${BTN_BASE} ${cadastralOpen ? BTN_ACTIVE("amber") : ""}`}
+            title="Búsqueda catastral"
+            data-testid="button-toggle-cadastral"
+          >
+            <MapPin size={13} />
+            <span className="hidden sm:inline text-xs">Catastro</span>
+          </button>
+        </MenuTutorialHint>
 
         {/* Layers */}
-        <button
-          onClick={onToggleLayers}
-          className={`${BTN_BASE} ${layersPanelOpen ? BTN_ACTIVE("sky") : ""}`}
+        <MenuTutorialHint
           title="Capas"
-          data-testid="button-toggle-layers"
+          description="Activa o desactiva informacion del mapa. Puedes combinar capas por tema."
         >
-          <Layers size={13} />
-          <span className="hidden sm:inline text-xs">Capas</span>
-        </button>
+          <button
+            onClick={onToggleLayers}
+            className={`${BTN_BASE} ${layersPanelOpen ? BTN_ACTIVE("sky") : ""}`}
+            title="Capas"
+            data-testid="button-toggle-layers"
+          >
+            <Layers size={13} />
+            <span className="hidden sm:inline text-xs">Capas</span>
+          </button>
+        </MenuTutorialHint>
 
         {/* Flood simulation panel */}
-        <button
-          onClick={onToggleFloodSimulationPanel}
-          className={`${BTN_BASE} ${floodSimulationPanelOpen ? BTN_ACTIVE("cyan") : ""}`}
-          title="Simulación de crecida"
-          data-testid="button-toggle-flood-simulation"
+        <MenuTutorialHint
+          title="Crecida"
+          description="Simula escenarios de inundacion y analiza zonas con mayor riesgo."
         >
-          <Droplets size={13} />
-          <span className="hidden sm:inline text-xs">Crecida</span>
-        </button>
+          <button
+            onClick={onToggleFloodSimulationPanel}
+            className={`${BTN_BASE} ${floodSimulationPanelOpen ? BTN_ACTIVE("cyan") : ""}`}
+            title="Simulación de crecida"
+            data-testid="button-toggle-flood-simulation"
+          >
+            <Droplets size={13} />
+            <span className="hidden sm:inline text-xs">Crecida</span>
+          </button>
+        </MenuTutorialHint>
 
         {/* Regional services */}
-        <button
-          onClick={onToggleRegionalInfo}
-          className={`${BTN_BASE} ${regionalInfoOpen ? BTN_ACTIVE("emerald") : ""}`}
-          title="Servicios regionales"
-          data-testid="button-toggle-regional-info"
+        <MenuTutorialHint
+          title="Servicios"
+          description="Consulta enlaces y datos utiles de servicios regionales conectados al visor."
         >
-          <Cloud size={13} />
-          <span className="hidden sm:inline text-xs">Servicios</span>
-        </button>
+          <button
+            onClick={onToggleRegionalInfo}
+            className={`${BTN_BASE} ${regionalInfoOpen ? BTN_ACTIVE("emerald") : ""}`}
+            title="Servicios regionales"
+            data-testid="button-toggle-regional-info"
+          >
+            <Cloud size={13} />
+            <span className="hidden sm:inline text-xs">Servicios</span>
+          </button>
+        </MenuTutorialHint>
 
         <div className="w-px h-5 bg-border/50 mx-0.5 flex-shrink-0" />
 
         {/* Auth */}
-        <AuthButton
-          onOpenPanel={onOpenAuthPanel}
-          dashboardUrl={dashboardUrl}
-          adminEditorUrl={adminEditorUrl}
-        />
+        <MenuTutorialHint
+          title="Acceso"
+          description="Ingresa con tu perfil para habilitar funciones segun tu rol."
+        >
+          <AuthButton
+            onOpenPanel={onOpenAuthPanel}
+            dashboardUrl={dashboardUrl}
+            adminEditorUrl={adminEditorUrl}
+          />
+        </MenuTutorialHint>
       </div>
     </header>
+  );
+}
+
+function MenuTutorialHint({
+  title,
+  description,
+  children,
+}: {
+  title: string;
+  description: string;
+  children: ReactNode;
+}) {
+  return (
+    <div className="relative group/menu-tutorial">
+      {children}
+      <div className="pointer-events-none absolute left-1/2 top-full z-[1600] mt-2 hidden w-56 -translate-x-1/2 rounded-md border border-border bg-card/95 px-2.5 py-2 shadow-2xl backdrop-blur-sm group-hover/menu-tutorial:block group-focus-within/menu-tutorial:block">
+        <div className="text-[10px] font-semibold uppercase tracking-wide text-primary">{title}</div>
+        <div className="mt-0.5 text-[11px] leading-snug text-muted-foreground">{description}</div>
+      </div>
+    </div>
   );
 }
 
