@@ -8,6 +8,8 @@ import { COLON_CENTER, COLON_ZOOM } from "@/lib/layers";
 import { AuthButton } from "@/components/AuthGate";
 import type { MeasureMode } from "@/components/MeasureTool";
 
+const MENU_TUTORIAL_STORAGE_KEY = "colon3d.menuTutorial.hidden";
+
 // ─── IGN Argentina geocoder ───────────────────────────────────────────────────
 
 interface IGNResult {
@@ -275,11 +277,21 @@ export default function Header({
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
   const [obrasMenuOpen, setObrasMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [menuTutorialEnabled, setMenuTutorialEnabled] = useState(true);
   const abortRef = useRef<AbortController | null>(null);
   const suggestAbortRef = useRef<AbortController | null>(null);
   const obrasMenuRef = useRef<HTMLDivElement | null>(null);
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const searchBoxRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    try {
+      const hidden = window.localStorage.getItem(MENU_TUTORIAL_STORAGE_KEY) === "1";
+      setMenuTutorialEnabled(!hidden);
+    } catch {
+      setMenuTutorialEnabled(true);
+    }
+  }, []);
 
   useEffect(() => {
     const onPointerDown = (event: MouseEvent) => {
@@ -410,6 +422,14 @@ export default function Header({
 
   const toggleMeasure = (m: MeasureMode) => onChangeMeasureMode(measureMode === m ? "none" : m);
   const fmt = (n: number) => n.toLocaleString("es-AR");
+  const disableMenuTutorial = () => {
+    setMenuTutorialEnabled(false);
+    try {
+      window.localStorage.setItem(MENU_TUTORIAL_STORAGE_KEY, "1");
+    } catch {
+      // Ignore storage restrictions.
+    }
+  };
 
   return (
     <header
@@ -489,6 +509,8 @@ export default function Header({
           <MenuTutorialHint
             title="Mas"
             description="Atajos rapidos: centrar mapa, medir, analisis y carga de capas."
+            tutorialEnabled={menuTutorialEnabled}
+            onDisableTutorial={disableMenuTutorial}
           >
             <button
               onClick={() => setMobileMenuOpen(v => !v)}
@@ -812,6 +834,8 @@ export default function Header({
         <MenuTutorialHint
           title="Catastro"
           description="Busca nomenclatura y parcelas. Al seleccionar, el mapa se enfoca automaticamente."
+          tutorialEnabled={menuTutorialEnabled}
+          onDisableTutorial={disableMenuTutorial}
         >
           <button
             onClick={onToggleCadastral}
@@ -828,6 +852,8 @@ export default function Header({
         <MenuTutorialHint
           title="Capas"
           description="Activa o desactiva informacion del mapa. Puedes combinar capas por tema."
+          tutorialEnabled={menuTutorialEnabled}
+          onDisableTutorial={disableMenuTutorial}
         >
           <button
             onClick={onToggleLayers}
@@ -844,6 +870,8 @@ export default function Header({
         <MenuTutorialHint
           title="Crecida"
           description="Simula escenarios de inundacion y analiza zonas con mayor riesgo."
+          tutorialEnabled={menuTutorialEnabled}
+          onDisableTutorial={disableMenuTutorial}
         >
           <button
             onClick={onToggleFloodSimulationPanel}
@@ -860,6 +888,8 @@ export default function Header({
         <MenuTutorialHint
           title="Servicios"
           description="Consulta enlaces y datos utiles de servicios regionales conectados al visor."
+          tutorialEnabled={menuTutorialEnabled}
+          onDisableTutorial={disableMenuTutorial}
         >
           <button
             onClick={onToggleRegionalInfo}
@@ -878,6 +908,8 @@ export default function Header({
         <MenuTutorialHint
           title="Acceso"
           description="Ingresa con tu perfil para habilitar funciones segun tu rol."
+          tutorialEnabled={menuTutorialEnabled}
+          onDisableTutorial={disableMenuTutorial}
         >
           <AuthButton
             onOpenPanel={onOpenAuthPanel}
@@ -893,18 +925,31 @@ export default function Header({
 function MenuTutorialHint({
   title,
   description,
+  tutorialEnabled,
+  onDisableTutorial,
   children,
 }: {
   title: string;
   description: string;
+  tutorialEnabled: boolean;
+  onDisableTutorial: () => void;
   children: ReactNode;
 }) {
+  if (!tutorialEnabled) return <>{children}</>;
+
   return (
     <div className="relative group/menu-tutorial">
       {children}
-      <div className="pointer-events-none absolute left-1/2 top-full z-[1600] mt-2 hidden w-56 -translate-x-1/2 rounded-md border border-border bg-card/95 px-2.5 py-2 shadow-2xl backdrop-blur-sm group-hover/menu-tutorial:block group-focus-within/menu-tutorial:block">
+      <div className="absolute left-1/2 top-full z-[1600] mt-2 hidden w-56 -translate-x-1/2 rounded-md border border-border bg-card/95 px-2.5 py-2 shadow-2xl backdrop-blur-sm group-hover/menu-tutorial:block group-focus-within/menu-tutorial:block">
         <div className="text-[10px] font-semibold uppercase tracking-wide text-primary">{title}</div>
         <div className="mt-0.5 text-[11px] leading-snug text-muted-foreground">{description}</div>
+        <button
+          type="button"
+          onClick={onDisableTutorial}
+          className="mt-2 text-[10px] font-medium text-amber-300 hover:text-amber-200"
+        >
+          No volver a mostrar ayuda
+        </button>
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ export type ColonHydrologySnapshot = {
   trend: string | null;
   updatedAt: string | null;
   source: "api" | "caru";
+  apiUnavailable?: boolean;
   alertLevel?: number;
   evacuationLevel?: number;
 };
@@ -98,14 +99,18 @@ export function formatHydrologyUpdatedAt(raw: string | undefined): string | null
 
 export async function fetchColonHydrology(apiBaseUrl = ""): Promise<ColonHydrologySnapshot | null> {
   const now = Date.now();
-  const candidates = getHydrologyApiCandidates(apiBaseUrl)
+  const allCandidates = getHydrologyApiCandidates(apiBaseUrl);
+  const candidates = allCandidates
     .filter((url) => (suppressedHydrologyApiUntil.get(url) ?? 0) <= now);
+  const hadSuppressedCandidates = candidates.length < allCandidates.length;
+  let sawApi404 = false;
 
   for (const url of candidates) {
     try {
       const res = await fetchJsonWithTimeout(url, 10000);
       if (!res.ok) {
         if (res.status === 404) {
+          sawApi404 = true;
           suppressedHydrologyApiUntil.set(url, Date.now() + HYDROLOGY_404_COOLDOWN_MS);
         }
         continue;
@@ -144,6 +149,7 @@ export async function fetchColonHydrology(apiBaseUrl = ""): Promise<ColonHydrolo
       trend: row.trend || null,
       updatedAt: formatHydrologyUpdatedAt(row.updatedAt),
       source: "caru",
+      apiUnavailable: sawApi404 || hadSuppressedCandidates,
     };
   } catch {
     return null;

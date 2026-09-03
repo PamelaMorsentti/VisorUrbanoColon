@@ -16,6 +16,7 @@ interface RiverData {
   delta: number;
   updatedAt: string;
   source: "caru" | "api";
+  apiUnavailable?: boolean;
   alertLevel: number;
   evacuationLevel: number;
 }
@@ -171,6 +172,7 @@ export default function RegionalInfoPanel({
           delta: data.delta ?? 0,
           updatedAt: data.updatedAt ?? "S/D",
           source: data.source,
+          apiUnavailable: data.apiUnavailable,
           alertLevel: data.alertLevel ?? COLON_RIVER_ALERT_LEVEL,
           evacuationLevel: data.evacuationLevel ?? COLON_RIVER_EVAC_LEVEL,
         });
@@ -350,6 +352,11 @@ export default function RegionalInfoPanel({
                       <span>Fuente:</span>
                       <span>{river.source === "api" ? "API local (Prefectura/CARU)" : "CARU"}</span>
                     </div>
+                    {river.source === "caru" && river.apiUnavailable && (
+                      <div className="rounded border border-amber-400/30 bg-amber-500/10 px-2 py-1 text-[10px] text-amber-200">
+                        API local de hidrologia no disponible en este entorno. Mostrando fuente alterna (CARU).
+                      </div>
+                    )}
                     <div className="flex items-center justify-between">
                       <span>Estado:</span>
                       <span className={rioToneClass}>{rioStatus.label}</span>
