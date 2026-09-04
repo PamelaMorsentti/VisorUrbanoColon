@@ -280,6 +280,7 @@ export default function Header({
   const [analysisMenuOpen, setAnalysisMenuOpen] = useState(false);
   const [riskMenuOpen, setRiskMenuOpen] = useState(false);
   const [menuTutorialEnabled, setMenuTutorialEnabled] = useState(true);
+  const [activeTutorialHintId, setActiveTutorialHintId] = useState<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
   const suggestAbortRef = useRef<AbortController | null>(null);
   const navMenuRef = useRef<HTMLDivElement | null>(null);
@@ -304,6 +305,7 @@ export default function Header({
       if (layersMenuRef.current && !layersMenuRef.current.contains(target)) setLayersMenuOpen(false);
       if (analysisMenuRef.current && !analysisMenuRef.current.contains(target)) setAnalysisMenuOpen(false);
       if (riskMenuRef.current && !riskMenuRef.current.contains(target)) setRiskMenuOpen(false);
+      setActiveTutorialHintId(null);
       if (searchBoxRef.current && !searchBoxRef.current.contains(target)) {
         setSuggestionsOpen(false);
         setActiveSuggestionIndex(-1);
@@ -430,6 +432,7 @@ export default function Header({
   const fmt = (n: number) => n.toLocaleString("es-AR");
   const disableMenuTutorial = () => {
     setMenuTutorialEnabled(false);
+    setActiveTutorialHintId(null);
     try {
       window.localStorage.setItem(MENU_TUTORIAL_STORAGE_KEY, "1");
     } catch {
@@ -516,6 +519,10 @@ export default function Header({
             description="Busca direcciones, recentra el mapa y mide distancias o superficies."
             tutorialEnabled={menuTutorialEnabled}
             onDisableTutorial={disableMenuTutorial}
+            hintId="nav"
+            activeHintId={activeTutorialHintId}
+            onShowHint={setActiveTutorialHintId}
+            onHideHint={() => setActiveTutorialHintId(null)}
           >
             <button
               onClick={() => {
@@ -523,6 +530,7 @@ export default function Header({
                 setLayersMenuOpen(false);
                 setAnalysisMenuOpen(false);
                 setRiskMenuOpen(false);
+                setActiveTutorialHintId(null);
               }}
               className={`${BTN_BASE} ${navMenuOpen ? BTN_ACTIVE("sky") : ""}`}
               title="Navegacion"
@@ -557,6 +565,10 @@ export default function Header({
             description="Activa o desactiva informacion del mapa y herramientas de capas."
             tutorialEnabled={menuTutorialEnabled}
             onDisableTutorial={disableMenuTutorial}
+            hintId="layers"
+            activeHintId={activeTutorialHintId}
+            onShowHint={setActiveTutorialHintId}
+            onHideHint={() => setActiveTutorialHintId(null)}
           >
             <button
               onClick={() => {
@@ -564,6 +576,7 @@ export default function Header({
                 setNavMenuOpen(false);
                 setAnalysisMenuOpen(false);
                 setRiskMenuOpen(false);
+                setActiveTutorialHintId(null);
               }}
               className={`${BTN_BASE} ${(layersPanelOpen || cadastralOpen || zonaLegendOpen || planosActive || layersMenuOpen) ? BTN_ACTIVE("amber") : ""}`}
               title="Capas"
@@ -605,6 +618,10 @@ export default function Header({
             description="Paneles de analisis, carga GIS y filtros avanzados de obras."
             tutorialEnabled={menuTutorialEnabled}
             onDisableTutorial={disableMenuTutorial}
+            hintId="analysis"
+            activeHintId={activeTutorialHintId}
+            onShowHint={setActiveTutorialHintId}
+            onHideHint={() => setActiveTutorialHintId(null)}
           >
             <button
               onClick={() => {
@@ -612,6 +629,7 @@ export default function Header({
                 setNavMenuOpen(false);
                 setLayersMenuOpen(false);
                 setRiskMenuOpen(false);
+                setActiveTutorialHintId(null);
               }}
               className={`${BTN_BASE} ${(analysisPanelOpen || uploadPanelOpen || analysisMenuOpen) ? BTN_ACTIVE("purple") : ""}`}
               title="Analisis"
@@ -793,6 +811,10 @@ export default function Header({
             description="Simula crecidas y consulta servicios regionales en un mismo menu."
             tutorialEnabled={menuTutorialEnabled}
             onDisableTutorial={disableMenuTutorial}
+            hintId="risk"
+            activeHintId={activeTutorialHintId}
+            onShowHint={setActiveTutorialHintId}
+            onHideHint={() => setActiveTutorialHintId(null)}
           >
             <button
               onClick={() => {
@@ -800,6 +822,7 @@ export default function Header({
                 setNavMenuOpen(false);
                 setLayersMenuOpen(false);
                 setAnalysisMenuOpen(false);
+                setActiveTutorialHintId(null);
               }}
               className={`${BTN_BASE} ${(floodSimulationPanelOpen || regionalInfoOpen || riskMenuOpen) ? BTN_ACTIVE("emerald") : ""}`}
               title="Riesgo y servicios"
@@ -831,6 +854,10 @@ export default function Header({
           description="Ingresa con tu perfil para habilitar funciones segun tu rol."
           tutorialEnabled={menuTutorialEnabled}
           onDisableTutorial={disableMenuTutorial}
+          hintId="access"
+          activeHintId={activeTutorialHintId}
+          onShowHint={setActiveTutorialHintId}
+          onHideHint={() => setActiveTutorialHintId(null)}
         >
           <AuthButton
             onOpenPanel={onOpenAuthPanel}
@@ -848,20 +875,36 @@ function MenuTutorialHint({
   description,
   tutorialEnabled,
   onDisableTutorial,
+  hintId,
+  activeHintId,
+  onShowHint,
+  onHideHint,
   children,
 }: {
   title: string;
   description: string;
   tutorialEnabled: boolean;
   onDisableTutorial: () => void;
+  hintId: string;
+  activeHintId: string | null;
+  onShowHint: (id: string | null) => void;
+  onHideHint: () => void;
   children: ReactNode;
 }) {
   if (!tutorialEnabled) return <>{children}</>;
 
+  const isOpen = activeHintId === hintId;
+
   return (
-    <div className="relative group/menu-tutorial">
+    <div
+      className="relative"
+      onMouseEnter={() => onShowHint(hintId)}
+      onMouseLeave={onHideHint}
+      onFocusCapture={() => onShowHint(hintId)}
+      onBlurCapture={onHideHint}
+    >
       {children}
-      <div className="absolute left-1/2 top-full z-[1600] mt-2 hidden w-56 -translate-x-1/2 rounded-md border border-border bg-card/95 px-2.5 py-2 shadow-2xl backdrop-blur-sm group-hover/menu-tutorial:block group-focus-within/menu-tutorial:block">
+      <div className={`absolute left-1/2 top-full z-[1600] mt-2 w-56 -translate-x-1/2 rounded-md border border-border bg-card/95 px-2.5 py-2 shadow-2xl backdrop-blur-sm ${isOpen ? "block" : "hidden"}`}>
         <div className="text-[10px] font-semibold uppercase tracking-wide text-primary">{title}</div>
         <div className="mt-0.5 text-[11px] leading-snug text-muted-foreground">{description}</div>
         <button
