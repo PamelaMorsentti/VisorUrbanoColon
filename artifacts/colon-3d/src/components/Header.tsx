@@ -275,13 +275,17 @@ export default function Header({
   const [suggestionsOpen, setSuggestionsOpen] = useState(false);
   const [suggestionsLoading, setSuggestionsLoading] = useState(false);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
-  const [obrasMenuOpen, setObrasMenuOpen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [navMenuOpen, setNavMenuOpen] = useState(false);
+  const [layersMenuOpen, setLayersMenuOpen] = useState(false);
+  const [analysisMenuOpen, setAnalysisMenuOpen] = useState(false);
+  const [riskMenuOpen, setRiskMenuOpen] = useState(false);
   const [menuTutorialEnabled, setMenuTutorialEnabled] = useState(true);
   const abortRef = useRef<AbortController | null>(null);
   const suggestAbortRef = useRef<AbortController | null>(null);
-  const obrasMenuRef = useRef<HTMLDivElement | null>(null);
-  const mobileMenuRef = useRef<HTMLDivElement | null>(null);
+  const navMenuRef = useRef<HTMLDivElement | null>(null);
+  const layersMenuRef = useRef<HTMLDivElement | null>(null);
+  const analysisMenuRef = useRef<HTMLDivElement | null>(null);
+  const riskMenuRef = useRef<HTMLDivElement | null>(null);
   const searchBoxRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -296,8 +300,10 @@ export default function Header({
   useEffect(() => {
     const onPointerDown = (event: MouseEvent) => {
       const target = event.target as Node;
-      if (obrasMenuRef.current && !obrasMenuRef.current.contains(target)) setObrasMenuOpen(false);
-      if (mobileMenuRef.current && !mobileMenuRef.current.contains(target)) setMobileMenuOpen(false);
+      if (navMenuRef.current && !navMenuRef.current.contains(target)) setNavMenuOpen(false);
+      if (layersMenuRef.current && !layersMenuRef.current.contains(target)) setLayersMenuOpen(false);
+      if (analysisMenuRef.current && !analysisMenuRef.current.contains(target)) setAnalysisMenuOpen(false);
+      if (riskMenuRef.current && !riskMenuRef.current.contains(target)) setRiskMenuOpen(false);
       if (searchBoxRef.current && !searchBoxRef.current.contains(target)) {
         setSuggestionsOpen(false);
         setActiveSuggestionIndex(-1);
@@ -504,157 +510,139 @@ export default function Header({
 
       {/* Toolbar buttons */}
       <div className="flex items-center gap-1 ml-auto">
-        {/* Mobile overflow menu */}
-        <div className="relative lg:hidden" ref={mobileMenuRef}>
+        <div className="relative" ref={navMenuRef}>
           <MenuTutorialHint
-            title="Mas"
-            description="Atajos rapidos: centrar mapa, medir, analisis y carga de capas."
+            title="Navegacion"
+            description="Busca direcciones, recentra el mapa y mide distancias o superficies."
             tutorialEnabled={menuTutorialEnabled}
             onDisableTutorial={disableMenuTutorial}
           >
             <button
-              onClick={() => setMobileMenuOpen(v => !v)}
-              className={`${BTN_BASE} ${mobileMenuOpen ? BTN_ACTIVE("sky") : ""}`}
-              title="Más herramientas"
+              onClick={() => {
+                setNavMenuOpen(v => !v);
+                setLayersMenuOpen(false);
+                setAnalysisMenuOpen(false);
+                setRiskMenuOpen(false);
+              }}
+              className={`${BTN_BASE} ${navMenuOpen ? BTN_ACTIVE("sky") : ""}`}
+              title="Navegacion"
             >
-              <MoreHorizontal size={13} />
-              <span className="text-xs">Mas</span>
+              <Navigation size={13} />
+              <span className="hidden sm:inline text-xs">Navegacion</span>
+              <ChevronDown size={12} className={`${navMenuOpen ? "rotate-180" : ""} transition-transform`} />
             </button>
           </MenuTutorialHint>
 
-          {mobileMenuOpen && (
+          {navMenuOpen && (
             <div className="absolute right-0 top-full mt-2 w-56 rounded-lg border border-border bg-card shadow-2xl p-2 z-[1200]">
-              <button
-                onClick={() => { handleReset(); setMobileMenuOpen(false); }}
-                className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60"
-              >
+              <button onClick={() => { handleReset(); setNavMenuOpen(false); }} className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60">
                 <span>Centrar en Colon</span>
                 <Navigation size={12} />
               </button>
-              <button
-                onClick={() => { toggleMeasure("distance"); setMobileMenuOpen(false); }}
-                className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60"
-              >
+              <button onClick={() => { toggleMeasure("distance"); setNavMenuOpen(false); }} className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60">
                 <span>{measureMode === "distance" ? "Desactivar distancia" : "Medir distancia"}</span>
                 <Ruler size={12} />
               </button>
-              <button
-                onClick={() => { toggleMeasure("area"); setMobileMenuOpen(false); }}
-                className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60"
-              >
+              <button onClick={() => { toggleMeasure("area"); setNavMenuOpen(false); }} className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60">
                 <span>{measureMode === "area" ? "Desactivar superficie" : "Medir superficie"}</span>
                 <Square size={12} />
               </button>
-              <button
-                onClick={() => { onToggleAnalysis(); setMobileMenuOpen(false); }}
-                className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60"
-              >
-                <span>{analysisPanelOpen ? "Ocultar analisis" : "Panel de analisis"}</span>
-                <BarChart2 size={12} />
-              </button>
-              <button
-                onClick={() => { onToggleUpload(); setMobileMenuOpen(false); }}
-                className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60"
-              >
-                <span>{uploadPanelOpen ? "Ocultar carga GIS" : "Cargar capas GIS"}</span>
-                <Upload size={12} />
-              </button>
-              <button
-                onClick={() => { onToggleFloodSimulationPanel(); setMobileMenuOpen(false); }}
-                className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60"
-              >
-                <span>{floodSimulationPanelOpen ? "Ocultar simulación crecida" : "Mostrar simulación crecida"}</span>
-                <Droplets size={12} />
-              </button>
-              <button
-                onClick={() => { onTogglePlanosVisibility(); setMobileMenuOpen(false); }}
-                className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60"
-              >
-                <span>{planosActive ? "Ocultar obras" : "Mostrar obras"}</span>
-                <MapPin size={12} />
-              </button>
-              {showZonaLegendButton && (
-                <button
-                  onClick={() => { onToggleZonaLegend(); setMobileMenuOpen(false); }}
-                  className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60"
-                >
-                  <span>{zonaLegendOpen ? "Ocultar zonificacion" : "Ver zonificacion"}</span>
-                  <Map size={12} />
-                </button>
-              )}
             </div>
           )}
         </div>
 
-        {/* Reset view */}
-        <button onClick={handleReset} className={`hidden sm:flex ${BTN_BASE}`} title="Centrar en Colón" data-testid="button-reset-view">
-          <Navigation size={13} />
-        </button>
-
-        {/* Measure distance */}
-        <button
-          onClick={() => toggleMeasure("distance")}
-          className={`hidden lg:flex ${BTN_BASE} ${measureMode === "distance" ? BTN_ACTIVE("cyan") : ""}`}
-          title="Medir distancia"
-        >
-          <Ruler size={13} />
-          <span className="hidden xl:inline text-xs">Dist.</span>
-        </button>
-
-        {/* Measure area */}
-        <button
-          onClick={() => toggleMeasure("area")}
-          className={`hidden lg:flex ${BTN_BASE} ${measureMode === "area" ? BTN_ACTIVE("cyan") : ""}`}
-          title="Medir superficie"
-        >
-          <Square size={13} />
-          <span className="hidden xl:inline text-xs">Sup.</span>
-        </button>
-
-        <div className="hidden lg:block w-px h-5 bg-border/50 mx-0.5 flex-shrink-0" />
-
-        {/* Analysis */}
-        <button
-          onClick={onToggleAnalysis}
-          className={`hidden lg:flex ${BTN_BASE} ${analysisPanelOpen ? BTN_ACTIVE("purple") : ""}`}
-          title="Panel de análisis"
-        >
-          <BarChart2 size={13} />
-          <span className="hidden lg:inline text-xs">Análisis</span>
-        </button>
-
-        {/* Upload layers */}
-        <button
-          onClick={onToggleUpload}
-          className={`hidden lg:flex ${BTN_BASE} ${uploadPanelOpen ? BTN_ACTIVE("amber") : ""}`}
-          title="Cargar capas GIS"
-        >
-          <Upload size={13} />
-          <span className="hidden lg:inline text-xs">Cargá</span>
-        </button>
-
-        {/* Planos / obras */}
-        <div className="hidden lg:block relative" ref={obrasMenuRef}>
-          <button
-            onClick={() => setObrasMenuOpen(v => !v)}
-            className={`${BTN_BASE} ${(planosActive || obrasMenuOpen) ? BTN_ACTIVE("emerald") : ""}`}
-            title="Filtros y analisis de obras"
+        <div className="relative" ref={layersMenuRef}>
+          <MenuTutorialHint
+            title="Capas"
+            description="Activa o desactiva informacion del mapa y herramientas de capas."
+            tutorialEnabled={menuTutorialEnabled}
+            onDisableTutorial={disableMenuTutorial}
           >
-            <MapPin size={13} />
-            <span className="hidden lg:inline text-xs">Obras</span>
-            {selectedObrasYears.length > 0 && (
-              <span className="hidden 2xl:inline text-[10px] opacity-80">
-                {selectedObrasYears.length === 1
-                  ? selectedObrasYears[0]
-                  : `${selectedObrasYears.length} años`}
-              </span>
-            )}
-            <ChevronDown size={12} className={`${obrasMenuOpen ? "rotate-180" : ""} transition-transform`} />
-          </button>
+            <button
+              onClick={() => {
+                setLayersMenuOpen(v => !v);
+                setNavMenuOpen(false);
+                setAnalysisMenuOpen(false);
+                setRiskMenuOpen(false);
+              }}
+              className={`${BTN_BASE} ${(layersPanelOpen || cadastralOpen || zonaLegendOpen || planosActive || layersMenuOpen) ? BTN_ACTIVE("amber") : ""}`}
+              title="Capas"
+              data-testid="button-toggle-layers"
+            >
+              <Layers size={13} />
+              <span className="hidden sm:inline text-xs">Capas</span>
+              <ChevronDown size={12} className={`${layersMenuOpen ? "rotate-180" : ""} transition-transform`} />
+            </button>
+          </MenuTutorialHint>
 
-          {obrasMenuOpen && (
+          {layersMenuOpen && (
+            <div className="absolute right-0 top-full mt-2 w-60 rounded-lg border border-border bg-card shadow-2xl p-2 z-[1200]">
+              <button onClick={() => { onToggleLayers(); }} className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60">
+                <span>{layersPanelOpen ? "Ocultar selector de capas" : "Abrir selector de capas"}</span>
+                <Layers size={12} />
+              </button>
+              <button onClick={() => { onToggleCadastral(); }} className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60" data-testid="button-toggle-cadastral">
+                <span>{cadastralOpen ? "Ocultar catastro" : "Abrir catastro"}</span>
+                <MapPin size={12} />
+              </button>
+              {showZonaLegendButton && (
+                <button onClick={() => { onToggleZonaLegend(); }} className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60" data-testid="button-toggle-zona-legend">
+                  <span>{zonaLegendOpen ? "Ocultar zonificacion" : "Ver zonificacion"}</span>
+                  <Map size={12} />
+                </button>
+              )}
+              <button onClick={() => { onTogglePlanosVisibility(); }} className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60">
+                <span>{planosActive ? "Ocultar obras" : "Mostrar obras"}</span>
+                <MapPin size={12} />
+              </button>
+            </div>
+          )}
+        </div>
+
+        <div className="relative" ref={analysisMenuRef}>
+          <MenuTutorialHint
+            title="Analisis"
+            description="Paneles de analisis, carga GIS y filtros avanzados de obras."
+            tutorialEnabled={menuTutorialEnabled}
+            onDisableTutorial={disableMenuTutorial}
+          >
+            <button
+              onClick={() => {
+                setAnalysisMenuOpen(v => !v);
+                setNavMenuOpen(false);
+                setLayersMenuOpen(false);
+                setRiskMenuOpen(false);
+              }}
+              className={`${BTN_BASE} ${(analysisPanelOpen || uploadPanelOpen || analysisMenuOpen) ? BTN_ACTIVE("purple") : ""}`}
+              title="Analisis"
+            >
+              <BarChart2 size={13} />
+              <span className="hidden sm:inline text-xs">Analisis</span>
+              <ChevronDown size={12} className={`${analysisMenuOpen ? "rotate-180" : ""} transition-transform`} />
+            </button>
+          </MenuTutorialHint>
+
+          {analysisMenuOpen && (
             <div className="absolute right-0 top-full mt-2 w-[320px] max-h-[70vh] overflow-auto rounded-lg border border-border bg-card shadow-2xl p-3 z-[1200]">
-              <div className="flex items-center justify-between gap-2">
+              <button
+                type="button"
+                onClick={onToggleAnalysis}
+                className={`w-full flex items-center justify-between px-2 py-1.5 rounded text-[11px] border ${analysisPanelOpen ? "bg-purple-500/15 border-purple-500/40 text-purple-300" : "border-border text-foreground"}`}
+              >
+                <span>{analysisPanelOpen ? "Ocultar panel de analisis" : "Abrir panel de analisis"}</span>
+                <BarChart2 size={12} />
+              </button>
+
+              <button
+                type="button"
+                onClick={onToggleUpload}
+                className={`mt-2 w-full flex items-center justify-between px-2 py-1.5 rounded text-[11px] border ${uploadPanelOpen ? "bg-amber-500/15 border-amber-500/40 text-amber-300" : "border-border text-foreground"}`}
+              >
+                <span>{uploadPanelOpen ? "Ocultar carga GIS" : "Abrir carga GIS"}</span>
+                <Upload size={12} />
+              </button>
+
+              <div className="mt-3 flex items-center justify-between gap-2">
                 <div>
                   <div className="text-xs font-semibold text-foreground">Obras por ano de visado</div>
                   <div className="text-[10px] text-muted-foreground">Seleccion individual o multianual</div>
@@ -788,123 +776,56 @@ export default function Header({
                 <div className="grid grid-cols-2 gap-1.5">
                   {OBRAS_COLOR_LEGEND.map((item) => (
                     <div key={item.label} className="flex items-center gap-1.5 min-w-0">
-                      <span
-                        className="w-2.5 h-2.5 rounded-full border border-white/20 flex-shrink-0"
-                        style={{ backgroundColor: item.color }}
-                      />
+                      <span className="w-2.5 h-2.5 rounded-full border border-white/20 flex-shrink-0" style={{ backgroundColor: item.color }} />
                       <span className="text-[10px] text-foreground/90 truncate">{item.label}</span>
                     </div>
                   ))}
                 </div>
-                <div className="mt-1 text-[10px] text-muted-foreground">
-                  Tamano del punto: proporcional a los m² declarados.
-                </div>
+                <div className="mt-1 text-[10px] text-muted-foreground">Tamano del punto: proporcional a los m² declarados.</div>
               </div>
+            </div>
+          )}
+        </div>
 
-              <button
-                type="button"
-                onClick={() => {
-                  onToggleAnalysis();
-                  setObrasMenuOpen(false);
-                }}
-                className={`mt-3 w-full px-2 py-1.5 rounded text-[11px] border ${analysisPanelOpen ? "bg-purple-500/15 border-purple-500/40 text-purple-300" : "border-border text-foreground"}`}
-              >
-                {analysisPanelOpen ? "Panel de analisis abierto" : "Abrir panel de analisis"}
+        <div className="relative" ref={riskMenuRef}>
+          <MenuTutorialHint
+            title="Riesgo y servicios"
+            description="Simula crecidas y consulta servicios regionales en un mismo menu."
+            tutorialEnabled={menuTutorialEnabled}
+            onDisableTutorial={disableMenuTutorial}
+          >
+            <button
+              onClick={() => {
+                setRiskMenuOpen(v => !v);
+                setNavMenuOpen(false);
+                setLayersMenuOpen(false);
+                setAnalysisMenuOpen(false);
+              }}
+              className={`${BTN_BASE} ${(floodSimulationPanelOpen || regionalInfoOpen || riskMenuOpen) ? BTN_ACTIVE("emerald") : ""}`}
+              title="Riesgo y servicios"
+            >
+              <Cloud size={13} />
+              <span className="hidden sm:inline text-xs">Riesgo</span>
+              <ChevronDown size={12} className={`${riskMenuOpen ? "rotate-180" : ""} transition-transform`} />
+            </button>
+          </MenuTutorialHint>
+
+          {riskMenuOpen && (
+            <div className="absolute right-0 top-full mt-2 w-64 rounded-lg border border-border bg-card shadow-2xl p-2 z-[1200]">
+              <button onClick={() => { onToggleFloodSimulationPanel(); }} className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60" data-testid="button-toggle-flood-simulation">
+                <span>{floodSimulationPanelOpen ? "Ocultar simulacion crecida" : "Abrir simulacion crecida"}</span>
+                <Droplets size={12} />
+              </button>
+              <button onClick={() => { onToggleRegionalInfo(); }} className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs hover:bg-background/60" data-testid="button-toggle-regional-info">
+                <span>{regionalInfoOpen ? "Ocultar servicios" : "Abrir servicios regionales"}</span>
+                <Cloud size={12} />
               </button>
             </div>
           )}
         </div>
 
-        <div className="hidden md:block w-px h-5 bg-border/50 mx-0.5 flex-shrink-0" />
-
-        {/* Zona legend */}
-        {showZonaLegendButton && (
-          <button
-            onClick={onToggleZonaLegend}
-            className={`hidden md:flex ${BTN_BASE} ${zonaLegendOpen ? BTN_ACTIVE("emerald") : ""}`}
-            title="Leyenda de zonificación"
-            data-testid="button-toggle-zona-legend"
-          >
-            <Map size={13} />
-            <span className="hidden xl:inline text-xs">Zonif.</span>
-          </button>
-        )}
-
-        {/* Cadastral search */}
-        <MenuTutorialHint
-          title="Catastro"
-          description="Busca nomenclatura y parcelas. Al seleccionar, el mapa se enfoca automaticamente."
-          tutorialEnabled={menuTutorialEnabled}
-          onDisableTutorial={disableMenuTutorial}
-        >
-          <button
-            onClick={onToggleCadastral}
-            className={`${BTN_BASE} ${cadastralOpen ? BTN_ACTIVE("amber") : ""}`}
-            title="Búsqueda catastral"
-            data-testid="button-toggle-cadastral"
-          >
-            <MapPin size={13} />
-            <span className="hidden sm:inline text-xs">Catastro</span>
-          </button>
-        </MenuTutorialHint>
-
-        {/* Layers */}
-        <MenuTutorialHint
-          title="Capas"
-          description="Activa o desactiva informacion del mapa. Puedes combinar capas por tema."
-          tutorialEnabled={menuTutorialEnabled}
-          onDisableTutorial={disableMenuTutorial}
-        >
-          <button
-            onClick={onToggleLayers}
-            className={`${BTN_BASE} ${layersPanelOpen ? BTN_ACTIVE("sky") : ""}`}
-            title="Capas"
-            data-testid="button-toggle-layers"
-          >
-            <Layers size={13} />
-            <span className="hidden sm:inline text-xs">Capas</span>
-          </button>
-        </MenuTutorialHint>
-
-        {/* Flood simulation panel */}
-        <MenuTutorialHint
-          title="Crecida"
-          description="Simula escenarios de inundacion y analiza zonas con mayor riesgo."
-          tutorialEnabled={menuTutorialEnabled}
-          onDisableTutorial={disableMenuTutorial}
-        >
-          <button
-            onClick={onToggleFloodSimulationPanel}
-            className={`${BTN_BASE} ${floodSimulationPanelOpen ? BTN_ACTIVE("cyan") : ""}`}
-            title="Simulación de crecida"
-            data-testid="button-toggle-flood-simulation"
-          >
-            <Droplets size={13} />
-            <span className="hidden sm:inline text-xs">Crecida</span>
-          </button>
-        </MenuTutorialHint>
-
-        {/* Regional services */}
-        <MenuTutorialHint
-          title="Servicios"
-          description="Consulta enlaces y datos utiles de servicios regionales conectados al visor."
-          tutorialEnabled={menuTutorialEnabled}
-          onDisableTutorial={disableMenuTutorial}
-        >
-          <button
-            onClick={onToggleRegionalInfo}
-            className={`${BTN_BASE} ${regionalInfoOpen ? BTN_ACTIVE("emerald") : ""}`}
-            title="Servicios regionales"
-            data-testid="button-toggle-regional-info"
-          >
-            <Cloud size={13} />
-            <span className="hidden sm:inline text-xs">Servicios</span>
-          </button>
-        </MenuTutorialHint>
-
         <div className="w-px h-5 bg-border/50 mx-0.5 flex-shrink-0" />
 
-        {/* Auth */}
         <MenuTutorialHint
           title="Acceso"
           description="Ingresa con tu perfil para habilitar funciones segun tu rol."
