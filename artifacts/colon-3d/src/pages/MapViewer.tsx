@@ -2102,9 +2102,6 @@ export default function MapViewer() {
         for (const level of worksLevels) {
           try {
             const params = new URLSearchParams({ level });
-            if (selectedObrasYears.length > 0) {
-              params.set("years", selectedObrasYears.join(","));
-            }
             const url = `${API_BASE}/api/obras/points?${params.toString()}`;
             const res = await fetch(url);
             if (!res.ok) continue;
