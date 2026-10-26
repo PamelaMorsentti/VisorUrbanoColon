@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Cloud, AlertTriangle, Droplets, ChevronDown, ExternalLink, X, Car, Siren } from "lucide-react";
+import { fetchColonHydrology } from "@/lib/hydrology";
 
 interface WeatherData {
   temp: number;
@@ -15,6 +16,7 @@ interface RiverData {
   delta: number;
   updatedAt: string;
   source: "caru" | "api";
+  apiUnavailable?: boolean;
   alertLevel: number;
   evacuationLevel: number;
 }
@@ -31,7 +33,6 @@ type ServiceTab = "clima" | "rio" | "transito" | "emergencias";
 
 const COLON_RIVER_ALERT_LEVEL = 7.1;
 const COLON_RIVER_EVAC_LEVEL = 7.9;
-const CARU_ALTURAS_READABLE_URL = "https://r.jina.ai/http://190.0.152.194:8080/alturas/web/user/alturas";
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/$/, "") ?? "";
 
 export default function RegionalInfoPanel({
@@ -157,53 +158,23 @@ export default function RegionalInfoPanel({
       setRiverLoading(true);
       setRiverError(null);
       try {
-        // Prefer local API proxy to avoid CORS and improve source control.
-        const apiUrl = `${API_BASE_URL}/api/hydrology/colon`;
-        const apiRes = await fetch(apiUrl);
-
-        if (apiRes.ok) {
-          const data = await apiRes.json() as {
-            level: number;
-            delta: number;
-            trend: string;
-            updatedAt: string;
-            thresholds?: { alert?: number; evacuation?: number };
-          };
-
-          if (!alive) return;
-
-          setRiver({
-            level: data.level,
-            trend: data.trend,
-            delta: data.delta,
-            updatedAt: data.updatedAt,
-            source: "api",
-            alertLevel: data.thresholds?.alert ?? COLON_RIVER_ALERT_LEVEL,
-            evacuationLevel: data.thresholds?.evacuation ?? COLON_RIVER_EVAC_LEVEL,
-          });
-          return;
-        }
-
-        // Fallback: readable CARU feed when API is unavailable.
-        const res = await fetch(CARU_ALTURAS_READABLE_URL);
-        const text = await res.text();
-        const row = extractColonRiverRow(text);
-
+        const data = await fetchColonHydrology(API_BASE_URL);
         if (!alive) return;
 
-        if (!row) {
+        if (!data) {
           setRiverError("No se pudo leer la estación Colón");
           return;
         }
 
         setRiver({
-          level: row.level,
-          trend: row.trend,
-          delta: row.delta,
-          updatedAt: row.updatedAt,
-          source: "caru",
-          alertLevel: COLON_RIVER_ALERT_LEVEL,
-          evacuationLevel: COLON_RIVER_EVAC_LEVEL,
+          level: data.level,
+          trend: data.trend ?? "S/D",
+          delta: data.delta ?? 0,
+          updatedAt: data.updatedAt ?? "S/D",
+          source: data.source,
+          apiUnavailable: data.apiUnavailable,
+          alertLevel: data.alertLevel ?? COLON_RIVER_ALERT_LEVEL,
+          evacuationLevel: data.evacuationLevel ?? COLON_RIVER_EVAC_LEVEL,
         });
       } catch {
         if (alive) setRiverError("No se pudo actualizar altura del río");
@@ -381,6 +352,11 @@ export default function RegionalInfoPanel({
                       <span>Fuente:</span>
                       <span>{river.source === "api" ? "API local (Prefectura/CARU)" : "CARU"}</span>
                     </div>
+                    {river.source === "caru" && river.apiUnavailable && (
+                      <div className="rounded border border-amber-400/30 bg-amber-500/10 px-2 py-1 text-[10px] text-amber-200">
+                        API local de hidrologia no disponible en este entorno. Mostrando fuente alterna (CARU).
+                      </div>
+                    )}
                     <div className="flex items-center justify-between">
                       <span>Estado:</span>
                       <span className={rioToneClass}>{rioStatus.label}</span>
@@ -589,36 +565,3 @@ function getStatusTextClass(tone: "ok" | "warn" | "error" | "info"): string {
   return "text-sky-300";
 }
 
-function extractColonRiverRow(markdown: string): { updatedAt: string; level: number; delta: number; trend: string } | null {
-  const line = markdown
-    .split("\n")
-    .find(l => /\|\s*\[Col[oó]n\]\([^)]*\)\s*\|/i.test(l));
-
-  if (!line) return null;
-
-  const cols = line.split("|").map(c => c.trim()).filter(Boolean);
-  if (cols.length < 7) return null;
-
-  const updatedAt = stripMarkdown(cols[1]);
-  const level = parseSpanishNumber(stripMarkdown(cols[2]));
-  const delta = parseSpanishNumber(stripMarkdown(cols[3]));
-  const trend = stripMarkdown(cols[5]);
-
-  if (Number.isNaN(level) || Number.isNaN(delta)) return null;
-
-  return { updatedAt, level, delta, trend };
-}
-
-function stripMarkdown(value: string): string {
-  return value
-    .replace(/\*\*/g, "")
-    .replace(/\[(.*?)\]\([^)]*\)/g, "$1")
-    .trim();
-}
-
-function parseSpanishNumber(value: string): number {
-  const normalized = value.includes(",")
-    ? value.replace(/\./g, "").replace(/,/g, ".")
-    : value;
-  return Number(normalized);
-}

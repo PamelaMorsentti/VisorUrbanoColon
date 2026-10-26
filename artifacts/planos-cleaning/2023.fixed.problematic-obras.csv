@@ -1,0 +1,368 @@
+﻿source_row_number,legajo_canonico,raw_ubicacion,tipo_problema,subtipo,detalle,severity,match_method,confidence,reason
+2,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+3,1,PeriUrbana,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+4,2,Sarmiento Nº 88,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+4,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+5,3,"Maipú Nª 525, 529 (antes 535)",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+5,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+6,4,Camino Bernardino Horne s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+6,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+7,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+8,6,Celia Pellenc N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+8,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+9,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+10,7,,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+11,8,San Martín N° 567 - 571,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+11,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+12,9,Calle Pública s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+12,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+13,10,Laprida N° 227,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+13,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+14,11,Gouchón N° 253 esq Sarmiento,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+14,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+15,12,Urbana 2,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+15,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+16,13,"Vieytes Nº 41 esq Gra Urquiza Nº 653, 657, 659",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+16,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+17,14,Laprida N° 122,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+17,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+18,15,Chacabico Nº 627,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+18,,,lectura,invalid_ar_date,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).,warning,,,
+18,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+19,16,Peyret N° 210,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+19,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+20,17,Juan Manuel de Rosas N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+20,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+21,18,Maipú N° 470,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+21,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+22,19,Urbana 2,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+22,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+23,20,Domingo Antonini N° 89,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+23,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+24,21,Rocamora N° 416,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+24,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+25,22,Gouchon N° 418,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+25,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+26,23,Calle Pública s/N° - Los Bretes,geolocalizacion,match_ambiguo,ambiguous_match_by_manz_parc,warning,manz_parc,low,ambiguous_match_by_manz_parc
+26,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+27,24,Araujo Pen{on N° 285,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+27,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+28,25,"Ruta N° 14, km",geolocalizacion,match_ambiguo,ambiguous_match_by_manz_parc,warning,manz_parc,low,ambiguous_match_by_manz_parc
+28,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+29,26,Madre Isabel Fernandez Nª 312 esq Mitre,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+29,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+30,27,Hernandez N° 282,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+30,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+31,28,Bvard. Ferrari N° 1190,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+31,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+32,29,Calle Pública s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+32,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+33,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+34,30,Residencial Norte,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+35,31,"Lavalle N° 122, 122",geolocalizacion,match_ambiguo,ambiguous_match_by_gru_parc,warning,gru_parc,low,ambiguous_match_by_gru_parc
+35,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+36,32,Noailles N° 239 esq L. N. Alema,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+36,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+37,33,9 de Julio Nº 363,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+37,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+38,34,Raibel N° 780 esq Leguizamón,geolocalizacion,match_ambiguo,ambiguous_match_by_gru_parc,warning,gru_parc,low,ambiguous_match_by_gru_parc
+38,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+39,35,Urbana 1,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+39,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+40,36,25 de Mayo N° 464,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+40,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+41,37,Combatientes de Malvinas N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+41,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+42,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+43,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+44,40,Avda Paysandù Nº 274,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+44,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+45,41,3 de Febrero N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+45,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+46,42,Primeros Colonos esq Agua-I,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+46,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+47,43,Primeros Colonos esq. Calle Pública,geolocalizacion,match_ambiguo,ambiguous_match_by_gru_parc,warning,gru_parc,low,ambiguous_match_by_gru_parc
+47,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+48,44,Calle Jacarandaes s/Nº - Los Bretes,geolocalizacion,match_ambiguo,ambiguous_match_by_manz_parc,warning,manz_parc,low,ambiguous_match_by_manz_parc
+48,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+49,45,Piamonte s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+49,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+50,46,Tucumán Nº 1422,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+50,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+51,47,Azurduy esq Espinillo,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+51,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+52,48,Calle Brovatti S/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+52,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+53,49,Calle Pública s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+53,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+54,50,Avda Paysandú Nº 1170,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+54,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+55,51,Combatientes de Malvinas N° 980,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+55,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+56,52,Hornero s/Nº,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+56,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+57,53,M. M. Lima N° 1081,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+57,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+58,54,12 de Abril Nº 167 (171),geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+58,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+59,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+60,56,Ñandubay N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+60,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+61,57,Alberdi esq Sourigues N° 244 y 246,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+61,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+62,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+63,59,Las Piedras N° 12,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+63,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+64,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+65,61,San Martín N° 220,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+65,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+66,62,Bvard Ferrari N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+66,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+67,63,Bolívar N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+67,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+68,64,Alejo Peyret N° 140,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+68,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+69,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+70,66,Jacarandaes esq Coronillos ( Los Bretes),geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+70,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+71,67,Avda Quiròs Nº 280 esq Mitre,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+71,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+72,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+73,69,Sourigues N° 610 e/ C de Malvinas y Cepeda,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+73,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+74,70,Pasaje Alarcón N° 521,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+74,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+75,71,12 de Abril N° 741,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+75,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+76,72,Balcarce N° 66,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+76,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+77,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+78,74,Alfredo Bravo s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+78,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+79,76,Salsipuedes N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+79,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+80,75,Calle Privada s/N° (Los Bretes),geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+80,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+81,77,"Esteva Berga N° 152, esq Noailles",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+81,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+82,78,Gómez Miranda N° 148 esq Noailles,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+82,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+83,79,Calle Artalaz s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+83,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+84,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+85,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+86,83,Bolívar N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+86,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+87,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+88,84,12 de Abril N° 850,geolocalizacion,match_ambiguo,ambiguous_match_by_manz_parc,warning,manz_parc,low,ambiguous_match_by_manz_parc
+88,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+89,88,Noailles N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+89,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+90,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+91,85,Calle Privada Jacarandaes s/N° ( Los Bretes),geolocalizacion,match_ambiguo,ambiguous_match_by_manz_parc,warning,manz_parc,low,ambiguous_match_by_manz_parc
+91,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+92,86,San Martín N° 625,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+92,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+93,89,Laprida N.º 521,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+93,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+94,90,Combatientes de Malvinas N° 188,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+94,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+95,91,Urbana 2,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+95,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+96,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+97,93,Viollaz N° 232,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+97,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+98,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+99,95,Calle Pública s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+99,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+100,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+101,97,Cabo Pereyra N° 645,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+101,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+102,98,25 de Mayo N° 450,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+102,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+103,99,Araujo Penón N° 413,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+103,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+104,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+105,104,"12 de Abril N°  esq. Lavalle N° 2, 8, 10, 12, 14, 16, 18",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+105,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+106,105,Cabo Pereyra N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+106,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+107,102,Paje Villalba N° 672,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+107,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+108,103,Los Charrúas s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+108,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+109,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+110,106,Bvard Ferrari s/Nº 960,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+110,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+111,108,Bolívar Nº 237,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+111,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+112,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+113,109,12 de Abril N° 686,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+113,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+114,110,Camino Horne s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+114,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+115,111,Sarmiento N°  366,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+115,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+116,112,Bvard. Ferrari N.º 1389,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+116,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+117,113,Artigas N° 173,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+117,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+118,114,Reibel N° 248,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+118,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+119,115,Bolívar N° 790,geolocalizacion,match_ambiguo,ambiguous_match_by_gru_parc,warning,gru_parc,low,ambiguous_match_by_gru_parc
+119,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+120,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+121,116,Calle Pública s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+121,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+122,119,Lavalle N° 486,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+122,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+123,118,Balcarce N° 174,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+123,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+124,120,Avda Urquiza N° 1174 y 1180,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+124,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+125,121,Calle Primeros Colonos s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+125,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+126,123,Lima N° 191 esq Lavalle N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+126,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+127,122,"Ruta Nac N° 135, km",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+127,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+128,124,"Gral Paz Nº 162, 164",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+128,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+129,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+130,125,"12 de Abril Nº 848, 840, al 846",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+130,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+131,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+132,127,Balcarce N° 482 - 486,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+132,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+133,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+134,130,San Martín N° 859 - 861,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+134,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+135,131,3 de Febrero N° 70,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+135,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+136,132,Florentina Gomez Miranda N° 120,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+136,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+137,133,Las Piedras N°  336,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+137,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+138,137,San Martín N° 472,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+138,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+139,134,Avda Paysandú esq 3 de Febrero N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+139,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+140,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+141,136,Monteagudo N° 114,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+141,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+142,138,Calle provada s/N° - Los Bretes,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+142,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+143,140,Urbana 2,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+143,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+144,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+145,141,Hernández N° 363,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+145,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+146,142,M. M. Lima N° 226,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+146,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+147,144,Combatientes de Malvinas N°  182 (ANTES 178),geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+147,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+148,143,Durand N° 457 es Pasaje s/nombre,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+148,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+149,145,"Avda Urquiza N° 662, 664",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+149,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+150,147,Avda Urquiza N° 313,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+150,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+151,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+152,148,Calle Privada s/N° - Los Bretes,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+152,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+153,149,Mitre s/Nº 325,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+153,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+154,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+155,151,"San Martín N° 1212, 1220",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+155,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+156,152,Bolívar esq Sourigues N° 443,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+156,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+157,153,M. Moreno N° 164,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+157,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+158,154,"Reibel N° 223, 225",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+158,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+159,155,Las Piedras N° 341,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+159,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+160,156,Salsipuedes s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+160,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+161,157,Florentina Gomez Miranda N° 117,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+161,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+162,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+163,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+164,160,Avda. Paysandú N° 1156,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+164,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+165,161,Avda Paysandú N° 274,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+165,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+166,162,Calle Paraiso ( Loteo Aires de 1872),geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+166,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+167,163,Bernard N° 671,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+167,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+168,164,Calle Privada s/N° - Los Bretes,geolocalizacion,match_ambiguo,ambiguous_match_by_manz_parc,warning,manz_parc,low,ambiguous_match_by_manz_parc
+168,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+169,165,Avda. Urquiza N° 769,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+169,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+170,166,Primera Junta N° 93 esq Bolivar,geolocalizacion,match_ambiguo,ambiguous_match_by_gru_parc,warning,gru_parc,low,ambiguous_match_by_gru_parc
+170,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+171,167,Piamonte N° 650,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+171,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+172,168,12 de Abril  N° 1186,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+172,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+173,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+174,170,Bvard Gaillard N° 252 esq Sarmiento,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+174,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+176,171,9 de Mayo N°   323,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+176,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+177,172,Calle Privada s/Nº - Los Bretes,geolocalizacion,match_ambiguo,ambiguous_match_by_manz_parc,warning,manz_parc,low,ambiguous_match_by_manz_parc
+177,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+178,173,General Paz N° 136,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+178,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+179,174,Calle Privada s/N° - Los Bretes,geolocalizacion,match_ambiguo,ambiguous_match_by_manz_parc,warning,manz_parc,low,ambiguous_match_by_manz_parc
+179,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+180,175,"Reibel N° 161, 163, 165",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+180,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+181,176,María Isabel Fernandez s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+181,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+182,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+183,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+184,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+186,180,Avda. Paysandú Nº 657,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+186,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+187,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+188,181,"Batalla de Cepeda Nº204, 206, esq Lavalle",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+188,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+189,182,Bolívar Nº 87,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+189,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+190,183,Paso de los Andes Nº,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+190,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+191,184,Calle Las Moras s/Nº,geolocalizacion,match_ambiguo,ambiguous_match_by_gru_parc,warning,gru_parc,low,ambiguous_match_by_gru_parc
+191,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+192,184,Bvard. Güemes N° 252,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+193,185,"Bvard. Güemes N° 252, esq. Tucumán",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+193,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+194,186,Tucumán y Leguizamón Nº 244,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+194,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+195,187,Calle Privada s/Nº - Los Bretes,geolocalizacion,match_ambiguo,ambiguous_match_by_manz_parc,warning,manz_parc,low,ambiguous_match_by_manz_parc
+195,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+196,188,L. N. Alem Nº 17 esq.12 de Abril,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+196,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+197,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+197,,,lectura,unassigned_legajo,Fila con datos que no pudo asignarse a un legajo canonico.,warning,,,
+198,189,Castelli N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+198,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+199,190,Paso de los Andes N°2170,geolocalizacion,match_ambiguo,ambiguous_match_by_gru_parc,warning,gru_parc,low,ambiguous_match_by_gru_parc
+199,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+200,192,Belgrano N° 582,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+200,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+201,191,Avda Paysandú N° 262 - 268,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+201,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+202,191,,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+203,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+204,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+205,196,3 de Febrero Nº 606,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+205,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+206,195,Bvard Ferrari Nº 1183,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+206,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+207,197,Chacabuco Nº 292,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+207,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,
+208,198,"9 de Julio Nº 302, 304, 306, 308, 310, 312 y 314 y Paso de los Andes",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+208,,,lectura,invalid_ar_date,Fecha de visado invalida para formato AR (dd/mm/aaaa).,warning,,,

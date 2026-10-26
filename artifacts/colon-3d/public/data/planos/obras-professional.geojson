@@ -25,7 +25,7 @@
         "lat": "-32.24840190",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 569292",
         "ingreso": "2024-05-27",
         "zonificacion": "Periurbana",
@@ -56,8 +56,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1888235,
-          -32.21699615
+          -58.18882351,
+          -32.21699616
         ]
       },
       "properties": {
@@ -71,11 +71,11 @@
         "gru": "274",
         "nmanz": "0",
         "nparc": "1",
-        "lon": "-58.18882350",
-        "lat": "-32.21699615",
+        "lon": "-58.18882351",
+        "lat": "-32.21699616",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 568966",
         "ingreso": "2023-08-18",
         "zonificacion": "Urbana",
@@ -106,8 +106,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14014349,
-          -32.21888242
+          -58.14484393,
+          -32.22198949
         ]
       },
       "properties": {
@@ -121,11 +121,11 @@
         "gru": "0",
         "nmanz": "91",
         "nparc": "7",
-        "lon": "-58.14014349",
-        "lat": "-32.21888242",
-        "geolocation_source": "admin_override",
-        "location_verification_status": "verified_close",
-        "ano": "",
+        "lon": "-58.14484393",
+        "lat": "-32.22198949",
+        "geolocation_source": "automatic",
+        "location_verification_status": "review_large_gap",
+        "ano": "2025",
         "expediente": "mail, 569336",
         "ingreso": "2024-07-24",
         "zonificacion": "Centro",
@@ -156,8 +156,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14846875,
-          -32.23443425
+          -58.14846874,
+          -32.23443423
         ]
       },
       "properties": {
@@ -171,11 +171,11 @@
         "gru": "41",
         "nmanz": "394",
         "nparc": "5",
-        "lon": "-58.14846875",
-        "lat": "-32.23443425",
+        "lon": "-58.14846874",
+        "lat": "-32.23443423",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "568744",
         "ingreso": "",
         "zonificacion": "Urbana",
@@ -206,8 +206,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1424841,
-          -32.2152592
+          -58.14248407,
+          -32.21525922
         ]
       },
       "properties": {
@@ -221,11 +221,11 @@
         "gru": "0",
         "nmanz": "751",
         "nparc": "3",
-        "lon": "-58.14248410",
-        "lat": "-32.21525920",
+        "lon": "-58.14248407",
+        "lat": "-32.21525922",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "568490",
         "ingreso": "2024-12-06",
         "zonificacion": "Urbana",
@@ -256,8 +256,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1821832,
-          -32.2583822
+          -58.18218322,
+          -32.25838219
         ]
       },
       "properties": {
@@ -271,11 +271,11 @@
         "gru": "223",
         "nmanz": "6",
         "nparc": "1",
-        "lon": "-58.18218320",
-        "lat": "-32.25838220",
+        "lon": "-58.18218322",
+        "lat": "-32.25838219",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "569699",
         "ingreso": "2025-01-22",
         "zonificacion": "PeriUrbana",
@@ -306,8 +306,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.15838285,
-          -32.2318025
+          -58.15838282,
+          -32.23180248
         ]
       },
       "properties": {
@@ -321,11 +321,11 @@
         "gru": "0",
         "nmanz": "282",
         "nparc": "12",
-        "lon": "-58.15838285",
-        "lat": "-32.23180250",
+        "lon": "-58.15838282",
+        "lat": "-32.23180248",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "568100",
         "ingreso": "2024-11-26",
         "zonificacion": "Urbana",
@@ -356,8 +356,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.15877835,
-          -32.22650505
+          -58.15877839,
+          -32.22650508
         ]
       },
       "properties": {
@@ -371,11 +371,11 @@
         "gru": "34",
         "nmanz": "351",
         "nparc": "1",
-        "lon": "-58.15877835",
-        "lat": "-32.22650505",
+        "lon": "-58.15877839",
+        "lat": "-32.22650508",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "568124",
         "ingreso": "2024-11-27",
         "zonificacion": "Urbana",
@@ -406,8 +406,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14877915,
-          -32.22734155
+          -58.14877917,
+          -32.22734158
         ]
       },
       "properties": {
@@ -421,11 +421,11 @@
         "gru": "0",
         "nmanz": "508",
         "nparc": "17",
-        "lon": "-58.14877915",
-        "lat": "-32.22734155",
+        "lon": "-58.14877917",
+        "lat": "-32.22734158",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 567818",
         "ingreso": "2024-04-09",
         "zonificacion": "Urbana",
@@ -456,8 +456,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1603254,
-          -32.2290171
+          -58.16032537,
+          -32.22901705
         ]
       },
       "properties": {
@@ -471,11 +471,11 @@
         "gru": "327",
         "nmanz": "1",
         "nparc": "3",
-        "lon": "-58.16032540",
-        "lat": "-32.22901710",
+        "lon": "-58.16032537",
+        "lat": "-32.22901705",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "567770",
         "ingreso": "2024-11-15",
         "zonificacion": "Urbana",
@@ -506,8 +506,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14482535,
-          -32.218244
+          -58.14482536,
+          -32.21824398
         ]
       },
       "properties": {
@@ -521,11 +521,11 @@
         "gru": "0",
         "nmanz": "123",
         "nparc": "21",
-        "lon": "-58.14482535",
-        "lat": "-32.21824400",
+        "lon": "-58.14482536",
+        "lat": "-32.21824398",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "552786",
         "ingreso": "2023-05-15",
         "zonificacion": "URBANA",
@@ -557,7 +557,7 @@
         "type": "Point",
         "coordinates": [
           -58.22783435,
-          -32.29217575
+          -32.29217574
         ]
       },
       "properties": {
@@ -572,10 +572,10 @@
         "nmanz": "0",
         "nparc": "80",
         "lon": "-58.22783435",
-        "lat": "-32.29217575",
+        "lat": "-32.29217574",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 568881",
         "ingreso": "2024-10-26",
         "zonificacion": "Chacras",
@@ -606,8 +606,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13406425,
-          -32.2303177
+          -58.13406422,
+          -32.23031772
         ]
       },
       "properties": {
@@ -621,11 +621,11 @@
         "gru": "0",
         "nmanz": "664",
         "nparc": "11",
-        "lon": "-58.13406425",
-        "lat": "-32.23031770",
+        "lon": "-58.13406422",
+        "lat": "-32.23031772",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "569095",
         "ingreso": "2025-01-03",
         "zonificacion": "Urbana",
@@ -656,8 +656,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.16024895,
-          -32.21431365
+          -58.16024894,
+          -32.21431366
         ]
       },
       "properties": {
@@ -671,11 +671,11 @@
         "gru": "354",
         "nmanz": "3",
         "nparc": "2",
-        "lon": "-58.16024895",
-        "lat": "-32.21431365",
+        "lon": "-58.16024894",
+        "lat": "-32.21431366",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "568746",
         "ingreso": "2024-12-16",
         "zonificacion": "Periurnana",
@@ -707,7 +707,7 @@
         "type": "Point",
         "coordinates": [
           -58.18780645,
-          -32.24653115
+          -32.24653113
         ]
       },
       "properties": {
@@ -722,10 +722,10 @@
         "nmanz": "6",
         "nparc": "4",
         "lon": "-58.18780645",
-        "lat": "-32.24653115",
+        "lat": "-32.24653113",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "568708",
         "ingreso": "2024-12-16",
         "zonificacion": "Periurbana",
@@ -756,8 +756,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.16227385,
-          -32.20985375
+          -58.16227389,
+          -32.20985376
         ]
       },
       "properties": {
@@ -771,8 +771,8 @@
         "gru": "355",
         "nmanz": "6",
         "nparc": "5",
-        "lon": "-58.16227385",
-        "lat": "-32.20985375",
+        "lon": "-58.16227389",
+        "lat": "-32.20985376",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
         "ano": "",
@@ -806,8 +806,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1502314,
-          -32.23629025
+          -58.15023141,
+          -32.23629024
         ]
       },
       "properties": {
@@ -821,11 +821,11 @@
         "gru": "27",
         "nmanz": "312",
         "nparc": "5",
-        "lon": "-58.15023140",
-        "lat": "-32.23629025",
+        "lon": "-58.15023141",
+        "lat": "-32.23629024",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "MAIL, 568633",
         "ingreso": "2024-10-21",
         "zonificacion": "Urbana",
@@ -875,7 +875,7 @@
         "lat": "-32.20841605",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 568697",
         "ingreso": "2024-08-23",
         "zonificacion": "Periurbana",
@@ -907,7 +907,7 @@
         "type": "Point",
         "coordinates": [
           -58.1423047,
-          -32.21942485
+          -32.21942488
         ]
       },
       "properties": {
@@ -922,10 +922,10 @@
         "nmanz": "147",
         "nparc": "17",
         "lon": "-58.14230470",
-        "lat": "-32.21942485",
+        "lat": "-32.21942488",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 570292",
         "ingreso": "2024-11-01",
         "zonificacion": "Urbana",
@@ -956,8 +956,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1502848,
-          -32.2349926
+          -58.15028484,
+          -32.23499263
         ]
       },
       "properties": {
@@ -971,11 +971,11 @@
         "gru": "28",
         "nmanz": "340",
         "nparc": "18",
-        "lon": "-58.15028480",
-        "lat": "-32.23499260",
+        "lon": "-58.15028484",
+        "lat": "-32.23499263",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "568659",
         "ingreso": "2024-12-12",
         "zonificacion": "Urbana",
@@ -1007,7 +1007,7 @@
         "type": "Point",
         "coordinates": [
           -58.1436788,
-          -32.2116494
+          -32.21164941
         ]
       },
       "properties": {
@@ -1022,10 +1022,10 @@
         "nmanz": "801",
         "nparc": "10",
         "lon": "-58.14367880",
-        "lat": "-32.21164940",
+        "lat": "-32.21164941",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 569905",
         "ingreso": "2024-11-14",
         "zonificacion": "Urbana",
@@ -1056,8 +1056,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1630287,
-          -32.23433815
+          -58.16302873,
+          -32.23433813
         ]
       },
       "properties": {
@@ -1071,11 +1071,11 @@
         "gru": "326",
         "nmanz": "18",
         "nparc": "16",
-        "lon": "-58.16302870",
-        "lat": "-32.23433815",
+        "lon": "-58.16302873",
+        "lat": "-32.23433813",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 569752",
         "ingreso": "2024-11-01",
         "zonificacion": "Urbana",
@@ -1106,8 +1106,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14818325,
-          -32.22269965
+          -58.14818326,
+          -32.22269967
         ]
       },
       "properties": {
@@ -1121,11 +1121,11 @@
         "gru": "0",
         "nmanz": "45",
         "nparc": "10",
-        "lon": "-58.14818325",
-        "lat": "-32.22269965",
+        "lon": "-58.14818326",
+        "lat": "-32.22269967",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "MAIL, 541760",
         "ingreso": "2022-04-20",
         "zonificacion": "Urbana",
@@ -1156,8 +1156,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.2335747,
-          -32.23044815
+          -58.23357473,
+          -32.23044816
         ]
       },
       "properties": {
@@ -1171,11 +1171,11 @@
         "gru": "75",
         "nmanz": "1",
         "nparc": "1",
-        "lon": "-58.23357470",
-        "lat": "-32.23044815",
+        "lon": "-58.23357473",
+        "lat": "-32.23044816",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "569615",
         "ingreso": "2025-01-20",
         "zonificacion": "Zona de Amortiguación Ambiental II",
@@ -1207,7 +1207,7 @@
         "type": "Point",
         "coordinates": [
           -58.1673435,
-          -32.23249325
+          -32.23249326
         ]
       },
       "properties": {
@@ -1222,10 +1222,10 @@
         "nmanz": "3",
         "nparc": "5",
         "lon": "-58.16734350",
-        "lat": "-32.23249325",
+        "lat": "-32.23249326",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "568805",
         "ingreso": "2024-12-18",
         "zonificacion": "Periurbana",
@@ -1257,7 +1257,7 @@
         "type": "Point",
         "coordinates": [
           -58.1469023,
-          -32.22553425
+          -32.22553427
         ]
       },
       "properties": {
@@ -1272,10 +1272,10 @@
         "nmanz": "37",
         "nparc": "12",
         "lon": "-58.14690230",
-        "lat": "-32.22553425",
+        "lat": "-32.22553427",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 568979",
         "ingreso": "2024-12-26",
         "zonificacion": "Centro",
@@ -1306,8 +1306,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1636988,
-          -32.23085115
+          -58.16369878,
+          -32.23085113
         ]
       },
       "properties": {
@@ -1321,11 +1321,11 @@
         "gru": "327",
         "nmanz": "5",
         "nparc": "15",
-        "lon": "-58.16369880",
-        "lat": "-32.23085115",
+        "lon": "-58.16369878",
+        "lat": "-32.23085113",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 569187",
         "ingreso": "2025-01-07",
         "zonificacion": "Urbana",
@@ -1356,8 +1356,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13572225,
-          -32.24416645
+          -58.13572227,
+          -32.24416646
         ]
       },
       "properties": {
@@ -1371,11 +1371,11 @@
         "gru": "3",
         "nmanz": "1",
         "nparc": "32",
-        "lon": "-58.13572225",
-        "lat": "-32.24416645",
+        "lon": "-58.13572227",
+        "lat": "-32.24416646",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 569958",
         "ingreso": "2024-11-11",
         "zonificacion": "Urbana",
@@ -1406,7 +1406,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.140764,
+          -58.14076401,
           -32.22631645
         ]
       },
@@ -1421,7 +1421,7 @@
         "gru": "0",
         "nmanz": "86",
         "nparc": "10",
-        "lon": "-58.14076400",
+        "lon": "-58.14076401",
         "lat": "-32.22631645",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
@@ -1456,8 +1456,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1405654,
-          -32.2264188
+          -58.14056541,
+          -32.22641882
         ]
       },
       "properties": {
@@ -1471,11 +1471,11 @@
         "gru": "0",
         "nmanz": "86",
         "nparc": "9",
-        "lon": "-58.14056540",
-        "lat": "-32.22641880",
+        "lon": "-58.14056541",
+        "lat": "-32.22641882",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "",
         "ingreso": "",
         "zonificacion": "Urbana",
@@ -1506,8 +1506,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1885427,
-          -32.28109595
+          -58.18854268,
+          -32.28109594
         ]
       },
       "properties": {
@@ -1521,11 +1521,11 @@
         "gru": "2",
         "nmanz": "6",
         "nparc": "1",
-        "lon": "-58.18854270",
-        "lat": "-32.28109595",
+        "lon": "-58.18854268",
+        "lat": "-32.28109594",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "568783",
         "ingreso": "2024-12-17",
         "zonificacion": "Periurbana",
@@ -1557,7 +1557,7 @@
         "type": "Point",
         "coordinates": [
           -58.14650735,
-          -32.22869215
+          -32.22869214
         ]
       },
       "properties": {
@@ -1572,10 +1572,10 @@
         "nmanz": "6",
         "nparc": "4",
         "lon": "-58.14650735",
-        "lat": "-32.22869215",
+        "lat": "-32.22869214",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "MAIL, 570863",
         "ingreso": "2024-12-10",
         "zonificacion": "Centro",
@@ -1606,8 +1606,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1393945,
-          -32.23597345
+          -58.13939454,
+          -32.23597349
         ]
       },
       "properties": {
@@ -1621,11 +1621,11 @@
         "gru": "81",
         "nmanz": "523",
         "nparc": "13",
-        "lon": "-58.13939450",
-        "lat": "-32.23597345",
+        "lon": "-58.13939454",
+        "lat": "-32.23597349",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "566553",
         "ingreso": "2024-10-16",
         "zonificacion": "Urbana",
@@ -1656,8 +1656,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1587377,
-          -32.2232143
+          -58.15873768,
+          -32.22321431
         ]
       },
       "properties": {
@@ -1671,11 +1671,11 @@
         "gru": "49",
         "nmanz": "410",
         "nparc": "2",
-        "lon": "-58.15873770",
-        "lat": "-32.22321430",
+        "lon": "-58.15873768",
+        "lat": "-32.22321431",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 570383",
         "ingreso": "2024-12-04",
         "zonificacion": "Urbana",
@@ -1706,8 +1706,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13662265,
-          -32.22206605
+          -58.13662262,
+          -32.22206606
         ]
       },
       "properties": {
@@ -1721,11 +1721,11 @@
         "gru": "0",
         "nmanz": "169",
         "nparc": "12",
-        "lon": "-58.13662265",
-        "lat": "-32.22206605",
+        "lon": "-58.13662262",
+        "lat": "-32.22206606",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 570639",
         "ingreso": "2025-01-08",
         "zonificacion": "Centro",
@@ -1756,8 +1756,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1501446,
-          -32.2354677
+          -58.15014458,
+          -32.23546766
         ]
       },
       "properties": {
@@ -1771,11 +1771,11 @@
         "gru": "27",
         "nmanz": "338",
         "nparc": "12",
-        "lon": "-58.15014460",
-        "lat": "-32.23546770",
+        "lon": "-58.15014458",
+        "lat": "-32.23546766",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "567483",
         "ingreso": "2024-11-06",
         "zonificacion": "Urbana",
@@ -1806,8 +1806,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1412508,
-          -32.2156137
+          -58.14125078,
+          -32.21561368
         ]
       },
       "properties": {
@@ -1821,11 +1821,11 @@
         "gru": "0",
         "nmanz": "179",
         "nparc": "9",
-        "lon": "-58.14125080",
-        "lat": "-32.21561370",
+        "lon": "-58.14125078",
+        "lat": "-32.21561368",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "569867",
         "ingreso": "2025-01-29",
         "zonificacion": "Urbana",
@@ -1856,8 +1856,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.16155335,
-          -32.24001845
+          -58.16155333,
+          -32.24001846
         ]
       },
       "properties": {
@@ -1871,11 +1871,11 @@
         "gru": "308",
         "nmanz": "0",
         "nparc": "20",
-        "lon": "-58.16155335",
-        "lat": "-32.24001845",
+        "lon": "-58.16155333",
+        "lat": "-32.24001846",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 570355",
         "ingreso": "2024-12-11",
         "zonificacion": "Periurbana",
@@ -1907,7 +1907,7 @@
         "type": "Point",
         "coordinates": [
           -58.1491781,
-          -32.22443415
+          -32.22443414
         ]
       },
       "properties": {
@@ -1922,10 +1922,10 @@
         "nmanz": "18",
         "nparc": "18",
         "lon": "-58.14917810",
-        "lat": "-32.22443415",
+        "lat": "-32.22443414",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 570736",
         "ingreso": "2025-01-28",
         "zonificacion": "Urbana",
@@ -1956,8 +1956,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1437771,
-          -32.25118345
+          -58.14377711,
+          -32.25118342
         ]
       },
       "properties": {
@@ -1971,11 +1971,11 @@
         "gru": "2",
         "nmanz": "0",
         "nparc": "137",
-        "lon": "-58.14377710",
-        "lat": "-32.25118345",
+        "lon": "-58.14377711",
+        "lat": "-32.25118342",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 568967",
         "ingreso": "2024-11-04",
         "zonificacion": "Periurbana",
@@ -2006,8 +2006,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1481576,
-          -32.21131405
+          -58.14815761,
+          -32.21131406
         ]
       },
       "properties": {
@@ -2021,11 +2021,11 @@
         "gru": "0",
         "nmanz": "736",
         "nparc": "3",
-        "lon": "-58.14815760",
-        "lat": "-32.21131405",
+        "lon": "-58.14815761",
+        "lat": "-32.21131406",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 570657",
         "ingreso": "2024-10-03",
         "zonificacion": "Urbana",
@@ -2056,8 +2056,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1463842,
-          -32.2286695
+          -58.14638422,
+          -32.22866947
         ]
       },
       "properties": {
@@ -2071,11 +2071,11 @@
         "gru": "0",
         "nmanz": "6",
         "nparc": "3",
-        "lon": "-58.14638420",
-        "lat": "-32.22866950",
+        "lon": "-58.14638422",
+        "lat": "-32.22866947",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "570992",
         "ingreso": "2025-03-11",
         "zonificacion": "Urbana",
@@ -2106,8 +2106,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.18093645,
-          -32.22846005
+          -58.18093644,
+          -32.22846006
         ]
       },
       "properties": {
@@ -2121,11 +2121,11 @@
         "gru": "271",
         "nmanz": "2",
         "nparc": "15",
-        "lon": "-58.18093645",
-        "lat": "-32.22846005",
+        "lon": "-58.18093644",
+        "lat": "-32.22846006",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "570790",
         "ingreso": "2025-03-05",
         "zonificacion": "Periurbana",
@@ -2156,8 +2156,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.17158075,
-          -32.2294323
+          -58.17158076,
+          -32.22943233
         ]
       },
       "properties": {
@@ -2171,11 +2171,11 @@
         "gru": "310",
         "nmanz": "1",
         "nparc": "11",
-        "lon": "-58.17158075",
-        "lat": "-32.22943230",
+        "lon": "-58.17158076",
+        "lat": "-32.22943233",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 571125",
         "ingreso": "2024-12-10",
         "zonificacion": "PeriUrbana",
@@ -2207,7 +2207,7 @@
         "type": "Point",
         "coordinates": [
           -58.16901845,
-          -32.2100475
+          -32.21004753
         ]
       },
       "properties": {
@@ -2222,10 +2222,10 @@
         "nmanz": "2",
         "nparc": "16",
         "lon": "-58.16901845",
-        "lat": "-32.21004750",
+        "lat": "-32.21004753",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 571193",
         "ingreso": "2024-12-16",
         "zonificacion": "Periurbana",
@@ -2256,7 +2256,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1365816,
+          -58.13658158,
           -32.22114195
         ]
       },
@@ -2271,11 +2271,11 @@
         "gru": "0",
         "nmanz": "170",
         "nparc": "1",
-        "lon": "-58.13658160",
+        "lon": "-58.13658158",
         "lat": "-32.22114195",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 571200",
         "ingreso": "2024-11-05",
         "zonificacion": "Centro",
@@ -2306,8 +2306,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1811299,
-          -32.2571166
+          -58.18112989,
+          -32.25711663
         ]
       },
       "properties": {
@@ -2321,11 +2321,11 @@
         "gru": "223",
         "nmanz": "8",
         "nparc": "13",
-        "lon": "-58.18112990",
-        "lat": "-32.25711660",
+        "lon": "-58.18112989",
+        "lat": "-32.25711663",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "571459",
         "ingreso": "2025-03-25",
         "zonificacion": "Periurbana",
@@ -2356,8 +2356,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14113335,
-          -32.2235285
+          -58.14113336,
+          -32.22352846
         ]
       },
       "properties": {
@@ -2371,8 +2371,8 @@
         "gru": "0",
         "nmanz": "115",
         "nparc": "9",
-        "lon": "-58.14113335",
-        "lat": "-32.22352850",
+        "lon": "-58.14113336",
+        "lat": "-32.22352846",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
         "ano": "",
@@ -2407,7 +2407,7 @@
         "type": "Point",
         "coordinates": [
           -58.13817865,
-          -32.21823045
+          -32.21823049
         ]
       },
       "properties": {
@@ -2422,10 +2422,10 @@
         "nmanz": "183",
         "nparc": "26",
         "lon": "-58.13817865",
-        "lat": "-32.21823045",
+        "lat": "-32.21823049",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 571751",
         "ingreso": "2025-01-08",
         "zonificacion": "Urbana",
@@ -2456,8 +2456,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13823715,
-          -32.2181717
+          -58.13823716,
+          -32.21817168
         ]
       },
       "properties": {
@@ -2471,8 +2471,8 @@
         "gru": "0",
         "nmanz": "183",
         "nparc": "3",
-        "lon": "-58.13823715",
-        "lat": "-32.21817170",
+        "lon": "-58.13823716",
+        "lat": "-32.21817168",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
         "ano": "",
@@ -2506,8 +2506,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13359195,
-          -32.224805
+          -58.13359197,
+          -32.22480502
         ]
       },
       "properties": {
@@ -2521,11 +2521,11 @@
         "gru": "0",
         "nmanz": "165",
         "nparc": "16",
-        "lon": "-58.13359195",
-        "lat": "-32.22480500",
+        "lon": "-58.13359197",
+        "lat": "-32.22480502",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 571750",
         "ingreso": "2024-12-10",
         "zonificacion": "Urbana",
@@ -2556,8 +2556,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1463842,
-          -32.2286695
+          -58.14638422,
+          -32.22866947
         ]
       },
       "properties": {
@@ -2571,11 +2571,11 @@
         "gru": "0",
         "nmanz": "6",
         "nparc": "3",
-        "lon": "-58.14638420",
-        "lat": "-32.22866950",
+        "lon": "-58.14638422",
+        "lat": "-32.22866947",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 571399",
         "ingreso": "2024-10-01",
         "zonificacion": "Periurbana",
@@ -2606,7 +2606,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13348855,
+          -58.13348859,
           -32.220508
         ]
       },
@@ -2621,11 +2621,11 @@
         "gru": "0",
         "nmanz": "215",
         "nparc": "9",
-        "lon": "-58.13348855",
+        "lon": "-58.13348859",
         "lat": "-32.22050800",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "566242",
         "ingreso": "2024-10-07",
         "zonificacion": "Centro",
@@ -2656,8 +2656,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13667505,
-          -32.2212036
+          -58.13667503,
+          -32.22120361
         ]
       },
       "properties": {
@@ -2671,11 +2671,11 @@
         "gru": "0",
         "nmanz": "170",
         "nparc": "13",
-        "lon": "-58.13667505",
-        "lat": "-32.22120360",
+        "lon": "-58.13667503",
+        "lat": "-32.22120361",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 571201",
         "ingreso": "2024-11-25",
         "zonificacion": "Urbana",
@@ -2706,8 +2706,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.198899,
-          -32.21795735
+          -58.19889899,
+          -32.21795739
         ]
       },
       "properties": {
@@ -2721,11 +2721,11 @@
         "gru": "231",
         "nmanz": "0",
         "nparc": "7",
-        "lon": "-58.19889900",
-        "lat": "-32.21795735",
+        "lon": "-58.19889899",
+        "lat": "-32.21795739",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "570974",
         "ingreso": "2025-03-11",
         "zonificacion": "Periurbana",
@@ -2756,7 +2756,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1646304,
+          -58.16463041,
           -32.2305646
         ]
       },
@@ -2771,11 +2771,11 @@
         "gru": "327",
         "nmanz": "7",
         "nparc": "4",
-        "lon": "-58.16463040",
+        "lon": "-58.16463041",
         "lat": "-32.23056460",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "571265",
         "ingreso": "2025-03-19",
         "zonificacion": "Periurbana",
@@ -2806,8 +2806,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1346607,
-          -32.22166309
+          -58.13937049,
+          -32.22523078
         ]
       },
       "properties": {
@@ -2821,11 +2821,11 @@
         "gru": "0",
         "nmanz": "112",
         "nparc": "19",
-        "lon": "-58.13466070",
-        "lat": "-32.22166309",
-        "geolocation_source": "admin_override",
-        "location_verification_status": "verified_close",
-        "ano": "",
+        "lon": "-58.13937049",
+        "lat": "-32.22523078",
+        "geolocation_source": "automatic",
+        "location_verification_status": "review_large_gap",
+        "ano": "2025",
         "expediente": "mail, 571922",
         "ingreso": "2024-08-08",
         "zonificacion": "Urbana",
@@ -2856,8 +2856,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14837935,
-          -32.21954035
+          -58.14837937,
+          -32.21954034
         ]
       },
       "properties": {
@@ -2871,11 +2871,11 @@
         "gru": "0",
         "nmanz": "613",
         "nparc": "6",
-        "lon": "-58.14837935",
-        "lat": "-32.21954035",
+        "lon": "-58.14837937",
+        "lat": "-32.21954034",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "569629",
         "ingreso": "2025-01-20",
         "zonificacion": "Centro",
@@ -2906,8 +2906,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13779805,
-          -32.22056435
+          -58.13779806,
+          -32.22056436
         ]
       },
       "properties": {
@@ -2921,11 +2921,11 @@
         "gru": "0",
         "nmanz": "172",
         "nparc": "9",
-        "lon": "-58.13779805",
-        "lat": "-32.22056435",
+        "lon": "-58.13779806",
+        "lat": "-32.22056436",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 569271",
         "ingreso": "2024-10-15",
         "zonificacion": "Centro",
@@ -2956,8 +2956,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.16106535,
-          -32.2275129
+          -58.16106538,
+          -32.22751293
         ]
       },
       "properties": {
@@ -2971,11 +2971,11 @@
         "gru": "327",
         "nmanz": "11",
         "nparc": "2",
-        "lon": "-58.16106535",
-        "lat": "-32.22751290",
+        "lon": "-58.16106538",
+        "lat": "-32.22751293",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "570897",
         "ingreso": "2025-02-07",
         "zonificacion": "Urbana",
@@ -3007,7 +3007,7 @@
         "type": "Point",
         "coordinates": [
           -58.17399825,
-          -32.24046545
+          -32.24046544
         ]
       },
       "properties": {
@@ -3022,10 +3022,10 @@
         "nmanz": "1",
         "nparc": "11",
         "lon": "-58.17399825",
-        "lat": "-32.24046545",
+        "lat": "-32.24046544",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 571945",
         "ingreso": "2024-12-23",
         "zonificacion": "Periurbana",
@@ -3056,8 +3056,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14704645,
-          -32.22604935
+          -58.14704646,
+          -32.22604937
         ]
       },
       "properties": {
@@ -3071,11 +3071,11 @@
         "gru": "0",
         "nmanz": "20",
         "nparc": "6",
-        "lon": "-58.14704645",
-        "lat": "-32.22604935",
+        "lon": "-58.14704646",
+        "lat": "-32.22604937",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "571822",
         "ingreso": "2025-04-08",
         "zonificacion": "Centro",
@@ -3106,8 +3106,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14079605,
-          -32.2222701
+          -58.14079604,
+          -32.22227013
         ]
       },
       "properties": {
@@ -3121,11 +3121,11 @@
         "gru": "0",
         "nmanz": "129",
         "nparc": "13",
-        "lon": "-58.14079605",
-        "lat": "-32.22227010",
+        "lon": "-58.14079604",
+        "lat": "-32.22227013",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "567345",
         "ingreso": "2024-11-01",
         "zonificacion": "Centro",
@@ -3157,7 +3157,7 @@
         "type": "Point",
         "coordinates": [
           -58.1561122,
-          -32.22442755
+          -32.22442754
         ]
       },
       "properties": {
@@ -3172,10 +3172,10 @@
         "nmanz": "434",
         "nparc": "17",
         "lon": "-58.15611220",
-        "lat": "-32.22442755",
+        "lat": "-32.22442754",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "563304",
         "ingreso": "2021-01-11",
         "zonificacion": "Residencial Sur",
@@ -3206,8 +3206,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.17718125,
-          -32.231655
+          -58.17718128,
+          -32.23165497
         ]
       },
       "properties": {
@@ -3221,11 +3221,11 @@
         "gru": "291",
         "nmanz": "0",
         "nparc": "12",
-        "lon": "-58.17718125",
-        "lat": "-32.23165500",
+        "lon": "-58.17718128",
+        "lat": "-32.23165497",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "572305",
         "ingreso": "2025-04-29",
         "zonificacion": "Periurbana",
@@ -3256,8 +3256,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1500011,
-          -32.23296375
+          -58.15000111,
+          -32.23296372
         ]
       },
       "properties": {
@@ -3271,11 +3271,11 @@
         "gru": "42",
         "nmanz": "396",
         "nparc": "15",
-        "lon": "-58.15000110",
-        "lat": "-32.23296375",
+        "lon": "-58.15000111",
+        "lat": "-32.23296372",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "564853",
         "ingreso": "2024-09-09",
         "zonificacion": "Urbana",
@@ -3306,7 +3306,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1485867,
+          -58.14858671,
           -32.21656565
         ]
       },
@@ -3321,11 +3321,11 @@
         "gru": "0",
         "nmanz": "651",
         "nparc": "2",
-        "lon": "-58.14858670",
+        "lon": "-58.14858671",
         "lat": "-32.21656565",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 572813",
         "ingreso": "2025-01-24",
         "zonificacion": "Urbana",
@@ -3356,7 +3356,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1347757,
+          -58.13477569,
           -32.22385405
         ]
       },
@@ -3371,11 +3371,11 @@
         "gru": "0",
         "nmanz": "167",
         "nparc": "8",
-        "lon": "-58.13477570",
+        "lon": "-58.13477569",
         "lat": "-32.22385405",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "572714",
         "ingreso": "2025-05-08",
         "zonificacion": "Residencial Sur",
@@ -3406,8 +3406,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1579735,
-          -32.22745665
+          -58.15797354,
+          -32.22745663
         ]
       },
       "properties": {
@@ -3421,11 +3421,11 @@
         "gru": "0",
         "nmanz": "350",
         "nparc": "1",
-        "lon": "-58.15797350",
-        "lat": "-32.22745665",
+        "lon": "-58.15797354",
+        "lat": "-32.22745663",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_nearby",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 572790",
         "ingreso": "2025-01-20",
         "zonificacion": "Urbana",
@@ -3456,8 +3456,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13830085,
-          -32.2209287
+          -58.13830088,
+          -32.22092871
         ]
       },
       "properties": {
@@ -3471,11 +3471,11 @@
         "gru": "0",
         "nmanz": "157",
         "nparc": "6",
-        "lon": "-58.13830085",
-        "lat": "-32.22092870",
+        "lon": "-58.13830088",
+        "lat": "-32.22092871",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 572719",
         "ingreso": "2025-03-05",
         "zonificacion": "Centro",
@@ -3506,7 +3506,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1480212,
+          -58.14802119,
           -32.2341676
         ]
       },
@@ -3521,11 +3521,11 @@
         "gru": "41",
         "nmanz": "394",
         "nparc": "6",
-        "lon": "-58.14802120",
+        "lon": "-58.14802119",
         "lat": "-32.23416760",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "572837",
         "ingreso": "2025-05-13",
         "zonificacion": "Urbana",
@@ -3556,7 +3556,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1453322,
+          -58.14533222,
           -32.22659705
         ]
       },
@@ -3571,11 +3571,11 @@
         "gru": "0",
         "nmanz": "35",
         "nparc": "13",
-        "lon": "-58.14533220",
+        "lon": "-58.14533222",
         "lat": "-32.22659705",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 572995",
         "ingreso": "2025-04-10",
         "zonificacion": "Urbana",
@@ -3606,8 +3606,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1386989,
-          -32.2290416
+          -58.13869888,
+          -32.22904163
         ]
       },
       "properties": {
@@ -3621,11 +3621,11 @@
         "gru": "0",
         "nmanz": "82",
         "nparc": "2",
-        "lon": "-58.13869890",
-        "lat": "-32.22904160",
+        "lon": "-58.13869888",
+        "lat": "-32.22904163",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "571494",
         "ingreso": "2025-03-26",
         "zonificacion": "Urbana",
@@ -3656,8 +3656,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1512416,
-          -32.2175059
+          -58.15124161,
+          -32.21750591
         ]
       },
       "properties": {
@@ -3671,11 +3671,11 @@
         "gru": "0",
         "nmanz": "598",
         "nparc": "2",
-        "lon": "-58.15124160",
-        "lat": "-32.21750590",
+        "lon": "-58.15124161",
+        "lat": "-32.21750591",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "569913",
         "ingreso": "2025-01-30",
         "zonificacion": "Urbana",
@@ -3706,8 +3706,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1381731,
-          -32.220507
+          -58.13817309,
+          -32.22050699
         ]
       },
       "properties": {
@@ -3721,11 +3721,11 @@
         "gru": "0",
         "nmanz": "172",
         "nparc": "12",
-        "lon": "-58.13817310",
-        "lat": "-32.22050700",
+        "lon": "-58.13817309",
+        "lat": "-32.22050699",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail",
         "ingreso": "",
         "zonificacion": "Centro",
@@ -3757,7 +3757,7 @@
         "type": "Point",
         "coordinates": [
           -58.13267605,
-          -32.2216665
+          -32.22166651
         ]
       },
       "properties": {
@@ -3772,10 +3772,10 @@
         "nmanz": "217",
         "nparc": "6",
         "lon": "-58.13267605",
-        "lat": "-32.22166650",
+        "lat": "-32.22166651",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 573021",
         "ingreso": "2025-05-16",
         "zonificacion": "Urbana",
@@ -3806,8 +3806,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1591395,
-          -32.2062183
+          -58.15913952,
+          -32.20621831
         ]
       },
       "properties": {
@@ -3821,11 +3821,11 @@
         "gru": "355",
         "nmanz": "15",
         "nparc": "4",
-        "lon": "-58.15913950",
-        "lat": "-32.20621830",
+        "lon": "-58.15913952",
+        "lat": "-32.20621831",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 572969",
         "ingreso": "2025-04-23",
         "zonificacion": "Periurbana",
@@ -3857,7 +3857,7 @@
         "type": "Point",
         "coordinates": [
           -58.13695745,
-          -32.2214373
+          -32.22143732
         ]
       },
       "properties": {
@@ -3872,10 +3872,10 @@
         "nmanz": "170",
         "nparc": "10",
         "lon": "-58.13695745",
-        "lat": "-32.22143730",
+        "lat": "-32.22143732",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 572976",
         "ingreso": "2025-05-16",
         "zonificacion": "Centro",
@@ -3906,8 +3906,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.18130475,
-          -32.25668965
+          -58.18130476,
+          -32.25668963
         ]
       },
       "properties": {
@@ -3921,11 +3921,11 @@
         "gru": "223",
         "nmanz": "8",
         "nparc": "29",
-        "lon": "-58.18130475",
-        "lat": "-32.25668965",
+        "lon": "-58.18130476",
+        "lat": "-32.25668963",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "572134",
         "ingreso": "2025-04-23",
         "zonificacion": "Periurbana",
@@ -3956,8 +3956,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.2024604,
-          -32.2510269
+          -58.20246042,
+          -32.25102687
         ]
       },
       "properties": {
@@ -3971,11 +3971,11 @@
         "gru": "160",
         "nmanz": "0",
         "nparc": "20",
-        "lon": "-58.20246040",
-        "lat": "-32.25102690",
+        "lon": "-58.20246042",
+        "lat": "-32.25102687",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 573036",
         "ingreso": "2025-04-04",
         "zonificacion": "Periurbana",
@@ -4006,8 +4006,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1496961,
-          -32.21792525
+          -58.14969609,
+          -32.21792526
         ]
       },
       "properties": {
@@ -4021,11 +4021,11 @@
         "gru": "0",
         "nmanz": "615",
         "nparc": "6",
-        "lon": "-58.14969610",
-        "lat": "-32.21792525",
+        "lon": "-58.14969609",
+        "lat": "-32.21792526",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "MAIL, 573131",
         "ingreso": "2025-03-13",
         "zonificacion": "Urbana",
@@ -4056,8 +4056,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13879285,
-          -32.2198813
+          -58.13879287,
+          -32.21988133
         ]
       },
       "properties": {
@@ -4071,11 +4071,11 @@
         "gru": "0",
         "nmanz": "173",
         "nparc": "14",
-        "lon": "-58.13879285",
-        "lat": "-32.21988130",
+        "lon": "-58.13879287",
+        "lat": "-32.21988133",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 573293",
         "ingreso": "2025-01-22",
         "zonificacion": "Centro",
@@ -4106,8 +4106,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.18250105,
-          -32.24572485
+          -58.18250103,
+          -32.24572486
         ]
       },
       "properties": {
@@ -4121,11 +4121,11 @@
         "gru": "247",
         "nmanz": "5",
         "nparc": "5",
-        "lon": "-58.18250105",
-        "lat": "-32.24572485",
+        "lon": "-58.18250103",
+        "lat": "-32.24572486",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "572105",
         "ingreso": "2025-04-22",
         "zonificacion": "Periurbana",
@@ -4157,7 +4157,7 @@
         "type": "Point",
         "coordinates": [
           -58.14469035,
-          -32.21496665
+          -32.21496667
         ]
       },
       "properties": {
@@ -4172,10 +4172,10 @@
         "nmanz": "731",
         "nparc": "20",
         "lon": "-58.14469035",
-        "lat": "-32.21496665",
+        "lat": "-32.21496667",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "573199",
         "ingreso": "2025-05-27",
         "zonificacion": "Urbana",
@@ -4206,8 +4206,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14014725,
-          -32.22298165
+          -58.14014721,
+          -32.22298166
         ]
       },
       "properties": {
@@ -4221,11 +4221,11 @@
         "gru": "0",
         "nmanz": "130",
         "nparc": "20",
-        "lon": "-58.14014725",
-        "lat": "-32.22298165",
+        "lon": "-58.14014721",
+        "lat": "-32.22298166",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 573648",
         "ingreso": "2025-05-09",
         "zonificacion": "Centro",
@@ -4256,8 +4256,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1393209,
-          -32.2173997
+          -58.13932087,
+          -32.21739972
         ]
       },
       "properties": {
@@ -4271,11 +4271,11 @@
         "gru": "0",
         "nmanz": "182",
         "nparc": "19",
-        "lon": "-58.13932090",
-        "lat": "-32.21739970",
+        "lon": "-58.13932087",
+        "lat": "-32.21739972",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "573198",
         "ingreso": "2025-05-27",
         "zonificacion": "Urbana",
@@ -4306,8 +4306,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1818909,
-          -32.2281912
+          -58.18189091,
+          -32.22819122
         ]
       },
       "properties": {
@@ -4321,11 +4321,11 @@
         "gru": "271",
         "nmanz": "1",
         "nparc": "20",
-        "lon": "-58.18189090",
-        "lat": "-32.22819120",
+        "lon": "-58.18189091",
+        "lat": "-32.22819122",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "573600",
         "ingreso": "2025-06-13",
         "zonificacion": "Periurbana",
@@ -4356,7 +4356,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14627115,
+          -58.14627119,
           -32.22676565
         ]
       },
@@ -4371,11 +4371,11 @@
         "gru": "0",
         "nmanz": "21",
         "nparc": "4",
-        "lon": "-58.14627115",
+        "lon": "-58.14627119",
         "lat": "-32.22676565",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "573775",
         "ingreso": "2025-05-05",
         "zonificacion": "Periurbana - Colonia Hugues",
@@ -4406,8 +4406,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.19625315,
-          -32.23478295
+          -58.19623672,
+          -32.23477753
         ]
       },
       "properties": {
@@ -4421,11 +4421,11 @@
         "gru": "206",
         "nmanz": "0",
         "nparc": "11",
-        "lon": "-58.19625315",
-        "lat": "-32.23478295",
+        "lon": "-58.19623672",
+        "lat": "-32.23477753",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "569484",
         "ingreso": "2025-01-15",
         "zonificacion": "Quintas",
@@ -4456,8 +4456,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14636005,
-          -32.2150964
+          -58.14636006,
+          -32.21509638
         ]
       },
       "properties": {
@@ -4471,11 +4471,11 @@
         "gru": "0",
         "nmanz": "711",
         "nparc": "9",
-        "lon": "-58.14636005",
-        "lat": "-32.21509640",
+        "lon": "-58.14636006",
+        "lat": "-32.21509638",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "572350",
         "ingreso": "2025-04-30",
         "zonificacion": "Urbana",
@@ -4507,7 +4507,7 @@
         "type": "Point",
         "coordinates": [
           -58.13746625,
-          -32.2340919
+          -32.23409191
         ]
       },
       "properties": {
@@ -4522,10 +4522,10 @@
         "nmanz": "554",
         "nparc": "13",
         "lon": "-58.13746625",
-        "lat": "-32.23409190",
+        "lat": "-32.23409191",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "572692",
         "ingreso": "2025-05-07",
         "zonificacion": "Urbana",
@@ -4556,8 +4556,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.15440265,
-          -32.23440445
+          -58.15440267,
+          -32.23440447
         ]
       },
       "properties": {
@@ -4571,11 +4571,11 @@
         "gru": "0",
         "nmanz": "295",
         "nparc": "6",
-        "lon": "-58.15440265",
-        "lat": "-32.23440445",
-        "geolocation_source": "admin_override",
+        "lon": "-58.15440267",
+        "lat": "-32.23440447",
+        "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "573708",
         "ingreso": "",
         "zonificacion": "Urbana",
@@ -4606,8 +4606,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1575448,
-          -32.22939415
+          -58.15754483,
+          -32.22939413
         ]
       },
       "properties": {
@@ -4621,11 +4621,11 @@
         "gru": "0",
         "nmanz": "322",
         "nparc": "17",
-        "lon": "-58.15754480",
-        "lat": "-32.22939415",
+        "lon": "-58.15754483",
+        "lat": "-32.22939413",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "573282",
         "ingreso": "2025-05-30",
         "zonificacion": "Urbana",
@@ -4656,8 +4656,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1608597,
-          -32.21670905
+          -58.16085972,
+          -32.21670904
         ]
       },
       "properties": {
@@ -4671,11 +4671,11 @@
         "gru": "341",
         "nmanz": "3",
         "nparc": "3",
-        "lon": "-58.16085970",
-        "lat": "-32.21670905",
+        "lon": "-58.16085972",
+        "lat": "-32.21670904",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "563789",
         "ingreso": "2024-07-16",
         "zonificacion": "Periurbana",
@@ -4706,7 +4706,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14916695,
+          -58.14916696,
           -32.2231697
         ]
       },
@@ -4721,11 +4721,11 @@
         "gru": "0",
         "nmanz": "40",
         "nparc": "13",
-        "lon": "-58.14916695",
+        "lon": "-58.14916696",
         "lat": "-32.22316970",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "559450",
         "ingreso": "2024-01-18",
         "zonificacion": "Urbana",
@@ -4756,8 +4756,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.15165565,
-          -32.22767815
+          -58.15165563,
+          -32.22767818
         ]
       },
       "properties": {
@@ -4771,11 +4771,11 @@
         "gru": "0",
         "nmanz": "456",
         "nparc": "1",
-        "lon": "-58.15165565",
-        "lat": "-32.22767815",
+        "lon": "-58.15165563",
+        "lat": "-32.22767818",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "566554",
         "ingreso": "2024-10-16",
         "zonificacion": "Urbana",
@@ -4806,8 +4806,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1525726,
-          -32.2213085
+          -58.15257261,
+          -32.22130848
         ]
       },
       "properties": {
@@ -4821,11 +4821,11 @@
         "gru": "0",
         "nmanz": "544",
         "nparc": "12",
-        "lon": "-58.15257260",
-        "lat": "-32.22130850",
+        "lon": "-58.15257261",
+        "lat": "-32.22130848",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_nearby",
-        "ano": "",
+        "ano": "2025",
         "expediente": "572773",
         "ingreso": "2025-05-09",
         "zonificacion": "Urbana",
@@ -4856,8 +4856,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1334394,
-          -32.2238392
+          -58.13343942,
+          -32.22383922
         ]
       },
       "properties": {
@@ -4871,11 +4871,11 @@
         "gru": "0",
         "nmanz": "191",
         "nparc": "12",
-        "lon": "-58.13343940",
-        "lat": "-32.22383920",
+        "lon": "-58.13343942",
+        "lat": "-32.22383922",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "573771",
         "ingreso": "2025-06-24",
         "zonificacion": "Urbana",
@@ -4906,8 +4906,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1809811,
-          -32.25666265
+          -58.18098112,
+          -32.25666268
         ]
       },
       "properties": {
@@ -4921,11 +4921,11 @@
         "gru": "223",
         "nmanz": "8",
         "nparc": "2",
-        "lon": "-58.18098110",
-        "lat": "-32.25666265",
+        "lon": "-58.18098112",
+        "lat": "-32.25666268",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "570531",
         "ingreso": "2025-02-21",
         "zonificacion": "Periurbana",
@@ -4956,8 +4956,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.15357405,
-          -32.2391122
+          -58.15357403,
+          -32.23911219
         ]
       },
       "properties": {
@@ -4971,11 +4971,11 @@
         "gru": "8",
         "nmanz": "248",
         "nparc": "15",
-        "lon": "-58.15357405",
-        "lat": "-32.23911220",
+        "lon": "-58.15357403",
+        "lat": "-32.23911219",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "574021",
         "ingreso": "2025-07-04",
         "zonificacion": "Urbana",
@@ -5006,8 +5006,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14003675,
-          -32.22317195
+          -58.14003672,
+          -32.22317194
         ]
       },
       "properties": {
@@ -5021,11 +5021,11 @@
         "gru": "0",
         "nmanz": "130",
         "nparc": "12",
-        "lon": "-58.14003675",
-        "lat": "-32.22317195",
+        "lon": "-58.14003672",
+        "lat": "-32.22317194",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "572017",
         "ingreso": "2025-04-15",
         "zonificacion": "Centro",
@@ -5057,7 +5057,7 @@
         "type": "Point",
         "coordinates": [
           -58.14621805,
-          -32.22477015
+          -32.22477013
         ]
       },
       "properties": {
@@ -5072,10 +5072,10 @@
         "nmanz": "48",
         "nparc": "13",
         "lon": "-58.14621805",
-        "lat": "-32.22477015",
+        "lat": "-32.22477013",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 573744",
         "ingreso": "2025-04-21",
         "zonificacion": "Urbana",
@@ -5106,7 +5106,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.15112045,
+          -58.15112042,
           -32.23165765
         ]
       },
@@ -5121,11 +5121,11 @@
         "gru": "0",
         "nmanz": "398",
         "nparc": "9",
-        "lon": "-58.15112045",
+        "lon": "-58.15112042",
         "lat": "-32.23165765",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "573062",
         "ingreso": "2025-05-20",
         "zonificacion": "Urbana",
@@ -5156,8 +5156,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13640325,
-          -32.2302571
+          -58.13640324,
+          -32.23025711
         ]
       },
       "properties": {
@@ -5171,11 +5171,11 @@
         "gru": "0",
         "nmanz": "629",
         "nparc": "7",
-        "lon": "-58.13640325",
-        "lat": "-32.23025710",
+        "lon": "-58.13640324",
+        "lat": "-32.23025711",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "MAIL, 573750",
         "ingreso": "2025-06-12",
         "zonificacion": "Urbana",
@@ -5225,7 +5225,7 @@
         "lat": "-32.22573225",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "572106",
         "ingreso": "2025-04-22",
         "zonificacion": "Urbana",
@@ -5256,8 +5256,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1664267,
-          -32.2426872
+          -58.16642668,
+          -32.24268716
         ]
       },
       "properties": {
@@ -5271,11 +5271,11 @@
         "gru": "288",
         "nmanz": "0",
         "nparc": "4",
-        "lon": "-58.16642670",
-        "lat": "-32.24268720",
+        "lon": "-58.16642668",
+        "lat": "-32.24268716",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 573813",
         "ingreso": "2025-04-10",
         "zonificacion": "Periurbana",
@@ -5306,8 +5306,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1373674,
-          -32.24782185
+          -58.13736744,
+          -32.24782186
         ]
       },
       "properties": {
@@ -5321,11 +5321,11 @@
         "gru": "2",
         "nmanz": "0",
         "nparc": "123",
-        "lon": "-58.13736740",
-        "lat": "-32.24782185",
+        "lon": "-58.13736744",
+        "lat": "-32.24782186",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "574687",
         "ingreso": "2025-08-04",
         "zonificacion": "Periurbana",
@@ -5357,7 +5357,7 @@
         "type": "Point",
         "coordinates": [
           -58.1403662,
-          -32.22425235
+          -32.22425236
         ]
       },
       "properties": {
@@ -5372,10 +5372,10 @@
         "nmanz": "114",
         "nparc": "8",
         "lon": "-58.14036620",
-        "lat": "-32.22425235",
+        "lat": "-32.22425236",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "573597",
         "ingreso": "2025-06-13",
         "zonificacion": "Centro",
@@ -5406,8 +5406,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1548619,
-          -32.23169355
+          -58.15486189,
+          -32.23169353
         ]
       },
       "properties": {
@@ -5421,11 +5421,11 @@
         "gru": "0",
         "nmanz": "319",
         "nparc": "5",
-        "lon": "-58.15486190",
-        "lat": "-32.23169355",
+        "lon": "-58.15486189",
+        "lat": "-32.23169353",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 574273",
         "ingreso": "2025-06-05",
         "zonificacion": "Urbana",
@@ -5457,7 +5457,7 @@
         "type": "Point",
         "coordinates": [
           -58.15371745,
-          -32.2240477
+          -32.22404772
         ]
       },
       "properties": {
@@ -5472,10 +5472,10 @@
         "nmanz": "486",
         "nparc": "16",
         "lon": "-58.15371745",
-        "lat": "-32.22404770",
+        "lat": "-32.22404772",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 574252",
         "ingreso": "2025-05-14",
         "zonificacion": "Urbana",
@@ -5506,8 +5506,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.130438,
-          -32.2275974
+          -58.13043799,
+          -32.22759741
         ]
       },
       "properties": {
@@ -5521,11 +5521,11 @@
         "gru": "0",
         "nmanz": "747",
         "nparc": "12",
-        "lon": "-58.13043800",
-        "lat": "-32.22759740",
+        "lon": "-58.13043799",
+        "lat": "-32.22759741",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 574618",
         "ingreso": "2025-06-27",
         "zonificacion": "Urbana",
@@ -5556,8 +5556,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13354185,
-          -32.219877
+          -58.13354187,
+          -32.21987703
         ]
       },
       "properties": {
@@ -5571,11 +5571,11 @@
         "gru": "0",
         "nmanz": "215",
         "nparc": "1",
-        "lon": "-58.13354185",
-        "lat": "-32.21987700",
+        "lon": "-58.13354187",
+        "lat": "-32.21987703",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 574395",
         "ingreso": "2025-05-19",
         "zonificacion": "Centro",
@@ -5606,7 +5606,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1432686,
+          -58.14326859,
           -32.22043365
         ]
       },
@@ -5621,11 +5621,11 @@
         "gru": "0",
         "nmanz": "119",
         "nparc": "4",
-        "lon": "-58.14326860",
+        "lon": "-58.14326859",
         "lat": "-32.22043365",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "MAIL, 575462",
         "ingreso": "2025-07-15",
         "zonificacion": "Urbana",
@@ -5656,8 +5656,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14009806,
-          -32.22834799
+          -58.15855862,
+          -32.22928434
         ]
       },
       "properties": {
@@ -5671,11 +5671,11 @@
         "gru": "0",
         "nmanz": "302",
         "nparc": "19",
-        "lon": "-58.14009806",
-        "lat": "-32.22834799",
-        "geolocation_source": "admin_override",
+        "lon": "-58.15855862",
+        "lat": "-32.22928434",
+        "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "575616",
         "ingreso": "2025-09-09",
         "zonificacion": "Urbana",
@@ -5706,8 +5706,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13419005,
-          -32.218687
+          -58.13419006,
+          -32.21868699
         ]
       },
       "properties": {
@@ -5721,11 +5721,11 @@
         "gru": "0",
         "nmanz": "225",
         "nparc": "10",
-        "lon": "-58.13419005",
-        "lat": "-32.21868700",
+        "lon": "-58.13419006",
+        "lat": "-32.21868699",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "573366",
         "ingreso": "2025-06-04",
         "zonificacion": "Centro",
@@ -5756,8 +5756,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.2056942,
-          -32.268566
+          -58.20569418,
+          -32.26856603
         ]
       },
       "properties": {
@@ -5771,11 +5771,11 @@
         "gru": "111",
         "nmanz": "8",
         "nparc": "3",
-        "lon": "-58.20569420",
-        "lat": "-32.26856600",
+        "lon": "-58.20569418",
+        "lat": "-32.26856603",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "574548",
         "ingreso": "2025-07-29",
         "zonificacion": "Periurbana",
@@ -5806,7 +5806,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1379204,
+          -58.13792042,
           -32.22376655
         ]
       },
@@ -5821,11 +5821,11 @@
         "gru": "0",
         "nmanz": "141",
         "nparc": "11",
-        "lon": "-58.13792040",
+        "lon": "-58.13792042",
         "lat": "-32.22376655",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "566652",
         "ingreso": "2024-10-18",
         "zonificacion": "Centro",
@@ -5856,8 +5856,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1439826,
-          -32.2265142
+          -58.14398261,
+          -32.22651417
         ]
       },
       "properties": {
@@ -5871,11 +5871,11 @@
         "gru": "0",
         "nmanz": "51",
         "nparc": "14",
-        "lon": "-58.14398260",
-        "lat": "-32.22651420",
+        "lon": "-58.14398261",
+        "lat": "-32.22651417",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 575665",
         "ingreso": "2025-07-15",
         "zonificacion": "Urbana",
@@ -5906,8 +5906,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1552479,
-          -32.22452135
+          -58.15524789,
+          -32.22452134
         ]
       },
       "properties": {
@@ -5921,11 +5921,11 @@
         "gru": "62",
         "nmanz": "461",
         "nparc": "19",
-        "lon": "-58.15524790",
-        "lat": "-32.22452135",
+        "lon": "-58.15524789",
+        "lat": "-32.22452134",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_nearby",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 574823",
         "ingreso": "2025-06-09",
         "zonificacion": "Urbana",
@@ -5957,7 +5957,7 @@
         "type": "Point",
         "coordinates": [
           -58.13607535,
-          -32.21619515
+          -32.21619516
         ]
       },
       "properties": {
@@ -5972,10 +5972,10 @@
         "nmanz": "228",
         "nparc": "26",
         "lon": "-58.13607535",
-        "lat": "-32.21619515",
+        "lat": "-32.21619516",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "575654",
         "ingreso": "2025-09-09",
         "zonificacion": "Urbana",
@@ -6006,7 +6006,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.139239,
+          -58.13923903,
           -32.2252838
         ]
       },
@@ -6021,11 +6021,11 @@
         "gru": "0",
         "nmanz": "112",
         "nparc": "18",
-        "lon": "-58.13923900",
+        "lon": "-58.13923903",
         "lat": "-32.22528380",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "574647",
         "ingreso": "2025-08-01",
         "zonificacion": "Urbana",
@@ -6056,8 +6056,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14572655,
-          -32.225852
+          -58.14572654,
+          -32.22585198
         ]
       },
       "properties": {
@@ -6071,11 +6071,11 @@
         "gru": "0",
         "nmanz": "36",
         "nparc": "21",
-        "lon": "-58.14572655",
-        "lat": "-32.22585200",
+        "lon": "-58.14572654",
+        "lat": "-32.22585198",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 575757",
         "ingreso": "2025-08-26",
         "zonificacion": "Urbana",
@@ -6106,8 +6106,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13663865,
-          -32.2154938
+          -58.13663868,
+          -32.21549379
         ]
       },
       "properties": {
@@ -6121,8 +6121,8 @@
         "gru": "0",
         "nmanz": "229",
         "nparc": "1",
-        "lon": "-58.13663865",
-        "lat": "-32.21549380",
+        "lon": "-58.13663868",
+        "lat": "-32.21549379",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
         "ano": "",
@@ -6157,7 +6157,7 @@
         "type": "Point",
         "coordinates": [
           -58.1521938,
-          -32.2333125
+          -32.23331248
         ]
       },
       "properties": {
@@ -6172,10 +6172,10 @@
         "nmanz": "341",
         "nparc": "15",
         "lon": "-58.15219380",
-        "lat": "-32.23331250",
+        "lat": "-32.23331248",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "MAIL, 568759",
         "ingreso": "2024-12-17",
         "zonificacion": "Urbana",
@@ -6206,7 +6206,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.17189285,
+          -58.17189283,
           -32.21292585
         ]
       },
@@ -6221,11 +6221,11 @@
         "gru": "331",
         "nmanz": "0",
         "nparc": "17",
-        "lon": "-58.17189285",
+        "lon": "-58.17189283",
         "lat": "-32.21292585",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 575765",
         "ingreso": "2025-08-13",
         "zonificacion": "Periurbana",
@@ -6275,7 +6275,7 @@
         "lat": "-32.22631500",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 575120",
         "ingreso": "2023-12-28",
         "zonificacion": "Urbana",
@@ -6306,7 +6306,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1473839,
+          -58.14738392,
           -32.22629615
         ]
       },
@@ -6321,11 +6321,11 @@
         "gru": "0",
         "nmanz": "20",
         "nparc": "9",
-        "lon": "-58.14738390",
+        "lon": "-58.14738392",
         "lat": "-32.22629615",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "550332",
         "ingreso": "2023-02-14",
         "zonificacion": "Centro",
@@ -6356,8 +6356,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1507888,
-          -32.22974275
+          -58.15078878,
+          -32.22974272
         ]
       },
       "properties": {
@@ -6371,11 +6371,11 @@
         "gru": "0",
         "nmanz": "427",
         "nparc": "21",
-        "lon": "-58.15078880",
-        "lat": "-32.22974275",
+        "lon": "-58.15078878",
+        "lat": "-32.22974272",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 574573",
         "ingreso": "2025-06-25",
         "zonificacion": "Urbana",
@@ -6406,7 +6406,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.158885,
+          -58.15888498,
           -32.2354508
         ]
       },
@@ -6421,11 +6421,11 @@
         "gru": "325",
         "nmanz": "0",
         "nparc": "5",
-        "lon": "-58.15888500",
+        "lon": "-58.15888498",
         "lat": "-32.23545080",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "MAIL, 552456, 574941",
         "ingreso": "2025-06-23",
         "zonificacion": "Urbana",
@@ -6456,7 +6456,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14152505,
+          -58.14152507,
           -32.2214057
         ]
       },
@@ -6471,11 +6471,11 @@
         "gru": "0",
         "nmanz": "128",
         "nparc": "19",
-        "lon": "-58.14152505",
+        "lon": "-58.14152507",
         "lat": "-32.22140570",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "571783",
         "ingreso": "2025-04-04",
         "zonificacion": "Centro",
@@ -6507,7 +6507,7 @@
         "type": "Point",
         "coordinates": [
           -58.1485221,
-          -32.22148695
+          -32.221487
         ]
       },
       "properties": {
@@ -6522,10 +6522,10 @@
         "nmanz": "44",
         "nparc": "13",
         "lon": "-58.14852210",
-        "lat": "-32.22148695",
+        "lat": "-32.22148700",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "575484",
         "ingreso": "2025-09-04",
         "zonificacion": "Urbana",
@@ -6556,7 +6556,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.15695755,
+          -58.15695753,
           -32.21090735
         ]
       },
@@ -6571,11 +6571,11 @@
         "gru": "354",
         "nmanz": "0",
         "nparc": "83",
-        "lon": "-58.15695755",
+        "lon": "-58.15695753",
         "lat": "-32.21090735",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 575187",
         "ingreso": "2025-05-07",
         "zonificacion": "Suburbana",
@@ -6607,7 +6607,7 @@
         "type": "Point",
         "coordinates": [
           -58.15978455,
-          -32.21306585
+          -32.21306587
         ]
       },
       "properties": {
@@ -6622,10 +6622,10 @@
         "nmanz": "1",
         "nparc": "2",
         "lon": "-58.15978455",
-        "lat": "-32.21306585",
+        "lat": "-32.21306587",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "575977",
         "ingreso": "2025-09-24",
         "zonificacion": "Periurbana",
@@ -6656,8 +6656,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.20466095,
-          -32.27093235
+          -58.20466093,
+          -32.27093232
         ]
       },
       "properties": {
@@ -6671,11 +6671,11 @@
         "gru": "111",
         "nmanz": "16",
         "nparc": "6",
-        "lon": "-58.20466095",
-        "lat": "-32.27093235",
+        "lon": "-58.20466093",
+        "lat": "-32.27093232",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "575663",
         "ingreso": "2025-09-10",
         "zonificacion": "Periurbana",
@@ -6706,8 +6706,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14785337,
-          -32.21696371
+          -58.14580977,
+          -32.2157256
         ]
       },
       "properties": {
@@ -6721,11 +6721,11 @@
         "gru": "0",
         "nmanz": "710",
         "nparc": "12",
-        "lon": "-58.14785337",
-        "lat": "-32.21696371",
-        "geolocation_source": "admin_override",
-        "location_verification_status": "verified_close",
-        "ano": "",
+        "lon": "-58.14580977",
+        "lat": "-32.21572560",
+        "geolocation_source": "automatic",
+        "location_verification_status": "review_medium_gap",
+        "ano": "2025",
         "expediente": "mail, 574394",
         "ingreso": "2025-05-22",
         "zonificacion": "Urbana",
@@ -6756,8 +6756,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.20973985,
-          -32.26848885
+          -58.20973987,
+          -32.26848886
         ]
       },
       "properties": {
@@ -6771,11 +6771,11 @@
         "gru": "111",
         "nmanz": "1",
         "nparc": "4",
-        "lon": "-58.20973985",
-        "lat": "-32.26848885",
+        "lon": "-58.20973987",
+        "lat": "-32.26848886",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 575892",
         "ingreso": "2025-08-29",
         "zonificacion": "Periurbana",
@@ -6806,8 +6806,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.20988715,
-          -32.26814825
+          -58.20988717,
+          -32.26814821
         ]
       },
       "properties": {
@@ -6821,11 +6821,11 @@
         "gru": "111",
         "nmanz": "1",
         "nparc": "3",
-        "lon": "-58.20988715",
-        "lat": "-32.26814825",
+        "lon": "-58.20988717",
+        "lat": "-32.26814821",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 575794",
         "ingreso": "2025-08-20",
         "zonificacion": "Urbana",
@@ -6856,8 +6856,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1461582,
-          -32.2358072
+          -58.14615816,
+          -32.23580719
         ]
       },
       "properties": {
@@ -6871,11 +6871,11 @@
         "gru": "40",
         "nmanz": "392",
         "nparc": "11",
-        "lon": "-58.14615820",
-        "lat": "-32.23580720",
+        "lon": "-58.14615816",
+        "lat": "-32.23580719",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 575387",
         "ingreso": "2025-07-10",
         "zonificacion": "Urbana",
@@ -6907,7 +6907,7 @@
         "type": "Point",
         "coordinates": [
           -58.15587025,
-          -32.24198715
+          -32.24198714
         ]
       },
       "properties": {
@@ -6922,10 +6922,10 @@
         "nmanz": "0",
         "nparc": "17",
         "lon": "-58.15587025",
-        "lat": "-32.24198715",
+        "lat": "-32.24198714",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 576298",
         "ingreso": "2025-09-12",
         "zonificacion": "Periurbana",
@@ -6957,7 +6957,7 @@
         "type": "Point",
         "coordinates": [
           -58.1538417,
-          -32.2245315
+          -32.22453151
         ]
       },
       "properties": {
@@ -6972,10 +6972,10 @@
         "nmanz": "486",
         "nparc": "15",
         "lon": "-58.15384170",
-        "lat": "-32.22453150",
+        "lat": "-32.22453151",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "576028",
         "ingreso": "2025-09-25",
         "zonificacion": "Urbana",
@@ -7007,7 +7007,7 @@
         "type": "Point",
         "coordinates": [
           -58.14081005,
-          -32.2190272
+          -32.21902724
         ]
       },
       "properties": {
@@ -7022,10 +7022,10 @@
         "nmanz": "154",
         "nparc": "6",
         "lon": "-58.14081005",
-        "lat": "-32.21902720",
+        "lat": "-32.21902724",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 575112",
         "ingreso": "2025-05-08",
         "zonificacion": "Urbana",
@@ -7056,8 +7056,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1409764,
-          -32.2188372
+          -58.14097641,
+          -32.21883721
         ]
       },
       "properties": {
@@ -7071,8 +7071,8 @@
         "gru": "0",
         "nmanz": "154",
         "nparc": "16",
-        "lon": "-58.14097640",
-        "lat": "-32.21883720",
+        "lon": "-58.14097641",
+        "lat": "-32.21883721",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
         "ano": "",
@@ -7107,7 +7107,7 @@
         "type": "Point",
         "coordinates": [
           -58.14006935,
-          -32.22160665
+          -32.22160663
         ]
       },
       "properties": {
@@ -7122,10 +7122,10 @@
         "nmanz": "144",
         "nparc": "20",
         "lon": "-58.14006935",
-        "lat": "-32.22160665",
+        "lat": "-32.22160663",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "573951",
         "ingreso": "2025-07-02",
         "zonificacion": "Centro",
@@ -7156,8 +7156,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1367602,
-          -32.22787625
+          -58.13676019,
+          -32.22787627
         ]
       },
       "properties": {
@@ -7171,11 +7171,11 @@
         "gru": "0",
         "nmanz": "109",
         "nparc": "9",
-        "lon": "-58.13676020",
-        "lat": "-32.22787625",
+        "lon": "-58.13676019",
+        "lat": "-32.22787627",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "570494",
         "ingreso": "2025-02-20",
         "zonificacion": "Urbana",
@@ -7206,8 +7206,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1507133,
-          -32.2357709
+          -58.15071328,
+          -32.23577091
         ]
       },
       "properties": {
@@ -7221,11 +7221,11 @@
         "gru": "27",
         "nmanz": "312",
         "nparc": "6",
-        "lon": "-58.15071330",
-        "lat": "-32.23577090",
-        "geolocation_source": "admin_override",
+        "lon": "-58.15071328",
+        "lat": "-32.23577091",
+        "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "MAIL, 576103",
         "ingreso": "2025-09-05",
         "zonificacion": "Urbana",
@@ -7257,7 +7257,7 @@
         "type": "Point",
         "coordinates": [
           -58.13483185,
-          -32.24398945
+          -32.24398946
         ]
       },
       "properties": {
@@ -7272,10 +7272,10 @@
         "nmanz": "2",
         "nparc": "2",
         "lon": "-58.13483185",
-        "lat": "-32.24398945",
+        "lat": "-32.24398946",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "555978",
         "ingreso": "2023-09-21",
         "zonificacion": "Urbana",
@@ -7306,8 +7306,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1657962,
-          -32.2314063
+          -58.16579621,
+          -32.23140629
         ]
       },
       "properties": {
@@ -7321,11 +7321,11 @@
         "gru": "310",
         "nmanz": "3",
         "nparc": "46",
-        "lon": "-58.16579620",
-        "lat": "-32.23140630",
+        "lon": "-58.16579621",
+        "lat": "-32.23140629",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "575676",
         "ingreso": "2025-09-11",
         "zonificacion": "Periurbana",
@@ -7356,8 +7356,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1496606,
-          -32.22969645
+          -58.14966061,
+          -32.22969649
         ]
       },
       "properties": {
@@ -7371,11 +7371,11 @@
         "gru": "0",
         "nmanz": "453",
         "nparc": "4",
-        "lon": "-58.14966060",
-        "lat": "-32.22969645",
+        "lon": "-58.14966061",
+        "lat": "-32.22969649",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "574489",
         "ingreso": "2025-07-28",
         "zonificacion": "Urbana",
@@ -7407,7 +7407,7 @@
         "type": "Point",
         "coordinates": [
           -58.13927935,
-          -32.2309452
+          -32.23094519
         ]
       },
       "properties": {
@@ -7422,10 +7422,10 @@
         "nmanz": "576",
         "nparc": "6",
         "lon": "-58.13927935",
-        "lat": "-32.23094520",
+        "lat": "-32.23094519",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "575896",
         "ingreso": "2025-09-19",
         "zonificacion": "Urbana",
@@ -7456,8 +7456,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13490175,
-          -32.21767734
+          -58.14916317,
+          -32.22821497
         ]
       },
       "properties": {
@@ -7471,11 +7471,11 @@
         "gru": "0",
         "nmanz": "480",
         "nparc": "1",
-        "lon": "-58.13490175",
-        "lat": "-32.21767734",
-        "geolocation_source": "admin_override",
+        "lon": "-58.14916317",
+        "lat": "-32.22821497",
+        "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "575659",
         "ingreso": "2025-09-10",
         "zonificacion": "Urbana",
@@ -7525,7 +7525,7 @@
         "lat": "-32.23134280",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "576001",
         "ingreso": "2025-09-25",
         "zonificacion": "Urbana",
@@ -7556,8 +7556,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1515995,
-          -32.23200625
+          -58.15159951,
+          -32.23200624
         ]
       },
       "properties": {
@@ -7571,11 +7571,11 @@
         "gru": "0",
         "nmanz": "370",
         "nparc": "7",
-        "lon": "-58.15159950",
-        "lat": "-32.23200625",
+        "lon": "-58.15159951",
+        "lat": "-32.23200624",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "MAIL, 576492",
         "ingreso": "2025-09-09",
         "zonificacion": "Urbana",
@@ -7606,7 +7606,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.16344095,
+          -58.16344096,
           -32.23115955
         ]
       },
@@ -7621,11 +7621,11 @@
         "gru": "327",
         "nmanz": "5",
         "nparc": "6",
-        "lon": "-58.16344095",
+        "lon": "-58.16344096",
         "lat": "-32.23115955",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "573446",
         "ingreso": "2025-06-09",
         "zonificacion": "Urbana",
@@ -7656,8 +7656,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13626333,
-          -32.23507258
+          -58.13607535,
+          -32.21619516
         ]
       },
       "properties": {
@@ -7671,11 +7671,11 @@
         "gru": "0",
         "nmanz": "228",
         "nparc": "26",
-        "lon": "-58.13626333",
-        "lat": "-32.23507258",
-        "geolocation_source": "admin_override",
-        "location_verification_status": "verified_close",
-        "ano": "",
+        "lon": "-58.13607535",
+        "lat": "-32.21619516",
+        "geolocation_source": "automatic",
+        "location_verification_status": "review_large_gap",
+        "ano": "2025",
         "expediente": "mail, 575845",
         "ingreso": "2025-08-12",
         "zonificacion": "Urbana",
@@ -7706,8 +7706,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.16158195,
-          -32.2104354
+          -58.16158197,
+          -32.21043539
         ]
       },
       "properties": {
@@ -7721,11 +7721,11 @@
         "gru": "355",
         "nmanz": "9",
         "nparc": "2",
-        "lon": "-58.16158195",
-        "lat": "-32.21043540",
+        "lon": "-58.16158197",
+        "lat": "-32.21043539",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 575035",
         "ingreso": "2025-07-30",
         "zonificacion": "Periurbana",
@@ -7756,8 +7756,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13464145,
-          -32.2197901
+          -58.13464142,
+          -32.21979011
         ]
       },
       "properties": {
@@ -7771,11 +7771,11 @@
         "gru": "0",
         "nmanz": "214",
         "nparc": "8",
-        "lon": "-58.13464145",
-        "lat": "-32.21979010",
+        "lon": "-58.13464142",
+        "lat": "-32.21979011",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 576773",
         "ingreso": "2025-09-30",
         "zonificacion": "Centro",
@@ -7806,8 +7806,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1403873,
-          -32.21880205
+          -58.14038734,
+          -32.21880208
         ]
       },
       "properties": {
@@ -7821,11 +7821,11 @@
         "gru": "0",
         "nmanz": "154",
         "nparc": "19",
-        "lon": "-58.14038730",
-        "lat": "-32.21880205",
+        "lon": "-58.14038734",
+        "lat": "-32.21880208",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "574507",
         "ingreso": "2025-07-28",
         "zonificacion": "Urbana",
@@ -7856,8 +7856,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1458528,
-          -32.2302361
+          -58.14585281,
+          -32.23023608
         ]
       },
       "properties": {
@@ -7871,11 +7871,11 @@
         "gru": "0",
         "nmanz": "503",
         "nparc": "3",
-        "lon": "-58.14585280",
-        "lat": "-32.23023610",
+        "lon": "-58.14585281",
+        "lat": "-32.23023608",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "559299",
         "ingreso": "2024-01-12",
         "zonificacion": "Urbana",
@@ -7906,8 +7906,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13176445,
-          -32.24470045
+          -58.13176441,
+          -32.24470044
         ]
       },
       "properties": {
@@ -7921,11 +7921,11 @@
         "gru": "3",
         "nmanz": "6",
         "nparc": "5",
-        "lon": "-58.13176445",
-        "lat": "-32.24470045",
+        "lon": "-58.13176441",
+        "lat": "-32.24470044",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "MAIL, 576513",
         "ingreso": "2025-09-01",
         "zonificacion": "Urbana",
@@ -7956,8 +7956,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.15935875,
-          -32.22336245
+          -58.15935877,
+          -32.22336243
         ]
       },
       "properties": {
@@ -7971,11 +7971,11 @@
         "gru": "49",
         "nmanz": "410",
         "nparc": "14",
-        "lon": "-58.15935875",
-        "lat": "-32.22336245",
+        "lon": "-58.15935877",
+        "lat": "-32.22336243",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "576532",
         "ingreso": "2025-10-15",
         "zonificacion": "Urbana",
@@ -8006,7 +8006,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.23520985,
+          -58.23520984,
           -32.24419165
         ]
       },
@@ -8021,11 +8021,11 @@
         "gru": "50",
         "nmanz": "0",
         "nparc": "7",
-        "lon": "-58.23520985",
+        "lon": "-58.23520984",
         "lat": "-32.24419165",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "575343",
         "ingreso": "2025-08-29",
         "zonificacion": "Periurbana",
@@ -8056,7 +8056,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1467216,
+          -58.14672163,
           -32.22098985
         ]
       },
@@ -8071,11 +8071,11 @@
         "gru": "0",
         "nmanz": "72",
         "nparc": "8",
-        "lon": "-58.14672160",
+        "lon": "-58.14672163",
         "lat": "-32.22098985",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "575633",
         "ingreso": "2025-09-09",
         "zonificacion": "Centro",
@@ -8106,8 +8106,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13536925,
-          -32.22118955
+          -58.13536922,
+          -32.22118953
         ]
       },
       "properties": {
@@ -8121,11 +8121,11 @@
         "gru": "0",
         "nmanz": "188",
         "nparc": "18",
-        "lon": "-58.13536925",
-        "lat": "-32.22118955",
+        "lon": "-58.13536922",
+        "lat": "-32.22118953",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "576531",
         "ingreso": "2025-10-18",
         "zonificacion": "Centro",
@@ -8156,8 +8156,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13778015,
-          -32.21569895
+          -58.13778014,
+          -32.21569897
         ]
       },
       "properties": {
@@ -8171,11 +8171,11 @@
         "gru": "0",
         "nmanz": "209",
         "nparc": "3",
-        "lon": "-58.13778015",
-        "lat": "-32.21569895",
+        "lon": "-58.13778014",
+        "lat": "-32.21569897",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "573825",
         "ingreso": "2025-06-26",
         "zonificacion": "Urbana",
@@ -8206,8 +8206,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14425285,
-          -32.2223645
+          -58.14425287,
+          -32.22236452
         ]
       },
       "properties": {
@@ -8221,11 +8221,11 @@
         "gru": "0",
         "nmanz": "90",
         "nparc": "3",
-        "lon": "-58.14425285",
-        "lat": "-32.22236450",
+        "lon": "-58.14425287",
+        "lat": "-32.22236452",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "577237",
         "ingreso": "2025-10-31",
         "zonificacion": "",
@@ -8256,8 +8256,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.16609135,
-          -32.23218575
+          -58.16831903,
+          -32.22877065
         ]
       },
       "properties": {
@@ -8265,17 +8265,17 @@
         "legajo_canonico": "179",
         "row_kind": "detail",
         "raw_ubicacion": "Molle Nº",
-        "ncp": "0100010113100003--040--",
-        "ncp_formatted": "0100010113100003--040--",
+        "ncp": "0100010113100002--040--",
+        "ncp_formatted": "0100010113100002--040--",
         "sec": "11",
         "gru": "310",
-        "nmanz": "3",
+        "nmanz": "2",
         "nparc": "40",
-        "lon": "-58.16609135",
-        "lat": "-32.23218575",
+        "lon": "-58.16831903",
+        "lat": "-32.22877065",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 577127",
         "ingreso": "2025-10-06",
         "zonificacion": "Periurbana",
@@ -8306,7 +8306,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1321773,
+          -58.13217729,
           -32.24486505
         ]
       },
@@ -8321,11 +8321,11 @@
         "gru": "3",
         "nmanz": "6",
         "nparc": "12",
-        "lon": "-58.13217730",
+        "lon": "-58.13217729",
         "lat": "-32.24486505",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "576822",
         "ingreso": "2025-10-22",
         "zonificacion": "Urbana",
@@ -8356,8 +8356,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14790083,
-          -32.21699859
+          -58.15159737,
+          -32.21942351
         ]
       },
       "properties": {
@@ -8371,11 +8371,11 @@
         "gru": "0",
         "nmanz": "579",
         "nparc": "25",
-        "lon": "-58.14790083",
-        "lat": "-32.21699859",
-        "geolocation_source": "admin_override",
-        "location_verification_status": "verified_close",
-        "ano": "",
+        "lon": "-58.15159737",
+        "lat": "-32.21942351",
+        "geolocation_source": "automatic",
+        "location_verification_status": "review_large_gap",
+        "ano": "2025",
         "expediente": "575157",
         "ingreso": "2025-09-22",
         "zonificacion": "Urbana",
@@ -8406,7 +8406,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.15214255,
+          -58.15214254,
           -32.22527775
         ]
       },
@@ -8421,11 +8421,11 @@
         "gru": "0",
         "nmanz": "484",
         "nparc": "25",
-        "lon": "-58.15214255",
+        "lon": "-58.15214254",
         "lat": "-32.22527775",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "576615",
         "ingreso": "2025-10-17",
         "zonificacion": "Urbana",
@@ -8456,8 +8456,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1319678,
-          -32.24420715
+          -58.13196779,
+          -32.24420716
         ]
       },
       "properties": {
@@ -8471,11 +8471,11 @@
         "gru": "3",
         "nmanz": "4",
         "nparc": "21",
-        "lon": "-58.13196780",
-        "lat": "-32.24420715",
+        "lon": "-58.13196779",
+        "lat": "-32.24420716",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "576108",
         "ingreso": "2025-09-30",
         "zonificacion": "Urbana",
@@ -8507,7 +8507,7 @@
         "type": "Point",
         "coordinates": [
           -58.1474228,
-          -32.2280238
+          -32.22802379
         ]
       },
       "properties": {
@@ -8522,10 +8522,10 @@
         "nmanz": "7",
         "nparc": "12",
         "lon": "-58.14742280",
-        "lat": "-32.22802380",
+        "lat": "-32.22802379",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "MAIL, 577636",
         "ingreso": "2025-10-06",
         "zonificacion": "Centro",
@@ -8556,8 +8556,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1502466,
-          -32.21666715
+          -58.15024661,
+          -32.21666716
         ]
       },
       "properties": {
@@ -8571,11 +8571,11 @@
         "gru": "0",
         "nmanz": "634",
         "nparc": "11",
-        "lon": "-58.15024660",
-        "lat": "-32.21666715",
+        "lon": "-58.15024661",
+        "lat": "-32.21666716",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 577475",
         "ingreso": "2025-08-11",
         "zonificacion": "Urbana",
@@ -8625,7 +8625,7 @@
         "lat": "-32.23173710",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "577190",
         "ingreso": "2025-10-30",
         "zonificacion": "Urbana",
@@ -8657,7 +8657,7 @@
         "type": "Point",
         "coordinates": [
           -58.1332547,
-          -32.23043245
+          -32.23043249
         ]
       },
       "properties": {
@@ -8672,10 +8672,10 @@
         "nmanz": "664",
         "nparc": "4",
         "lon": "-58.13325470",
-        "lat": "-32.23043245",
+        "lat": "-32.23043249",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 577103",
         "ingreso": "2025-09-09",
         "zonificacion": "Urbana",
@@ -8706,7 +8706,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.15112045,
+          -58.15112042,
           -32.23165765
         ]
       },
@@ -8721,11 +8721,11 @@
         "gru": "0",
         "nmanz": "398",
         "nparc": "9",
-        "lon": "-58.15112045",
+        "lon": "-58.15112042",
         "lat": "-32.23165765",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "576265",
         "ingreso": "2025-10-06",
         "zonificacion": "Urbana",
@@ -8757,7 +8757,7 @@
         "type": "Point",
         "coordinates": [
           -58.15900335,
-          -32.2246848
+          -32.22468479
         ]
       },
       "properties": {
@@ -8772,10 +8772,10 @@
         "nmanz": "381",
         "nparc": "6",
         "lon": "-58.15900335",
-        "lat": "-32.22468480",
+        "lat": "-32.22468479",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "574798",
         "ingreso": "2025-08-07",
         "zonificacion": "Urbana",
@@ -8806,8 +8806,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14853945,
-          -32.2244998
+          -58.14853944,
+          -32.22449979
         ]
       },
       "properties": {
@@ -8821,11 +8821,11 @@
         "gru": "0",
         "nmanz": "18",
         "nparc": "5",
-        "lon": "-58.14853945",
-        "lat": "-32.22449980",
+        "lon": "-58.14853944",
+        "lat": "-32.22449979",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 562513",
         "ingreso": "2024-03-12",
         "zonificacion": "Urbana",
@@ -8856,7 +8856,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.17261575,
+          -58.17261574,
           -32.2193227
         ]
       },
@@ -8871,11 +8871,11 @@
         "gru": "312",
         "nmanz": "0",
         "nparc": "11",
-        "lon": "-58.17261575",
+        "lon": "-58.17261574",
         "lat": "-32.21932270",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "MAIL, 577327",
         "ingreso": "2025-10-02",
         "zonificacion": "Periurbana",
@@ -8906,8 +8906,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.16179065,
-          -32.22739335
+          -58.16179063,
+          -32.22739336
         ]
       },
       "properties": {
@@ -8921,11 +8921,11 @@
         "gru": "327",
         "nmanz": "11",
         "nparc": "9",
-        "lon": "-58.16179065",
-        "lat": "-32.22739335",
+        "lon": "-58.16179063",
+        "lat": "-32.22739336",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "574913",
         "ingreso": "2025-08-12",
         "zonificacion": "Periurbana",
@@ -8956,8 +8956,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.14883035,
-          -32.21277535
+          -58.14883038,
+          -32.21277532
         ]
       },
       "properties": {
@@ -8971,11 +8971,11 @@
         "gru": "0",
         "nmanz": "714",
         "nparc": "22",
-        "lon": "-58.14883035",
-        "lat": "-32.21277535",
+        "lon": "-58.14883038",
+        "lat": "-32.21277532",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail , 577815",
         "ingreso": "2025-10-24",
         "zonificacion": "Urbana",
@@ -9006,8 +9006,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.16020265,
-          -32.21261295
+          -58.16020264,
+          -32.21261293
         ]
       },
       "properties": {
@@ -9021,11 +9021,11 @@
         "gru": "354",
         "nmanz": "4",
         "nparc": "5",
-        "lon": "-58.16020265",
-        "lat": "-32.21261295",
+        "lon": "-58.16020264",
+        "lat": "-32.21261293",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "578106",
         "ingreso": "2025-11-27",
         "zonificacion": "Periurbana",
@@ -9056,8 +9056,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.15001545,
-          -32.22511175
+          -58.15001549,
+          -32.22511172
         ]
       },
       "properties": {
@@ -9071,11 +9071,11 @@
         "gru": "0",
         "nmanz": "11",
         "nparc": "15",
-        "lon": "-58.15001545",
-        "lat": "-32.22511175",
+        "lon": "-58.15001549",
+        "lat": "-32.22511172",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "576137",
         "ingreso": "2025-10-01",
         "zonificacion": "Urbana",
@@ -9106,8 +9106,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1388266,
-          -32.22079395
+          -58.13882662,
+          -32.22079392
         ]
       },
       "properties": {
@@ -9121,11 +9121,11 @@
         "gru": "0",
         "nmanz": "157",
         "nparc": "25",
-        "lon": "-58.13882660",
-        "lat": "-32.22079395",
+        "lon": "-58.13882662",
+        "lat": "-32.22079392",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "574645",
         "ingreso": "2025-08-01",
         "zonificacion": "Centro",
@@ -9156,8 +9156,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.17128375,
-          -32.21339945
+          -58.17128373,
+          -32.21339943
         ]
       },
       "properties": {
@@ -9171,11 +9171,11 @@
         "gru": "331",
         "nmanz": "0",
         "nparc": "19",
-        "lon": "-58.17128375",
-        "lat": "-32.21339945",
+        "lon": "-58.17128373",
+        "lat": "-32.21339943",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "575385",
         "ingreso": "2025-09-01",
         "zonificacion": "Urbana",
@@ -9206,8 +9206,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.15403315,
-          -32.2387992
+          -58.15403313,
+          -32.23879922
         ]
       },
       "properties": {
@@ -9221,11 +9221,11 @@
         "gru": "8",
         "nmanz": "249",
         "nparc": "16",
-        "lon": "-58.15403315",
-        "lat": "-32.23879920",
+        "lon": "-58.15403313",
+        "lat": "-32.23879922",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 575216",
         "ingreso": "2025-05-20",
         "zonificacion": "Urbana",
@@ -9256,8 +9256,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.15718025,
-          -32.20507035
+          -58.15718023,
+          -32.20507037
         ]
       },
       "properties": {
@@ -9271,11 +9271,11 @@
         "gru": "367",
         "nmanz": "1",
         "nparc": "13",
-        "lon": "-58.15718025",
-        "lat": "-32.20507035",
+        "lon": "-58.15718023",
+        "lat": "-32.20507037",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 578394",
         "ingreso": "2025-11-04",
         "zonificacion": "Periurbana",
@@ -9306,8 +9306,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1439178,
-          -32.2251119
+          -58.14391778,
+          -32.22511192
         ]
       },
       "properties": {
@@ -9321,11 +9321,11 @@
         "gru": "0",
         "nmanz": "64",
         "nparc": "9",
-        "lon": "-58.14391780",
-        "lat": "-32.22511190",
+        "lon": "-58.14391778",
+        "lat": "-32.22511192",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 577384",
         "ingreso": "2025-09-18",
         "zonificacion": "Centro",
@@ -9356,7 +9356,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.15847535,
+          -58.15847534,
           -32.2314743
         ]
       },
@@ -9371,11 +9371,11 @@
         "gru": "0",
         "nmanz": "282",
         "nparc": "21",
-        "lon": "-58.15847535",
+        "lon": "-58.15847534",
         "lat": "-32.23147430",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "MAIL, 577577",
         "ingreso": "2025-01-24",
         "zonificacion": "Urbana",
@@ -9406,7 +9406,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1423298,
+          -58.14232981,
           -32.23121925
         ]
       },
@@ -9421,11 +9421,11 @@
         "gru": "0",
         "nmanz": "28",
         "nparc": "14",
-        "lon": "-58.14232980",
+        "lon": "-58.14232981",
         "lat": "-32.23121925",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "576294",
         "ingreso": "2025-10-07",
         "zonificacion": "Urbana",
@@ -9456,7 +9456,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1646304,
+          -58.16463041,
           -32.2305646
         ]
       },
@@ -9471,11 +9471,11 @@
         "gru": "327",
         "nmanz": "7",
         "nparc": "4",
-        "lon": "-58.16463040",
+        "lon": "-58.16463041",
         "lat": "-32.23056460",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "576705",
         "ingreso": "2025-10-20",
         "zonificacion": "Urbana",
@@ -9506,8 +9506,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.15457275,
-          -32.2219979
+          -58.15457276,
+          -32.22199791
         ]
       },
       "properties": {
@@ -9521,11 +9521,11 @@
         "gru": "0",
         "nmanz": "515",
         "nparc": "22",
-        "lon": "-58.15457275",
-        "lat": "-32.22199790",
+        "lon": "-58.15457276",
+        "lat": "-32.22199791",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "577930",
         "ingreso": "2025-11-20",
         "zonificacion": "Urbana",
@@ -9557,7 +9557,7 @@
         "type": "Point",
         "coordinates": [
           -58.13747855,
-          -32.23573765
+          -32.23573766
         ]
       },
       "properties": {
@@ -9572,10 +9572,10 @@
         "nmanz": "537",
         "nparc": "16",
         "lon": "-58.13747855",
-        "lat": "-32.23573765",
+        "lat": "-32.23573766",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "576957",
         "ingreso": "2025-10-27",
         "zonificacion": "Urbana",
@@ -9606,8 +9606,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1612496,
-          -32.2237661
+          -58.16124962,
+          -32.22376611
         ]
       },
       "properties": {
@@ -9621,11 +9621,11 @@
         "gru": "36",
         "nmanz": "355",
         "nparc": "6",
-        "lon": "-58.16124960",
-        "lat": "-32.22376610",
+        "lon": "-58.16124962",
+        "lat": "-32.22376611",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "577551",
         "ingreso": "2025-11-11",
         "zonificacion": "Urbana",
@@ -9675,7 +9675,7 @@
         "lat": "-32.22734695",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "575994",
         "ingreso": "2025-09-24",
         "zonificacion": "Urbana",
@@ -9706,8 +9706,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.18116475,
-          -32.2282541
+          -58.18116471,
+          -32.22825408
         ]
       },
       "properties": {
@@ -9721,11 +9721,11 @@
         "gru": "271",
         "nmanz": "2",
         "nparc": "11",
-        "lon": "-58.18116475",
-        "lat": "-32.22825410",
+        "lon": "-58.18116471",
+        "lat": "-32.22825408",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 578404",
         "ingreso": "2025-08-18",
         "zonificacion": "Periurbana",
@@ -9775,7 +9775,7 @@
         "lat": "-32.21267180",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 578432",
         "ingreso": "2025-10-20",
         "zonificacion": "Periurbana",
@@ -9806,8 +9806,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.1650584,
-          -32.227679
+          -58.16505842,
+          -32.22767903
         ]
       },
       "properties": {
@@ -9821,11 +9821,11 @@
         "gru": "327",
         "nmanz": "12",
         "nparc": "1",
-        "lon": "-58.16505840",
-        "lat": "-32.22767900",
+        "lon": "-58.16505842",
+        "lat": "-32.22767903",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "576110",
         "ingreso": "2025-09-30",
         "zonificacion": "Urbana",
@@ -9856,8 +9856,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13594185,
-          -32.217505
+          -58.13594186,
+          -32.21750503
         ]
       },
       "properties": {
@@ -9871,11 +9871,11 @@
         "gru": "0",
         "nmanz": "212",
         "nparc": "3",
-        "lon": "-58.13594185",
-        "lat": "-32.21750500",
+        "lon": "-58.13594186",
+        "lat": "-32.21750503",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "mail, 578405",
         "ingreso": "2025-10-07",
         "zonificacion": "Centro",
@@ -9906,7 +9906,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.149631,
+          -58.14963099,
           -32.22669445
         ]
       },
@@ -9921,11 +9921,11 @@
         "gru": "0",
         "nmanz": "509",
         "nparc": "15",
-        "lon": "-58.14963100",
+        "lon": "-58.14963099",
         "lat": "-32.22669445",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "577498",
         "ingreso": "2025-11-07",
         "zonificacion": "Urbana",
@@ -9957,7 +9957,7 @@
         "type": "Point",
         "coordinates": [
           -58.23396925,
-          -32.23358255
+          -32.23358256
         ]
       },
       "properties": {
@@ -9972,10 +9972,10 @@
         "nmanz": "4",
         "nparc": "8",
         "lon": "-58.23396925",
-        "lat": "-32.23358255",
+        "lat": "-32.23358256",
         "geolocation_source": "automatic",
         "location_verification_status": "missing_address_point",
-        "ano": "",
+        "ano": "2025",
         "expediente": "575681",
         "ingreso": "2025-09-11",
         "zonificacion": "Complemento area industrial",
@@ -10006,8 +10006,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -58.13631005,
-          -32.2346706
+          -58.13631009,
+          -32.23467057
         ]
       },
       "properties": {
@@ -10021,11 +10021,11 @@
         "gru": "91",
         "nmanz": "571",
         "nparc": "2",
-        "lon": "-58.13631005",
-        "lat": "-32.23467060",
+        "lon": "-58.13631009",
+        "lat": "-32.23467057",
         "geolocation_source": "automatic",
         "location_verification_status": "verified_close",
-        "ano": "",
+        "ano": "2025",
         "expediente": "578825",
         "ingreso": "2025-12-19",
         "zonificacion": "Urbana",

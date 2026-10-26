@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comparación Catastro vs Dirección</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    html, body, #map { height: 100%; margin: 0; }
+    .panel {
+      position: absolute; top: 12px; right: 12px; z-index: 1000; width: 320px;
+      background: rgba(19, 26, 33, 0.92); color: #e5eef6; padding: 14px; border-radius: 12px;
+      font: 12px/1.45 Georgia, "Times New Roman", serif; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      max-height: calc(100% - 24px); overflow: auto;
+    }
+    .swatch { display:inline-block; width:10px; height:10px; border-radius:999px; margin-right:6px; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div class="panel">
+    <div style="font-size:16px;font-weight:700;margin-bottom:8px">Chequeo Visual</div>
+    <div style="margin-bottom:10px">Azul: punto catastral. Naranja: geocodificación IGN. Línea: distancia entre ambos.</div>
+    <div id="rows"></div>
+  </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const rows = [{"row":"4","legajo":"3","address":"Las Piedras N.º 390","cadastralLat":-32.23684559,"cadastralLon":-58.14762187,"addressLat":-32.23699288,"addressLon":-58.14765682,"verification":"verified_close","distanceMeters":"16.70","ncp":"0100011020400364--020--"},{"row":"7","legajo":"7","address":"M. Rebord N.º 132 e/M. Moreno y Noailles","cadastralLat":-32.2323963,"cadastralLon":-58.15035197,"addressLat":-32.23267056,"addressLon":-58.15049779,"verification":"verified_close","distanceMeters":"33.44","ncp":"0100010000000397--010--"},{"row":"10","legajo":"9","address":"Esteva Berga N.º 137","cadastralLat":-32.22331982,"cadastralLon":-58.13748002,"addressLat":-32.22325665,"addressLon":-58.13726543,"verification":"verified_close","distanceMeters":"21.37","ncp":"0100010000000141--005--"},{"row":"11","legajo":"10","address":"Primera Junta N.º 508, 510","cadastralLat":-32.21828728,"cadastralLon":-58.1518496,"addressLat":-32.21788747,"addressLon":-58.15192144,"verification":"verified_close","distanceMeters":"44.97","ncp":"0100010000000580--019--"},{"row":"12","legajo":"11","address":"Alberdi N.º 230 y 236","cadastralLat":-32.21730425,"cadastralLon":-58.1410164,"addressLat":-32.21721449,"addressLon":-58.1411842,"verification":"verified_close","distanceMeters":"18.68","ncp":"0100010000000176--015--"},{"row":"13","legajo":"12","address":"Martín Reibel N.º 621","cadastralLat":-32.22752755,"cadastralLon":-58.14150732,"addressLat":-32.22772588,"addressLon":-58.1412967,"verification":"verified_close","distanceMeters":"29.65","ncp":"0100010000000060--007--"},{"row":"18","legajo":"17","address":"Araujo Penón N° 367 e/ Bvard Gaillard y Rocamora","cadastralLat":-32.22689654,"cadastralLon":-58.15890223,"addressLat":-32.21668449,"addressLon":-58.14572028,"verification":"review_large_gap","distanceMeters":"1681.39","ncp":"0100011010340351--006--"},{"row":"19","legajo":"18","address":"Santa Cruz N.º 375 e/ Rocamora y Bvard. Gaillard","cadastralLat":-32.22475117,"cadastralLon":-58.15619841,"addressLat":-32.21749452,"addressLon":-58.14516473,"verification":"review_large_gap","distanceMeters":"1314.69","ncp":"0100011010620434--002--"}];
+    const map = L.map('map');
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const bounds = [];
+    const rowsEl = document.getElementById('rows');
+    rows.forEach((row) => {
+      if (!Number.isFinite(row.cadastralLat) || !Number.isFinite(row.cadastralLon) || !Number.isFinite(row.addressLat) || !Number.isFinite(row.addressLon)) {
+        return;
+      }
+
+      const cadastral = [row.cadastralLat, row.cadastralLon];
+      const address = [row.addressLat, row.addressLon];
+      bounds.push(cadastral, address);
+
+      L.circleMarker(cadastral, { radius: 7, color: '#2563eb', fillColor: '#60a5fa', fillOpacity: 0.95, weight: 2 })
+        .addTo(map)
+        .bindPopup('<b>Catastro</b><br>Fila ' + row.row + '<br>NCP: ' + (row.ncp || '-') + '<br>' + row.address);
+
+      L.circleMarker(address, { radius: 7, color: '#c2410c', fillColor: '#fb923c', fillOpacity: 0.95, weight: 2 })
+        .addTo(map)
+        .bindPopup('<b>Dirección IGN</b><br>Fila ' + row.row + '<br>' + row.address);
+
+      L.polyline([cadastral, address], { color: '#facc15', weight: 3, dashArray: '8 6' }).addTo(map);
+
+      const block = document.createElement('div');
+      block.style.marginBottom = '10px';
+      block.innerHTML = '<div><b>Fila ' + row.row + '</b> · legajo ' + row.legajo + '</div>' +
+        '<div>' + row.address + '</div>' +
+        '<div><span class="swatch" style="background:#2563eb"></span>catastro · <span class="swatch" style="background:#fb923c"></span>dirección</div>' +
+        '<div>estado: <b>' + row.verification + '</b></div>' +
+        '<div>distancia: <b>' + row.distanceMeters + ' m</b></div>';
+      rowsEl.appendChild(block);
+    });
+
+    if (bounds.length > 0) {
+      map.fitBounds(bounds, { padding: [40, 40] });
+    } else {
+      map.setView([-32.2236, -58.1436], 13);
+    }
+  </script>
+</body>
+</html>

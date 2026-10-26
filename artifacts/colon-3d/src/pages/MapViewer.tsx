@@ -7,6 +7,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import Header from "@/components/Header";
 import LayersPanel from "@/components/LayersPanel";
+import FloodSimulationPanel from "@/components/FloodSimulationPanel";
 import FeatureInfo from "@/components/FeatureInfo";
 import ZonaPanel from "@/components/ZonaPanel";
 import ZonaLegend from "@/components/ZonaLegend";
@@ -19,20 +20,25 @@ import MeasureTool, { type MeasureMode } from "@/components/MeasureTool";
 import LayerUpload from "@/components/LayerUpload";
 import AnalysisPanel from "@/components/AnalysisPanel";
 import AuthPanel from "@/components/AuthGate";
+import AdminDataPanel from "@/components/AdminDataPanel";
 import ExternalFeatureInfo, { type ExternalFeatureInfoState } from "@/components/ExternalFeatureInfo";
 import { useAuth } from "@/contexts/AuthContext";
+import { Link } from "wouter";
 import { hasPermission } from "@/lib/auth";
 import { LAYERS, COLON_CENTER, COLON_ZOOM, ZONA_COLORS } from "@/lib/layers";
 import { useLayerCatalog } from "@/hooks/useLayerCatalog";
 import { ZONA_NORMAS } from "@/lib/zonaData";
+import { fetchColonHydrology } from "@/lib/hydrology";
+import { area, bbox, booleanIntersects, buffer, featureCollection, intersect, union } from "@turf/turf";
 
 const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");
-const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "";
+const API_BASE = import.meta.env.VITE_API_BASE_URL ?? (import.meta.env.DEV ? "http://localhost:5180" : "");
 const DATA_CACHE_BUST = String(Date.now());
 
 type LeafletLayer = L.GeoJSON | L.LayerGroup;
 type DensidadData = Record<string, { count: number; area: number }>;
 type ZonaTransform = { rotateDeg: number; offsetLng: number; offsetLat: number };
+type FloodSimulationStats = { affected: number; total: number; parcial: number; cota: number };
 
 function getLayerDataUrl(file: string): string {
   return `${BASE_PATH}/data/${file}?v=${DATA_CACHE_BUST}`;
@@ -80,6 +86,19 @@ const PUBLIC_PARCEL_ALLOWED_KEYS = new Set([
   "ID", "NCP", "NCM", "SEC", "SECCION", "GRU", "GRUPO", "MANZ", "NMANZ", "LMANZ", "NPARC", "LPARC",
   "OBJETO", "AREA", "SUPERFICIE", "LARGO", "FRENTE", "PERIMETRO", "ZONA", "BARRIO", "COTA", "Z",
 ]);
+
+const PROFESSIONAL_EXTRA_PARCEL_KEYS = new Set([
+  "NOMBRE", "PROPIETARIO", "TITULAR",
+]);
+
+// Some provincial WMS datasets are sparse. These extents help center the map
+// where data exists when the user enables the layer from Colón city view.
+const EXTERNAL_LAYER_FIT_BOUNDS: Record<string, [[number, number], [number, number]]> = {
+  ext_ideer_corufa_registro: [[-33.828322, -60.650833], [-30.706158, -57.904274]],
+  ext_ideer_perforistas_registro: [[-34.803528, -60.638162], [-30.760356, -57.983202]],
+  ext_ideer_laboratorios_registro: [[-33.028052, -60.542854], [-31.381405, -58.012363]],
+  ext_ideer_perforaciones_cfi: [[-33.371228, -60.570228], [-30.227321, -57.896521]],
+};
 
 const DEFAULT_ZONA_TRANSFORM: ZonaTransform = {
   rotateDeg: 0,
@@ -325,6 +344,7 @@ const REPORT_LAYERS: ReportLayerCfg[] = [
   { id: "calle",     label: "Calles lindantes",       relation: "proximity", proximityM: 80,  maxResults: 5,  relationLabel: "Calles a menos de 80 m del centroide" },
   { id: "hidro",     label: "Hidrografía cercana",    relation: "proximity", proximityM: 200, maxResults: 3,  relationLabel: "Cursos de agua a menos de 200 m" },
   { id: "bocas",     label: "Bocas de tormenta",      relation: "proximity", proximityM: 120, maxResults: 4,  relationLabel: "Bocas de tormenta a menos de 120 m" },
+  { id: "ext_jrc_surface_water", label: "Agua superficial histórica", relation: "centroid_in_feature", maxResults: 1, relationLabel: "El centroide de la parcela cae en una zona de ocurrencia histórica de agua superficial" },
 ];
 
 // ─── Geometry helpers (spatial) ──────────────────────────────────────────────
@@ -349,6 +369,256 @@ function distanceMeters(a: [number, number], b: [number, number]): number {
   const s = Math.sin(dLat / 2) ** 2 +
     Math.cos(a[1] * Math.PI / 180) * Math.cos(b[1] * Math.PI / 180) * Math.sin(dLng / 2) ** 2;
   return R * 2 * Math.atan2(Math.sqrt(s), Math.sqrt(1 - s));
+}
+
+function ringsFromGeometry(geometry: Geometry): number[][][] {
+  if (!geometry) return [];
+  if (geometry.type === "LineString") return [geometry.coordinates];
+  if (geometry.type === "MultiLineString") return geometry.coordinates;
+  return [];
+}
+
+function isClosedRing(coords: number[][]): boolean {
+  if (!Array.isArray(coords) || coords.length < 4) return false;
+  const first = coords[0];
+  const last = coords[coords.length - 1];
+  return Math.abs(first[0] - last[0]) < 1e-10 && Math.abs(first[1] - last[1]) < 1e-10;
+}
+
+function bboxOverlap(a: number[], b: number[]): boolean {
+  return a[0] <= b[2] && a[2] >= b[0] && a[1] <= b[3] && a[3] >= b[1];
+}
+
+function unionMany(features: FeatureCollection[]): FeatureCollection | null {
+  if (!features.length) return null;
+  let merged = features[0];
+  for (let i = 1; i < features.length; i += 1) {
+    try {
+      const u = union(featureCollection([merged, features[i]]));
+      if (u) merged = u;
+    } catch {
+      // Keep previous merged geometry if a topological merge fails.
+    }
+  }
+  return merged;
+}
+
+function parseFloodCotaInput(value: string): number | null {
+  const normalized = value.replace(",", ".").trim();
+  const n = Number(normalized);
+  if (!Number.isFinite(n)) return null;
+  if (n < 0 || n > 40) return null;
+  return n;
+}
+
+function formatFloodCotaInput(value: number): string {
+  return value.toFixed(2).replace(".", ",");
+}
+
+async function fetchCurrentRiverLevelMeters(): Promise<{ level: number; updatedAt: string | null } | null> {
+  const data = await fetchColonHydrology(API_BASE);
+  if (!data) return null;
+  return { level: data.level, updatedAt: data.updatedAt };
+}
+
+function buildFloodSimulationGeoJSON(parcela: FeatureCollection, cNivel: FeatureCollection, cotaRef: number): { geojson: FeatureCollection; stats: FloodSimulationStats } {
+  const lowContourLines = (cNivel.features || []).filter((f: FeatureCollection) => {
+    const z = Number(f?.properties?.Z ?? f?.properties?.COTA);
+    const t = f?.geometry?.type;
+    return Number.isFinite(z) && z <= cotaRef && (t === "LineString" || t === "MultiLineString");
+  });
+
+  if (!lowContourLines.length) {
+    return {
+      geojson: { type: "FeatureCollection", features: [] },
+      stats: { affected: 0, total: 0, parcial: 0, cota: cotaRef },
+    };
+  }
+
+  const lowClosedPolygons: FeatureCollection[] = [];
+  for (const f of lowContourLines) {
+    const rings = ringsFromGeometry(f.geometry);
+    for (const ring of rings) {
+      if (!isClosedRing(ring)) continue;
+      lowClosedPolygons.push({
+        type: "Feature",
+        properties: { z: Number(f?.properties?.Z ?? f?.properties?.COTA ?? null) },
+        geometry: { type: "Polygon", coordinates: [ring] },
+      });
+    }
+  }
+
+  const floodCandidates = lowClosedPolygons.filter((f) => {
+    try {
+      return area(f) > 1;
+    } catch {
+      return false;
+    }
+  });
+
+  const lowPolyWithBbox = floodCandidates.map((feature) => ({ feature, bbox: bbox(feature) }));
+  const lowPolyExtent = floodCandidates.length ? bbox(featureCollection(floodCandidates)) : null;
+  const lowLineWithBbox = lowContourLines.map((feature: FeatureCollection) => ({ feature, bbox: bbox(feature) }));
+
+  const OPEN_CONTOUR_BUFFER_M = 3;
+  let lowLineMask: FeatureCollection | null = null;
+  let lowLineExtent: number[] | null = null;
+  try {
+    lowLineMask = buffer(featureCollection(lowContourLines), OPEN_CONTOUR_BUFFER_M, { units: "meters" });
+    lowLineExtent = bbox(lowLineMask);
+  } catch {
+    lowLineMask = null;
+    lowLineExtent = null;
+  }
+
+  const affected: FeatureCollection[] = [];
+  let total = 0;
+  let parcial = 0;
+
+  for (const parcel of parcela.features || []) {
+    const gType = parcel?.geometry?.type;
+    if (gType !== "Polygon" && gType !== "MultiPolygon") continue;
+
+    const parcelArea = area(parcel);
+    if (!Number.isFinite(parcelArea) || parcelArea <= 0) continue;
+
+    const pBbox = bbox(parcel);
+    const hitsPolyExtent = lowPolyExtent ? bboxOverlap(pBbox, lowPolyExtent) : false;
+    const hitsLineExtent = lowLineExtent ? bboxOverlap(pBbox, lowLineExtent) : false;
+    if (!hitsPolyExtent && !hitsLineExtent) continue;
+
+    const parcelIntersections: FeatureCollection[] = [];
+    let touchesLowContourLine = false;
+
+    if (hitsPolyExtent) {
+      for (const poly of lowPolyWithBbox) {
+        if (!bboxOverlap(pBbox, poly.bbox)) continue;
+        let inter = null;
+        try {
+          inter = intersect(featureCollection([parcel, poly.feature]));
+        } catch {
+          inter = null;
+        }
+        if (inter) parcelIntersections.push(inter);
+      }
+    }
+
+    if (hitsLineExtent && lowLineMask) {
+      let interLine = null;
+      try {
+        interLine = intersect(featureCollection([parcel, lowLineMask]));
+      } catch {
+        interLine = null;
+      }
+      if (interLine) parcelIntersections.push(interLine);
+
+      for (const line of lowLineWithBbox) {
+        if (!bboxOverlap(pBbox, line.bbox)) continue;
+        try {
+          if (booleanIntersects(parcel, line.feature)) {
+            touchesLowContourLine = true;
+            break;
+          }
+        } catch {
+          // Keep evaluating remaining line candidates.
+        }
+      }
+    }
+
+    if (!parcelIntersections.length && !touchesLowContourLine) continue;
+
+    let floodedArea = 0;
+    if (parcelIntersections.length === 1) {
+      floodedArea = area(parcelIntersections[0]);
+    } else if (parcelIntersections.length > 1) {
+      const mergedIntersections = unionMany(parcelIntersections);
+      if (mergedIntersections) {
+        floodedArea = area(mergedIntersections);
+      } else {
+        floodedArea = Math.min(
+          parcelArea,
+          parcelIntersections.reduce((acc, f) => acc + Math.max(0, area(f)), 0),
+        );
+      }
+    }
+
+    if (floodedArea <= 0 && touchesLowContourLine) floodedArea = 1;
+    if (floodedArea <= 0) continue;
+
+    const ratio = Math.min(1, floodedArea / parcelArea);
+    const afectacion = ratio >= 0.98 ? "total" : "parcial";
+    if (afectacion === "total") total += 1;
+    else parcial += 1;
+
+    affected.push({
+      type: "Feature",
+      properties: {
+        ...(parcel.properties || {}),
+        inund_cota_ref_m: Number(cotaRef.toFixed(2)),
+        inund_fuente: `simulacion interactiva: curvas con Z <= ${cotaRef.toFixed(2)} m (inclusive)`,
+        inund_afectacion: afectacion,
+        inund_area_m2: Number(floodedArea.toFixed(2)),
+        inund_ratio: Number(ratio.toFixed(4)),
+      },
+      geometry: parcel.geometry,
+    });
+  }
+
+  return {
+    geojson: {
+      type: "FeatureCollection",
+      features: affected,
+    },
+    stats: {
+      affected: affected.length,
+      total,
+      parcial,
+      cota: Number(cotaRef.toFixed(2)),
+    },
+  };
+}
+
+function buildFloodVisualOverlayGeoJSON(
+  cNivel: FeatureCollection,
+  cotaRef: number,
+): FeatureCollection {
+  type ContourCandidate = {
+    feature: FeatureCollection;
+    z: number;
+    type: unknown;
+  };
+
+  const lowContourLines = (cNivel.features || [])
+    .map((f: FeatureCollection): ContourCandidate => ({
+      feature: f,
+      z: Number(f?.properties?.Z ?? f?.properties?.COTA),
+      type: f?.geometry?.type,
+    }))
+    .filter((item: ContourCandidate) => Number.isFinite(item.z) && item.z <= cotaRef && (item.type === "LineString" || item.type === "MultiLineString"));
+
+  if (!lowContourLines.length) {
+    return { type: "FeatureCollection", features: [] };
+  }
+
+  // Use the highest available contour band under river level as the crest line proxy.
+  const maxContourZ = lowContourLines.reduce((max: number, item: ContourCandidate) => Math.max(max, item.z), Number.NEGATIVE_INFINITY);
+  const Z_BAND = 0.35;
+  const borderLines = lowContourLines.filter((item: ContourCandidate) => item.z >= maxContourZ - Z_BAND);
+
+  return {
+    type: "FeatureCollection",
+    features: borderLines.map(({ feature, z }: ContourCandidate) => ({
+      type: "Feature",
+      properties: {
+        ...(feature?.properties ?? {}),
+        kind: "borde_agua",
+        borde_cota_m: Number(z.toFixed(2)),
+        inund_cota_ref_m: Number(cotaRef.toFixed(2)),
+        source: "upper_contour_band",
+      },
+      geometry: feature?.geometry,
+    })),
+  };
 }
 
 // ─── Label text ──────────────────────────────────────────────────────────────
@@ -394,6 +664,8 @@ function getLayerStyle(layerId: string): L.PathOptions {
     case "edif":       return { fillColor: "#4a6080", fillOpacity: 1, color: "#364d68", weight: 0.5, opacity: 1 };
     case "edif_palta": return { fillColor: "#a05a20", fillOpacity: 1, color: "#7c4015", weight: 0.5, opacity: 1 };
     case "cota10":     return { color: "#5eead4", weight: 0.8, opacity: 0.6 };
+    case "parcela_inundacion_cota10":
+      return { fillColor: "#f59e0b", fillOpacity: 0.35, color: "#b45309", weight: 0.7, opacity: 0.85 };
     case "hidro":      return { color: "#38bdf8", weight: 1.5, opacity: 0.75 };
     case "enersa_mt_13_2": return { color: "#facc15", weight: 1.5, opacity: 0.85 };
     case "enersa_mt_33":   return { color: "#f97316", weight: 3,   opacity: 0.9 };
@@ -451,6 +723,12 @@ function roleToPublicationLevel(role: string | undefined): PublicationLevel {
   if (role === "admin") return "admin";
   if (role === "registrado") return "professional";
   return "public";
+}
+
+function getPublicationFallbackLevels(level: PublicationLevel): PublicationLevel[] {
+  if (level === "admin") return ["admin", "professional", "public"];
+  if (level === "professional") return ["professional", "public"];
+  return ["public"];
 }
 
 function colorByDestiny(destino: unknown): string {
@@ -571,9 +849,21 @@ function sanitizeFeaturePropsByRole(
   layerId: string,
   level: PublicationLevel,
 ): Record<string, unknown> {
-  if (level !== "public") return props;
+  if (level === "admin") return props;
   if (layerId === "parcela" || layerId === "parcela_titularidad") {
-    return sanitizeParcelPropsForPublic(props);
+    if (level === "public") {
+      return sanitizeParcelPropsForPublic(props);
+    }
+
+    // Professional role: public parcel fields + owner identity.
+    const publicProps = sanitizeParcelPropsForPublic(props);
+    const extended: Record<string, unknown> = { ...publicProps };
+    Object.entries(props).forEach(([key, value]) => {
+      if (PROFESSIONAL_EXTRA_PARCEL_KEYS.has(key.toUpperCase())) {
+        extended[key] = value;
+      }
+    });
+    return extended;
   }
   return props;
 }
@@ -587,13 +877,39 @@ function isReasonablePoint(lat: number, lon: number): boolean {
     && lon < -57;
 }
 
-function extractVisadoYear(value: unknown): number | null {
+function extractVisadoYearFromValue(value: unknown): number | null {
+  if (typeof value === "number" && Number.isFinite(value)) {
+    const n = Math.trunc(value);
+    return n >= 1900 && n <= 2999 ? n : null;
+  }
   const text = String(value ?? "").trim();
   if (!text) return null;
   const match = text.match(/(19|20)\d{2}/);
   if (!match) return null;
   const year = Number(match[0]);
   return Number.isFinite(year) ? year : null;
+}
+
+function extractVisadoYear(props: Record<string, unknown> | undefined): number | null {
+  if (!props) return null;
+  const directCandidates: unknown[] = [
+    props.fecha_de_visado,
+    props.fecha_visado_iso,
+    props.visado,
+    props.raw__visado,
+    props.visado_year,
+    props.visadoYear,
+    props.ano,
+    props.anio,
+    props.year,
+  ];
+
+  for (const candidate of directCandidates) {
+    const year = extractVisadoYearFromValue(candidate);
+    if (year) return year;
+  }
+
+  return null;
 }
 
 function isTruthyFlag(value: unknown): boolean {
@@ -677,6 +993,39 @@ function formatM2(value: number): string {
   return `${Math.round(Math.max(0, value)).toLocaleString("es-AR")} m²`;
 }
 
+function normalizeComparableName(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ");
+}
+
+function distinctNonEmpty(values: string[]): string[] {
+  const unique = new Map<string, string>();
+  for (const value of values) {
+    const raw = value.trim();
+    if (!raw) continue;
+    const key = normalizeComparableName(raw);
+    if (!unique.has(key)) unique.set(key, raw);
+  }
+  return Array.from(unique.values());
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function formatLongTextHtml(value: string): string {
+  return escapeHtml(value).replace(/\r?\n/g, "<br/>");
+}
+
 function popupForWorkFeature(props: Record<string, unknown>, level: PublicationLevel): string {
   const title = nonEmptyText(props.raw_ubicacion ?? props.ubicacion ?? props.direccion_de_obra, "Obra");
   const tipo = nonEmptyText(props.tipo ?? props.tipo_obra);
@@ -689,6 +1038,20 @@ function popupForWorkFeature(props: Record<string, unknown>, level: PublicationL
   const legajo = nonEmptyText(props.legajo_canonico);
   const ncp = nonEmptyText(props.ncp_formatted ?? props.ncp);
   const fechaVisado = nonEmptyText(props.fecha_de_visado);
+  const propietario = nonEmptyText(props.propietario ?? props.raw__propietario);
+  const constructor = nonEmptyText(props.constructor ?? props.raw__constructor);
+  const estadoAvance = nonEmptyText(props.avance_de_obra ?? props.estado_avance ?? props.final_obra ?? props.condicion_del_tramite);
+  const profesionalProyecto = nonEmptyText(props.profesional_proyecto ?? props.proyecto ?? props.raw__proyecto);
+  const profesionalDireccion = nonEmptyText(props.direccion_de_obra ?? props.raw__direccion_de_obra);
+  const profesionalEstructura = nonEmptyText(props.estructura ?? props.raw__estructura);
+  const condicionesVisado = nonEmptyText(
+    props.observaciones
+    ?? props.raw__observaciones
+    ?? props.condiciones_visado
+    ?? props.raw__condiciones_visado
+    ?? props.visado_condiciones
+    ?? props.raw__visado,
+  );
   const declarationItems: string[] = [];
   if (declaration.relevamiento) declarationItems.push("Relevamiento");
   if (declaration.nueva) declarationItems.push("Obra nueva");
@@ -717,8 +1080,47 @@ function popupForWorkFeature(props: Record<string, unknown>, level: PublicationL
   }
 
   if (level !== "public") {
+    if (propietario !== "-") {
+      html += `<div><b>Propietario:</b> ${escapeHtml(propietario)}</div>`;
+    }
+
+    const professionals = distinctNonEmpty([
+      profesionalProyecto === "-" ? "" : profesionalProyecto,
+      profesionalDireccion === "-" ? "" : profesionalDireccion,
+      profesionalEstructura === "-" ? "" : profesionalEstructura,
+    ]);
+
+    if (professionals.length === 1) {
+      html += `<div><b>Profesional:</b> ${escapeHtml(professionals[0])}</div>`;
+    } else if (professionals.length > 1) {
+      if (profesionalProyecto !== "-") {
+        html += `<div><b>Profesional (Proyecto):</b> ${escapeHtml(profesionalProyecto)}</div>`;
+      }
+      if (profesionalDireccion !== "-") {
+        html += `<div><b>Profesional (Direccion):</b> ${escapeHtml(profesionalDireccion)}</div>`;
+      }
+      if (profesionalEstructura !== "-") {
+        html += `<div><b>Profesional (Estructura):</b> ${escapeHtml(profesionalEstructura)}</div>`;
+      }
+    }
+
+    if (constructor !== "-") {
+      html += `<div><b>Constructor:</b> ${escapeHtml(constructor)}</div>`;
+    }
+
+    if (estadoAvance !== "-") {
+      html += `<div><b>Estado de avance:</b> ${escapeHtml(estadoAvance)}</div>`;
+    }
+
+    if (condicionesVisado !== "-" && condicionesVisado.length > 14) {
+      html += `<details style="margin-top:4px"><summary style="cursor:pointer"><b>Condiciones de visado</b></summary>`
+        + `<div style="margin-top:4px;white-space:normal;line-height:1.3">${formatLongTextHtml(condicionesVisado)}</div></details>`;
+    }
+  }
+
+  if (level !== "public") {
     if (status !== "-") {
-      html += `<div><b>Estado verificación:</b> ${status}</div>`;
+      html += `<div><b>Estado de georeferenciacion:</b> ${status}</div>`;
     }
   }
   if (level === "admin") {
@@ -769,6 +1171,8 @@ export default function MapViewer() {
   const layerCacheRef = useRef<Record<string, FeatureCollection>>({}); // all loaded GeoJSON, keyed by layer id
   const worksLayerRef = useRef<L.GeoJSON | null>(null);
   const obrasHeatLayerRef = useRef<L.GeoJSON | null>(null);
+  const floodSimulationLayerRef = useRef<L.GeoJSON | null>(null);
+  const floodVisualOverlayLayerRef = useRef<L.GeoJSON | null>(null);
 
   const [layersPanelOpen, setLayersPanelOpen] = useState(false);
   const [searchPanelOpen, setSearchPanelOpen] = useState(false);
@@ -778,7 +1182,10 @@ export default function MapViewer() {
   const [authPanelOpen, setAuthPanelOpen] = useState(false);
   const [uploadPanelOpen, setUploadPanelOpen] = useState(false);
   const [analysisPanelOpen, setAnalysisPanelOpen] = useState(false);
+  const [adminDataPanelOpen, setAdminDataPanelOpen] = useState(false);
+  const [authMenuOpen, setAuthMenuOpen] = useState(false);
   const [regionalInfoOpen, setRegionalInfoOpen] = useState(false);
+  const [floodSimulationPanelOpen, setFloodSimulationPanelOpen] = useState(false);
   const [planosActive, setPlanosActive] = useState(false);
   const [worksMeta, setWorksMeta] = useState<{ level: PublicationLevel; count: number } | null>(null);
   const [obrasYearOptions, setObrasYearOptions] = useState<number[]>([]);
@@ -830,6 +1237,27 @@ export default function MapViewer() {
   });
   const [parcelOwnerFilter, setParcelOwnerFilter] = useState<ParcelOwnerFilter>("all");
   const [manzanaVisualMode, setManzanaVisualMode] = useState<ManzanaVisualMode>("suaves");
+  const [floodSimulationEnabled, setFloodSimulationEnabled] = useState(false);
+  const [floodSimulationCotaInput, setFloodSimulationCotaInput] = useState("10,00");
+  const [floodSimulationLoading, setFloodSimulationLoading] = useState(false);
+  const [floodSimulationStats, setFloodSimulationStats] = useState<FloodSimulationStats | null>(null);
+  const [floodVisualOverlayEnabled, setFloodVisualOverlayEnabled] = useState(true);
+  const [floodRealtimeSync, setFloodRealtimeSync] = useState(false);
+  const [floodRealtimeHeight, setFloodRealtimeHeight] = useState<number | null>(null);
+  const [floodRealtimeLoading, setFloodRealtimeLoading] = useState(false);
+  const [floodRealtimeUpdatedAt, setFloodRealtimeUpdatedAt] = useState<string | null>(null);
+
+  useEffect(() => {
+    const onAuthMenuToggle = (event: Event) => {
+      const custom = event as CustomEvent<boolean>;
+      setAuthMenuOpen(Boolean(custom.detail));
+    };
+
+    window.addEventListener("colon3d:auth-menu-open", onAuthMenuToggle as EventListener);
+    return () => {
+      window.removeEventListener("colon3d:auth-menu-open", onAuthMenuToggle as EventListener);
+    };
+  }, []);
 
   const [visibleLayers, setVisibleLayers] = useState<Record<string, boolean>>(
     Object.fromEntries(LAYERS.map(l => [l.id, l.defaultVisible && (!l.adminOnly || isAdmin)]))
@@ -864,15 +1292,10 @@ export default function MapViewer() {
     }
   }, [visibleLayers.zonas, zonaLegendOpen]);
 
-  const worksDatasetUrl = `${BASE_PATH}/data/planos/obras-${publicationLevel}.geojson`;
-  const worksApiUrl = useMemo(() => {
-    if (!API_BASE) return "";
-    const params = new URLSearchParams({ level: publicationLevel });
-    if (selectedObrasYears.length > 0) {
-      params.set("years", selectedObrasYears.join(","));
-    }
-    return `${API_BASE}/api/obras/points?${params.toString()}`;
-  }, [publicationLevel, selectedObrasYears]);
+  const worksLevels = useMemo(
+    () => getPublicationFallbackLevels(publicationLevel),
+    [publicationLevel],
+  );
 
   // Keep ref in sync with state for use in closures
   useEffect(() => { densidadActiveRef.current = densidadActive; }, [densidadActive]);
@@ -1054,9 +1477,11 @@ export default function MapViewer() {
       }
     }
 
-    const reportParcelProps = publicationLevel === "public"
-      ? sanitizeParcelPropsForPublic(props)
-      : props;
+    const reportParcelProps = sanitizeFeaturePropsByRole(
+      props,
+      "parcela",
+      publicationLevel,
+    );
 
     setReportData({
       parcelProps: reportParcelProps,
@@ -1168,6 +1593,13 @@ export default function MapViewer() {
           if (z === 10) return { color: "#f97316", weight: 1.5, opacity: 0.85 };
           return { ...baseStyle, weight: z % 5 === 0 ? 1.2 : 0.7, opacity: z % 5 === 0 ? 0.75 : 0.45 };
         }
+        if (layerId === "parcela_inundacion_cota10") {
+          const afectacion = String(feature?.properties?.inund_afectacion ?? "").toLowerCase();
+          if (afectacion === "total") {
+            return { fillColor: "#ef4444", fillOpacity: 0.42, color: "#b91c1c", weight: 0.9, opacity: 0.9 };
+          }
+          return { fillColor: "#f59e0b", fillOpacity: 0.32, color: "#b45309", weight: 0.7, opacity: 0.85 };
+        }
         return baseStyle;
       },
       pointToLayer: isPoint ? (_, latlng) => getPointLayer(layerId, latlng) : undefined,
@@ -1232,6 +1664,20 @@ export default function MapViewer() {
                 featureLayer.setStyle(getManzanaDensityStyle(feature, data, maxCount));
               } else if (layerId === "parcela_titularidad") {
                 featureLayer.setStyle(getParcelaTitularidadStyle(rawProps, parcelOwnerFilter));
+              } else if (layerId === "cota10") {
+                const z = Number(rawProps.Z ?? rawProps.COTA ?? 0);
+                if (z === 10) {
+                  featureLayer.setStyle({ color: "#f97316", weight: 1.5, opacity: 0.85 });
+                } else {
+                  featureLayer.setStyle({ ...baseStyle, weight: z % 5 === 0 ? 1.2 : 0.7, opacity: z % 5 === 0 ? 0.75 : 0.45 });
+                }
+              } else if (layerId === "parcela_inundacion_cota10") {
+                const afectacion = String(rawProps.inund_afectacion ?? "").toLowerCase();
+                if (afectacion === "total") {
+                  featureLayer.setStyle({ fillColor: "#ef4444", fillOpacity: 0.42, color: "#b91c1c", weight: 0.9, opacity: 0.9 });
+                } else {
+                  featureLayer.setStyle({ fillColor: "#f59e0b", fillOpacity: 0.32, color: "#b45309", weight: 0.7, opacity: 0.85 });
+                }
               } else {
                 featureLayer.setStyle(baseStyle);
               }
@@ -1385,41 +1831,98 @@ export default function MapViewer() {
       const bounds = map.getBounds();
       const size = map.getSize();
       const pt = map.latLngToContainerPoint(e.latlng);
-      const bbox = [
-        bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()
-      ].join(",");
+      const crs = map.options.crs ?? L.CRS.EPSG3857;
+      const crsCodeRaw = ((crs as { code?: string }).code ?? "EPSG:3857").toUpperCase();
+      const srs = crsCodeRaw.includes("3857") ? "EPSG:3857" : "EPSG:4326";
+      const bbox = srs === "EPSG:3857"
+        ? (() => {
+          const sw = crs.project(bounds.getSouthWest());
+          const ne = crs.project(bounds.getNorthEast());
+          return [sw.x, sw.y, ne.x, ne.y].join(",");
+        })()
+        : [bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()].join(",");
 
       void (async () => {
+        let hadQueryError = false;
         for (const extDef of activeWmsLayers) {
           try {
-            const params = new URLSearchParams({
-              SERVICE: "WMS", VERSION: "1.1.1", REQUEST: "GetFeatureInfo",
-              LAYERS: extDef.wmsLayers ?? "",
-              QUERY_LAYERS: extDef.wmsLayers ?? "",
-              INFO_FORMAT: "application/json",
-              FEATURE_COUNT: "1",
-              X: String(Math.round(pt.x)),
-              Y: String(Math.round(pt.y)),
-              WIDTH: String(size.x),
-              HEIGHT: String(size.y),
-              BBOX: bbox,
-              SRS: "EPSG:4326",
-            });
-            const res = await fetch(`${extDef.url}?${params.toString()}`, {
-              signal: AbortSignal.timeout(6000),
-            });
+            const x = String(Math.round(pt.x));
+            const y = String(Math.round(pt.y));
+
+            const res = API_BASE
+              ? await fetch(
+                `${API_BASE}/api/layers/catalog/${encodeURIComponent(extDef.id)}/feature-info?`
+                + new URLSearchParams({
+                  bbox,
+                  width: String(size.x),
+                  height: String(size.y),
+                  x,
+                  y,
+                  srs,
+                  infoFormat: "application/json",
+                  featureCount: "5",
+                  buffer: "12",
+                }).toString(),
+                { signal: AbortSignal.timeout(7000) },
+              )
+              : await fetch(
+                `${extDef.url}?`
+                + new URLSearchParams({
+                  SERVICE: "WMS",
+                  VERSION: "1.1.1",
+                  REQUEST: "GetFeatureInfo",
+                  LAYERS: extDef.wmsLayers ?? "",
+                  QUERY_LAYERS: extDef.wmsLayers ?? "",
+                  INFO_FORMAT: "application/json",
+                  FEATURE_COUNT: "5",
+                  X: x,
+                  Y: y,
+                  WIDTH: String(size.x),
+                  HEIGHT: String(size.y),
+                  BBOX: bbox,
+                  SRS: srs,
+                  BUFFER: "12",
+                }).toString(),
+                { signal: AbortSignal.timeout(6000) },
+              );
+
             if (!res.ok) continue;
-            const json = await res.json() as { features?: Array<{ properties?: Record<string, unknown> }> };
-            const props = json.features?.[0]?.properties;
-            if (props && Object.keys(props).length > 0) {
+            const json = await res.json() as {
+              features?: Array<{
+                id?: string | number;
+                properties?: Record<string, unknown>;
+                geometry?: { type?: string };
+              }>;
+            };
+            const firstFeature = json.features?.[0];
+            if (firstFeature) {
+              const props = firstFeature.properties && Object.keys(firstFeature.properties).length > 0
+                ? firstFeature.properties
+                : {
+                  _feature_id: firstFeature.id ?? "sin_id",
+                  _geometry_type: firstFeature.geometry?.type ?? "unknown",
+                  _note: "Entidad encontrada sin atributos publicados",
+                };
+
               setExternalLayerInfo({ status: "result", layerLabel: extDef.label, props });
               return;
             }
           } catch {
+            hadQueryError = true;
             // network error or timeout — try next layer
           }
         }
-        // All layers queried, nothing useful returned
+        if (hadQueryError) {
+          setExternalLayerInfo({
+            status: "error",
+            message: API_BASE
+              ? "No se pudo consultar atributos de la capa externa en este momento."
+              : "No se pudo consultar atributos (posible restricción CORS del servicio externo).",
+          });
+          return;
+        }
+
+        // All layers queried, no features at clicked point
         setExternalLayerInfo({ status: "empty", layerLabel: activeWmsLayers[0].label });
       })();
     });
@@ -1511,7 +2014,6 @@ export default function MapViewer() {
             attribution: extDef.attribution,
             opacity: extDef.opacity ?? 0.8,
             maxZoom: extDef.maxZoom ?? 19,
-            crossOrigin: "anonymous",
           } as L.WMSOptions);
         } else {
           // {date} in URL is replaced by Leaflet using the options object
@@ -1520,7 +2022,6 @@ export default function MapViewer() {
             opacity: extDef.opacity ?? 0.85,
             maxZoom: extDef.maxZoom ?? 19,
             subdomains: extDef.subdomains ?? "abc",
-            crossOrigin: "anonymous",
             date: dynamicDate,
           } as L.TileLayerOptions & { date: string });
         }
@@ -1534,7 +2035,23 @@ export default function MapViewer() {
   }, [visibleExternalLayers, mapReady]);
 
   const handleToggleExternalLayer = useCallback((layerId: string) => {
-    setVisibleExternalLayers(prev => ({ ...prev, [layerId]: !prev[layerId] }));
+    const map = leafletMapRef.current;
+    const fitBounds = EXTERNAL_LAYER_FIT_BOUNDS[layerId];
+
+    setVisibleExternalLayers(prev => {
+      const nextVisible = !prev[layerId];
+
+      if (nextVisible && map && fitBounds) {
+        // If current viewport does not overlap the known data extent,
+        // move to that extent so users can immediately see rendered data.
+        const target = L.latLngBounds(fitBounds);
+        if (!map.getBounds().intersects(target)) {
+          map.fitBounds(target, { padding: [28, 28], maxZoom: 10 });
+        }
+      }
+
+      return { ...prev, [layerId]: nextVisible };
+    });
   }, []);
 
   // ── Zoom label sync ──────────────────────────────────────────────────────
@@ -1581,23 +2098,38 @@ export default function MapViewer() {
 
     let cancelled = false;
     const loadWorksDataset = async (): Promise<FeatureCollection> => {
-      if (worksApiUrl) {
-        try {
-          const res = await fetch(worksApiUrl);
-          if (res.ok) {
+      if (API_BASE) {
+        for (const level of worksLevels) {
+          try {
+            const params = new URLSearchParams({ level });
+            const url = `${API_BASE}/api/obras/points?${params.toString()}`;
+            const res = await fetch(url);
+            if (!res.ok) continue;
             const body = await res.json() as { data?: FeatureCollection };
-            if (body?.data && Array.isArray(body.data.features)) {
+            if (body?.data && Array.isArray(body.data.features) && body.data.features.length > 0) {
               return body.data;
             }
+          } catch {
+            // try next fallback level/source
           }
-        } catch {
-          // fallback to static GeoJSON below
         }
       }
 
-      const fallbackRes = await fetch(worksDatasetUrl);
-      if (!fallbackRes.ok) throw new Error("No se pudo cargar capa de obras");
-      return fallbackRes.json() as Promise<FeatureCollection>;
+      for (const level of worksLevels) {
+        try {
+          const fallbackUrl = `${BASE_PATH}/data/planos/obras-${level}.geojson`;
+          const fallbackRes = await fetch(fallbackUrl);
+          if (!fallbackRes.ok) continue;
+          const fallbackData = await fallbackRes.json() as FeatureCollection;
+          if (Array.isArray(fallbackData.features) && fallbackData.features.length > 0) {
+            return fallbackData;
+          }
+        } catch {
+          // try next fallback level/source
+        }
+      }
+
+      throw new Error("No se pudo cargar capa de obras");
     };
 
     void loadWorksDataset()
@@ -1614,7 +2146,7 @@ export default function MapViewer() {
 
         const yearSet = new Set<number>();
         allValidFeatures.forEach((f: { properties?: Record<string, unknown> }) => {
-          const y = extractVisadoYear(f.properties?.fecha_de_visado);
+          const y = extractVisadoYear(f.properties);
           if (y) yearSet.add(y);
         });
         const yearsDesc = Array.from(yearSet).sort((a, b) => b - a);
@@ -1636,7 +2168,7 @@ export default function MapViewer() {
         const selectedSet = new Set(ensuredSelection);
         const includeNoYear = ensuredSelection.length === yearsDesc.length;
         const filteredFeatures = allValidFeatures.filter((f: { properties?: Record<string, unknown> }) => {
-          const y = extractVisadoYear(f.properties?.fecha_de_visado);
+          const y = extractVisadoYear(f.properties);
           if (!y) return includeNoYear;
           return selectedSet.has(y);
         });
@@ -1731,7 +2263,7 @@ export default function MapViewer() {
     return () => {
       cancelled = true;
     };
-  }, [mapReady, planosActive, publicationLevel, worksDatasetUrl, worksApiUrl, obrasYearOptions, selectedObrasYears, obrasYearPreset]);
+  }, [mapReady, planosActive, publicationLevel, worksLevels, obrasYearOptions, selectedObrasYears, obrasYearPreset]);
 
   // ── Obras temporal heatmap (barrios) ─────────────────────────────────────
 
@@ -1883,7 +2415,7 @@ export default function MapViewer() {
     }
     const centroid = computeCentroid(feature.geometry);
     const centroidLngLat: [number, number] | null = centroid ? [centroid[1], centroid[0]] : null;
-    const visibleProps = publicationLevel === "public" ? sanitizeParcelPropsForPublic(props) : props;
+    const visibleProps = sanitizeFeaturePropsByRole(props, "parcela", publicationLevel);
     setSelectedFeature({ props: visibleProps, layerLabel: "Parcela catastral", centroid: centroidLngLat, geometry: feature.geometry });
     setSelectedZona(null);
     setSearchPanelOpen(false);
@@ -2017,8 +2549,14 @@ export default function MapViewer() {
     setAnalysisPanelOpen(prev => {
       const next = !prev;
       if (next) {
+        setLayersPanelOpen(false);
+        setSearchPanelOpen(false);
+        setUploadPanelOpen(false);
         setRegionalInfoOpen(false);
+        setFloodSimulationPanelOpen(false);
         setZonaLegendOpen(false);
+        setAdminDataPanelOpen(false);
+        setAuthPanelOpen(false);
       }
       return next;
     });
@@ -2027,7 +2565,16 @@ export default function MapViewer() {
   const handleToggleRegionalInfoPanel = useCallback(() => {
     setRegionalInfoOpen(prev => {
       const next = !prev;
-      if (next) setAnalysisPanelOpen(false);
+      if (next) {
+        setLayersPanelOpen(false);
+        setSearchPanelOpen(false);
+        setAnalysisPanelOpen(false);
+        setUploadPanelOpen(false);
+        setFloodSimulationPanelOpen(false);
+        setZonaLegendOpen(false);
+        setAdminDataPanelOpen(false);
+        setAuthPanelOpen(false);
+      }
       return next;
     });
   }, []);
@@ -2035,22 +2582,323 @@ export default function MapViewer() {
   const handleToggleZonaLegendPanel = useCallback(() => {
     setZonaLegendOpen(prev => {
       const next = !prev;
-      if (next) setAnalysisPanelOpen(false);
+      if (next) {
+        setLayersPanelOpen(false);
+        setSearchPanelOpen(false);
+        setAnalysisPanelOpen(false);
+        setUploadPanelOpen(false);
+        setRegionalInfoOpen(false);
+        setFloodSimulationPanelOpen(false);
+        setAdminDataPanelOpen(false);
+        setAuthPanelOpen(false);
+      }
       return next;
     });
   }, []);
 
+  const handleToggleLayersPanel = useCallback(() => {
+    setLayersPanelOpen((prev) => {
+      const next = !prev;
+      if (next) {
+        setSearchPanelOpen(false);
+        setAnalysisPanelOpen(false);
+        setUploadPanelOpen(false);
+        setRegionalInfoOpen(false);
+        setFloodSimulationPanelOpen(false);
+        setZonaLegendOpen(false);
+        setAdminDataPanelOpen(false);
+        setAuthPanelOpen(false);
+      }
+      return next;
+    });
+  }, []);
+
+  const handleToggleCadastralPanel = useCallback(() => {
+    setSearchPanelOpen((prev) => {
+      const next = !prev;
+      if (next) {
+        setLayersPanelOpen(false);
+        setAnalysisPanelOpen(false);
+        setUploadPanelOpen(false);
+        setRegionalInfoOpen(false);
+        setFloodSimulationPanelOpen(false);
+        setZonaLegendOpen(false);
+        setAdminDataPanelOpen(false);
+        setAuthPanelOpen(false);
+      }
+      return next;
+    });
+  }, []);
+
+  const handleToggleUploadPanel = useCallback(() => {
+    setUploadPanelOpen((prev) => {
+      const next = !prev;
+      if (next) {
+        setLayersPanelOpen(false);
+        setSearchPanelOpen(false);
+        setAnalysisPanelOpen(false);
+        setRegionalInfoOpen(false);
+        setFloodSimulationPanelOpen(false);
+        setZonaLegendOpen(false);
+        setAdminDataPanelOpen(false);
+        setAuthPanelOpen(false);
+      }
+      return next;
+    });
+  }, []);
+
+  const handleToggleFloodSimulationPanel = useCallback(() => {
+    setFloodSimulationPanelOpen((prev) => {
+      const next = !prev;
+      if (next) {
+        setLayersPanelOpen(false);
+        setSearchPanelOpen(false);
+        setAnalysisPanelOpen(false);
+        setUploadPanelOpen(false);
+        setRegionalInfoOpen(false);
+        setZonaLegendOpen(false);
+        setAdminDataPanelOpen(false);
+        setAuthPanelOpen(false);
+      }
+      return next;
+    });
+  }, []);
+
+  const handleOpenAuthPanel = useCallback(() => {
+    setLayersPanelOpen(false);
+    setSearchPanelOpen(false);
+    setAnalysisPanelOpen(false);
+    setUploadPanelOpen(false);
+    setRegionalInfoOpen(false);
+    setFloodSimulationPanelOpen(false);
+    setZonaLegendOpen(false);
+    setAdminDataPanelOpen(false);
+    setAuthPanelOpen(true);
+  }, []);
+
+  const handleOpenAdminDataPanel = useCallback(() => {
+    setLayersPanelOpen(false);
+    setSearchPanelOpen(false);
+    setAnalysisPanelOpen(false);
+    setUploadPanelOpen(false);
+    setRegionalInfoOpen(false);
+    setFloodSimulationPanelOpen(false);
+    setZonaLegendOpen(false);
+    setAuthPanelOpen(false);
+    setAdminDataPanelOpen(true);
+  }, []);
+
+  const handleToggleDensidadFromHeader = useCallback(() => {
+    setLayersPanelOpen(false);
+    setSearchPanelOpen(false);
+    setUploadPanelOpen(false);
+    setRegionalInfoOpen(false);
+    setFloodSimulationPanelOpen(false);
+    setZonaLegendOpen(false);
+    setAdminDataPanelOpen(false);
+    setAuthPanelOpen(false);
+    setAnalysisPanelOpen(true);
+    setDensidadActive((v) => !v);
+  }, []);
+
+  const handleApplyFloodSimulation = useCallback(async (overrideCota?: number) => {
+    const map = leafletMapRef.current;
+    if (!map || !mapReady || floodSimulationLoading) return;
+
+    const parsedCota = overrideCota ?? parseFloodCotaInput(floodSimulationCotaInput);
+    if (parsedCota == null) return;
+
+    setFloodSimulationLoading(true);
+    try {
+      const [parcelaData, cNivelData] = await Promise.all([
+        fetchAndCacheLayer("parcela"),
+        fetchAndCacheLayer("cota10"),
+      ]);
+
+      if (!parcelaData || !cNivelData) return;
+
+      const { geojson, stats } = buildFloodSimulationGeoJSON(parcelaData, cNivelData, parsedCota);
+
+      if (floodSimulationLayerRef.current && map.hasLayer(floodSimulationLayerRef.current)) {
+        map.removeLayer(floodSimulationLayerRef.current);
+      }
+      if (floodVisualOverlayLayerRef.current && map.hasLayer(floodVisualOverlayLayerRef.current)) {
+        map.removeLayer(floodVisualOverlayLayerRef.current);
+      }
+
+      const simLayer = L.geoJSON(geojson, {
+        style: (feature) => {
+          const afectacion = String(feature?.properties?.inund_afectacion ?? "").toLowerCase();
+          if (afectacion === "total") {
+            return { fillColor: "#dc2626", fillOpacity: 0.44, color: "#991b1b", weight: 1, opacity: 0.9 };
+          }
+          return { fillColor: "#fb7185", fillOpacity: 0.32, color: "#be123c", weight: 0.8, opacity: 0.85 };
+        },
+        onEachFeature: (feature, featureLayer) => {
+          const rawProps = (feature?.properties || {}) as Record<string, unknown>;
+
+          featureLayer.on("click", (e: L.LeafletMouseEvent) => {
+            L.DomEvent.stopPropagation(e);
+            const centroid = computeCentroid(feature.geometry);
+            const centroidLngLat: [number, number] | null = centroid ? [centroid[1], centroid[0]] : null;
+
+            const simFields = {
+              inund_afectacion: rawProps.inund_afectacion,
+              inund_cota_ref_m: rawProps.inund_cota_ref_m,
+              inund_area_m2: rawProps.inund_area_m2,
+              inund_ratio: rawProps.inund_ratio,
+              inund_fuente: rawProps.inund_fuente,
+            };
+
+            const visibleProps = publicationLevel === "public"
+              ? { ...sanitizeParcelPropsForPublic(rawProps), ...simFields }
+              : rawProps;
+
+            setSelectedFeature({
+              props: visibleProps,
+              layerLabel: `Simulación de crecida (+${parsedCota.toFixed(2)} m)`,
+              centroid: centroidLngLat,
+              geometry: feature.geometry,
+            });
+            setSelectedZona(null);
+          });
+
+          if (featureLayer instanceof L.Path) {
+            featureLayer.on("mouseover", () => {
+              const afectacion = String(rawProps.inund_afectacion ?? "").toLowerCase();
+              if (afectacion === "total") {
+                featureLayer.setStyle({ fillColor: "#b91c1c", fillOpacity: 0.52, color: "#7f1d1d", weight: 1.2, opacity: 0.95 });
+              } else {
+                featureLayer.setStyle({ fillColor: "#f43f5e", fillOpacity: 0.44, color: "#9f1239", weight: 1, opacity: 0.9 });
+              }
+            });
+            featureLayer.on("mouseout", () => {
+              const afectacion = String(rawProps.inund_afectacion ?? "").toLowerCase();
+              if (afectacion === "total") {
+                featureLayer.setStyle({ fillColor: "#dc2626", fillOpacity: 0.44, color: "#991b1b", weight: 1, opacity: 0.9 });
+              } else {
+                featureLayer.setStyle({ fillColor: "#fb7185", fillOpacity: 0.32, color: "#be123c", weight: 0.8, opacity: 0.85 });
+              }
+            });
+          }
+        },
+      });
+
+      floodSimulationLayerRef.current = simLayer;
+      setFloodSimulationStats(stats);
+      setFloodSimulationEnabled(true);
+      setFloodSimulationCotaInput(formatFloodCotaInput(parsedCota));
+      simLayer.addTo(map);
+
+      const overlayGeojson = buildFloodVisualOverlayGeoJSON(cNivelData, parsedCota);
+      const overlayLayer = L.geoJSON(overlayGeojson, {
+        style: (feature) => {
+          const kind = String(feature?.properties?.kind ?? "").toLowerCase();
+          if (kind === "borde_agua") {
+            return {
+              color: "#22d3ee",
+              weight: 2.8,
+              opacity: 0.98,
+              dashArray: "9 5",
+            } as L.PathOptions;
+          }
+          return {
+            color: "#22d3ee",
+            weight: 2,
+            opacity: 0.9,
+          } as L.PathOptions;
+        },
+        onEachFeature: (feature, featureLayer) => {
+          const kind = String(feature?.properties?.kind ?? "").toLowerCase();
+          const cota = Number(feature?.properties?.inund_cota_ref_m ?? parsedCota);
+          const bordeCota = Number(feature?.properties?.borde_cota_m ?? cota);
+          if (kind === "borde_agua") {
+            featureLayer.bindPopup(`<div><b>Borde estimado del agua</b><br/>Nivel del rio: ${cota.toFixed(2)} m<br/>Curva usada: ${bordeCota.toFixed(2)} m</div>`);
+          } else {
+            featureLayer.bindPopup(`<div><b>Borde estimado del agua</b><br/>Nivel del rio: ${cota.toFixed(2)} m</div>`);
+          }
+        },
+      });
+
+      floodVisualOverlayLayerRef.current = overlayLayer;
+      if (floodVisualOverlayEnabled) {
+        overlayLayer.addTo(map);
+      }
+
+      simLayer.bringToFront();
+      if (floodVisualOverlayEnabled) {
+        overlayLayer.bringToFront();
+      }
+    } finally {
+      setFloodSimulationLoading(false);
+    }
+  }, [mapReady, floodSimulationLoading, floodSimulationCotaInput, fetchAndCacheLayer, publicationLevel, floodVisualOverlayEnabled]);
+
+  useEffect(() => {
+    if (!floodRealtimeSync || !mapReady) return;
+
+    let cancelled = false;
+
+    const applyRealtimeHeight = async () => {
+      if (floodSimulationLoading) return;
+      setFloodRealtimeLoading(true);
+      try {
+        const data = await fetchCurrentRiverLevelMeters();
+        if (!data || cancelled) return;
+        setFloodRealtimeHeight(data.level);
+        setFloodRealtimeUpdatedAt(data.updatedAt);
+        setFloodSimulationCotaInput(formatFloodCotaInput(data.level));
+        await handleApplyFloodSimulation(data.level);
+      } finally {
+        if (!cancelled) setFloodRealtimeLoading(false);
+      }
+    };
+
+    void applyRealtimeHeight();
+    const id = window.setInterval(() => {
+      void applyRealtimeHeight();
+    }, 60 * 1000);
+
+    return () => {
+      cancelled = true;
+      window.clearInterval(id);
+    };
+  }, [floodRealtimeSync, mapReady, floodSimulationLoading, handleApplyFloodSimulation]);
+
+  useEffect(() => {
+    const map = leafletMapRef.current;
+    const layer = floodSimulationLayerRef.current;
+    if (!map || !mapReady || !layer) return;
+
+    if (floodSimulationEnabled) {
+      if (!map.hasLayer(layer)) layer.addTo(map);
+      layer.bringToFront();
+    } else if (map.hasLayer(layer)) {
+      map.removeLayer(layer);
+    }
+  }, [floodSimulationEnabled, mapReady]);
+
+  useEffect(() => {
+    const map = leafletMapRef.current;
+    const overlay = floodVisualOverlayLayerRef.current;
+    if (!map || !mapReady || !overlay) return;
+
+    if (floodSimulationEnabled && floodVisualOverlayEnabled) {
+      if (!map.hasLayer(overlay)) overlay.addTo(map);
+      overlay.bringToFront();
+    } else if (map.hasLayer(overlay)) {
+      map.removeLayer(overlay);
+    }
+  }, [floodSimulationEnabled, floodVisualOverlayEnabled, mapReady]);
+
   return (
     <div className="relative w-full h-screen overflow-hidden bg-background">
       <Header
-        onToggleLayers={() => setLayersPanelOpen(o => !o)}
+        onToggleLayers={handleToggleLayersPanel}
         layersPanelOpen={layersPanelOpen}
-        onToggleCadastral={() => setSearchPanelOpen(o => !o)}
+        onToggleCadastral={handleToggleCadastralPanel}
         cadastralOpen={searchPanelOpen}
-        onToggleDensidad={() => {
-          setAnalysisPanelOpen(true);
-          setDensidadActive(v => !v);
-        }}
+        onToggleDensidad={handleToggleDensidadFromHeader}
         densidadActive={densidadActive}
         densidadPanelOpen={false}
         onToggleZonaLegend={handleToggleZonaLegendPanel}
@@ -2058,7 +2906,7 @@ export default function MapViewer() {
         showZonaLegendButton={Boolean(visibleLayers.zonas)}
         onToggleAnalysis={handleToggleAnalysisPanel}
         analysisPanelOpen={analysisPanelOpen}
-        onToggleUpload={() => setUploadPanelOpen(o => !o)}
+        onToggleUpload={handleToggleUploadPanel}
         uploadPanelOpen={uploadPanelOpen}
         planosActive={planosActive}
         onTogglePlanosVisibility={() => setPlanosActive(v => !v)}
@@ -2074,9 +2922,11 @@ export default function MapViewer() {
         onChangeMeasureMode={setMeasureMode}
         mapRef={mapRef as React.RefObject<L.Map | null>}
         onAddressFound={handleAddressFound}
-        onOpenAuthPanel={() => setAuthPanelOpen(true)}
+        onOpenAuthPanel={handleOpenAuthPanel}
         onToggleRegionalInfo={handleToggleRegionalInfoPanel}
         regionalInfoOpen={regionalInfoOpen}
+        onToggleFloodSimulationPanel={handleToggleFloodSimulationPanel}
+        floodSimulationPanelOpen={floodSimulationPanelOpen}
         dashboardUrl={dashboardUrl}
         adminEditorUrl={adminEditorUrl}
       />
@@ -2199,6 +3049,8 @@ export default function MapViewer() {
           <div className="pointer-events-auto">
             <CadastralSearch
               basePath={BASE_PATH}
+              isAdmin={isAdmin}
+              canViewOwner={publicationLevel !== "public"}
               onFeatureFound={handleFeatureFound}
               onClose={() => setSearchPanelOpen(false)}
             />
@@ -2211,6 +3063,45 @@ export default function MapViewer() {
         className="absolute top-14 right-3 z-[1001] flex flex-col gap-2 pointer-events-none"
         style={{ maxHeight: "calc(100vh - 80px)", overflowY: "auto" }}
       >
+        {floodSimulationPanelOpen && (
+          <div className="pointer-events-auto">
+            <FloodSimulationPanel
+              enabled={floodSimulationEnabled}
+              mode={floodRealtimeSync ? "auto" : "manual"}
+              cotaInput={floodSimulationCotaInput}
+              showFloodOverlay={floodVisualOverlayEnabled}
+              loading={floodSimulationLoading}
+              stats={floodSimulationStats}
+              realtimeHeight={floodRealtimeHeight}
+              realtimeLoading={floodRealtimeLoading}
+              realtimeUpdatedAt={floodRealtimeUpdatedAt}
+              onToggleEnabled={() => setFloodSimulationEnabled((v) => !v)}
+              onSetMode={(mode) => setFloodRealtimeSync(mode === "auto")}
+              onToggleFloodOverlay={() => setFloodVisualOverlayEnabled((v) => !v)}
+              onChangeCotaInput={setFloodSimulationCotaInput}
+              onApply={() => { void handleApplyFloodSimulation(); }}
+            />
+          </div>
+        )}
+
+        {isAdmin && !authMenuOpen && (
+          <div className="pointer-events-auto">
+            <button
+              type="button"
+              onClick={handleOpenAdminDataPanel}
+              className="w-full px-3 py-2 rounded-lg border border-primary/35 bg-primary/10 text-primary text-xs font-semibold hover:bg-primary/20 transition-colors"
+            >
+              Panel admin de datos
+            </button>
+            <Link
+              href="/admin/obras-manual"
+              className="mt-2 inline-flex w-full items-center justify-center px-3 py-2 rounded-lg border border-cyan-500/35 bg-cyan-500/10 text-cyan-300 text-xs font-semibold hover:bg-cyan-500/20 transition-colors"
+            >
+              Carga manual de obras
+            </Link>
+          </div>
+        )}
+
         {regionalInfoOpen && (
           <div className="pointer-events-auto">
             <RegionalInfoPanel
@@ -2408,6 +3299,14 @@ export default function MapViewer() {
           mapRef={mapRef as React.RefObject<L.Map | null>}
           onClose={() => setUploadPanelOpen(false)}
           canUpload={hasPermission(user?.role ?? "invitado", "canUploadLayers")}
+        />
+      )}
+
+      {isAdmin && adminDataPanelOpen && (
+        <AdminDataPanel
+          basePath={BASE_PATH}
+          open={adminDataPanelOpen}
+          onClose={() => setAdminDataPanelOpen(false)}
         />
       )}
 

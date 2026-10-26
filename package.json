@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "pnpm -r --parallel --stream --filter @workspace/api-server --filter @workspace/colon-3d run dev",
+    "dev": "pnpm -r --parallel --stream --filter @workspace/api-server --filter @workspace/colon-3d --filter @workspace/expedientes-web run dev",
     "dev:fast": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/dev-up.ps1",
     "dev:api": "pnpm --filter @workspace/api-server run dev",
     "dev:web": "pnpm --filter @workspace/colon-3d run dev",
+    "dev:expedientes": "pnpm --filter @workspace/expedientes-web run dev",
     "build": "pnpm run typecheck && pnpm -r --if-present run build",
     "build:api": "pnpm --filter @workspace/api-server run build",
     "build:web": "pnpm --filter @workspace/colon-3d run build",

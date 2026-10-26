@@ -1,0 +1,6 @@
+﻿source_row_number,severity,issue_type,column_name,column_index,value,message
+52,warning,invalid_ar_date,INGRESO,3,RELEVAMIENTO,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).
+59,warning,invalid_ar_date,INGRESO,3,RELEVAMIENTO,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).
+60,error,spreadsheet_error_token,Monto de la Inversión (estimado y/o declarado),40,#REF!,La celda contiene un error de hoja de calculo.
+224,warning,invalid_ar_date,INGRESO,3,"20/08/2021, 18/11/2021",Fecha de ingreso invalida para formato AR (dd/mm/aaaa).
+225,warning,invalid_ar_date,INGRESO,3,18/11/21 y 16/12/2021,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).

@@ -1704,7 +1704,9 @@ function buildAdminEditorHtml(rows: GeolocatedRow[], overridesPath: string): str
 
 async function main(): Promise<void> {
   const repoRoot = findRepoRoot(path.resolve(process.cwd()));
-  const baseName = "LISTADO PLANOS-hasta-2026.xlsx - 2025(1)";
+  const baseNameArg = process.argv.find((arg) => arg.startsWith("--baseName="));
+  const baseName = (baseNameArg ? baseNameArg.slice("--baseName=".length) : "").trim() || "LISTADO PLANOS-hasta-2026.xlsx - 2025(1)";
+  const copyToApp = !process.argv.includes("--no-copy-to-app");
   const cleaningDir = path.join(repoRoot, "artifacts", "planos-cleaning");
   const normalizedCsvPath = path.join(cleaningDir, `${baseName}.normalized.csv`);
   const parcelaGeoJsonPath = path.join(repoRoot, "artifacts", "colon-3d", "public", "data", "Parcela.geojson");
@@ -1783,7 +1785,7 @@ async function main(): Promise<void> {
 
     consideredRows += 1;
 
-    const concesionRaw = row.raw__nomenclatura_catastral_concesion ?? "";
+    const concesionRaw = row.raw__nomenclatura_catastral_concesion ?? row.raw__concesion ?? "";
     const manzanaRaw = row.raw__manzana ?? "";
     const parcelaRawValue = row.raw__parcela ?? "";
 
@@ -1928,36 +1930,39 @@ async function main(): Promise<void> {
     const enrichedRows: Array<Record<string, unknown>> = [];
     for (const geoRow of finalRows) {
       const origRow = normalizedRowsMap.get(geoRow.source_row_number);
-      const tipo = String(origRow?.raw__tipo ?? "").trim();
+      const tipo = String(origRow?.raw__tipo ?? origRow?.raw__uso ?? "").trim();
+      const fechaVisado = String(origRow?.fecha_visado_iso ?? origRow?.raw__fecha_de_visado ?? origRow?.raw__visado ?? "").trim();
+      const anoRaw = String(origRow?.raw__ano ?? "").trim();
+      const ano = anoRaw || (fechaVisado ? fechaVisado.slice(0, 4) : "");
       const merged: Record<string, unknown> = {
         ...geoRow,
         ...(origRow || {}),
-        ano: origRow?.raw__ano ?? "",
+        ano,
         expediente: origRow?.raw__expediente ?? origRow?.expediente_raw ?? "",
         ingreso: origRow?.ingreso_iso ?? origRow?.ingreso_raw ?? "",
         zonificacion: origRow?.raw__zonificacion ?? "",
         ubicacion: origRow?.raw__ubicacion ?? geoRow.raw_ubicacion,
         propietario: origRow?.raw__propietario ?? "",
         nombre_del_establecimiento_y_o_empresa: origRow?.raw__nombre_del_establecimiento_y_o_empresa ?? "",
-        profesional_proyecto: origRow?.raw__profesional_proyecto ?? "",
+        profesional_proyecto: origRow?.raw__profesional_proyecto ?? origRow?.raw__proyecto ?? "",
         direccion_de_obra: origRow?.raw__direccion_de_obra ?? "",
         estructura: origRow?.raw__estructura ?? "",
         constructor: origRow?.raw__constructor ?? "",
         categoria: origRow?.raw__categoria ?? "",
-        indicadores_f_o_s: origRow?.raw__indicadores_f_o_s ?? "",
+        indicadores_f_o_s: origRow?.raw__indicadores_f_o_s ?? origRow?.raw__f_o_s ?? "",
         f_o_t: origRow?.raw__f_o_t ?? "",
-        fecha_de_visado: origRow?.fecha_visado_iso ?? origRow?.raw__fecha_de_visado ?? "",
+        fecha_de_visado: fechaVisado,
         final_de_obra: origRow?.final_obra_iso ?? origRow?.raw__final_de_obra ?? "",
         tipo,
         destino_uso: deriveDestinationFromTipo(tipo),
         relevamiento_o_existente: origRow?.raw__relevamiento_o_existente ?? "",
-        a_contruir_obra_nueva: origRow?.raw__a_contruir_obra_nueva ?? "",
+        a_contruir_obra_nueva: origRow?.raw__a_contruir_obra_nueva ?? origRow?.raw__condicion_del_tramite ?? "",
         ampliacion_de_obra_existente: origRow?.raw__ampliacion_de_obra_existente ?? "",
         proyectado_no_iniciado: origRow?.raw__proyectado_no_iniciado ?? "",
         m_existentes_relevados_vivienda: origRow?.raw__m_existentes_relevados_vivienda ?? "",
-        m_existentes_relevados_local: origRow?.raw__local__2 ?? "",
+        m_existentes_relevados_local: origRow?.raw__local__2 ?? origRow?.raw__m_existentes_relevados_local ?? "",
         m_a_construir_vivienda: origRow?.raw__m_a_construir_vivienda ?? "",
-        m_a_construir_local: origRow?.raw__local__3 ?? "",
+        m_a_construir_local: origRow?.raw__local__3 ?? origRow?.raw__m_a_construir_local ?? "",
       };
       enrichedRows.push(merged);
     }
@@ -1994,11 +1999,13 @@ async function main(): Promise<void> {
   const appDashboardHtml = path.join(appToolsDir, "analytics-dashboard.html");
   const appAdminEditorHtml = path.join(appToolsDir, "admin-editor.html");
 
-  copyIfExists(pubOutputs.public.geoJsonPath, appPublicGeoJson);
-  copyIfExists(pubOutputs.professional.geoJsonPath, appProfessionalGeoJson);
-  copyIfExists(pubOutputs.admin.geoJsonPath, appAdminGeoJson);
-  copyIfExists(analyticsOutputs.analyticsDashboardHtml, appDashboardHtml);
-  copyIfExists(adminEditorHtmlPath, appAdminEditorHtml);
+  if (copyToApp) {
+    copyIfExists(pubOutputs.public.geoJsonPath, appPublicGeoJson);
+    copyIfExists(pubOutputs.professional.geoJsonPath, appProfessionalGeoJson);
+    copyIfExists(pubOutputs.admin.geoJsonPath, appAdminGeoJson);
+    copyIfExists(analyticsOutputs.analyticsDashboardHtml, appDashboardHtml);
+    copyIfExists(adminEditorHtmlPath, appAdminEditorHtml);
+  }
 
   if (!fs.existsSync(overridesJsonPath)) {
     fs.writeFileSync(
@@ -2032,13 +2039,17 @@ async function main(): Promise<void> {
       analysisMapPrepJson: analyticsOutputs.analysisMapPrepJson,
       analysisPointsGeoJson: analyticsOutputs.analysisPointsGeoJson,
       analysisZonesChoroplethGeoJson: analyticsOutputs.analysisZonesChoroplethGeoJson,
-      appDashboardHtml,
-      appAdminEditorHtml,
-      appRoleData: {
-        publicGeoJson: appPublicGeoJson,
-        professionalGeoJson: appProfessionalGeoJson,
-        adminGeoJson: appAdminGeoJson,
-      },
+      ...(copyToApp
+        ? {
+            appDashboardHtml,
+            appAdminEditorHtml,
+            appRoleData: {
+              publicGeoJson: appPublicGeoJson,
+              professionalGeoJson: appProfessionalGeoJson,
+              adminGeoJson: appAdminGeoJson,
+            },
+          }
+        : {}),
       publicationLevels: pubOutputs,
       analytics,
     },

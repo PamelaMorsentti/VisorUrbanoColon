@@ -122,11 +122,11 @@ function parseDateAR(value: string): { iso: string; isValid: boolean } {
     return { iso: "", isValid: false };
   }
 
-  const day = Number(match[1]);
-  const month = Number(match[2]);
+  const first = Number(match[1]);
+  const second = Number(match[2]);
   let year = Number(match[3]);
 
-  if (Number.isNaN(day) || Number.isNaN(month) || Number.isNaN(year)) {
+  if (Number.isNaN(first) || Number.isNaN(second) || Number.isNaN(year)) {
     return { iso: "", isValid: false };
   }
 
@@ -134,26 +134,36 @@ function parseDateAR(value: string): { iso: string; isValid: boolean } {
     year += year >= 70 ? 1900 : 2000;
   }
 
-  if (year < 1900 || year > 2100 || month < 1 || month > 12 || day < 1 || day > 31) {
-    return { iso: "", isValid: false };
-  }
+  function buildIso(day: number, month: number): string {
+    if (year < 1900 || year > 2100 || month < 1 || month > 12 || day < 1 || day > 31) {
+      return "";
+    }
+    const date = new Date(Date.UTC(year, month - 1, day));
+    const isRealDate =
+      date.getUTCFullYear() === year &&
+      date.getUTCMonth() === month - 1 &&
+      date.getUTCDate() === day;
 
-  const date = new Date(Date.UTC(year, month - 1, day));
-  const isRealDate =
-    date.getUTCFullYear() === year &&
-    date.getUTCMonth() === month - 1 &&
-    date.getUTCDate() === day;
+    if (!isRealDate) {
+      return "";
+    }
 
-  if (!isRealDate) {
-    return { iso: "", isValid: false };
-  }
-
-  return {
-    iso: `${year.toString().padStart(4, "0")}-${month
+    return `${year.toString().padStart(4, "0")}-${month
       .toString()
-      .padStart(2, "0")}-${day.toString().padStart(2, "0")}`,
-    isValid: true,
-  };
+      .padStart(2, "0")}-${day.toString().padStart(2, "0")}`;
+  }
+
+  const arIso = buildIso(first, second);
+  if (arIso) {
+    return { iso: arIso, isValid: true };
+  }
+
+  const usIso = buildIso(second, first);
+  if (usIso) {
+    return { iso: usIso, isValid: true };
+  }
+
+  return { iso: "", isValid: false };
 }
 
 function findLastMeaningfulColumn(rows: CsvTable): number {
@@ -206,6 +216,15 @@ function buildHeaders(headerRows: CsvTable, columnCount: number): HeaderInfo[] {
 function findHeaderIndex(headers: HeaderInfo[], needle: string): number {
   const target = needle.toLowerCase();
   return headers.findIndex((h) => h.unifiedLabel.toLowerCase().includes(target));
+}
+
+function usesFlatHeaderRow(firstRow: CsvRow): boolean {
+  const normalized = firstRow.map((value) => normalizeToken(value));
+  const hasMes = normalized.includes("mes");
+  const hasLegajo = normalized.includes("legajo");
+  const hasExpediente = normalized.includes("expediente");
+  const hasIngreso = normalized.includes("ingreso");
+  return hasMes && hasLegajo && hasExpediente && hasIngreso;
 }
 
 function countNonEmpty(row: CsvRow): number {
@@ -366,7 +385,13 @@ function main(): void {
     skip_empty_lines: false,
   }) as CsvTable;
 
-  if (parsed.length < 4) {
+  if (parsed.length < 2) {
+    throw new Error("El CSV no tiene suficientes filas para encabezado + datos.");
+  }
+
+  const headerRowCount = usesFlatHeaderRow(parsed[0] ?? []) ? 1 : 3;
+
+  if (parsed.length < headerRowCount + 1) {
     throw new Error("El CSV no tiene suficientes filas para encabezado + datos.");
   }
 
@@ -380,12 +405,16 @@ function main(): void {
     return out;
   });
 
-  const headers = buildHeaders(trimmed.slice(0, 3), columnCount);
+  const headers = buildHeaders(trimmed.slice(0, headerRowCount), columnCount);
   const legajoIdx = findHeaderIndex(headers, "legajo");
   const expedienteIdx = findHeaderIndex(headers, "expediente");
   const ingresoIdx = findHeaderIndex(headers, "ingreso");
-  const visadoIdx = findHeaderIndex(headers, "fecha de visado");
-  const finalObraIdx = findHeaderIndex(headers, "final de obra");
+  const visadoIdx = findHeaderIndex(headers, "fecha de visado") >= 0
+    ? findHeaderIndex(headers, "fecha de visado")
+    : findHeaderIndex(headers, "visado");
+  const finalObraIdx = findHeaderIndex(headers, "final de obra") >= 0
+    ? findHeaderIndex(headers, "final de obra")
+    : findHeaderIndex(headers, "final obra");
 
   const records: NormalizedRecord[] = [];
   const issues: Issue[] = [];
@@ -393,7 +422,7 @@ function main(): void {
   let currentMonth = "";
   let currentLegajo = "";
 
-  for (let i = 3; i < trimmed.length; i += 1) {
+  for (let i = headerRowCount; i < trimmed.length; i += 1) {
     const row = trimmed[i];
     const sourceRowNumber = i + 1;
 

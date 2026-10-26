@@ -1,0 +1,8 @@
+﻿source_row_number,severity,issue_type,column_name,column_index,value,message
+13,warning,invalid_ar_date,INGRESO,3,RELEVAMIENTO,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).
+33,warning,invalid_ar_date,INGRESO,3,RELEVAMIENTO y AMPLIACION,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).
+80,warning,invalid_ar_date,INGRESO,3,A CONSTRUIR,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).
+97,warning,invalid_ar_date,INGRESO,3,RELEVAMIENTO,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).
+97,warning,unassigned_legajo,LEGAJO,1,"mail, 524521",Fila con datos que no pudo asignarse a un legajo canonico.
+99,warning,invalid_ar_date,INGRESO,3,A CONSTRUIR,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).
+112,warning,invalid_ar_date,INGRESO,3,A CONSTRUIR,Fecha de ingreso invalida para formato AR (dd/mm/aaaa).

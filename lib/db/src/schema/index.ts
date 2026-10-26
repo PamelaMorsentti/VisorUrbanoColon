@@ -19,3 +19,4 @@
 
 export * from "./layerCatalog";
 export * from "./obrasPrivadas";
+export * from "./tramites";

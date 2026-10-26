@@ -47,3 +47,6 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+# Local ML workspace not needed for Netlify deploy
+ultralytics/

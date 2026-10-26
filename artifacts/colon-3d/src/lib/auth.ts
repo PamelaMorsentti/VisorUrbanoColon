@@ -53,9 +53,55 @@ export function hasPermission(role: Role, permission: Permission): boolean {
   return PERMISSIONS[role][permission];
 }
 
-// Admin password — read from env or fallback
-export const ADMIN_PASSWORD =
-  (import.meta as unknown as { env: { VITE_ADMIN_PASSWORD?: string } }).env.VITE_ADMIN_PASSWORD || "colon2024";
+// Admin password baseline — read from env or fallback
+export const DEFAULT_ADMIN_PASSWORD = "colon2024";
+export const ENV_ADMIN_PASSWORD =
+  (import.meta as unknown as { env: { VITE_ADMIN_PASSWORD?: string } }).env.VITE_ADMIN_PASSWORD || "";
+
+const ADMIN_PASSWORD_OVERRIDE_KEY = "colon3d_admin_password_override";
+
+function getBaseAdminPassword(): string {
+  return ENV_ADMIN_PASSWORD || DEFAULT_ADMIN_PASSWORD;
+}
+
+export function getAdminPassword(): string {
+  try {
+    const override = localStorage.getItem(ADMIN_PASSWORD_OVERRIDE_KEY);
+    if (override && override.trim().length > 0) return override;
+  } catch {
+    // Ignore localStorage access issues and fallback to base password.
+  }
+  return getBaseAdminPassword();
+}
+
+export function hasAdminPasswordOverride(): boolean {
+  try {
+    const override = localStorage.getItem(ADMIN_PASSWORD_OVERRIDE_KEY);
+    return Boolean(override && override.trim().length > 0);
+  } catch {
+    return false;
+  }
+}
+
+export function setAdminPasswordOverride(newPassword: string): boolean {
+  const next = String(newPassword ?? "").trim();
+  if (next.length < 6) return false;
+  try {
+    localStorage.setItem(ADMIN_PASSWORD_OVERRIDE_KEY, next);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export function resetAdminPasswordOverride(): boolean {
+  try {
+    localStorage.removeItem(ADMIN_PASSWORD_OVERRIDE_KEY);
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 const LS_KEY = "colon3d_auth";
 

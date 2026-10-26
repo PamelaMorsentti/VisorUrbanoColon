@@ -1,0 +1,166 @@
+﻿source_row_number,legajo_canonico,raw_ubicacion,tipo_problema,subtipo,detalle,severity,match_method,confidence,reason
+3,1,PeriUrbana,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+4,2,Sarmiento Nº 88,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+5,3,"Maipú Nª 525, 529 (antes 535)",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+6,4,Camino Bernardino Horne s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+8,6,Celia Pellenc N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+10,7,,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+11,8,San Martín N° 567 - 571,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+12,9,Calle Pública s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+13,10,Laprida N° 227,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+14,11,Gouchón N° 253 esq Sarmiento,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+15,12,Urbana 2,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+16,13,"Vieytes Nº 41 esq Gra Urquiza Nº 653, 657, 659",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+17,14,Laprida N° 122,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+18,15,Chacabico Nº 627,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+19,16,Peyret N° 210,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+20,17,Juan Manuel de Rosas N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+21,18,Maipú N° 470,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+22,19,Urbana 2,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+23,20,Domingo Antonini N° 89,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+24,21,Rocamora N° 416,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+25,22,Gouchon N° 418,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+26,23,Calle Pública s/N° - Los Bretes,geolocalizacion,match_ambiguo,ambiguous_match_by_manz_parc,warning,manz_parc,low,ambiguous_match_by_manz_parc
+27,24,Araujo Pen{on N° 285,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+28,25,"Ruta N° 14, km",geolocalizacion,match_ambiguo,ambiguous_match_by_manz_parc,warning,manz_parc,low,ambiguous_match_by_manz_parc
+29,26,Madre Isabel Fernandez Nª 312 esq Mitre,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+30,27,Hernandez N° 282,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+31,28,Bvard. Ferrari N° 1190,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+32,29,Calle Pública s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+34,30,Residencial Norte,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+35,31,"Lavalle N° 122, 122",geolocalizacion,match_ambiguo,ambiguous_match_by_gru_parc,warning,gru_parc,low,ambiguous_match_by_gru_parc
+36,32,Noailles N° 239 esq L. N. Alema,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+37,33,9 de Julio Nº 363,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+38,34,Raibel N° 780 esq Leguizamón,geolocalizacion,match_ambiguo,ambiguous_match_by_gru_parc,warning,gru_parc,low,ambiguous_match_by_gru_parc
+39,35,Urbana 1,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+40,36,25 de Mayo N° 464,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+41,37,Combatientes de Malvinas N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+44,40,Avda Paysandù Nº 274,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+45,41,3 de Febrero N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+46,42,Primeros Colonos esq Agua-I,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+47,43,Primeros Colonos esq. Calle Pública,geolocalizacion,match_ambiguo,ambiguous_match_by_gru_parc,warning,gru_parc,low,ambiguous_match_by_gru_parc
+48,44,Calle Jacarandaes s/Nº - Los Bretes,geolocalizacion,match_ambiguo,ambiguous_match_by_manz_parc,warning,manz_parc,low,ambiguous_match_by_manz_parc
+49,45,Piamonte s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+50,46,Tucumán Nº 1422,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+51,47,Azurduy esq Espinillo,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+52,48,Calle Brovatti S/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+53,49,Calle Pública s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+54,50,Avda Paysandú Nº 1170,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+55,51,Combatientes de Malvinas N° 980,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+56,52,Hornero s/Nº,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+57,53,M. M. Lima N° 1081,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+58,54,12 de Abril Nº 167 (171),geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+60,56,Ñandubay N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+61,57,Alberdi esq Sourigues N° 244 y 246,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+63,59,Las Piedras N° 12,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+65,61,San Martín N° 220,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+66,62,Bvard Ferrari N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+67,63,Bolívar N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+68,64,Alejo Peyret N° 140,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+70,66,Jacarandaes esq Coronillos ( Los Bretes),geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+71,67,Avda Quiròs Nº 280 esq Mitre,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+73,69,Sourigues N° 610 e/ C de Malvinas y Cepeda,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+74,70,Pasaje Alarcón N° 521,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+75,71,12 de Abril N° 741,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+76,72,Balcarce N° 66,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+78,74,Alfredo Bravo s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+79,76,Salsipuedes N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+80,75,Calle Privada s/N° (Los Bretes),geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+81,77,"Esteva Berga N° 152, esq Noailles",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+82,78,Gómez Miranda N° 148 esq Noailles,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+83,79,Calle Artalaz s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+86,83,Bolívar N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+88,84,12 de Abril N° 850,geolocalizacion,match_ambiguo,ambiguous_match_by_manz_parc,warning,manz_parc,low,ambiguous_match_by_manz_parc
+89,88,Noailles N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+91,85,Calle Privada Jacarandaes s/N° ( Los Bretes),geolocalizacion,match_ambiguo,ambiguous_match_by_manz_parc,warning,manz_parc,low,ambiguous_match_by_manz_parc
+92,86,San Martín N° 625,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+93,89,Laprida N.º 521,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+94,90,Combatientes de Malvinas N° 188,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+95,91,Urbana 2,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+97,93,Viollaz N° 232,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+99,95,Calle Pública s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+101,97,Cabo Pereyra N° 645,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+102,98,25 de Mayo N° 450,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+103,99,Araujo Penón N° 413,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+105,104,"12 de Abril N°  esq. Lavalle N° 2, 8, 10, 12, 14, 16, 18",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+106,105,Cabo Pereyra N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+107,102,Paje Villalba N° 672,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+108,103,Los Charrúas s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+110,106,Bvard Ferrari s/Nº 960,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+111,108,Bolívar Nº 237,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+113,109,12 de Abril N° 686,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+114,110,Camino Horne s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+115,111,Sarmiento N°  366,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+116,112,Bvard. Ferrari N.º 1389,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+117,113,Artigas N° 173,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+118,114,Reibel N° 248,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+119,115,Bolívar N° 790,geolocalizacion,match_ambiguo,ambiguous_match_by_gru_parc,warning,gru_parc,low,ambiguous_match_by_gru_parc
+121,116,Calle Pública s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+122,119,Lavalle N° 486,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+123,118,Balcarce N° 174,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+124,120,Avda Urquiza N° 1174 y 1180,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+125,121,Calle Primeros Colonos s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+126,123,Lima N° 191 esq Lavalle N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+127,122,"Ruta Nac N° 135, km",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+128,124,"Gral Paz Nº 162, 164",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+130,125,"12 de Abril Nº 848, 840, al 846",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+132,127,Balcarce N° 482 - 486,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+134,130,San Martín N° 859 - 861,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+135,131,3 de Febrero N° 70,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+136,132,Florentina Gomez Miranda N° 120,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+137,133,Las Piedras N°  336,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+138,137,San Martín N° 472,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+139,134,Avda Paysandú esq 3 de Febrero N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+141,136,Monteagudo N° 114,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+142,138,Calle provada s/N° - Los Bretes,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+143,140,Urbana 2,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+145,141,Hernández N° 363,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+146,142,M. M. Lima N° 226,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+147,144,Combatientes de Malvinas N°  182 (ANTES 178),geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+148,143,Durand N° 457 es Pasaje s/nombre,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+149,145,"Avda Urquiza N° 662, 664",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+150,147,Avda Urquiza N° 313,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+152,148,Calle Privada s/N° - Los Bretes,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+153,149,Mitre s/Nº 325,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+155,151,"San Martín N° 1212, 1220",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+156,152,Bolívar esq Sourigues N° 443,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+157,153,M. Moreno N° 164,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+158,154,"Reibel N° 223, 225",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+159,155,Las Piedras N° 341,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+160,156,Salsipuedes s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+161,157,Florentina Gomez Miranda N° 117,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+164,160,Avda. Paysandú N° 1156,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+165,161,Avda Paysandú N° 274,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+166,162,Calle Paraiso ( Loteo Aires de 1872),geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+167,163,Bernard N° 671,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+168,164,Calle Privada s/N° - Los Bretes,geolocalizacion,match_ambiguo,ambiguous_match_by_manz_parc,warning,manz_parc,low,ambiguous_match_by_manz_parc
+169,165,Avda. Urquiza N° 769,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+170,166,Primera Junta N° 93 esq Bolivar,geolocalizacion,match_ambiguo,ambiguous_match_by_gru_parc,warning,gru_parc,low,ambiguous_match_by_gru_parc
+171,167,Piamonte N° 650,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+172,168,12 de Abril  N° 1186,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+174,170,Bvard Gaillard N° 252 esq Sarmiento,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+176,171,9 de Mayo N°   323,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+177,172,Calle Privada s/Nº - Los Bretes,geolocalizacion,match_ambiguo,ambiguous_match_by_manz_parc,warning,manz_parc,low,ambiguous_match_by_manz_parc
+178,173,General Paz N° 136,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+179,174,Calle Privada s/N° - Los Bretes,geolocalizacion,match_ambiguo,ambiguous_match_by_manz_parc,warning,manz_parc,low,ambiguous_match_by_manz_parc
+180,175,"Reibel N° 161, 163, 165",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+181,176,María Isabel Fernandez s/N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+186,180,Avda. Paysandú Nº 657,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+188,181,"Batalla de Cepeda Nº204, 206, esq Lavalle",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+189,182,Bolívar Nº 87,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+190,183,Paso de los Andes Nº,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+191,184,Calle Las Moras s/Nº,geolocalizacion,match_ambiguo,ambiguous_match_by_gru_parc,warning,gru_parc,low,ambiguous_match_by_gru_parc
+192,184,Bvard. Güemes N° 252,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+193,185,"Bvard. Güemes N° 252, esq. Tucumán",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+194,186,Tucumán y Leguizamón Nº 244,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+195,187,Calle Privada s/Nº - Los Bretes,geolocalizacion,match_ambiguo,ambiguous_match_by_manz_parc,warning,manz_parc,low,ambiguous_match_by_manz_parc
+196,188,L. N. Alem Nº 17 esq.12 de Abril,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+198,189,Castelli N°,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+199,190,Paso de los Andes N°2170,geolocalizacion,match_ambiguo,ambiguous_match_by_gru_parc,warning,gru_parc,low,ambiguous_match_by_gru_parc
+200,192,Belgrano N° 582,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+201,191,Avda Paysandú N° 262 - 268,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+202,191,,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+205,196,3 de Febrero Nº 606,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+206,195,Bvard Ferrari Nº 1183,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+207,197,Chacabuco Nº 292,geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
+208,198,"9 de Julio Nº 302, 304, 306, 308, 310, 312 y 314 y Paso de los Andes",geolocalizacion,sin_match_catastral,no_cadastral_match,warning,none,low,no_cadastral_match
